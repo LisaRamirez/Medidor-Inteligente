@@ -1,0 +1,147 @@
+:root {
+    --primary-blue: #002B5C;
+    --accent-green: #9FE870;
+    --text-white: #FFFFFF;
+    --text-dark: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Header & Navigation */
+.header {
+    background: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.contact-btn {
+    background: var(--primary-blue);
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+/* Hero Section */
+.hero {
+    background-image: linear-gradient(rgba(0,43,92,0.7), rgba(0,43,92,0.7)), url('path-to-water-image.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-white);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero .highlight {
+    color: var(--accent-green);
+}
+
+.cta-button {
+    background: var(--accent-green);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+/* Benefits Section */
+.benefits {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.benefits h2 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.benefits-subtitle {
+    margin-bottom: 3rem;
+    color: var(--text-dark);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.benefit-card {
+    padding: 2rem;
+    text-align: center;
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    background: var(--primary-blue);
+    border-radius: 50%;
+}
+
+.benefit-card h3 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
