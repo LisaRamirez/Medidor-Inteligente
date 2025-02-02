@@ -1,0 +1,480 @@
+{%extends 'app/base.html'%}
+{%block contenido%}
+{% load static %}
+
+<style>
+    /* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Sección Hero */
+.hero {
+    background-color: #0A1F44;
+    color: white;
+    position: relative;
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6605q4gFRR0Elts1lTy6ytfRcqxsqb.png');
+    background-size: cover;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 10px 0 20px;
+}
+
+.features {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.features li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.features li::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #3B82F6;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline {
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #3B82F6;
+    color: white;
+}
+
+.btn .icon {
+    margin-left: 8px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Sección Cómo Funciona */
+.how-it-works {
+    background-color: #F3F4F6;
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    color: #1F2937;
+}
+
+.section-header p {
+    color: #6B7280;
+    margin-top: 10px;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    font-size: 100px;
+    font-weight: bold;
+    color: #E5E7EB;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.step-content {
+    position: relative;
+    z-index: 2;
+}
+
+.step-icon {
+    width: 96px;
+    height: 96px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.step-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.step p {
+    color: #4B5563;
+    font-size: 14px;
+}
+
+.step .highlight {
+    font-weight: bold;
+    color: #1F2937;
+    margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+    }
+
+    .hero-image {
+        order: -1;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 40px 0;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .step-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .step-icon img {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Sección Otros Productos */
+.other-products {
+    background-color: #002B5C;
+    padding: 80px 0;
+    color: white;
+}
+
+.other-products h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    color: #1F2937;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 24px;
+}
+
+.card-button {
+    background-color: #DAFF01;
+    color: #1F2937;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: #C2E600;
+}
+
+.card-button .arrow {
+    transition: transform 0.3s ease;
+}
+
+.card-button:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Ajustes responsive para la nueva sección */
+@media (max-width: 768px) {
+    .other-products {
+        padding: 60px 0;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .product-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .other-products h2 {
+        font-size: 24px;
+        padding: 0 20px;
+    }
+
+    .product-card {
+        padding: 20px;
+    }
+}
+</style>
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="label">CONOCE</span>
+                <h1>NUESTRO NUEVO MEDIDOR</h1>
+                <p>Conoce nuestro nuevo medidor inteligente, ahora 3 veces más potente, diseñado para ofrecer un monitoreo aún más preciso del consumo de agua. Optimiza la gestión de tu comunidad con mayor cobertura, mejor rendimiento y la misma eficiencia y sostenibilidad que nos caracteriza.</p>
+                
+                <ul class="features">
+                    <li>Batería 3 veces más potente</li>
+                    <li>Monitoreo en tiempo real</li>
+                    <li>Diseño totalmente moderno</li>
+                </ul>
+
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-outline">
+                        Ver Catálogo
+                        <span class="icon">📥</span>
+                    </a>
+                    <a href="#" class="btn btn-primary">
+                        Comprarlo ahora
+                        <span class="icon">→</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6605q4gFRR0Elts1lTy6ytfRcqxsqb.png" alt="Medidor Inteligente">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección Cómo Funciona -->
+<section class="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <h2>¿CÓMO FUNCIONA?</h2>
+            <p>En 3 sencillos pasos</p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-icon">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6605q4gFRR0Elts1lTy6ytfRcqxsqb.png" alt="Medidor">
+                    </div>
+                    <p>Toma los datos y envía al receptor manual</p>
+                    <p class="highlight">A 100 (+) METROS</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-icon">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6605q4gFRR0Elts1lTy6ytfRcqxsqb.png" alt="Receptor">
+                    </div>
+                    <p>Recepciona los datos</p>
+                    <p class="highlight">PERMITE CORTAR EL SERVICIO A DISTANCIA</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-icon">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6605q4gFRR0Elts1lTy6ytfRcqxsqb.png" alt="Software">
+                    </div>
+                    <p>Pasa en directo los datos al software o por una plantilla excel</p>
+                    <p class="highlight">PERMITE EMITIR BOLETAS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="other-products">
+    <div class="container">
+        <h2>Descubre nuestros otros productos</h2>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="card-icon">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-NoPRy7tjzYYKCabGpzZ55gPBsfxSlC.png" alt="APR Platform Icon">
+                </div>
+                <h3>Nuestra plataforma de gestión de APR</h3>
+                <p>Incluye Boleta Electrónica y Pago de APR en línea</p>
+                <a href="#" class="card-button">
+                    Conoce más
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+
+            <div class="product-card">
+                <div class="card-icon">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-NoPRy7tjzYYKCabGpzZ55gPBsfxSlC.png" alt="Punto Blue Icon">
+                </div>
+                <h3>Paga tus cuentas de agua potable rural en línea</h3>
+                <p>Además conoce los puntos de pago en almacenes locales</p>
+                <a href="#" class="card-button">
+                    Conoce más
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

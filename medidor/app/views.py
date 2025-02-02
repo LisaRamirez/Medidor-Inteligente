@@ -10,6 +10,7 @@ def clientes(request):
     return render(request, 'app/clientes.html')
 
 def contacto(request):
+
     return render(request, 'app/contacto.html')
 
 def nosotros(request):

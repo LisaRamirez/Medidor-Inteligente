@@ -1,0 +1,308 @@
+{%extends 'app/base.html'%}
+{%block contenido%}
+{% load static %}
+
+<style>
+    /* ... (estilos existentes) ... */
+
+.confirmation-message {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+/* ... (resto de los estilos) ... */
+    /* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header */
+.headercontacto {
+    background-color: #002B5C;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Columnas de información */
+.info-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.contact-info h2,
+.social-info h2 {
+    color: #002B5C;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info ul,
+.social-info ul {
+    list-style: none;
+}
+
+.contact-info li,
+.social-info li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+/* Formulario */
+.contact-form h2 {
+    color: #002B5C;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.required {
+    color: #dc3545;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #999;
+}
+
+/* Radio buttons */
+.radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Botón de envío */
+button[type="submit"] {
+    background-color: #002B5C;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 2rem auto 0;
+    min-width: 150px;
+}
+
+button[type="submit"]:hover {
+    background-color: #001f42;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .header p {
+        font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        font-size: 0.9rem;
+    }
+}
+
+/* Soporte para dispositivos de baja gama */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+    
+</style>
+    
+<div class="headercontacto">
+    <h1>CONTÁCTANOS</h1>
+    <p>Comunicate con nosotros y empieza a cambiar el futuro</p>
+</div>
+
+<main class="container">
+    <div class="info-columns">
+        <!-- Columna de información de contacto -->
+        <div class="contact-info">
+            <h2>Información de Contacto</h2>
+            <ul>
+                <li><i class="icon-user"></i> Alejandro Espinoza Verdugp</li>
+                <li><i class="icon-location"></i> Luis Cruz Martinez 991 Nancagua Chile.</li>
+                <li><i class="icon-email"></i> contacto@medidorinteligente.cl</li>
+            </ul>
+        </div>
+
+        <!-- Columna de redes sociales -->
+        <div class="social-info">
+            <h2>Síguenos en redes</h2>
+            <ul>
+                <li><i class="icon-facebook"></i> Medidor Inteligente de Agua Potable</li>
+                <li><i class="icon-youtube"></i> @MedidorInteligenteAPR</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="contact-form">
+        <h2>¿Más dudas? Escríbenos</h2>
+        <form id="contactForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombre completo <span class="required">*</span></label>
+                    <input type="text" name="nombre" placeholder="Escribe aquí" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo electrónico <span class="required">*</span></label>
+                    <input type="email" name="email" placeholder="Escribe aquí" required>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Teléfono <span class="required">*</span></label>
+                <input type="tel" name="telefono" placeholder="Escribe aquí" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombre del APR / SSR <span class="required">*</span></label>
+                    <input type="text" name="apr" placeholder="Escribe aquí" required>
+                </div>
+                <div class="form-group">
+                    <label>Cargo o Puesto en el APR <span class="required">*</span></label>
+                    <input type="text" name="cargo" placeholder="Escribe aquí" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Comuna <span class="required">*</span></label>
+                    <input type="text" name="comuna" placeholder="Escribe aquí" required>
+                </div>
+                <div class="form-group">
+                    <label>Cantidad de Arranques</label>
+                    <input type="text" name="arranques" placeholder="Escribe aquí">
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Tipo de financiamiento <span class="required">*</span></label>
+                <div class="radio-options">
+                    <label class="radio-label">
+                        <input type="radio" name="financiamiento" value="propio" required>
+                        <span>Propio</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="financiamiento" value="externo" required>
+                        <span>Fondo externo (Gobierno, otras entidades)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Mensaje</label>
+                <textarea name="mensaje" placeholder="Escribe aquí" rows="6"></textarea>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="confirmationMessage" class="confirmation-message" style="display: none;">
+            ¡Gracias por contactarnos! Te responderemos pronto.
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}
