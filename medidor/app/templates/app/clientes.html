@@ -2,519 +2,545 @@
 {%block contenido%}
 {% load static %}
 
+ <!-- Hero Section -->
+ 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-    }
+    /* Reset básico */
 
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        overflow-x: hidden;
-        width: 100%;
-    }
-
-    /* Optimización de rendimiento */
-    .slider {
-        position: relative;
-        height: 100vh;
-        overflow: hidden;
-        will-change: transform;
-        -webkit-overflow-scrolling: touch;
-        backface-visibility: hidden;
-    }
-
-    .slide {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(rgba(0, 0, 50, 0.5), rgba(0, 0, 50, 0.5)),
-                    url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-C1keMhFMSkOC4zusYvKlWvnV41Ab9A.png');
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 1rem;
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
-    }
-
-    .slide-content {
-        max-width: 800px;
-        color: white;
-        margin-left: 5%;
-        padding: 0 15px;
-    }
-
-    .slide-content h1 {
-        font-size: clamp(1.5rem, 5vw, 2.5rem);
-        margin-bottom: 1rem;
-        line-height: 1.3;
-        font-weight: 600;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .slide-content p {
-        font-size: clamp(0.9rem, 3vw, 1.2rem);
-        margin-bottom: 2rem;
-        line-height: 1.5;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    }
-
-    .cta-button {
-        display: inline-block;
-        padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
-        background-color: #c8ff00;
-        color: #000;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        border: none;
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
-    }
-
-    .cta-button:active {
-        transform: scale(0.98);
-        background-color: #b8ef00;
-    }
-
-    .slider-nav {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 0.5rem;
-        z-index: 10;
-    }
-
-    .slider-dot {
-        width: clamp(8px, 2vw, 10px);
-        height: clamp(8px, 2vw, 10px);
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        cursor: pointer;
-        touch-action: manipulation;
-    }
-
-    .slider-dot.active {
-        background-color: white;
-    }
-
-    .slider-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: clamp(35px, 8vw, 40px);
-        height: clamp(35px, 8vw, 40px);
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: white;
-        font-size: clamp(1.2rem, 4vw, 1.5rem);
-        text-decoration: none;
-        touch-action: manipulation;
-        z-index: 10;
-    }
-
-    .arrow-prev {
-        left: 0.5rem;
-    }
-
-    .arrow-next {
-        right: 0.5rem;
-    }
-
-    .benefits {
-        padding: clamp(2rem, 5vw, 4rem) 1rem;
-        text-align: center;
-        background-color: #fff;
-    }
-
-    .benefits h2 {
-        color: #002868;
-        margin-bottom: 1rem;
-        font-size: clamp(1.5rem, 4vw, 2rem);
-    }
-
-    .benefits > p {
-        color: #666;
-        margin-bottom: 2rem;
-        font-size: clamp(0.9rem, 2.5vw, 1rem);
-    }
-
-    .benefits-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
-
-    .benefit-card {
-        padding: 1.5rem;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .benefit-card:active {
-        transform: scale(0.98);
-    }
-
-    .benefit-icon {
-        width: clamp(50px, 10vw, 60px);
-        height: clamp(50px, 10vw, 60px);
-        background-color: #002868;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-        color: white;
-        font-size: clamp(1.2rem, 3vw, 1.5rem);
-    }
-
-    .benefit-card h3 {
-        color: #002868;
-        margin-bottom: 1rem;
-        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-    }
-
-    .benefit-card p {
-        color: #666;
-        line-height: 1.5;
-        font-size: clamp(0.9rem, 2vw, 1rem);
-    }
-
-    /* Breakpoints específicos para Android */
-    /* Gama baja - 320px */
-    @media (max-width: 320px) {
-        .slide-content {
-            margin-left: 2%;
-        }
-
-        .benefits-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .benefit-card {
-            padding: 1rem;
-        }
-    }
-
-    /* Gama media - 375px */
-    @media (min-width: 321px) and (max-width: 375px) {
-        .slide-content {
-            margin-left: 3%;
-        }
-    }
-
-    /* Gama media-alta - 414px */
-    @media (min-width: 376px) and (max-width: 414px) {
-        .slide-content {
-            margin-left: 4%;
-        }
-    }
-
-    /* Tablets y dispositivos más grandes */
-    @media (min-width: 768px) {
-        .slide-content {
-            margin-left: 5%;
-        }
-
-        .benefits-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    /* Optimizaciones para dispositivos de gama baja */
-    @media (prefers-reduced-motion: reduce) {
-        .cta-button,
-        .benefit-card {
-            transition: none;
-        }
-    }
-
-    /* Optimizaciones para ahorro de batería */
-    @media (prefers-reduced-motion: reduce) {
-        * {
-            animation: none !important;
-            transition: none !important;
-        }
-    }
-
-    /* Añadir estos estilos al CSS existente */
-
-.sustainability {
-background-color: #002868;
-color: white;
-padding: clamp(2rem, 5vw, 4rem) 1rem;
-overflow: hidden;
+:root {
+    --primary-blue: #002B5C;
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --border-radius: 8px;
 }
 
-.sustainability-container {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-align-items: center;
-gap: 2rem;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.sustainability-image {
-flex: 1;
-min-width: 280px;
-position: relative;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: #f5f5f5;
 }
 
-.smart-meter-img {
-width: 100%;
-height: auto;
-border-radius: 20px;
-box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.sustainability-content {
-flex: 1;
-padding: 1rem;
+/* Hero Section */
+.hero {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-T3A9hVd44rbFoeh0jv8WQHxowp1mc6.png');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.sustainability-content h2 {
-font-size: clamp(1.5rem, 4vw, 2.5rem);
-margin-bottom: 1rem;
-line-height: 1.3;
+.hero-content {
+    color: var(--text-light);
+    max-width: 800px;
+    padding: 0 20px;
 }
 
-.highlight {
-color: #c8ff00;
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
-.features {
-padding: clamp(2rem, 5vw, 4rem) 1rem;
-background-color: #f5f7ff;
+.hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
 }
 
-.features-container {
-max-width: 1200px;
-margin: 0 auto;
-text-align: center;
+/* Community Section */
+.community {
+    padding: 80px 0;
+    background-color: #fff;
 }
 
-.features-container h2 {
-color: #002868;
-font-size: clamp(1.5rem, 4vw, 2.5rem);
-margin-bottom: 3rem;
+.community-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
 }
 
-.features-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 2rem;
-justify-items: center;
+.community-image {
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.feature-item {
-text-align: center;
-max-width: 200px;
+.community-image img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.feature-icon {
-width: clamp(60px, 15vw, 80px);
-height: clamp(60px, 15vw, 80px);
-margin: 0 auto 1rem;
-border: 2px solid #0066cc;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: white;
+.community-content h2 {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
 }
 
-.feature-icon img {
-width: 50%;
-height: auto;
+.content-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #555;
 }
 
-.feature-item h3 {
-color: #002868;
-font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-line-height: 1.4;
+/* Regions Section */
+.regions {
+    padding: 60px 0;
+    background-color: #f8f9fa;
 }
 
-/* Media queries para dispositivos móviles */
-@media (max-width: 768px) {
-.sustainability-container {
-    flex-direction: column;
+.regions-title {
+    text-align: center;
+    color: var(--primary-blue);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-.sustainability-image {
-    order: -1;
+.regions-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
 }
 
-.features-grid {
-    grid-template-columns: repeat(2, 1fr);
+.regions-nav {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.regions-nav ul {
+    display: flex;
+    list-style: none;
     gap: 1.5rem;
-}
-}
-
-@media (max-width: 480px) {
-.features-grid {
-    grid-template-columns: 1fr;
-}
+    white-space: nowrap;
+    padding: 0.5rem;
 }
 
-/* Optimizaciones para dispositivos de gama baja */
+.regions-nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+}
+
+.regions-nav .active a {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+}
+
+/* Map and Committees Grid */
+.map-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.map-container {
+    position: sticky;
+    top: 2rem;
+}
+
+.chile-map {
+    width: 100%;
+    height: auto;
+}
+
+.committees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Committee Cards */
+.committee-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.committee-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    position: relative;
+    padding-top: 56.25%;
+}
+
+.card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-image h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: var(--text-light);
+    font-size: 1.25rem;
+}
+
+.card-footer {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.location h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.location p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.details-btn {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-light);
+    border-radius: var(--border-radius);
+    transition: all 0.3s;
+}
+
+.details-btn:hover {
+    background: var(--text-light);
+    color: var(--primary-blue);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .map-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-container {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .community-grid {
+        gap: 40px;
+    }
+
+    .community-content h2 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .community-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .committees-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Móviles Android */
+@media screen and (max-width: 576px) {
+    .hero {
+        min-height: 300px;
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .community-content h2 {
+        font-size: 1.75rem;
+    }
+
+    .content-text p {
+        font-size: 1rem;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .details-btn {
+        width: 100%;
+    }
+}
+
+/* Móviles pequeños */
+@media screen and (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .community-content h2,
+    .regions-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Optimizaciones para Android */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .hero {
+        background-attachment: scroll;
+    }
+}
+
+/* Mejoras de rendimiento */
 @media (prefers-reduced-motion: reduce) {
-.feature-icon {
-    transition: none;
-}
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }
 
-.low-end-device .sustainability-image {
-transform: none !important;
+/* Optimizaciones táctiles */
+@media (hover: none) {
+    .details-btn {
+        padding: 0.75rem 1rem;
+    }
 }
 </style>
-</head>
-<body>
-<div class="slider">
-    <div class="slide">
-        <div class="slide-content">
-            <h1>Gestiona de manera eficiente el agua para tu comunidad con <span>la tecnología más avanzada</span> de Chile</h1>
-            <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
-            <a href="#" class="cta-button" role="button">Solicita una cotización</a>
-        </div>
-    </div>
-    <a href="#" class="slider-arrow arrow-prev" role="button" aria-label="Anterior">&#10094;</a>
-    <a href="#" class="slider-arrow arrow-next" role="button" aria-label="Siguiente">&#10095;</a>
-    <div class="slider-nav" role="tablist">
-        <div class="slider-dot active" role="tab" aria-selected="true"></div>
-        <div class="slider-dot" role="tab" aria-selected="false"></div>
-        <div class="slider-dot" role="tab" aria-selected="false"></div>
-    </div>
-</div>
 
-<section class="benefits">
-    <h2>BENEFICIOS</h2>
-    <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
-    <div class="benefits-grid">
-        <div class="benefit-card">
-            <div class="benefit-icon">✓</div>
-            <h3>Fácil de implementar</h3>
-            <p>Diseñado para simplificar el proceso de instalación, nuestro medidor se adapta a las necesidades de cualquier comunidad, reduciendo tiempos y costos operativos.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">💧</div>
-            <h3>Reducción de pérdidas</h3>
-            <p>Con tecnología avanzada de monitoreo, nuestro medidor identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">$</div>
-            <h3>Costo accesible</h3>
-            <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p>
-        </div>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Nuestros clientes, nuestros aliados</h1>
+        <p>Conoce a todas las comunidades que hemos atendido</p>
     </div>
 </section>
 
-<section class="sustainability">
-    <div class="sustainability-container">
-        <div class="sustainability-image">
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-AUZrPiJhwmdZOhyESui53YpI05TRDx.png" alt="Medidor inteligente sostenible" class="smart-meter-img">
-        </div>
-        <div class="sustainability-content">
-            <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2>
-            <p>Nuestro medidor está construido con los mejores materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
-            <p>Además cuenta con mantenimiento gratuito durante toda su vida útil.</p>
-        </div>
-    </div>
-</section>
-
-<section class="features">
-    <div class="features-container">
-        <h2>Nuestros <span class="highlight">beneficios</span></h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="/phone-icon.svg" alt="Icono de teléfono">
-                </div>
-                <h3>Toma lecturas a<br>distancia</h3>
+<!-- Community Section -->
+<section class="community">
+    <div class="container">
+        <div class="community-grid">
+            <div class="community-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-T3A9hVd44rbFoeh0jv8WQHxowp1mc6.png" alt="Miembros de la comunidad">
             </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="/leak-icon.svg" alt="Icono de detección">
+            <div class="community-content">
+                <h2>Comprometidos con nuestra comunidad</h2>
+                <div class="content-text">
+                    <p>Somos una empresa chilena comprometida con revolucionar la gestión del agua potable en comunidades rurales. Nos especializamos en brindar soluciones tecnológicas avanzadas para las APR, ayudándoles a optimizar la distribución, consumo y monitoreo del agua con la precisión y accesibilidad que necesitan.</p>
+                    <p>Con una visión centrada en la sostenibilidad y el desarrollo comunitario, diseñamos productos que no solo facilitan el manejo eficiente del recurso hídrico, sino que también garantizan durabilidad, bajo costo operativo y soporte continuo. Nuestro medidor inteligente está pensado para satisfacer las necesidades reales de las comunidades, apoyando su crecimiento con innovación y tecnología confiable.</p>
                 </div>
-                <h3>Detecta fugas,<br>robos o pérdidas</h3>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="/valve-icon.svg" alt="Icono de válvula">
-                </div>
-                <h3>Cierra el paso de<br>agua a distancia</h3>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="/touch-icon.svg" alt="Icono de toque">
-                </div>
-                <h3>Traspasa datos con<br>un par de clicks</h3>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="/save-icon.svg" alt="Icono de ahorro">
-                </div>
-                <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
             </div>
         </div>
     </div>
 </section>
 
-<script>
-    // Optimización de carga para dispositivos de gama baja
-    document.addEventListener('DOMContentLoaded', function() {
-        // Detectar dispositivos de gama baja
-        const isLowEnd = navigator.deviceMemory < 4 || !navigator.deviceMemory;
+<!-- Regions Section -->
+<section class="regions">
+    <div class="container">
+        <h2 class="regions-title">REGIONES</h2>
+        <p class="regions-subtitle">Impacto que se transmite alrededor de todo Chile</p>
+        
+        <nav class="regions-nav">
+            <ul>
+                <li class="active"><a href="#coquimbo">Coquimbo</a></li>
+                <li><a href="#valparaiso">Valparaíso</a></li>
+                <li><a href="#metropolitana">Metropolitana</a></li>
+                <li><a href="#ohiggins">O'Higgins</a></li>
+                <li><a href="#maule">Maule</a></li>
+                <li><a href="#biobio">BioBío</a></li>
+                <li><a href="#araucania">Araucanía</a></li>
+                <li><a href="#losrios">Los Ríos</a></li>
+                <li><a href="#loslagos">Los Lagos</a></li>
+                <li><a href="#aysen">Aysén</a></li>
+            </ul>
+        </nav>
 
-        if (isLowEnd) {
-            // Reducir calidad de imágenes o deshabilitar animaciones
-            document.body.classList.add('low-end-device');
-        }
+        <div class="map-grid">
+            <div class="map-container">
+                <img src="{% static 'app/img/chile.png'%}" alt="Mapa de Chile" class="chile-map">
+            </div>
 
-        // Gestión de eventos táctiles
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchEndX - touchStartX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    // Swipe derecha
-                    document.querySelector('.arrow-prev').click();
-                } else {
-                    // Swipe izquierda
-                    document.querySelector('.arrow-next').click();
-                }
-            }
-        }
-    });
-</script>
-
+            <div class="committees-grid">
+                <!-- Row 1 -->
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Esfuerzo">
+                        <h3>Comité APR "El Esfuerzo" Pichidangui</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>Los Vilos</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Molle">
+                        <h3>Comité APR "El Molle"</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>Vicuña</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR Punta de Choros">
+                        <h3>Comité APR "Punta de Choros"</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>La Higuera</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <!-- Row 2 -->
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Esfuerzo">
+                        <h3>Comité APR "El Esfuerzo" Pichidangui</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>Los Vilos</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Molle">
+                        <h3>Comité APR "El Molle"</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>Vicuña</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR Punta de Choros">
+                        <h3>Comité APR "Punta de Choros"</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>La Higuera</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <!-- Row 3 -->
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Esfuerzo">
+                        <h3>Comité APR "El Esfuerzo" Pichidangui</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>Los Vilos</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Molle">
+                        <h3>Comité APR "El Molle"</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>Vicuña</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            
+                <article class="committee-card">
+                    <div class="card-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR Punta de Choros">
+                        <h3>Comité APR "Punta de Choros"</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="location">
+                            <h4>La Higuera</h4>
+                            <p>Región Coquimbo</p>
+                        </div>
+                        <a href="#" class="details-btn">Detalles →</a>
+                    </div>
+                </article>
+            </div>           
+        </div>
+    </div>
+</section>
 {% endblock %}

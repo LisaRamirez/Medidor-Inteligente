@@ -1,0 +1,95 @@
+/* Sistema iOs*/
+
+/* iPhone SE, iPhone 5, iPhone 6/7/8 */
+@media only screen and (max-width: 375px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+/* iPhone X, iPhone 11, iPhone 12/13 Mini */
+@media only screen and (min-width: 376px) and (max-width: 414px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* iPhone 12/13 Pro, iPhone 14, iPhone 15 */
+@media only screen and (min-width: 415px) and (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+/* iPads (iPad Mini, iPad Air, iPad Pro) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 20px;
+    }
+}
+
+/* iPad Pro 12.9" y pantallas grandes */
+@media only screen and (min-width: 1025px) {
+    body {
+        font-size: 22px;
+    }
+}
+
+/* Breakpoints específicos para Android */
+/* Gama baja - 320px */
+@media (max-width: 320px) {
+    .slide-content {
+        margin-left: 2%;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit-card {
+        padding: 1rem;
+    }
+}
+
+/* Gama media - 375px */
+@media (min-width: 321px) and (max-width: 375px) {
+    .slide-content {
+        margin-left: 3%;
+    }
+}
+
+/* Gama media-alta - 414px */
+@media (min-width: 376px) and (max-width: 414px) {
+    .slide-content {
+        margin-left: 4%;
+    }
+}
+
+/* Tablets y dispositivos más grandes */
+@media (min-width: 768px) {
+    .slide-content {
+        margin-left: 5%;
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Optimizaciones para dispositivos de gama baja */
+@media (prefers-reduced-motion: reduce) {
+    .cta-button,
+    .benefit-card {
+        transition: none;
+    }
+}
+
+/* Optimizaciones para ahorro de batería */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+

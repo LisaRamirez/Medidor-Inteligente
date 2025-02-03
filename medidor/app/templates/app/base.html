@@ -6,325 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medidor Inteligente</title>
 
+    <link rel="stylesheet" href="{% static 'app/css/responsive.css' %}">
+
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
-    <style>
-        :root {
-            --primary-blue: #002B5C;
-            --accent-green: #9FE870;
-            --text-white: #FFFFFF;
-            --text-dark: #333333;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background: #f5f7fa;
-        }
-        
-        /* Header & Navigation */
-        .header {
-            background: rgb(223, 222, 222);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            height: 40px;
-            
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-        }
-        
-        .contact-btn {
-            background: var(--primary-blue);
-            color: white !important;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background-image: linear-gradient(rgba(0,43,92,0.7), rgba(0,43,92,0.7)), url('path-to-water-image.jpg');
-            background-size: cover;
-            background-position: center;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            padding: 2rem;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--text-white);
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero .highlight {
-            color: var(--accent-green);
-        }
-        
-        .cta-button {
-            background: var(--accent-green);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 2rem;
-        }
-        
-        /* Benefits Section */
-        .benefits {
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        
-        .benefits h2 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-        
-        .benefits-subtitle {
-            margin-bottom: 3rem;
-            color: var(--text-dark);
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .benefit-card {
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1rem;
-            background: var(--primary-blue);
-            border-radius: 50%;
-        }
-        
-        .benefit-card h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        :root {
-            --primary-blue: #002B5C;
-            --text-white: #FFFFFF;
-            --accent-blue: #0066CC;
-        }
-        
-        
-        
-        .fullscreen-exit {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-        
-        .fullscreen-exit span {
-            background: #333;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-        }
-        
-        /* Product Features Section */
-        .product-features {
-            background: var(--primary-blue);
-            color: var(--text-white);
-            padding: 2rem;
-        }
-        
-        .feature-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .feature-image {
-            flex: 1;
-        }
-        
-        .feature-image img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        
-        .feature-content {
-            flex: 1;
-            padding: 2rem;
-        }
-        
-        .feature-content h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Benefits Section */
-        .benefits {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .benefits h2 {
-            text-align: center;
-            color: var(--primary-blue);
-            margin-bottom: 3rem;
-        }
-        
-        .benefits h2 span {
-            color: var(--accent-blue);
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .benefit-item {
-            text-align: center;
-        }
-        
-        .benefit-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 2px solid var(--accent-blue);
-            margin: 0 auto 1rem;
-            background-size: 40px;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        .product-image {
-            text-align: center;
-        }
-        
-        .product-image img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .feature-container {
-                flex-direction: column;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .feature-content h2 {
-                font-size: 1.5rem;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .benefit-item {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                text-align: left;
-            }
-            
-            .benefit-icon {
-                margin: 0;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .feature-content {
-                padding: 1rem;
-            }
-            
-            .benefits {
-                padding: 2rem 1rem;
-            }
-        }
-        
-        /* Custom Icons */
-        .reading {
-            background-image: url('path-to-reading-icon.svg');
-        }
-        
-        .leaks {
-            background-image: url('path-to-leaks-icon.svg');
-        }
-        
-        .valve {
-            background-image: url('path-to-valve-icon.svg');
-        }
-        
-        .data {
-            background-image: url('path-to-data-icon.svg');
-        }
-        
-    </style>
-    
 
     <nav class="nav">
-         <img src="{% static 'app/img/logo.png'%}" alt="Medidor Inteligente" class="logo" href="{% url 'home'%}">
+         <img src="{% static 'app/img/logo.png'%}" href="{% url 'home'%}"alt="Medidor Inteligente" class="logo" >
         <div class="nav-links">
             <a href="{% url 'home'%}">Inicio</a>
             <a href="{% url 'soluciones'%}">Nuestras soluciones</a>
@@ -337,107 +24,19 @@
 </header>
 {% block contenido %}
 {% endblock %}
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    .footer {
-        background-color: #333;
-        color: white;
-        padding: 2rem;
-        font-family: Arial, sans-serif;
-    }
 
-    .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
 
-    .footer-section h2 {
-        color: white;
-        margin-bottom: 1rem;
-        font-size: 1.25rem;
-    }
-
-    .logo-container {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .logo-container img {
-        width: 80px;
-        height: 80px;
-        object-fit: contain;
-    }
-
-    .footer-links {
-        list-style: none;
-    }
-
-    .footer-links li {
-        margin-bottom: 0.5rem;
-    }
-
-    .footer-links a {
-        color: white;
-        text-decoration: none;
-    }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
-
-    .contact-info {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .social-links {
-        margin-top: 1rem;
-    }
-
-    .map-container {
-        width: 100%;
-        height: 200px;
-        margin-top: 1rem;
-    }
-
-    .map-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* Tablet (768px and up) */
-    @media (min-width: 768px) {
-        .footer-container {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    /* Desktop (1024px and up) */
-    @media (min-width: 1024px) {
-        .footer-container {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-</style>
-    <a class="stic" href="{% url 'home'%}">Inicio</a>
 <footer class="footer">
     <div class="footer-container">
         <!-- Company Info Section -->
         <div class="footer-section">
             <h2>Medidor Inteligente</h2>
             <div class="logo-container">
-                <img src="" alt="Medidor Inteligente Logo">
+                <img src="{% static 'app/img/puntoblue.png'%}" alt="Medidor Inteligente Logo">
+                <img src="{% static 'app/img/softwareApr.png'%}" alt="software Apr">
+                <img src="{% static 'app/img/puntoblue.png'%}" alt="Punto Blue">
+                
             </div>
             <p>Ingeniería Integral y Corretaje Ltda.</p>
             <p>Email: contacto@medidorinteligente.cl</p>
@@ -448,47 +47,37 @@
         <div class="footer-section">
             <h2>Secciones destacadas</h2>
             <ul class="footer-links">
+                <li><a href="{% url 'home'%}">Inicio</a></li>
                 <li><a href="{% url 'soluciones'%}">Nuestras soluciones</a></li>
-                    <li><a href="{% url 'nosotros'%}">Quienes somos</a></li>
-                    <li><a href="{% url 'clientes'%}">Clientes</a></li>
-                    <li><a href="{% url 'recursos'%}">Recursos</a></li>
-                    <li><a href="{% url 'contacto'%}">Contáctanos</a></li>
+                <li><a href="{% url 'nosotros'%}">Quienes somos</a></li>
+                <li><a href="{% url 'clientes'%}">Clientes</a></li>
+                <li><a href="{% url 'recursos'%}">Recursos</a></li>
+                <li><a href="{% url 'contacto'%}">Contáctanos</a></li>
             </ul>
         </div>
-
+        
         <!-- Contact Section -->
+        <!-- Sección Derecha -->
         <div class="footer-section">
             <h2>Contáctanos</h2>
             <div class="contact-info">
-                <h3>Contáctanos</h3>
-                <div class="contact-details">
-                    <p><i class="icon-user"></i> Alejandro Espinoza Verdugp</p>
-                    <p><i class="icon-location"></i> Luis Cruz Martínez 991 Nancagua Chile.</p>
-                    <p><i class="icon-email"></i> contacto@medidorinteligente.cl</p>
-                </div>
+            <p>📌 Alejandro Espinoza Verdugo</p>
+            <p>📍 Luis Cruz Martínez 991, Nancagua, Chile</p>
+            <p>📧 contacto@medidorinteligente.cl</p>
 
-                <div class="social-media">
-                    <h3>Síguenos en redes</h3>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/" class="social-link">
-                            <i class="icon-facebook"></i>
-                            Medidor Inteligente de Agua Potable
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCFR26EUzDw6OWvwZAAn7BQg" class="social-link">
-                            <i class="icon-youtube"></i>
-                            @MedidorInteligenteAPR
-                        </a>
-                    </div>
-                    <!-- Columna 4: Mapa -->
-                    <div class="map-container">
-                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.1605143924967!2d-71.1957005!3d-34.650648999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9664627e4a3f5995%3A0x187ae7f7930a9311!2sLuis%20Cruz%20Mart%C3%ADnez%20991%2C%203110000%20Nancagua%2C%20O&#39;Higgins!5e0!3m2!1ses-419!2scl!4v1738378136321!5m2!1ses-419!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                
-                     </div>
-                </div>
-                
+            <h3 class="social-links">Síguenos en redes</h3>
+            <div class="social-links">
+                <p>Medidor Inteligente de Agua Potable</p>
+                <p>@MedidorInteligenteAPR</p>
             </div>
-
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.1605143924967!2d-71.1957005!3d-34.650648999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9664627e4a3f5995%3A0x187ae7f7930a9311!2sLuis%20Cruz%20Mart%C3%ADnez%20991%2C%203110000%20Nancagua%2C%20O&#39;Higgins!5e0!3m2!1ses-419!2scl!4v1738378136321!5m2!1ses-419!2scl"  
+                width="250" 
+                height="150" 
+                style="border:0;" 
+                allowfullscreen="" l
+                oading="lazy"></iframe>
+            </div>
         </div>
-    </div>
-    
+    </div>   
 </footer>
