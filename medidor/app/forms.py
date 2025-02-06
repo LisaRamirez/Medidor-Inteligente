@@ -32,7 +32,7 @@ def enviar_formulario():
         # Crear el mensaje
         msg = MIMEMultipart()
         msg['From'] = SMTP_USERNAME
-        msg['To'] = "destino@email.com"  # Reemplaza con el correo destino
+        msg['To'] = "{email}"  # Reemplaza con el correo destino
         msg['Subject'] = f"Nuevo formulario de contacto de {nombre}"
 
         # Construir el cuerpo del mensaje
