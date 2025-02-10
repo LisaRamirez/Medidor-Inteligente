@@ -1,41 +1,257 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
-
 <style>
-    
-</style>
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-text">
-                <span class="label">CONOCE</span>
-                <h1>NUESTRO NUEVO MEDIDOR</h1>
-                <p>Conoce nuestro nuevo medidor inteligente, ahora 3 veces más potente, diseñado para ofrecer un monitoreo aún más preciso del consumo de agua. Optimiza la gestión de tu comunidad con mayor cobertura, mejor rendimiento y la misma eficiencia y sostenibilidad que nos caracteriza.</p>
-                
-                <ul class="features">
-                    <li>Batería 3 veces más potente</li>
-                    <li>Monitoreo en tiempo real</li>
-                    <li>Diseño totalmente moderno</li>
-                </ul>
+   
+    .product-section {
+        display: flex;
+        flex-direction: column;
+       
+        gap: 20px;
+    }
 
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-outline">
-                        Ver Catálogo
-                        <span class="icon">📥</span>
-                    </a>
-                    <a href="{% url 'contacto'%}" class="btn btn-primary">
-                        Comprarlo ahora
-                        <span class="icon">→</span>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6605q4gFRR0Elts1lTy6ytfRcqxsqb.png" alt="Medidor Inteligente">
-            </div>
+    .product-image-container {
+        position: relative;
+    background: linear-gradient(rgba(163, 171, 179, 0.9), rgba(12, 50, 94, 0.9)),
+    url("{% static 'app/img/medidor-bg.jpg'%}");
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    height: 50vh; /* Aquí, 60vh significa que el contenedor ocupará el 60% de la altura de la ventana del navegador */
+    min-height: 300px; /* Esta es la altura mínima en píxeles, pero ahora se adapta a la altura de la ventana con vh */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+
+
+    .product-title {
+        font-size: clamp(1.5rem, 2vw, 2.5rem);
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ffffff;
+        letter-spacing: 2px;
+    }
+
+    .product-image {
+        max-width: 100%; /* Esto asegura que la imagen no sea más grande que su contenedor */
+        height: 300px;    /* Esto mantiene la proporción original de la imagen */
+        object-fit: contain; /* Asegura que la imagen se ajuste al contenedor sin perder su relación de aspecto */
+        margin: 0 auto; /* Centra la imagen horizontalmente */
+    }
+
+    .product-info {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .conoce-tag {
+        color:rgb(196, 196, 196);
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+    }
+
+    .product-name {
+        color:rgb(186, 201, 218);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: bold;
+    }
+
+    .product-description {
+        color:rgb(155, 164, 175);
+        line-height: 1.6;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+    }
+
+    .features-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color:rgb(140, 148, 156);
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+    }
+
+    .check-icon {
+        width: clamp(16px, 2vw, 20px);
+        height: clamp(16px, 2vw, 20px);
+        color:rgb(161, 161, 161);
+        flex-shrink: 0;
+    }
+
+    .buttons-container {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: auto;
+    }
+
+    .btn {
+        padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
+        border-radius: 4px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+        min-width: 150px;
+    }
+
+    .btn-outline {
+        border: 2px solid #002B5C;
+        color: #002B5C;
+        background: white;
+    }
+
+    .btn-primary {
+        background: #002B5C;
+        color: white;
+        border: none;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+        .product-section {
+            flex-direction: row;
+        }
+
+        .product-image-container {
+            width: 50%;
+            min-height: auto;
+        }
+
+        .product-info {
+            width: 50%;
+        }
+    }
+
+    /* Para tablets */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .catalog-container {
+            height: 70vh;
+        }
+
+        .buttons-container {
+            justify-content: flex-start;
+        }
+    }
+
+    /* Para móviles en landscape */
+    @media (max-height: 500px) {
+        .catalog-container {
+            height: auto;
+            min-height: 100vh;
+        }
+    }
+
+    /* Para dispositivos más pequeños */
+    @media (max-width: 480px) {
+        .catalog-container {
+            padding: 10px;
+        }
+
+        .buttons-container {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    /* Para pantallas grandes */
+    @media (min-width: 1400px) {
+        .catalog-container {
+            height: 70vh;
+        }
+
+        .product-image {
+            max-height: 60%;
+        }
+    }
+
+    /* Para asegurar la legibilidad en dispositivos con alta densidad de píxeles */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .product-description,
+        .feature-item {
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+        }
+    }
+</style>
+
+<div class="product-section">
+    <div class="product-image-container">
+        
+        <h2 class="product-title">MEDIDOR<br>INTELIGENTE</h2>
+        <img src="{% static 'app/img/medidor.png'%}" alt="Medidor Inteligente" class="product-image">
+    </div>
+
+    <div class="product-info">
+        
+        <h1 class="product-name">NUESTRO NUEVO MODELO</h1>
+        <p class="product-description">
+            Conoce nuestro nuevo medidor inteligente, ahora 3 veces más potente, diseñado para ofrecer un 
+            monitoreo aún más preciso del consumo de agua. Optimiza la gestión de tu comunidad con mayor 
+            cobertura, mejor rendimiento y la misma eficiencia y sostenibilidad que nos caracteriza.
+        </p>
+
+        <ul class="features-list">
+            <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Batería 3 veces más potente
+            </li>
+            <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Monitoreo en tiempo real
+            </li>
+            <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Diseño totalmente moderno
+            </li>
+        </ul>
+
+        <div class="buttons-container">
+            <a href="#" class="btn btn-outline">
+                Ver Catálogo
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="margin-left: 8px;">
+                    <path d="M4 4v12h12V4H4zm11 11H5V5h10v10z"/>
+                </svg>
+            </a>
+            <a href="#" class="btn btn-primary">
+                Cómpralo ahora
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="margin-left: 8px;">
+                    <path d="M7 10l5-5v3h4v4h-4v3l-5-5z"/>
+                </svg>
+            </a>
         </div>
     </div>
-</section>
+</div>
+
 
 <!-- Sección Cómo Funciona -->
 <section class="how-it-works">

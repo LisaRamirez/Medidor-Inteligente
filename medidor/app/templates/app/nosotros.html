@@ -2,20 +2,34 @@
 {%block contenido%}
 {% load static %}
 <style>
-   
-
- 
-
-    .hero h1 {
+    /* Hero Section */
+    .herosomos {
+        position: relative;
+        height: 60vh;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                    url('');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .herosomos h1 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
     }
-
-    .hero h2 {
+    
+    .herosomos h2 {
         font-size: 2.5rem;
         max-width: 800px;
     }
-
+    
+    /* Content Wrapper */
     .content-wrapper {
         max-width: 1200px;
         margin: 0 auto;
@@ -24,38 +38,41 @@
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-
+    
     @media (min-width: 768px) {
         .content-wrapper {
             grid-template-columns: 1fr 1fr;
         }
     }
-
+    
+    /* Text Content */
     .text-content {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
     }
-
+    
+    /* Image Grid */
     .image-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: 1rem;
     }
-
+    
     .image-grid img {
         width: 100%;
         height: 120px;
         object-fit: cover;
         border-radius: 8px;
     }
-
+    
+    /* Stats Section */
     .stats {
         background-color: #002868;
         color: white;
         padding: 4rem 2rem;
     }
-
+    
     .stats-wrapper {
         max-width: 1200px;
         margin: 0 auto;
@@ -64,19 +81,19 @@
         gap: 2rem;
         text-align: center;
     }
-
+    
     .stat-item {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 1rem;
     }
-
+    
     .stat-number {
         font-size: 2.5rem;
         font-weight: bold;
     }
-
+    
     .stat-icon {
         width: 64px;
         height: 64px;
@@ -86,37 +103,39 @@
         align-items: center;
         justify-content: center;
     }
-
+    
+    /* Media Queries */
     @media (max-width: 768px) {
-        .hero h1 {
+        .herosomos h1 {
             font-size: 1.25rem;
         }
-
-        .hero h2 {
+    
+        .herosomos h2 {
             font-size: 2rem;
         }
-
+    
         .content-wrapper {
             padding: 2rem 1rem;
         }
     }
-
+    
     @media (max-width: 480px) {
-        .hero h2 {
+        .herosomos h2 {
             font-size: 1.5rem;
         }
-
+    
         .image-grid {
             grid-template-columns: repeat(2, 1fr);
         }
-
+    
         .stats-wrapper {
             grid-template-columns: 1fr;
         }
     }
+    
 </style>
 
-<section class="hero">
+<section class="herosomos">
     <h1>Quienes somos</h1>
     <h2>Conoce más de nuestra empresa</h2>
 </section>
@@ -130,11 +149,7 @@
     </div>
     <div class="image-grid">
         <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gYwS7nxa1VGiK0DXsbblFGnJwYbMSk.png" alt="Imagen empresa 1">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gYwS7nxa1VGiK0DXsbblFGnJwYbMSk.png" alt="Imagen empresa 2">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gYwS7nxa1VGiK0DXsbblFGnJwYbMSk.png" alt="Imagen empresa 3">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gYwS7nxa1VGiK0DXsbblFGnJwYbMSk.png" alt="Imagen empresa 4">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gYwS7nxa1VGiK0DXsbblFGnJwYbMSk.png" alt="Imagen empresa 5">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gYwS7nxa1VGiK0DXsbblFGnJwYbMSk.png" alt="Imagen empresa 6">
+        
     </div>
 </div>
 

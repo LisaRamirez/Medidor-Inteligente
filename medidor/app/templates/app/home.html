@@ -3,335 +3,196 @@
 {%block contenido%}
 {% load static %}
 
-
-
 <div class="slider">
-    <div class="slide">
-        <div class="slide-content">
-            <h1>Gestiona de manera eficiente el agua para tu comunidad con <span>la tecnología más avanzada</span> de Chile</h1>
-            <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
-            <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
+    <div class="slides">
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Gestiona de manera eficiente el agua para tu comunidad con <span>la tecnología más avanzada</span> de Chile</h1>
+                <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
+                <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Reduce pérdidas y optimiza recursos con <span>nuestro sistema inteligente</span></h1>
+                <p>Monitorea en tiempo real el consumo de agua y detecta fugas instantáneamente</p>
+                <a href="{% url 'soluciones'%}" class="cta-button" role="button">Conoce más</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Tecnología sustentable para un <span>futuro más verde</span></h1>
+                <p>Contribuye al cuidado del medio ambiente con nuestras soluciones eco-amigables</p>
+                <a href="{% url 'contacto'%}" class="cta-button" role="button">Únete al cambio</a>
+            </div>
         </div>
     </div>
-    <a href="#" class="slider-arrow arrow-prev" role="button" aria-label="Anterior">&#10094;</a>
-    <a href="#" class="slider-arrow arrow-next" role="button" aria-label="Siguiente">&#10095;</a>
+    <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
+    <button class="slider-arrow arrow-next" aria-label="Siguiente">&#10095;</button>
     <div class="slider-nav" role="tablist">
-        <div class="slider-dot active" role="tab" aria-selected="true"></div>
-        <div class="slider-dot" role="tab" aria-selected="false"></div>
-        <div class="slider-dot" role="tab" aria-selected="false"></div>
+        <button class="slider-dot active" role="tab" aria-selected="true"></button>
+        <button class="slider-dot" role="tab" aria-selected="false"></button>
+        <button class="slider-dot" role="tab" aria-selected="false"></button>
     </div>
 </div>
 
-<section class="benefits">
-    <h2>BENEFICIOS</h2>
-    <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
-    <div class="benefits-grid">
-        <div class="benefit-card">
-            <div class="benefit-icon">✓</div>
-            <h3>Fácil de implementar</h3>
-            <p>Diseñado para simplificar el proceso de instalación, nuestro medidor se adapta a las necesidades de cualquier comunidad, reduciendo tiempos y costos operativos.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">💧</div>
-            <h3>Reducción de pérdidas</h3>
-            <p>Con tecnología avanzada de monitoreo, nuestro medidor identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">$</div>
-            <h3>Costo accesible</h3>
-            <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p>
-        </div>
-    </div>
-</section>
-
-<section class="sustainability">
-    <div class="sustainability-container">
-        <div class="sustainability-image">
-            <img src="{% static 'app/img/beneficios.png'%}" alt="Medidor inteligente sostenible" class="smart-meter-img">
-        </div>
-        <div class="sustainability-content">
-            <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2>
-            <p>Nuestro medidor está construido con los mejores materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
-            <p>Además cuenta con mantenimiento gratuito durante toda su vida útil.</p>
-        </div>
-    </div>
-</section>
-
-<section class="features">
-    <div class="features-container">
-        <h2>Nuestros <span class="highlight">beneficios</span></h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/group1.png'%}" alt="Icono de teléfono">
-                </div>
-                <h3>Toma lecturas a<br>distancia</h3>
+    <section class="benefits">
+        <h2>BENEFICIOS</h2>
+        <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">✓</div>
+                <h3>Fácil de implementar</h3>
+                <p>Diseñado para simplificar el proceso de instalación, nuestro medidor se adapta a las necesidades de cualquier comunidad, reduciendo tiempos y costos operativos.</p>
             </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/group2.png'%}" alt="Icono de detección">
-                </div>
-                <h3>Detecta fugas,<br>robos o pérdidas</h3>
+            <div class="benefit-card">
+                <div class="benefit-icon">💧</div>
+                <h3>Reducción de pérdidas</h3>
+                <p>Con tecnología avanzada de monitoreo, nuestro medidor identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
             </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/group3.png'%}" alt="Icono de válvula">
-                </div>
-                <h3>Cierra el paso de<br>agua a distancia</h3>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/group4.png'%}"alt="Icono de toque">
-                </div>
-                <h3>Traspasa datos con<br>un par de clicks</h3>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/group5.png'%}" alt="Icono de ahorro">
-                </div>
-                <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
+            <div class="benefit-card">
+                <div class="benefit-icon">$</div>
+                <h3>Costo accesible</h3>
+                <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script>
-    // Optimización de carga para dispositivos de gama baja
-    document.addEventListener('DOMContentLoaded', function() {
-        // Detectar dispositivos de gama baja
-        const isLowEnd = navigator.deviceMemory < 4 || !navigator.deviceMemory;
+    <section class="sustainability">
+        <div class="sustainability-container">
+            <div class="sustainability-image">
+                <img src="{% static 'app/img/beneficios.png'%}" alt="Medidor inteligente sostenible" class="smart-meter-img">
+            </div>
+            <div class="sustainability-content">
+                <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2>
+                <p>Nuestro medidor está construido con los mejores materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
+                <p>Además cuenta con mantenimiento gratuito durante toda su vida útil.</p>
+            </div>
+        </div>
+    </section>
 
-        if (isLowEnd) {
-            // Reducir calidad de imágenes o deshabilitar animaciones
-            document.body.classList.add('low-end-device');
-        }
+    <section class="features">
+        <div class="features-container">
+            <h2>Nuestros <span class="highlight">beneficios</span></h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="{% static 'app/img/group1.png'%}" alt="Icono de teléfono">
+                    </div>
+                    <h3>Toma lecturas a<br>distancia</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="{% static 'app/img/group2.png'%}" alt="Icono de detección">
+                    </div>
+                    <h3>Detecta fugas,<br>robos o pérdidas</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="{% static 'app/img/group3.png'%}" alt="Icono de válvula">
+                    </div>
+                    <h3>Cierra el paso de<br>agua a distancia</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="{% static 'app/img/group4.png'%}" alt="Icono de toque">
+                    </div>
+                    <h3>Traspasa datos con<br>un par de clicks</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="{% static 'app/img/group5.png'%}" alt="Icono de ahorro">
+                    </div>
+                    <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Gestión de eventos táctiles
-        let touchStartX = 0;
-        let touchEndX = 0;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelector('.slides');
+    const prevButton = document.querySelector('.arrow-prev');
+    const nextButton = document.querySelector('.arrow-next');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+    const slideCount = document.querySelectorAll('.slide').length;
 
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+    function goToSlide(n) {
+        slides.style.transform = `translateX(-${n * 100}%)`;
+        currentSlide = n;
+        updateDots();
+    }
 
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
+    function nextSlide() {
+        goToSlide((currentSlide + 1) % slideCount);
+    }
 
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchEndX - touchStartX;
+    function prevSlide() {
+        goToSlide((currentSlide - 1 + slideCount) % slideCount);
+    }
 
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    // Swipe derecha
-                    document.querySelector('.arrow-prev').click();
-                } else {
-                    // Swipe izquierda
-                    document.querySelector('.arrow-next').click();
-                }
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+            dot.setAttribute('aria-selected', index === currentSlide);
+        });
+    }
+
+    prevButton.addEventListener('click', prevSlide);
+    nextButton.addEventListener('click', nextSlide);
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slider.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchEndX - touchStartX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
             }
         }
-    });
-</script>
-<style>
-    /* Testimonials Section */
-.testimonials {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.testimonials-header {
-    text-align: left;
-    margin-bottom: 3rem;
-}
-
-.testimonials-header h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.testimonials-header span {
-    font-weight: normal;
-}
-
-.testimonials-header p {
-    max-width: 600px;
-    margin-bottom: 1.5rem;
-}
-
-.view-more {
-    color: var(--white);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* Testimonials Slider */
-.testimonials-slider {
-    position: relative;
-    margin: 2rem 0;
-}
-
-.testimonials-track {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 0 2rem;
-}
-
-.testimonial-card {
-    background: var(--dark-blue);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.video-thumbnail {
-    position: relative;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    background: #000;
-}
-
-.certification-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 80px;
-    height: 80px;
-    z-index: 2;
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: none;
-    border: none;
-    color: var(--white);
-    cursor: pointer;
-}
-
-.testimonial-info {
-    padding: 1.5rem;
-}
-
-.testimonial-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.region, .person {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-/* Slider Navigation */
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    color: var(--white);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.prev {
-    left: 0;
-}
-
-.next {
-    right: 0;
-}
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    border: none;
-    cursor: pointer;
-}
-
-.dot.active {
-    background: var(--white);
-}
-
-/* CTA Section */
-.cta-section {
-    background: var(--dark-blue);
-    padding: 4rem 2rem;
-    text-align: center;
-}
-
-.cta-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--neon-green);
-    color: var(--dark-blue);
-    padding: 0.8rem 2rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 2rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .testimonials {
-        padding: 2rem 1rem;
     }
 
-    .testimonials-header h2 {
-        font-size: 2rem;
-    }
+    // Auto-advance slides
+    setInterval(nextSlide, 5000);
 
-    .testimonials-track {
-        grid-template-columns: 1fr;
-    }
+    // Optimize for low-end devices
+    const isLowEnd = navigator.deviceMemory < 4 || !navigator.deviceMemory;
 
-    .slider-arrow {
-        display: none;
+    if (isLowEnd) {
+        document.body.classList.add('low-end-device');
+        // Reduce transition duration for smoother performance on low-end devices
+        slides.style.transition = 'transform 0.3s ease-in-out';
     }
-}
+});
+    </script>
 
-@media (max-width: 480px) {
-    .testimonials-header h2 {
-        font-size: 1.5rem;
-    }
 
-    .certification-badge {
-        width: 60px;
-        height: 60px;
-    }
-}
-</style>
 <section class="testimonials">
     <div class="testimonials-header">
         <h2>Que dicen <span>nuestros clientes</span> de nosotros</h2>
         <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
-        <a href="#" class="view-more">Ver más testimonios</a>
+        <a href="https://www.youtube.com/@MedidorInteligenteAPR/videos?view=0&sort=dd&shelf_id=1" class="view-more">Ver más testimonios</a>
     </div>
 
     <div class="testimonials-slider">
@@ -383,93 +244,111 @@
 
         <div class="slider-dots">
             <button class="dot active" aria-label="Ir a slide 1"></button>
-            <button class="dot" aria-label="Ir a slide 2"></button>
-            <button class="dot" aria-label="Ir a slide 3"></button>
+            <button class="dot active" aria-label="Ir a slide 2"></button>
+            <button class="dot active" aria-label="Ir a slide 3"></button>
         </div>
     </div>
 </section>
 
-<section class="cta-section">
+<section class="sustainability">
     <div class="cta-content">
         <h2>Conoce a todas las comunidades alrededor de Chile que <span>confían en nosotros</span></h2>
-        <a href="#" class="cta-button">Ver más</a>
+        <a href="{% url 'clientes' %}" class="card-button">Ver más</a>
     </div>
 </section>
-<div class="container">
+
+<div class="container rea">
     <h1>Únete a las más de 20 comunidades que ya dieron el paso hacia la innovación</h1>
-    
-    <div class="form-card">
-        <form>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nombre">Nombre completo <span class="required">*</span></label>
-                    <input type="text" id="nombre" placeholder="Escribe aquí" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo electrónico <span class="required">*</span></label>
-                    <input type="email" id="email" placeholder="Escribe aquí" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="telefono">Teléfono <span class="required">*</span></label>
-                <input type="tel" id="telefono" placeholder="Escribe aquí" required>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="apr">Nombre del APR / SSR <span class="required">*</span></label>
-                    <input type="text" id="apr" placeholder="Escribe aquí" required>
-                </div>
-                <div class="form-group">
-                    <label for="cargo">Cargo o Puesto en el APR <span class="required">*</span></label>
-                    <input type="text" id="cargo" placeholder="Escribe aquí" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="comuna">Comuna <span class="required">*</span></label>
-                    <input type="text" id="comuna" placeholder="Escribe aquí" required>
-                </div>
-                <div class="form-group">
-                    <label for="arranques">Cantidad de Arranques</label>
-                    <input type="text" id="arranques" placeholder="Escribe aquí">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Tipo de financiamiento <span class="required">*</span></label>
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="propio" name="financiamiento" value="propio" required>
-                        <label for="propio">Propio</label>
+    <!-- Formulario -->
+    <div class="contact-form">
+        <section class="container rea">            
+            <!-- Formulario -->
+            <div class="contact-form">
+                <h2>¿Más dudas? Escríbenos</h2>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre completo <span class="required">*</span></label>
+                            <input type="text" name="nombre" placeholder="Escribe aquí" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo electrónico <span class="required">*</span></label>
+                            <input type="email" name="email" placeholder="Escribe aquí" required>
+                        </div>
                     </div>
-                    <div class="radio-option">
-                        <input type="radio" id="externo" name="financiamiento" value="externo">
-                        <label for="externo">Fondo externo (Gobierno, otras entidades)</label>
+        
+                    <div class="form-group full-width">
+                        <label>Teléfono <span class="required">*</span></label>
+                        <input type="tel" name="telefono" placeholder="Escribe aquí" required>
                     </div>
+        
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre del APR / SSR <span class="required">*</span></label>
+                            <input type="text" name="apr" placeholder="Escribe aquí" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo o Puesto en el APR <span class="required">*</span></label>
+                            <input type="text" name="cargo" placeholder="Escribe aquí" required>
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Comuna <span class="required">*</span></label>
+                            <input type="text" name="comuna" placeholder="Escribe aquí" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cantidad de Arranques</label>
+                            <input type="text" name="arranques" placeholder="Escribe aquí">
+                        </div>
+                    </div>
+        
+                    <div class="form-group full-width">
+                        <label>Tipo de financiamiento <span class="required">*</span></label>
+                        <div class="radio-options">
+                            <label class="radio-label">
+                                <input type="radio" name="financiamiento" value="propio" required>
+                                <span>Propio</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="financiamiento" value="externo" required>
+                                <span>Fondo externo (Gobierno, otras entidades)</span>
+                            </label>
+                        </div>
+                    </div>
+        
+                    <div class="form-group full-width">
+                        <label>Mensaje</label>
+                        <textarea name="mensaje" placeholder="Escribe aquí" rows="6"></textarea>
+                    </div>
+        
+                    <button type="submit">Enviar</button>
+                </form>
+                <div id="confirmationMessage" class="confirmation-message" style="display: none;">
+                    ¡Gracias por contactarnos! Te responderemos pronto.
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" placeholder="Escribe aquí"></textarea>
-            </div>
-
-            <button type="submit">Enviar</button>
-        </form>
+        </section>
+        <div id="confirmationMessage" class="confirmation-message" style="display: none;">
+            ¡Gracias por contactarnos! Te responderemos pronto.
+        </div>
     </div>
 </div>
+
 <div class="container">
-    
-    <header class="header">
+    <header class="headerr">
         <h1>Así transformamos la gestión del agua</h1>
-        <h2>con nuestro medidor inteligente</h2>
-    </header>
-    
-    <div class="video-container">
-        <img src="" alt="Medidor inteligente de agua">
-    </div>
+        <h2>con nuestro medidor inteligente</h2><br>
+        
+        <!-- Contenedor para el video -->
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/YX13Quhfzy4" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+        <br><br>
+    </header>   
 </div>
 {% endblock %}
