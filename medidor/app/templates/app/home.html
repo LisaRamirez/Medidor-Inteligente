@@ -5,26 +5,29 @@
 
 <div class="slider">
     <div class="slides">
-        <div class="slide">
+        <div class="slide" style="background-image: url('{% static 'app/img/banner2.png' %}');">
             <div class="slide-content">
                 <h1>Gestiona de manera eficiente el agua para tu comunidad con <span>la tecnología más avanzada</span> de Chile</h1>
                 <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
-                <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
+                <a href="#" class="cta-button" role="button">Solicita una cotización</a>
             </div>
         </div>
-        <div class="slide">
+        <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
             <div class="slide-content">
                 <h1>Reduce pérdidas y optimiza recursos con <span>nuestro sistema inteligente</span></h1>
                 <p>Monitorea en tiempo real el consumo de agua y detecta fugas instantáneamente</p>
-                <a href="{% url 'soluciones'%}" class="cta-button" role="button">Conoce más</a>
+                <a href="#" class="cta-button" role="button">Conoce más</a>
             </div>
         </div>
-        <div class="slide">
+        <div class="slide" style="background-image: url('{% static 'app/img/banner2.png' %}');">
             <div class="slide-content">
                 <h1>Tecnología sustentable para un <span>futuro más verde</span></h1>
                 <p>Contribuye al cuidado del medio ambiente con nuestras soluciones eco-amigables</p>
-                <a href="{% url 'contacto'%}" class="cta-button" role="button">Únete al cambio</a>
+                <a href="#" class="cta-button" role="button">Únete al cambio</a>
             </div>
+        </div>
+        <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
+            
         </div>
     </div>
     <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
@@ -33,8 +36,11 @@
         <button class="slider-dot active" role="tab" aria-selected="true"></button>
         <button class="slider-dot" role="tab" aria-selected="false"></button>
         <button class="slider-dot" role="tab" aria-selected="false"></button>
+        <button class="slider-dot" role="tab" aria-selected="false"></button>
     </div>
 </div>
+
+
 
     <section class="benefits">
         <h2>BENEFICIOS</h2>
@@ -77,31 +83,31 @@
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <img src="{% static 'app/img/group1.png'%}" alt="Icono de teléfono">
+                        <img src="{% static 'app/img/icono1.png'%}" alt="Icono de teléfono">
                     </div>
                     <h3>Toma lecturas a<br>distancia</h3>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <img src="{% static 'app/img/group2.png'%}" alt="Icono de detección">
+                        <img src="{% static 'app/img/icono2.png'%}" alt="Icono de detección">
                     </div>
                     <h3>Detecta fugas,<br>robos o pérdidas</h3>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <img src="{% static 'app/img/group3.png'%}" alt="Icono de válvula">
+                        <img src="{% static 'app/img/icono3.png'%}" alt="Icono de válvula">
                     </div>
                     <h3>Cierra el paso de<br>agua a distancia</h3>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <img src="{% static 'app/img/group4.png'%}" alt="Icono de toque">
+                        <img src="{% static 'app/img/icono4.png'%}" alt="Icono de toque">
                     </div>
                     <h3>Traspasa datos con<br>un par de clicks</h3>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <img src="{% static 'app/img/group5.png'%}" alt="Icono de ahorro">
+                        <img src="{% static 'app/img/icono5.png'%}" alt="Icono de ahorro">
                     </div>
                     <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
                 </div>
@@ -188,67 +194,59 @@
     </script>
 
 
-<section class="testimonials">
-    <div class="testimonials-header">
-        <h2>Que dicen <span>nuestros clientes</span> de nosotros</h2>
-        <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
-        <a href="https://www.youtube.com/@MedidorInteligenteAPR/videos?view=0&sort=dd&shelf_id=1" class="view-more">Ver más testimonios</a>
-    </div>
-
-    <div class="testimonials-slider">
-        <button class="slider-arrow prev" aria-label="Anterior testimonio">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M15 18l-6-6 6-6"/>
-            </svg>
-        </button>
-
-        <div class="testimonials-track">
-            <div class="testimonial-card">
-                <div class="video-thumbnail">
-                    <img src="" alt="Certificado de testimonio" class="certification-badge">
-                    <button class="play-button" aria-label="Reproducir video">
-                        <svg viewBox="0 0 24 24" width="48" height="48">
-                            <path fill="currentColor" d="M8 5v14l11-7z"/>
-                        </svg>
-                    </button>
+    <section class="testimonials">
+        <div class="testimonials-header">
+            <h2>Que dicen <span>nuestros clientes</span> de nosotros</h2>
+            <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
+            <a href="https://www.youtube.com/@MedidorInteligenteAPR/videos?view=0&sort=dd&shelf_id=1" class="view-more">Ver más testimonios</a>
+        </div>
+    
+        <div class="testimonials-slider">
+            <button class="slider-arrow prev" aria-label="Anterior testimonio">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+    
+            <div class="testimonials-track">
+                <div class="testimonial-card">
+                    <div class="video-thumbnail">
+                        <!-- Incrustar iframe de YouTube con el primer video -->
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/crhAwARwYKw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="testimonial-info">
+                        <h3>Asociación de Vecinos La Parva</h3>
+                        <p class="region">Región Metropolitana</p>
+                        <p class="person">Don Roberto - Operador</p>
+                    </div>
                 </div>
-                <div class="testimonial-info">
-                    <h3>Asociación de Vecinos La Parva</h3>
-                    <p class="region">Región Metropolitana</p>
-                    <p class="person">Don Roberto - Operador</p>
+    
+                <div class="testimonial-card">
+                    <div class="video-thumbnail">
+                        <!-- Incrustar iframe de YouTube con el segundo video -->
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/MwuYC75PbNs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="testimonial-info">
+                        <h3>APR «Batuco – Santa Sara», Lampa R. M.</h3>
+                        <p class="region">Región Metropolitana</p>
+                        <p class="person">Luis Parada - Presidente</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="testimonial-card">
-                <div class="video-thumbnail">
-                    <img src="" alt="Certificado de testimonio" class="certification-badge">
-                    <button class="play-button" aria-label="Reproducir video">
-                        <svg viewBox="0 0 24 24" width="48" height="48">
-                            <path fill="currentColor" d="M8 5v14l11-7z"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="testimonial-info">
-                    <h3>APR «Batuco – Santa Sara», Lampa R. M.</h3>
-                    <p class="region">Región Metropolitana</p>
-                    <p class="person">Luis Parada - Presidente</p>
-                </div>
+    
+            <button class="slider-arrow next" aria-label="Siguiente testimonio">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+    
+            <div class="slider-dots">
+                <button class="dot active" aria-label="Ir a slide 1"></button>
+                <button class="dot active" aria-label="Ir a slide 2"></button>
+                <button class="dot active" aria-label="Ir a slide 3"></button>
             </div>
         </div>
-
-        <button class="slider-arrow next" aria-label="Siguiente testimonio">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
-            </svg>
-        </button>
-
-        <div class="slider-dots">
-            <button class="dot active" aria-label="Ir a slide 1"></button>
-            <button class="dot active" aria-label="Ir a slide 2"></button>
-            <button class="dot active" aria-label="Ir a slide 3"></button>
-        </div>
-    </div>
-</section>
+    </section>
 
 <section class="sustainability">
     <div class="cta-content">
@@ -257,98 +255,107 @@
     </div>
 </section>
 
-<div class="container rea">
-    <h1>Únete a las más de 20 comunidades que ya dieron el paso hacia la innovación</h1>
-    <!-- Formulario -->
-    <div class="contact-form">
-        <section class="container rea">            
-            <!-- Formulario -->
-            <div class="contact-form">
-                <h2>¿Más dudas? Escríbenos</h2>
-                <form id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Nombre completo <span class="required">*</span></label>
-                            <input type="text" name="nombre" placeholder="Escribe aquí" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Correo electrónico <span class="required">*</span></label>
-                            <input type="email" name="email" placeholder="Escribe aquí" required>
-                        </div>
-                    </div>
-        
-                    <div class="form-group full-width">
-                        <label>Teléfono <span class="required">*</span></label>
-                        <input type="tel" name="telefono" placeholder="Escribe aquí" required>
-                    </div>
-        
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Nombre del APR / SSR <span class="required">*</span></label>
-                            <input type="text" name="apr" placeholder="Escribe aquí" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Cargo o Puesto en el APR <span class="required">*</span></label>
-                            <input type="text" name="cargo" placeholder="Escribe aquí" required>
-                        </div>
-                    </div>
-        
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Comuna <span class="required">*</span></label>
-                            <input type="text" name="comuna" placeholder="Escribe aquí" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Cantidad de Arranques</label>
-                            <input type="text" name="arranques" placeholder="Escribe aquí">
-                        </div>
-                    </div>
-        
-                    <div class="form-group full-width">
-                        <label>Tipo de financiamiento <span class="required">*</span></label>
-                        <div class="radio-options">
-                            <label class="radio-label">
-                                <input type="radio" name="financiamiento" value="propio" required>
-                                <span>Propio</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="financiamiento" value="externo" required>
-                                <span>Fondo externo (Gobierno, otras entidades)</span>
-                            </label>
-                        </div>
-                    </div>
-        
-                    <div class="form-group full-width">
-                        <label>Mensaje</label>
-                        <textarea name="mensaje" placeholder="Escribe aquí" rows="6"></textarea>
-                    </div>
-        
-                    <button type="submit">Enviar</button>
-                </form>
-                <div id="confirmationMessage" class="confirmation-message" style="display: none;">
-                    ¡Gracias por contactarnos! Te responderemos pronto.
-                </div>
+<section>
+    <div class="container">
+        <header class="headerr">
+            <h1 class="poi">Así transformamos la gestión del agua</h1>
+            <h2 class="poi">con nuestro medidor inteligente</h2><br>
+            
+            <!-- Contenedor para el video -->
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/YX13Quhfzy4" 
+                    frameborder="0" allowfullscreen>
+                </iframe>
             </div>
-        </section>
-        <div id="confirmationMessage" class="confirmation-message" style="display: none;">
-            ¡Gracias por contactarnos! Te responderemos pronto.
+            <br><br>
+        </header>   
+    </div>
+</section>
+
+<section class="banner-img">
+    <div class="container rea">
+        <h1 class="ra">Únete a las más de 20 comunidades que ya dieron el paso</h1>
+        <h2 class="ra">hacia la innovación</h2> <br>
+        <!-- Formulario -->
+        <div class="contact-form col-12">
+            <section class="container ream">            
+                <!-- Formulario -->
+                <div class="contact-form ñam" >
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre completo <span class="required">*</span></label>
+                                <input type="text" name="nombre" placeholder="Escribe aquí" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Correo electrónico <span class="required">*</span></label>
+                                <input type="email" name="email" placeholder="Escribe aquí" required>
+                            </div>
+                        </div>
+            
+                        <div class="form-group full-width">
+                            <label>Teléfono <span class="required">*</span></label>
+                            <input type="tel" name="telefono" placeholder="Escribe aquí" required>
+                        </div>
+            
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre del APR / SSR <span class="required">*</span></label>
+                                <input type="text" name="apr" placeholder="Escribe aquí" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Cargo o Puesto en el APR <span class="required">*</span></label>
+                                <input type="text" name="cargo" placeholder="Escribe aquí" required>
+                            </div>
+                        </div>
+            
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Comuna <span class="required">*</span></label>
+                                <input type="text" name="comuna" placeholder="Escribe aquí" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Cantidad de Arranques</label>
+                                <input type="text" name="arranques" placeholder="Escribe aquí">
+                            </div>
+                        </div>
+            
+                        <div class="form-group full-width">
+                            <label>Tipo de financiamiento <span class="required">*</span></label>
+                            <div class="radio-options">
+                                <label class="radio-label">
+                                    <input type="radio" name="financiamiento" value="propio" required>
+                                    <span>Propio</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="financiamiento" value="externo" required>
+                                    <span>Fondo externo (Gobierno, otras entidades)</span>
+                                </label>
+                            </div>
+                        </div>
+            
+                        <div class="form-group full-width">
+                            <label>Mensaje</label>
+                            <textarea name="mensaje" placeholder="Escribe aquí" rows="6"></textarea>
+                        </div>
+            
+                        <button type="submit">Enviar</button>
+                    </form>
+                    <div id="confirmationMessage" class="confirmation-message" style="display: none;">
+                        ¡Gracias por contactarnos! Te responderemos pronto.
+                    </div>
+                </div>
+            </section>
+            <div id="confirmationMessage" class="confirmation-message" style="display: none;">
+                ¡Gracias por contactarnos! Te responderemos pronto.
+            </div>
         </div>
     </div>
-</div>
+</section>
+{% endblock %}
 
-<div class="container">
-    <header class="headerr">
-        <h1>Así transformamos la gestión del agua</h1>
-        <h2>con nuestro medidor inteligente</h2><br>
-        
-        <!-- Contenedor para el video -->
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/YX13Quhfzy4" 
-                frameborder="0" allowfullscreen>
-            </iframe>
-        </div>
-        <br><br>
-    </header>   
-</div>
+{% block scripts %}
+
 {% endblock %}

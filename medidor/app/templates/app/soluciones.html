@@ -2,7 +2,38 @@
 {%block contenido%}
 {% load static %}
 <style>
-   
+    .background-image {
+        background-image: url('{% static "app/img/banner2.png" %}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    
+    .product-image-container,
+    .product-info {
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* Asegúrate de que el texto sea legible sobre la imagen de fondo */
+    .product-title,
+    .product-name,
+    .product-description,
+    .feature-item {
+        color: #ffffff; /* Cambia esto al color que mejor se adapte a tu imagen de fondo */
+    }
+    
+    /* Ajusta los estilos de los botones si es necesario */
+    .btn-outline {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+    
+    .btn-primary {
+        background-color: #ffffff;
+        color: #000000; /* Ajusta este color según tu diseño */
+    }
     .product-section {
         display: flex;
         flex-direction: column;
@@ -12,7 +43,7 @@
 
     .product-image-container {
         position: relative;
-    background: linear-gradient(rgba(163, 171, 179, 0.9), rgba(12, 50, 94, 0.9)),
+    background: linear-gradient(rgba(173, 173, 173, 0.9), rgba(17, 17, 17, 0.9)),
     url("{% static 'app/img/medidor-bg.jpg'%}");
     background-size: cover;
     background-position: center;
@@ -26,7 +57,21 @@
     flex-direction: column;
     justify-content: center;
     }
+    .background-image::before {
+        background: linear-gradient(rgba(173, 173, 173, 0.5), rgba(17, 17, 17, 0.5));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
 
+    .product-image-container
+     {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
     .product-title {
         font-size: clamp(1.5rem, 2vw, 2.5rem);
@@ -53,18 +98,18 @@
     }
 
     .conoce-tag {
-        color:rgb(196, 196, 196);
+        color:rgb(252, 252, 252);
         font-size: clamp(1rem, 1.5vw, 1.2rem);
     }
 
     .product-name {
-        color:rgb(186, 201, 218);
+        color:rgb(252, 252, 252);
         font-size: clamp(1.5rem, 2.5vw, 2rem);
         font-weight: bold;
     }
 
     .product-description {
-        color:rgb(155, 164, 175);
+        color:rgb(252, 252, 252);
         line-height: 1.6;
         font-size: clamp(0.9rem, 1.5vw, 1rem);
     }
@@ -80,14 +125,14 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        color:rgb(140, 148, 156);
+        color:rgb(252, 252, 252);
         font-size: clamp(0.9rem, 1.5vw, 1rem);
     }
 
     .check-icon {
         width: clamp(16px, 2vw, 20px);
         height: clamp(16px, 2vw, 20px);
-        color:rgb(161, 161, 161);
+        color:rgb(252, 252, 252);
         flex-shrink: 0;
     }
 
@@ -198,7 +243,7 @@
     }
 </style>
 
-<div class="product-section">
+<div class="product-section background-image">
     <div class="product-image-container">
         
         <h2 class="product-title">MEDIDOR<br>INTELIGENTE</h2>
@@ -242,7 +287,7 @@
                     <path d="M4 4v12h12V4H4zm11 11H5V5h10v10z"/>
                 </svg>
             </a>
-            <a href="#" class="btn btn-primary">
+            <a href="{% url 'contacto'%}" class="btn btn-primary">
                 Cómpralo ahora
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="margin-left: 8px;">
                     <path d="M7 10l5-5v3h4v4h-4v3l-5-5z"/>
@@ -265,8 +310,8 @@
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <div class="step-icon">
-                        <img src="{% static 'app/img/GOTA 1.png'%}"  alt="Medidor">
+                    <div class="">
+                        <img src="{% static 'app/img/Icono6.png'%}"  alt="Medidor">
                     </div>
                     <p>Toma los datos y envía al receptor manual</p>
                     <p class="highlight">A 100 (+) METROS</p>
@@ -276,8 +321,8 @@
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <div class="step-icon">
-                        <img src="{% static 'app/img/GOTA 2.png'%}"  alt="Receptor">
+                    <div class="">
+                        <img src="{% static 'app/img/Icono7.png'%}"  alt="Receptor">
                     </div>
                     <p>Recepciona los datos</p>
                     <p class="highlight">PERMITE CORTAR EL SERVICIO A DISTANCIA</p>
@@ -287,10 +332,10 @@
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <div class="step-icon">
-                        <img src="{% static 'app/img/GOTA 3.png'%}"  alt="Software">
+                    <div class="">
+                        <img src="{% static 'app/img/Icono8.png'%}"  alt="Software">
                     </div>
-                    <p>Pasa en directo los datos al software o por una plantilla excel</p>
+                    <p>Pasa en directo los datos al software o plantilla excel</p>
                     <p class="highlight">PERMITE EMITIR BOLETAS</p>
                 </div>
             </div>
@@ -308,7 +353,7 @@
                 </div>
                 <h3>Nuestra plataforma de gestión de APR</h3>
                 <p>Incluye Boleta Electrónica y Pago de APR en línea</p>
-                <a href="#" class="card-button">
+                <a href="https://softwareapr.cl" class="card-button">
                     Conoce más
                     <span class="arrow">→</span>
                 </a>
@@ -320,7 +365,7 @@
                 </div>
                 <h3>Paga tus cuentas de agua potable rural en línea</h3>
                 <p>Además conoce los puntos de pago en almacenes locales</p>
-                <a href="#" class="card-button">
+                <a href="https://puntoblue.cl" class="card-button">
                     Conoce más
                     <span class="arrow">→</span>
                 </a>

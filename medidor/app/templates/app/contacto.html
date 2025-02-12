@@ -9,8 +9,8 @@
     <p>Comunicate con nosotros y empieza a cambiar el futuro</p>
 </div>
 <br>
-<br>
-<section class="container rea">
+
+<section class="container rea ">
     <div class="info-columns">
         <!-- Columna de información de contacto -->
         <div class="contact-info">
@@ -53,10 +53,12 @@
         </div>
     </div>
 
+</section>
+<section class="container reamm">
     <!-- Formulario -->
-    <div class="contact-form">
+    <div class="contact-form col-12">
         <h2>¿Más dudas? Escríbenos</h2>
-        <form id="contactForm">
+        <form class="col-md-8" method="POST" action="">{% csrf_token%}
             <div class="form-row">
                 <div class="form-group">
                     <label>Nombre completo <span class="required">*</span></label>
@@ -67,12 +69,10 @@
                     <input type="email" name="email" placeholder="Escribe aquí" required>
                 </div>
             </div>
-
             <div class="form-group full-width">
                 <label>Teléfono <span class="required">*</span></label>
                 <input type="tel" name="telefono" placeholder="Escribe aquí" required>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label>Nombre del APR / SSR <span class="required">*</span></label>
@@ -83,7 +83,6 @@
                     <input type="text" name="cargo" placeholder="Escribe aquí" required>
                 </div>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label>Comuna <span class="required">*</span></label>
@@ -91,10 +90,9 @@
                 </div>
                 <div class="form-group">
                     <label>Cantidad de Arranques</label>
-                    <input type="text" name="arranques" placeholder="Escribe aquí">
+                    <input type="text" name="arranque" placeholder="Escribe aquí">
                 </div>
             </div>
-
             <div class="form-group full-width">
                 <label>Tipo de financiamiento <span class="required">*</span></label>
                 <div class="radio-options">
@@ -108,19 +106,17 @@
                     </label>
                 </div>
             </div>
-
             <div class="form-group full-width">
                 <label>Mensaje</label>
                 <textarea name="mensaje" placeholder="Escribe aquí" rows="6"></textarea>
             </div>
-
             <button type="submit">Enviar</button>
         </form>
         <div id="confirmationMessage" class="confirmation-message" style="display: none;">
             ¡Gracias por contactarnos! Te responderemos pronto.
         </div>
     </div>
+
 </section>
-
-
+<br>
 {% endblock %}
