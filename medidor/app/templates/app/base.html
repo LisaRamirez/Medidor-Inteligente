@@ -69,6 +69,19 @@
             menu.classList.toggle("show");
         });
     </script>
+ 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll(".nav-link");
+    
+            links.forEach(link => {
+                link.addEventListener("click", function () {
+                    links.forEach(l => l.classList.remove("active")); // Quita el color de otros enlaces
+                    this.classList.add("active"); // Agrega el color al enlace seleccionado
+                });
+            });
+        });
+    </script>
     <nav class="nav">
         <a href="{% url 'home'%}"> 
             <img src="{% static 'app/img/logo.png'%}" alt="Medidor Inteligente" class="logo" >

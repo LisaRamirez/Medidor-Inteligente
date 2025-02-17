@@ -21,6 +21,41 @@ body {
     overflow-x: hidden;
     width: 100%;
 }
+.nav {
+            
+    padding: 15px;
+}
+
+.navul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav li {
+    margin-right: 20px;
+}
+
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+/* Efecto cuando se pasa el mouse */
+.nav-link:hover {
+    background-color:rgb(0, 255, 0);
+}
+
+/* Color cuando el enlace está activo */
+.nav-link.active {
+    background-color:rgb(27, 12, 248);
+    color: white;
+}
 
 
     /* Optimización de rendimiento */
@@ -316,6 +351,14 @@ color: #c8ff00;
 .features {
 padding: clamp(2rem, 5vw, 4rem) 1rem;
 background-color: #f5f7ff;
+
+background-size: cover;  /* La imagen cubre todo el contenedor */
+background-position: center;  /* Centra la imagen */
+background-repeat: no-repeat; /* Evita que la imagen se repita */
+width: 100%; /* Se expande en todo el ancho */
+min-height: 200px; /* Ajusta la altura según necesidad */
+
+
 }
 
 .features-container {
@@ -463,6 +506,11 @@ transform: none !important;
         position: relative;
         /* 16:9 Aspect Ratio padding-top: 56.25%;  */
         background: #000;
+        margin: auto auto;
+        
+        width: 100%;
+        max-width: 900px; /* Puedes ajustar este valor según necesites */
+        aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
     }
     
     .certification-badge {
@@ -618,21 +666,21 @@ transform: none !important;
     text-align: center;
 }
 .headerr {
-    height: 80%;
+    height: 100%;
     align-items: center;
     flex-direction: column;
     padding-top: 1rem;
     margin: auto auto;
    
-    width: 80%; /* Ocupará todo el ancho disponible */
-    max-width: 800px; /* Ajusta según el diseño */
+    width: 100%; /* Ocupará todo el ancho disponible */
+    max-width: 900px; /* Ajusta según el diseño */
     aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
 }
 /* Contenedor responsivo del video */
 .video-container {
     margin: auto auto;
     width: 100%;
-    max-width: 800px; /* Puedes ajustar este valor según necesites */
+    max-width: 900px; /* Puedes ajustar este valor según necesites */
     aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
 }
 
@@ -640,7 +688,7 @@ transform: none !important;
 .video-container iframe {
     width: 100%;
     height: 100%;
-    border-radius: 10px; /* Bordes redondeados opcionales */
+    border-radius: 20px; /* Bordes redondeados opcionales */
 }
 .nav {
     max-width: 1200px;
@@ -1233,7 +1281,19 @@ background-color: #002868;
 color: white;
 padding: clamp(2rem, 5vw, 4rem) 1rem;
 overflow: hidden;
+
+background-size: cover;  /* La imagen cubre todo el contenedor */
+background-position: center;  /* Centra la imagen */
+background-repeat: no-repeat; /* Evita que la imagen se repita */
+width: 100%; /* Se expande en todo el ancho */
+min-height: 200px; /* Ajusta la altura según necesidad */
+display: flex; /* Para centrar contenido */
+justify-content: center; /* Centra horizontalmente */
+align-items: center; /* Centra verticalmente */
+text-align: center; /* Centra el texto */
+padding: 40px 20px; /* Espaciado para evitar que el contenido toque los bordes */
 }
+
 
 .sustainability-container {
 max-width: 1200px;
@@ -1312,10 +1372,7 @@ justify-content: center;
 background-color: white;
 }
 
-.feature-icon img {
-width: 50%;
-height: auto;
-}
+
 
 .feature-item h3 {
 color: #002868;
@@ -1733,7 +1790,9 @@ h1 {
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.step:hover {
+    transform: translateY(-5px);
+}
 .step-icon img {
     width: 48px;
     height: 48px;
@@ -1989,6 +2048,12 @@ h1 {
 .regions {
     padding: 60px 0;
     background-color: #f8f9fa;
+    
+    background-size: cover;  /* La imagen cubre todo el contenedor */
+    background-position: center;  /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    width: 100%; /* Se expande en todo el ancho */
+    min-height: 200px; /* Ajusta la altura según necesidad */
 }
 
 .regions-title {
@@ -2630,7 +2695,7 @@ h1 {
     .product-section {
         background-color: #002868;
         color: white;
-        padding: 4rem 2rem;
+        padding: 3rem 2rem;
         text-align: center;
        
         

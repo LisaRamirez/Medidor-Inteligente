@@ -55,22 +55,31 @@
     /* Image Grid */
     .image-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Celdas dinámicas */
         gap: 1rem;
     }
     
     .image-grid img {
-        width: 100%;
-        height: 120px;
+        width: 100%; /* Ajusta el tamaño */
+        height: 100%;
         object-fit: cover;
         border-radius: 8px;
+        justify-self: end; /* Mueve la imagen a la derecha dentro de su celda */
     }
+    
+
     
     /* Stats Section */
     .stats {
         background-color: #002868;
         color: white;
         padding: 4rem 2rem;
+        
+        background-size: cover;  /* La imagen cubre todo el contenedor */
+        background-position: center;  /* Centra la imagen */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+        width: 100%; /* Se expande en todo el ancho */
+        min-height: 200px; /* Ajusta la altura según necesidad */
     }
     
     .stats-wrapper {
@@ -148,12 +157,12 @@
         <p>Hoy, más de 20 comunidades en Chile confían en nuestra experiencia para modernizar sus sistemas y asegurar un futuro sostenible para su recurso más esencial.</p>
     </div>
     <div class="image-grid">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gYwS7nxa1VGiK0DXsbblFGnJwYbMSk.png" alt="Imagen empresa 1">
+        <img src="{% static 'app/img/Mask group.png' %}" alt="Imagen empresa 1">
         
     </div>
 </div>
 
-<section class="stats">
+<section class="stats" style="background-image: url('{% static 'app/img/chilehorizontal.png' %}');">
     <div class="stats-wrapper">
         <div class="stat-item">
             <div class="stat-icon">

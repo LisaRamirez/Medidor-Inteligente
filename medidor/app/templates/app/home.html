@@ -9,32 +9,29 @@
             <div class="slide-content">
                 <h1>Gestiona de manera eficiente el agua para tu comunidad con <span>la tecnología más avanzada</span> de Chile</h1>
                 <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
-                <a href="#" class="cta-button" role="button">Solicita una cotización</a>
+                <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
             </div>
         </div>
         <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
             <div class="slide-content">
                 <h1>Reduce pérdidas y optimiza recursos con <span>nuestro sistema inteligente</span></h1>
                 <p>Monitorea en tiempo real el consumo de agua y detecta fugas instantáneamente</p>
-                <a href="#" class="cta-button" role="button">Conoce más</a>
+                <a href="{% url 'contacto'%}" class="cta-button" role="button">Conoce más</a>
             </div>
         </div>
         <div class="slide" style="background-image: url('{% static 'app/img/banner2.png' %}');">
             <div class="slide-content">
                 <h1>Tecnología sustentable para un <span>futuro más verde</span></h1>
                 <p>Contribuye al cuidado del medio ambiente con nuestras soluciones eco-amigables</p>
-                <a href="#" class="cta-button" role="button">Únete al cambio</a>
+                <a href="{% url 'contacto'%}" class="cta-button" role="button">Únete al cambio</a>
             </div>
         </div>
-        <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
-            
-        </div>
+       
     </div>
     <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
     <button class="slider-arrow arrow-next" aria-label="Siguiente">&#10095;</button>
     <div class="slider-nav" role="tablist">
         <button class="slider-dot active" role="tab" aria-selected="true"></button>
-        <button class="slider-dot" role="tab" aria-selected="false"></button>
         <button class="slider-dot" role="tab" aria-selected="false"></button>
         <button class="slider-dot" role="tab" aria-selected="false"></button>
     </div>
@@ -64,6 +61,34 @@
         </div>
     </section>
 
+ 
+    <style>
+        
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 200px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+
+        .meter-image {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .meter-image img {
+            max-width: 300px;
+            width: 100%;
+        }
+
+    </style>
+
     <section class="sustainability">
         <div class="sustainability-container">
             <div class="sustainability-image">
@@ -77,9 +102,9 @@
         </div>
     </section>
 
-    <section class="features">
+    <section class="features" style="background-image: url('{% static 'app/img/Vector1.png' %}');">
         <div class="features-container">
-            <h2>Nuestros <span class="highlight">beneficios</span></h2>
+            <h2>¿Qué hace <span class="highlight">nuestro medidor?</span></h2>
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon">
@@ -111,6 +136,9 @@
                     </div>
                     <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
                 </div>
+            </div>
+            <div class="meter-image">
+                <img src="{% static 'app/img/medidorr.png'%}" alt="Medidor inteligente">
             </div>
         </div>
     </section>
@@ -194,7 +222,7 @@
     </script>
 
 
-    <section class="testimonials">
+    <section class="testimonials" >
         <div class="testimonials-header">
             <h2>Que dicen <span>nuestros clientes</span> de nosotros</h2>
             <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
@@ -203,7 +231,7 @@
     
         <div class="testimonials-slider">
             <button class="slider-arrow prev" aria-label="Anterior testimonio">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="15" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M15 18l-6-6 6-6"/>
                 </svg>
             </button>
@@ -248,16 +276,17 @@
         </div>
     </section>
 
-<section class="sustainability">
+<section class="sustainability" style="background-image: url('{% static 'app/img/chilehorizontal.png' %}');">
     <div class="cta-content">
         <h2>Conoce a todas las comunidades alrededor de Chile que <span>confían en nosotros</span></h2>
+        
         <a href="{% url 'clientes' %}" class="card-button">Ver más</a>
     </div>
 </section>
 
 <section>
     <div class="container">
-        <header class="headerr">
+        <section class="headerr">
             <h1 class="poi">Así transformamos la gestión del agua</h1>
             <h2 class="poi">con nuestro medidor inteligente</h2><br>
             
@@ -267,9 +296,8 @@
                     src="https://www.youtube.com/embed/YX13Quhfzy4" 
                     frameborder="0" allowfullscreen>
                 </iframe>
-            </div>
-            <br><br>
-        </header>   
+            </div>         
+        </section>   
     </div>
 </section>
 
