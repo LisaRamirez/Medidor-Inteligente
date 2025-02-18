@@ -1,30 +1,27 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
-<styles>
 
-    
-</styles>
 
 <div class="recurso">
     <!-- Cards Section -->
     <div class="cards-grid">
         <div class="card">
-            <img src="" alt="Certificación">
+            <img src="{% static 'app/img/image1.png'%}" alt="Certificación">
             <div class="card-content">
                 <h3>Nuestro medidor inteligente está certificado por el dictuc</h3>
                 <a href="#" class="card-button">Conoce más</a>
             </div>
         </div>
         <div class="card">
-            <img src="" alt="Informe">
+            <img src="{% static 'app/img/image1.png'%}"  alt="Informe">
             <div class="card-content">
                 <h3>Informe de ensayos dictuc</h3>
                 <a href="#" class="card-button">Ver informe</a>
             </div>
         </div>
         <div class="card">
-            <img src="" alt="Estudios">
+            <img src="{% static 'app/img/image1.png'%}" alt="Estudios">
             <div class="card-content">
                 <h3>Informe Estudios "Interagua" Ecuador</h3>
                 <a href="#" class="card-button">Ver informe</a>
@@ -39,71 +36,179 @@
         <div class="product-image">
             <img src="{% static 'app/img/handheld.png'%}"alt="Hand Held">
         </div>
-        <a href="#" class="card-button">Ver informe</a>
+        <a href="https://medidorinteligente.cl/FICHA_TECNICA-MEDIDOR_INTELIGENTE-HANDHELD.pdf" class="card-button">Ver informe</a>
     </section>
 
     <!-- Manuals Section -->
     <section class="manuals-section">
         <h2>MANUALES</h2>
         <p>Descubre el funcionamiento adecuado del medidor</p>
-        
+
         <h3>USO DEL MEDIDOR INTELIGENTE</h3>
         <div class="meters-grid">
             <div class="meter-item">
-                <img src="{% static 'app/img/medidorr.png'%}" alt="Medidor 1">
+                <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 1">
                 <p>SOFTWARE MEDIDOR - PDF N°1</p>
-                <a href="#" class="manual-link">Ver manual</a>
+                <a href="https://medidorinteligente.cl/Manual-de-Uso-Software-HandHeld-Parte-1.pdf" class="manual-link" download>Descargar manual</a>
             </div>
             <div class="meter-item">
-                <img src="{% static 'app/img/medidorr.png'%}" alt="Medidor 2">
-                <p>SOFTWARE MEDIDOR - PDF N°1</p>
-                <a href="#" class="manual-link">Ver manual</a>
+                <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 2">
+                <p>SOFTWARE MEDIDOR - PDF N°2</p>
+                <a href="https://medidorinteligente.cl/Manual-de-Uso-Software-HandHeld-Parte-2.pdf" class="manual-link" download>Descargar manual</a>
             </div>
             <div class="meter-item">
-                <img src="{% static 'app/img/medidorr.png'%}" alt="Medidor 3">
-                <p>SOFTWARE MEDIDOR - PDF N°1</p>
-                <a href="#" class="manual-link">Ver manual</a>
+                <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 3">
+                <p>SOFTWARE MEDIDOR - PDF N°3</p>
+                <a href="https://medidorinteligente.cl/Manual-de-Uso-Software-HandHeld-Parte-3.pdf" class="manual-link" download>Descargar manual</a>
             </div>
         </div>
 
-        <!-- Steps Section -->
-        <h3>USO DEL SOFTWARE</h3>
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-icon">01</div>
-                <h4>PRIMER PASO:</h4>
-                <p>Crear Archivos de Sectores y Enviar al Hand-Held o Mando Manual</p>
+<style>
+    .meters-grid {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .meter-item {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        background: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        min-width: 280px;
+    }
+
+    .meter-item img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .manual-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 15px;
+        background: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .manual-link:hover {
+        background: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+        .meters-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .meter-item {
+            width: 90%;
+        }
+    }
+</style>
+
+    <h3>USO DEL SOFTWARE</h3>
+    <div class="steps-grid">
+        <div class="step-card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/TlVoe2mzZu4" frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="step-card">
-                <div class="step-icon">02</div>
-                <h4>SEGUNDO PASO:</h4>
-                <p>Toma de Lecturas a Medidores Inteligentes con Hand-Held o Mando Manual</p>
-            </div>
-            <div class="step-card">
-                <div class="step-icon">03</div>
-                <h4>TERCER PASO:</h4>
-                <p>Enviar Archivos de Sectores con Lecturas ya Tomadas al Computador</p>
-            </div>
-            
+            <h4>PRIMER PASO:</h4>
+            <p>Crear Archivos de Sectores y Enviar al Hand-Held o Mando Manual</p>
         </div>
+
+        <div class="step-card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/cxPYkqDfnSE" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h4>SEGUNDO PASO:</h4>
+            <p>Toma de Lecturas a Medidores Inteligentes con Hand-Held o Mando Manual</p>
+        </div>
+
+        <div class="step-card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/DVHzPUBC17E" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h4>TERCER PASO:</h4>
+            <p>Enviar Archivos de Sectores con Lecturas ya Tomadas al Computador</p>
+        </div>
+    </div>
+
+<style>
+    .steps-grid {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap; /* Permite que los videos se acomoden en pantallas pequeñas */
+    }
+
+    .step-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        background:#2b71c7;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 30%; /* Hace que haya 3 columnas en pantallas grandes */
+        min-width: 280px; /* Evita que se hagan demasiado pequeños */
+    }
+
+    .video-container iframe {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    /* Ajustes para pantallas más pequeñas */
+    @media (max-width: 768px) {
+        .steps-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .step-card {
+            width: 90%; /* Ocupará casi todo el ancho en móviles */
+        }
+    }
+</style>
+
+
+        <!-- Steps Section -->
+       
         <h3>MODOS DE USO</h3>
         <div class="steps-grid">
             <div class="step-card">
-                <div class="step-icon">01</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/MxQmI7FC0tM" frameborder="0" allowfullscreen></iframe>
+                </div>
                 <h4>PRIMER PASO:</h4>
-                <p>Crear Archivos de Sectores y Enviar al Hand-Held o Mando Manual</p>
+                <p>USO DE MEDIDOR INTELIGENTE – REESTABLECER COINCIDENCIA EN LECTURAS ANÁLOGA Y DIGITAL</p>
             </div>
+
             <div class="step-card">
-                <div class="step-icon">02</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/upaSDaJK8UI" frameborder="0" allowfullscreen></iframe>
+                </div>
                 <h4>SEGUNDO PASO:</h4>
-                <p>Toma de Lecturas a Medidores Inteligentes con Hand-Held o Mando Manual</p>
+                <p>USO DE MEDIDOR INTELIGENTE – TOMA DE LECTURA INDIVIDUAL / MANUAL</p>
             </div>
+
             <div class="step-card">
-                <div class="step-icon">03</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/upaSDaJK8UI" frameborder="0" allowfullscreen></iframe>
+                </div>
                 <h4>TERCER PASO:</h4>
-                <p>Enviar Archivos de Sectores con Lecturas ya Tomadas al Computador</p>
+                <p>USO DE MEDIDOR INTELIGENTE – ABRIR Y CERRAR VÁLVULA</p>
             </div>
-            
+        </div>
+   
     </section>
 </div>
 
