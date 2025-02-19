@@ -1,0 +1,23 @@
+{%extends 'app/base.html'%}
+
+{% block contenido %}
+{%load static%}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Página no encontrada</title>
+    <style>
+        body { text-align: center; padding: 50px; font-family: Arial, sans-serif; }
+        h1 { font-size: 50px; }
+        p { font-size: 20px; }
+        a { text-decoration: none; color: #007BFF; }
+    </style>
+</head>
+<body>
+    <h1>404</h1>
+    <p>Lo sentimos, la página que buscas no existe.</p>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+
+
+{%endblock%}
