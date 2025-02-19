@@ -64,6 +64,120 @@
  
     <style>
         
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .features h2 {
+            text-align: left;
+            margin-bottom: 60px;
+            font-size: 2em;
+            color: #002B5C;
+        }
+        
+        .features .highlight {
+            color: #0066CC;
+        }
+        
+        .curve-line {
+            position: absolute;
+            bottom: 800px;
+            left: 0;
+            width: 10%;
+            height: 500px;
+            z-index: 1;
+        }
+        
+        .features-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 100px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            flex: 0 1 calc(20% - 20px);
+            margin-bottom: 50px;
+        }
+        
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            
+            border-radius: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            position: relative;
+            z-index: 3;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-icon img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .feature-item:nth-child(1) { margin-bottom: 50px; }
+        .feature-item:nth-child(2) { margin-bottom: 10px; }
+        .feature-item:nth-child(3) { margin-bottom: 50px; }
+        .feature-item:nth-child(4) { margin-bottom: 100px; }
+        .feature-item:nth-child(5) { margin-bottom: 120px; }
+        
+        .feature-item:hover .feature-icon {
+            transform: translateY(-10px);
+        }
+        
+        .feature-item h3 {
+            font-size: 1em;
+            line-height: 1.3;
+            color: #002B5C;
+        }
+        
+        .meter-image {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .meter-image img {
+            max-width: 300px;
+        }
+        
+        @media (max-width: 1024px) {
+            .features-grid {
+                justify-content: center;
+            }
+        
+            .feature-item {
+                flex: 0 1 calc(33.33% - 20px);
+                margin-bottom: 40px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .feature-item {
+                flex: 0 1 calc(50% - 20px);
+            }
+        
+            .curve-line {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .feature-item {
+                flex: 0 1 100%;
+            }
+        }
 
         .hero-image {
             flex: 1;
@@ -85,6 +199,7 @@
         .meter-image img {
             max-width: 300px;
             width: 100%;
+            
         }
 
     </style>
@@ -102,7 +217,7 @@
         </div>
     </section>
 
-    <section class="features" style="background-image: url('{% static 'app/img/Vector1.png' %}');">
+    <section class="features" style="background-image: url('{% static 'app/img/Vector.png' %}');">
         <div class="features-container">
             <h2>¿Qué hace <span class="highlight">nuestro medidor?</span></h2>
             <div class="features-grid">
@@ -138,7 +253,7 @@
                 </div>
             </div>
             <div class="meter-image">
-                <img src="{% static 'app/img/medidorr.png'%}" alt="Medidor inteligente">
+                <img src="{% static 'app/img/medidor1.png'%}" alt="Medidor inteligente">
             </div>
         </div>
     </section>
