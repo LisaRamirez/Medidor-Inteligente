@@ -36,9 +36,10 @@ class Apr(models.Model):
     socios = models.IntegerField(null=True)
     horario = models.CharField(max_length=100,null=True)
     mapa = models.CharField(max_length=100,null=True)
+    activo = models.BooleanField(default=True)
     imagen = models.ImageField(upload_to='apr',null=True)
 
     
     
     def __str__(self):
-        return self.name
+        return self.nameapr
