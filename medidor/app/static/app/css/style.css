@@ -273,6 +273,9 @@ body {
 
 .ñapa{
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
 }
 .sustainability {
 background-color: #002868;
@@ -2129,9 +2132,7 @@ h1 {
 
 /* Responsive Design */
 @media screen and (max-width: 1600px) {
-    .map-grid {
-        grid-template-columns: 1fr;
-    }
+
 
     .map-container {
         display: none;

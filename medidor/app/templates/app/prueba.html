@@ -1,0 +1,31 @@
+{%extends 'app/base.html'%}
+{%block contenido%}
+{% load static %}
+
+<body>
+
+    <h1>Filtrar por Categoría</h1>
+    <div>
+        <button onclick="window.location.href='/prueba/2/'">Categoría 1</button>
+        <button onclick="window.location.href='/prueba/Valparaíso/'">Categoría 2</button>
+        <button onclick="window.location.href='/prueba/Metropolitana/'">Categoría 3</button>
+        <button onclick="window.location.href='/prueba/categoria4/'">Categoría 4</button>
+        <button onclick="window.location.href='/prueba/categoria5/'">Categoría 5</button>
+        <button onclick="window.location.href='/prueba/categoria6/'">Categoría 6</button>
+        <button onclick="window.location.href='/prueba/categoria7/'">Categoría 7</button>
+        <button onclick="window.location.href='/prueba/categoria8/'">Categoría 8</button>
+        <button onclick="window.location.href='/prueba/categoria9/'">Categoría 9</button>
+        <button onclick="window.location.href='/prueba/categoria10/'">Categoría 10</button>
+    </div>
+    <h2>Resultados</h2>
+    <ul>
+        {% for item in items %}
+            <li>{{ item.nameapr }} - {{ item.comuna }}</li>
+        {% empty %}
+            <li>No hay resultados</li>
+        {% endfor %}
+    </ul>
+
+
+
+{%endblock%}

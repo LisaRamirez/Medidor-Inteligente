@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from smtplib import SMTPException
+from django.http import JsonResponse
 
 # Create your views here.
 def clientes(request):
@@ -21,14 +22,24 @@ def clientes(request):
     }
     return render(request, 'app/clientes.html',data)
 
+def filtrar_apr(request):
+    region = request.GET.get('region')  # Obtiene la región desde el GET
+    if region:
+        aprs = Apr.objects.filter(region__iexact=region).values('id', 'nameapr', 'comuna', 'region', 'imagen')
+        return JsonResponse(list(aprs), safe=False)  # Retorna JSON con los datos filtrados
+    return JsonResponse([], safe=False)
+
+
+
+
+
+
 def apr(request, apr_id):
     apppr = get_object_or_404(Apr, id=apr_id)
     data = {    
         'appr': apppr,
         
     }
-
-
     return render(request, 'app/apr.html',data)
 
 def home(request):
@@ -122,6 +133,12 @@ def send_email(subject, message, sender_email, sender_password, recipient_email,
 
 def nosotros(request):
     return render(request, 'app/nosotros.html')
+
+
+
+def prueba(request,filtro):
+    filt = Apr.objects.filter(region=filtro)
+    return render(request, 'app/prueba.html',{'filt':filt})
 
 def recursos(request):
     return render(request, 'app/recursos.html')
