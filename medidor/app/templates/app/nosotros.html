@@ -54,6 +54,7 @@
     
     /* Image Grid */
     .image-grid {
+        
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Celdas dinámicas */
         gap: 1rem;
@@ -187,218 +188,221 @@
         </div>
     </div>
 </section>
-
 <style>
   
 
-
-    .header h1 {
-        color: #666;
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+    h1, h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
     }
 
-    .header h2 {
+    h1 {
         font-size: 2rem;
-        color: #333;
+        margin-top: 1rem;
     }
 
-    .section-title {
+    h2 {
         font-size: 1.5rem;
-        margin-bottom: 2rem;
-        color: #333;
+        color: #555;
     }
 
-    .carousel {
+    .slider-container {
         position: relative;
-        margin-bottom: 4rem;
-    }
-
-    .carousel-container {
-        display: flex;
-        overflow-x: hidden;
-        gap: 1rem;
-        scroll-behavior: smooth;
-        padding: 1rem 0;
-    }
-
-    .carousel-item {
-        flex: 0 0 100%;
-        max-width: 100%;
-        position: relative;
-    }
-
-    .carousel-item img {
         width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        max-width: 1900px;
+        margin: 0 auto;
+        padding: 0 10px;
     }
 
-    .nav-button {
+    .slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
+        padding: 0px 0;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .video-container {
+        flex: 0 0 auto;
+        width: 50%; /* Móvil: un video ocupa casi todo el ancho */
+        scroll-snap-align: start;
+        position: relative;
+        padding-bottom: 50.625%; /* Mantiene ratio 16:9 */
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 50%;
+        border: none;
+    }
+
+    .slider-button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(255,255,255,0.9);
-        border: none;
         width: 40px;
         height: 40px;
+        background: rgba(0, 0, 0, 0.7);
+        border: none;
         border-radius: 50%;
+        color: white;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        z-index: 2;
+        font-size: 20px;
+        z-index: 10;
+        transition: all 0.3s ease;
     }
 
-    .nav-button.prev {
-        left: -20px;
+    .slider-button:hover {
+        background: rgba(0, 0, 0, 0.9);
+        transform: translateY(-50%) scale(1.1);
     }
 
-    .nav-button.next {
-        right: -20px;
+    .slider-button.prev {
+        left: 5px;
     }
 
-    .dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
+    .slider-button.next {
+        right: 5px;
     }
 
-    .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #ccc;
-        cursor: pointer;
-    }
-
-    .dot.active {
-        background: #333;
-    }
-
-    @media (min-width: 768px) {
-        .carousel-item {
-            flex: 0 0 calc(50% - 0.5rem);
-            max-width: calc(50% - 0.5rem);
+    /* Responsive breakpoints */
+    @media (min-width: 640px) {
+        .video-container {
+            width: 45%; /* Tablet: dos videos por vista */
+        }
+        
+        .slider-container {
+            padding: 0 60px;
         }
     }
 
     @media (min-width: 1024px) {
-        .carousel-item {
-            flex: 0 0 calc(33.333% - 0.667rem);
-            max-width: calc(33.333% - 0.667rem);
+        .video-container {
+            width: 32%; /* Desktop: tres videos por vista */
+        }
+        
+        .slider-container {
+            padding: 0 70px;
+        }
+
+    }
+    @media (max-width: 639px) {
+    .video-container {
+        width: 100%; /* Un solo video en pantallas pequeñas */
+    }
+}
+
+    /* Touch device optimization */
+    @media (hover: none) {
+        .slider-button {
+            display: none;
+        }
+        
+        .slider-container {
+            padding: 0 20px;
         }
     }
 
-    @media (max-width: 640px) {
-        .nav-button {
-            width: 30px;
-            height: 30px;
-        }
+</style>  
+<h1>Impactando comunidades</h1>
 
-        .header h2 {
-            font-size: 1.5rem;
-        }
 
-        .section-title {
-            font-size: 1.25rem;
-        }
-    }
-</style>
-<div class="container">
-    <header class="header">
-        <h1>Impactando comunidades</h1>
-        <h2>Reconocidos en los medios</h2>
-    </header>
-
-    <section>
-        <h3 class="section-title">Entrevistas en televisión</h3>
-        <div class="carousel">
-            <button class="nav-button prev">←</button>
-            <div class="carousel-container">
-                <div class="carousel-item">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3uuMTPrh3xdVtpg8on0t9QX9Ocnggi.png" alt="Entrevista 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3uuMTPrh3xdVtpg8on0t9QX9Ocnggi.png" alt="Entrevista 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3uuMTPrh3xdVtpg8on0t9QX9Ocnggi.png" alt="Entrevista 3">
-                </div>
+<section>
+    <h2>Entrevistas en televisión</h2>
+    <div class="slider-container">
+        <button class="slider-button prev" onclick="slideVideos(-1)">&#10094;</button>
+        <button class="slider-button next" onclick="slideVideos(1)">&#10095;</button>
+        <div class="slider" id="videoSlider">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Ett9Fh4SVUQ" title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <button class="nav-button next">→</button>
-            <div class="dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/1u9x0isMnjg" title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/I7BJNUEhu98" title="Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/zPBtnvu9QdA" title="Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/mSEJlKinapg" title="Video 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/YX13Quhfzy4" title="Video 6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
-    </section>
+        
+    </div>
+</section>
 
-    <section>
-        <h3 class="section-title">Diarios digitales</h3>
-        <div class="carousel">
-            <button class="nav-button prev">←</button>
-            <div class="carousel-container">
-                <div class="carousel-item">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3uuMTPrh3xdVtpg8on0t9QX9Ocnggi.png" alt="Noticia 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3uuMTPrh3xdVtpg8on0t9QX9Ocnggi.png" alt="Noticia 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3uuMTPrh3xdVtpg8on0t9QX9Ocnggi.png" alt="Noticia 3">
-                </div>
+<section>
+    <h2>Reconocidos en los medios</h2>
+    <div class="slider-container">
+        <button class="slider-button prev" onclick="slideVideos(-1)">&#10094;</button>
+        <button class="slider-button next" onclick="slideVideos(1)">&#10095;</button>
+        <div class="slider" id="videoSlider">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Ett9Fh4SVUQ" title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <button class="nav-button next">→</button>
-            <div class="dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/1u9x0isMnjg" title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/I7BJNUEhu98" title="Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/zPBtnvu9QdA" title="Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/mSEJlKinapg" title="Video 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/YX13Quhfzy4" title="Video 6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
-    </section>
-</div>
-
+        
+    </div>
+</section>
 <script>
-    document.querySelectorAll('.carousel').forEach(carousel => {
-        const container = carousel.querySelector('.carousel-container');
-        const items = carousel.querySelectorAll('.carousel-item');
-        const dots = carousel.querySelectorAll('.dot');
-        const prev = carousel.querySelector('.prev');
-        const next = carousel.querySelector('.next');
-        let currentIndex = 0;
-
-        function updateCarousel() {
-            const itemWidth = items[0].offsetWidth;
-            container.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        prev.addEventListener('click', () => {
-            currentIndex = Math.max(currentIndex - 1, 0);
-            updateCarousel();
+    const slider = document.getElementById('videoSlider');
+    
+    function slideVideos(direction) {
+        const videoWidth = slider.querySelector('.video-container').offsetWidth;
+        const scrollAmount = videoWidth + 15; // 15 es el gap entre videos
+        slider.scrollBy({
+            left: direction * scrollAmount,
+            behavior: 'smooth'
         });
+    }
 
-        next.addEventListener('click', () => {
-            currentIndex = Math.min(currentIndex + 1, items.length - 1);
-            updateCarousel();
+    // Ocultar botones de navegación en dispositivos táctiles
+    if ('ontouchstart' in window) {
+        document.querySelectorAll('.slider-button').forEach(button => {
+            button.style.display = 'none';
         });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel();
-            });
-        });
-
-        window.addEventListener('resize', updateCarousel);
-    });
+    }
 </script>
+
+
 
 {% endblock %}

@@ -2,65 +2,46 @@
 {%block contenido%}
 {% load static %}
 
-<style>
-    
-    
-    .info {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        text-align: left;
-        margin-top: 20px;
-    }
-    .info div {
-        width: 45%;
-    }
-    .social-icons a {
-        margin: 5px;
-        display: inline-block;
-    }
-   
-</style>
+{% for aps in apppr %}
 
+    {% if aps.imagen %}
+        <img class="image" src="{{aps.imagen.url}}" alt="imagen {{aps.comuna}}">
+    {% endif %}
 
-<div class="apr">
-    <img src="image.png" alt="Fachada Comité APR El Esfuerzo">
-</div>
+    <div class="container">
+        <h1>{{aps.nameapr}}</h1>
+        <h3>Región de {{aps.region}}</h3>
 
-<div class="container">
-    <h1>Comité APR "El Esfuerzo" - Pichidangui - Los Vilos</h1>
-    <h3>Región de Coquimbo</h3>
+        <div class="info">
+            <div>
+                <h3>Directorio:</h3>
+                <p>Presidente: {{aps.presidente}}</p>
+                <p>Secretario: {{aps.secretario}}</p>
+                <p>Tesorera/o: {{aps.tesorero}}</p>
+                <h3>Redes Sociales:</h3>
+                <div class="social-icons">
+                    <a href="{{aps.facebook}}"><img src="facebook-icon.png" alt="Facebook" width="30"></a>
+                    <a href="{{aps.twitter}}"><img src="twitter-icon.png" alt="Twitter" width="30"></a>
+                    <a href="{{aps.instagram}}"><img src="instagram-icon.png" alt="Instagram" width="30"></a>
+                </div>
+            </div>
 
-    <div class="info">
-        <div>
-            <h3>Directorio:</h3>
-            <p>Presidente: Miguel Pizarro</p>
-            <p>Secretario: Rubén Cortés</p>
-            <p>Tesorera: Gloria Ayala</p>
-            <h3>Redes Sociales:</h3>
-            <div class="social-icons">
-                <a href="#"><img src="facebook-icon.png" alt="Facebook" width="30"></a>
-                <a href="#"><img src="twitter-icon.png" alt="Twitter" width="30"></a>
-                <a href="#"><img src="instagram-icon.png" alt="Instagram" width="30"></a>
-                <a href="#"><img src="pinterest-icon.png" alt="Pinterest" width="30"></a>
+            <div>
+                <h3>Información de Contacto:</h3>
+                <p>📍 Dirección: {{aps.direccion}}, Región de {{aps.region}}.</p>
+                <p>📞 Teléfono: {{aps.phone}}</p>
+                <p>📧 Correo: <a href="mailto:{{aps.email}}">{{aps.email}}</a></p>
+                <p>👥 Cantidad de Socios: {{aps.socios}} Socios.</p>
+                <h3>Horarios de Atención:</h3>
+                <p>🕒 {{aps.horario}}</p>
             </div>
         </div>
 
-        <div>
-            <h3>Información de Contacto:</h3>
-            <p>📍 Dirección: Julia Mackenna 21 - Pichidangui, Región de Coquimbo.</p>
-            <p>📞 Teléfono: 532531412</p>
-            <p>📧 Correo: <a href="mailto:aprel esfuerzo@gmail.com">aprel esfuerzo@gmail.com</a></p>
-            <p>👥 Cantidad de Socios: 1178 Socios.</p>
-            <h3>Horarios de Atención:</h3>
-            <p>🕒 Lunes, Miércoles y Viernes: De 10:00 a 14:00 hrs.</p>
-        </div>
+        <h3>Ubicación en el mapa:</h3>
+
     </div>
-
-    <h3>Ubicación en el mapa:</h3>
     
-</div>
-
+{% endfor %}
 
 
 {% endblock %}

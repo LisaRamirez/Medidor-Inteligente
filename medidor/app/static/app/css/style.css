@@ -271,6 +271,9 @@ body {
 
     /* Añadir estos estilos al CSS existente */
 
+.ñapa{
+    width: 100%;
+}
 .sustainability {
 background-color: #002868;
 color: white;
@@ -2041,12 +2044,6 @@ h1 {
 }
 
 /* Map and Committees Grid */
-.map-grid {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
-    align-items: start;
-}
 
 .map-container {
     position: sticky;
@@ -2058,11 +2055,6 @@ h1 {
     height: auto;
 }
 
-.committees-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
 
 /* Committee Cards */
 .committee-card {
@@ -2136,7 +2128,7 @@ h1 {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1600px) {
     .map-grid {
         grid-template-columns: 1fr;
     }
@@ -2247,7 +2239,7 @@ h1 {
 }
 
 .cliente {
-    max-width: 1200px;
+    max-width: 70%;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -2374,7 +2366,7 @@ h1 {
 /* Map and Committees Grid */
 .map-grid {
     display: grid;
-    grid-template-columns: 3fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
     align-items: start;
 }
@@ -2389,11 +2381,6 @@ h1 {
     height: auto;
 }
 
-.committees-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
 
 /* Committee Cards */
 .committee-card {
@@ -2467,15 +2454,6 @@ h1 {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 1200px) {
-    .map-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .map-container {
-        display: none;
-    }
-}
 
 @media screen and (max-width: 992px) {
     .hero h1 {

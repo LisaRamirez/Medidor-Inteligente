@@ -53,244 +53,675 @@
                 <li><a href="#" data-region="aysen">Aysén</a></li>
             </ul>
         </nav>
+        <div class="ñapa">
+            <div class="map-grid">
+                {% for ap in apr %}
 
-        <div class="map-grid">
-            
+                    <div class="committees-grid" id="{{ap.region}}">
 
-            <div class="committees-grid" id="coquimbo">
-                
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Esfuerzo">
-                        <h3>Comité APR "El Esfuerzo" Pichidangui</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Los Vilos</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="{% url 'apr'%}" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Molle">
-                        <h3>Comité APR "El Molle"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Vicuña</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR Punta de Choros">
-                        <h3>Comité APR "Punta de Choros"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>La Higuera</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-           
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Esfuerzo">
-                        <h3>Comité APR "El Esfuerzo" Pichidangui</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Los Vilos</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Molle">
-                        <h3>Comité APR "El Molle"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Vicuña</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR Punta de Choros">
-                        <h3>Comité APR "Punta de Choros"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>La Higuera</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Esfuerzo">
-                        <h3>Comité APR "El Esfuerzo" Pichidangui</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Los Vilos</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR El Molle">
-                        <h3>Comité APR "El Molle"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Vicuña</h4>
-                            <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rl8usBJyddKy6lUNwXjH8jUl1RiSfy.png" alt="Comité APR Punta de Choros">
-                        <h3>Comité APR "Punta de Choros"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>La Higuera</h4>
-                         <p>Región Coquimbo</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-            <div id="valparaiso" class="committees-grid">
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="#" alt="Coperativa APR El Asiento">
-                        <h3>Coperativa APR "El Asiento"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>San Felipe</h4>
-                         <p>Región Valparaiso</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
+                        <article class="committee-card">
+                            <div class="card-image">
+                            {% if ap.imagen %}
 
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="#" alt="Comite APR El Turco">
-                        <h3>Comité APR "El Turco"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Cartagena</h4>
-                         <p>Región Valparaiso</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
+                               <img class="imagensota" src="{{ap.imagen.url}}" alt="imagen {{ap.comuna}}">
+                            {% endif %}
+                                <h3>{{ap.nameapr}}</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="location">
+                                    <h4>{{ap.comuna}}</h4>
+                                    <p>Región {{ap.region}}</p>
+                                </div>
+                                <a href="{% url 'apr' ap.id %}" class="details-btn">Detalles →</a>
 
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="#" alt="Cooperativa APR 'La Tetera, Pueblo Indio'">
-                        <h3>Cooperativa APR "La Tetera, Pueblo Indio"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Quillota</h4>
-                         <p>Región Valparaiso</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-
-
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="#" alt="Comite APR 'Terrazas de Pitama'">
-                        <h3>Comité APR "Terrazas de Pitama"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Casa Blanca</h4>
-                         <p>Región Valparaiso</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-
-
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="#" alt="Junta de Adelanto Condominio Campomar 4">
-                        <h3>Junta de Adelanto Condominio Campomar 4</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Quintero</h4>
-                         <p>Región Valparaiso</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-
-
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="#" alt="Admin. Sistema Agua Potable Particular (SAP): Torres Núñez y Cía. Ltda.">
-                        <h3>Admin. Sistema Agua Potable Particular (SAP): Torres Núñez y Cía. Ltda.</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>Puchuncaví</h4>
-                         <p>Región Valparaiso</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-
-                <article class="committee-card">
-                    <div class="card-image">
-                        <img src="#" alt="Cooperativa APR 'El Algarrobal'">
-                        <h3>Cooperativa APR "el Algarrobal"</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="location">
-                            <h4>San Felipe</h4>
-                         <p>Región Valparaiso</p>
-                        </div>
-                        <a href="#" class="details-btn">Detalles →</a>
-                    </div>
-                </article>
-
-
-            </div>           
+                            </div>
+                        </article>
+                    </div>  
+                {% endfor %}         
+            </div>
         </div>
     </div>
 </section>
+
+    <style>
+        
+
+        .testimonials-section {
+            background-color: #2B579A;
+            color: white;
+            padding: 1rem 1rem;
+            width: 100%;
+            position: relative;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .testimonials-header p {
+            font-size: 1.4rem;
+            opacity: 20;
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1000px; /* Reducido para mejor control del ancho */
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-card {
+            background: white;
+            color: #333;
+            padding: 2.5rem;
+            border-radius: 16px;
+            min-width: 100%;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transform: scale(0.98);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card.active {
+            transform: scale(1);
+        }
+
+        .quote-icon {
+            
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            opacity: 0.8;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #444;
+            max-width: 500px;
+        }
+
+        .testimonial-author {
+            display: relative;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2B579A;
+            padding: 2px;
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #2B579A;
+        }
+
+        .author-location {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Controles del slider */
+        .slider-button {
+            position: absolute;
+            top: 20%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #2B579A;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-button:hover {
+            background: #2B579A;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-button {
+            left: 0;
+        }
+
+        .next-button {
+            right: 0;
+        }
+
+        /* Indicadores */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .testimonials-section {
+                padding: 3rem 1rem;
+            }
+
+            .testimonials-header h2 {
+                font-size: 2rem;
+            }
+
+            .testimonials-header p {
+                font-size: 1.1rem;
+            }
+
+            .testimonial-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .slider-button {
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .testimonials-section {
+                padding: 2rem 2rem;
+            }
+
+            .slider-container {
+                padding: 0rem  1rem;
+                
+            }
+        }
+    </style>
+    <section class="testimonials-section">
+        <div class="testimonials-header">
+            <h2>TESTIMONIOS</h2>
+            <p>Que dicen nuestros clientes de nosotros</p>
+        </div>
+        
+        <div class="slider-container">
+            <button class="slider-button prev-button">&#8249;</button>
+            <button class="slider-button next-button">&#8250;</button>
+            
+            <div class="testimonials-slider">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Me encanta que podamos controlar y medir el consumo sin complicaciones. Es una solución confiable que ha mejorado significativamente nuestra gestión.</p>
+                    <div class="testimonial-author">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-pyMRX0nohUWcbf7IvZiNCqxZiviX2Q.png" alt="Avatar" class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Soledad Vargas</div>
+                            <div class="author-location">Región Metropolitana</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Desde que instalamos los medidores inteligentes, hemos logrado reducir el consumo de agua en nuestra comunidad. Además, el soporte técnico ha sido excelente.</p>
+                    <div class="testimonial-author">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-pyMRX0nohUWcbf7IvZiNCqxZiviX2Q.png" alt="Avatar" class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">María Contreras</div>
+                            <div class="author-location">Región del Maule</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">La implementación fue más fácil de lo que esperábamos. Ahora contamos con datos en tiempo real que nos permiten tomar decisiones mucho más rápidas y precisas.</p>
+                    <div class="testimonial-author">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-pyMRX0nohUWcbf7IvZiNCqxZiviX2Q.png" alt="Avatar" class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Juan Araya</div>
+                            <div class="author-location">Región de Valparaíso</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="slider-dots"></div>
+    </section><br><br>
+    <style>
+       
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .video-card {
+            background-color: #2B579A;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .video-info p {
+            font-size: 14px;
+            color: #a8b9d5;
+        }
+
+        .youtube-button {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 12px 24px;
+            background-color: #c2ff00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .youtube-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .gallery-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+    <section>
+        <div class="gallery-container">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/crhAwARwYKw" 
+                        title="Experiencia con Medidor Inteligente"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Asociación de Vecinos La Parva</h2>
+                    <p>Región Metropolitana</p>
+                    <p>Don Roberto - Operador</p>
+                </div>
+            </div>
+    
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/ZsXCr20WgWY" 
+                        title="Experiencia con Medidor Inteligente"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Asociación de Vecinos La Parva</h2>
+                    <p>Región Metropolitana</p>
+                    <p>Don Roberto - Operador</p>
+                </div>
+            </div>
+    
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/X_d1ceK9G-I" 
+                        title="Experiencia con Medidor Inteligente"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Asociación de Vecinos La Parva</h2>
+                    <p>Región Metropolitana</p>
+                    <p>Don Roberto - Operador</p>
+                </div>
+            </div>
+    
+            <!-- Video 4 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/MwuYC75PbNs" 
+                        title="Experiencia con Medidor Inteligente"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Asociación de Vecinos La Parva</h2>
+                    <p>Región Metropolitana</p>
+                    <p>Don Roberto - Operador</p>
+                </div>
+            </div>
+    
+            <!-- Video 5 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/lQpcUDDLqRA" 
+                        title="Experiencia con Medidor Inteligente"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Asociación de Vecinos La Parva</h2>
+                    <p>Región Metropolitana</p>
+                    <p>Don Roberto - Operador</p>
+                </div>
+            </div>
+    
+            <!-- Video 6 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/vpby-GBccvs" 
+                        title="Experiencia con Medidor Inteligente"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Asociación de Vecinos La Parva</h2>
+                    <p>Región Metropolitana</p>
+                    <p>Don Roberto - Operador</p>
+                </div>
+            </div>
+        </div>
+    
+        <a href="https://www.youtube.com/@MedidorInteligente" target="_blank" class="youtube-button">
+            Conoce nuestro canal de Youtube ↗
+        </a>
+    </section>
+    <script>
+        // El JavaScript se mantiene igual que en la versión anterior
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.testimonials-slider');
+            const slides = document.querySelectorAll('.testimonial-card');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const dotsContainer = document.querySelector('.slider-dots');
+            
+            let currentSlide = 0;
+            let autoplayInterval;
+            const autoplayDelay = 5000;
+
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.dot');
+            slides[0].classList.add('active');
+
+            function updateDots() {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function updateActiveSlide() {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                updateDots();
+                updateActiveSlide();
+                resetAutoplay();
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                goToSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                goToSlide(currentSlide);
+            }
+
+            function startAutoplay() {
+                autoplayInterval = setInterval(nextSlide, autoplayDelay);
+            }
+
+            function resetAutoplay() {
+                clearInterval(autoplayInterval);
+                startAutoplay();
+            }
+
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    nextSlide();
+                } else if (touchEndX - touchStartX > 50) {
+                    prevSlide();
+                }
+            }, { passive: true });
+
+            startAutoplay();
+
+            slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+            slider.addEventListener('mouseleave', startAutoplay);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.testimonials-slider');
+            const slides = document.querySelectorAll('.testimonial-card');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const dotsContainer = document.querySelector('.slider-dots');
+            
+            let currentSlide = 0;
+            let autoplayInterval;
+            const autoplayDelay = 5000;
+
+            // Crear indicadores
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.dot');
+
+            // Establecer slide activo inicial
+            slides[0].classList.add('active');
+
+            function updateDots() {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function updateActiveSlide() {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                updateDots();
+                updateActiveSlide();
+                resetAutoplay();
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                goToSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                goToSlide(currentSlide);
+            }
+
+            function startAutoplay() {
+                autoplayInterval = setInterval(nextSlide, autoplayDelay);
+            }
+
+            function resetAutoplay() {
+                clearInterval(autoplayInterval);
+                startAutoplay();
+            }
+
+            // Event Listeners
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+
+            // Touch events
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    nextSlide();
+                } else if (touchEndX - touchStartX > 50) {
+                    prevSlide();
+                }
+            }, { passive: true });
+
+            // Iniciar autoplay
+            startAutoplay();
+
+            // Pausar autoplay en hover
+            slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+            slider.addEventListener('mouseleave', startAutoplay);
+        });
+    </script>
 {% endblock %}
 
 
