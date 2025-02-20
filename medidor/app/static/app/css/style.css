@@ -273,8 +273,14 @@ body {
 
 .ñapa{
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+
+}
+
+.image{
+    width: 100%;
+    height: 80%;
+    margin: auto auto;
 
 }
 .sustainability {

@@ -2,46 +2,45 @@
 {%block contenido%}
 {% load static %}
 
-{% for aps in apppr %}
 
-    {% if aps.imagen %}
-        <img class="image" src="{{aps.imagen.url}}" alt="imagen {{aps.comuna}}">
+<div class="container ñapa"> 
+    {% if appr.imagen %}
+        <img class="image" src="{{appr.imagen.url}}" alt="imagen {{appr.comuna}}">
     {% endif %}
-
+</div>
     <div class="container">
-        <h1>{{aps.nameapr}}</h1>
-        <h3>Región de {{aps.region}}</h3>
+        <h1>{{appr.nameapr}}</h1>
+        <h3>Región de {{appr.region}}</h3>
 
         <div class="info">
             <div>
                 <h3>Directorio:</h3>
-                <p>Presidente: {{aps.presidente}}</p>
-                <p>Secretario: {{aps.secretario}}</p>
-                <p>Tesorera/o: {{aps.tesorero}}</p>
+                <p>Presidente: {{appr.presidente}}</p>
+                <p>Secretario: {{appr.secretario}}</p>
+                <p>Tesorera/o: {{appr.tesorero}}</p>
                 <h3>Redes Sociales:</h3>
                 <div class="social-icons">
-                    <a href="{{aps.facebook}}"><img src="facebook-icon.png" alt="Facebook" width="30"></a>
-                    <a href="{{aps.twitter}}"><img src="twitter-icon.png" alt="Twitter" width="30"></a>
-                    <a href="{{aps.instagram}}"><img src="instagram-icon.png" alt="Instagram" width="30"></a>
+                    <a href="{{appr.facebook}}"><img src="facebook-icon.png" alt="Facebook" width="30"></a>
+                    <a href="{{appr.twitter}}"><img src="twitter-icon.png" alt="Twitter" width="30"></a>
+                    <a href="{{appr.instagram}}"><img src="instagram-icon.png" alt="Instagram" width="30"></a>
                 </div>
             </div>
 
             <div>
                 <h3>Información de Contacto:</h3>
-                <p>📍 Dirección: {{aps.direccion}}, Región de {{aps.region}}.</p>
-                <p>📞 Teléfono: {{aps.phone}}</p>
-                <p>📧 Correo: <a href="mailto:{{aps.email}}">{{aps.email}}</a></p>
-                <p>👥 Cantidad de Socios: {{aps.socios}} Socios.</p>
+                <p>📍 Dirección: {{appr.direccion}}, Región de {{appr.region}}.</p>
+                <p>📞 Teléfono: {{appr.phone}}</p>
+                <p>📧 Correo: <a href="mailto:{{appr.email}}">{{appr.email}}</a></p>
+                <p>👥 Cantidad de Socios: {{appr.socios}} Socios.</p>
                 <h3>Horarios de Atención:</h3>
-                <p>🕒 {{aps.horario}}</p>
+                <p>🕒 {{appr.horario}}</p>
             </div>
         </div>
 
         <h3>Ubicación en el mapa:</h3>
 
     </div>
-    
-{% endfor %}
+
 
 
 {% endblock %}
