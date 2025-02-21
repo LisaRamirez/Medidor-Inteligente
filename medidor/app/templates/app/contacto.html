@@ -54,69 +54,82 @@
     </div>
 
 </section>
-<section class="container reamm">
+<section class="lleno">
     <!-- Formulario -->
-    <div class="contact-form col-12">
-        <h2>¿Más dudas? Escríbenos</h2>
-        <form class="col-md-8" method="POST" action="">{% csrf_token%}
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Nombre completo <span class="required">*</span></label>
-                    <input type="text" name="name" placeholder="Escribe aquí" required>
+    <div class="container reamm">
+        <div class="contact-form col-12">
+            <h2>¿Más dudas? Escríbenos</h2>
+            <form class="col-md-8" method="POST" action="">{% csrf_token%}
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre completo <span class="required">*</span></label>
+                        <input type="text" name="name" placeholder="Escribe aquí" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electrónico <span class="required">*</span></label>
+                        <input type="email" name="email" placeholder="Escribe aquí" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Correo electrónico <span class="required">*</span></label>
-                    <input type="email" name="email" placeholder="Escribe aquí" required>
+                <div class="form-group full-width">
+                    <label>Teléfono <span class="required">*</span></label>
+                    <input type="tel" name="phone" placeholder="Escribe aquí" required>
                 </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre del APR / SSR <span class="required">*</span></label>
+                        <input type="text" name="ssr_apr" placeholder="Escribe aquí" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo o Puesto en el APR <span class="required">*</span></label>
+                        <input type="text" name="cargo_apr" placeholder="Escribe aquí" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Comuna <span class="required">*</span></label>
+                        <input type="text" name="comuna" placeholder="Escribe aquí" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad de Arranques</label>
+                        <input type="text" name="cantidad" placeholder="Escribe aquí">
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label>Tipo de financiamiento <span class="required">*</span></label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="financiamiento" value="Fondo propio" required checked>
+                            <span>Propio</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="financiamiento" value="Fondo externo (Gobierno, otras entidades)" required>
+                            <span>Fondo externo (Gobierno, otras entidades)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label>Mensaje</label>
+                    <textarea name="message" placeholder="Escribe aquí" rows="6"></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+            <div id="confirmationMessage" class="confirmation-message" style="display: none;">
+                ¡Gracias por contactarnos! Te responderemos pronto.
             </div>
-            <div class="form-group full-width">
-                <label>Teléfono <span class="required">*</span></label>
-                <input type="tel" name="phone" placeholder="Escribe aquí" required>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Nombre del APR / SSR <span class="required">*</span></label>
-                    <input type="text" name="ssr_apr" placeholder="Escribe aquí" required>
-                </div>
-                <div class="form-group">
-                    <label>Cargo o Puesto en el APR <span class="required">*</span></label>
-                    <input type="text" name="cargo_apr" placeholder="Escribe aquí" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Comuna <span class="required">*</span></label>
-                    <input type="text" name="comuna" placeholder="Escribe aquí" required>
-                </div>
-                <div class="form-group">
-                    <label>Cantidad de Arranques</label>
-                    <input type="text" name="cantidad" placeholder="Escribe aquí">
-                </div>
-            </div>
-            <div class="form-group full-width">
-                <label>Tipo de financiamiento <span class="required">*</span></label>
-                <div class="radio-options">
-                    <label class="radio-label">
-                        <input type="radio" name="financiamiento" value="propio" required checked>
-                        <span>Propio</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="financiamiento" value="externo" required>
-                        <span>Fondo externo (Gobierno, otras entidades)</span>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group full-width">
-                <label>Mensaje</label>
-                <textarea name="message" placeholder="Escribe aquí" rows="6"></textarea>
-            </div>
-            <button type="submit">Enviar</button>
-        </form>
-        <div id="confirmationMessage" class="confirmation-message" style="display: none;">
-            ¡Gracias por contactarnos! Te responderemos pronto.
         </div>
     </div>
 
 </section>
 <br>
+<div class="mapo">
+    <div class="mapita">
+        <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.1606901849746!2d-71.19827542338419!3d-34.65064455997934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9664627e4a3f5995%3A0x187ae7f7930a9311!2sLuis%20Cruz%20Mart%C3%ADnez%20991%2C%203110000%20Nancagua%2C%20O&#39;Higgins%2C%20Chile!5e0!3m2!1ses-419!2sus!4v1740137100736!5m2!1ses-419!2sus" 
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+    
+    </div>
+</div>
+
+
+
 {% endblock %}

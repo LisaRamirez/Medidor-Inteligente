@@ -324,23 +324,24 @@
         
         <nav class="regions-nav">
             <ul>
-                <li class="active"><a href="#" data-region="coquimbo">Coquimbo</a></li>
-                <li><a href="#" data-region="valparaiso" value="">Valparaíso</a></li>
-                <li ><a href="#" data-region="metropolitana">Metropolitana</a></li>
-                <li><a href="#" data-region="ohiggins">O'Higgins</a></li>
-                <li><a href="#" data-region="maule">Maule</a></li>
-                <li><a href="#" data-region="biobio">BioBío</a></li>
-                <li><a href="#" data-region="araucania">Araucanía</a></li>
-                <li><a href="#" data-region="losrios">Los Ríos</a></li>
-                <li><a href="#" data-region="loslagos">Los Lagos</a></li>
-                <li><a href="#" data-region="aysen">Aysén</a></li>
+                <li class="btn_active"><button class="butte" data-region="all">Todas</button></li>
+                <li><button class="butte" data-region="Coquimbo">Coquimbo</button></li>
+                <li><button class="butte" data-region="Valparaíso" value="">Valparaíso</button></li>
+                <li><button class="butte" data-region="Metropolitana">Metropolitana</button></li>
+                <li><button class="butte" data-region="Ohiggins">O'Higgins</button></li>
+                <li><button class="butte" data-region="Maule">Maule</button></li>
+                <li><button class="butte" data-region="Biobio">BioBío</button></li>
+                <li><button class="butte" data-region="Araucania">Araucanía</button></li>
+                <li><button class="butte" data-region="Los Rios">Los Ríos</button></li>
+                <li><button class="butte" data-region="Los Lagos">Los Lagos</button></li>
+                <li><button class="butte" data-region="Aysen">Aysén</button></li>
             </ul>
         </nav>
         <div class="">
             <div class="map-grid">
                 {% for ap in apr %}
 
-                    <div class="committees-grid" id="{{ap.region}}">
+                    <div class="committees-grid" data-region="{{ap.region}}">
 
                         <article class="committee-card">
                             <div class="card-image">
@@ -365,6 +366,28 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll("button[data-region]");
+        const committees = document.querySelectorAll(".committees-grid");
+    
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const selectedRegion = this.getAttribute("data-region");
+                
+                this.classList.add("btnactive");
+
+                committees.forEach(comm => {
+                    if (selectedRegion === "all" || comm.getAttribute("data-region") === selectedRegion) {
+                        comm.style.display = "block"; // Muestra los elementos que coincidan
+                    } else {
+                        comm.style.display = "none"; // Oculta los elementos que no coincidan
+                    }
+                });
+            });
+        });
+    });
+    </script>
 
  
 <section class="regions2">
@@ -715,52 +738,3 @@
 
 
 
-{%block js%}
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".regions-nav a").forEach(link => {
-            link.addEventListener("click", function (event) {
-                event.preventDefault();  // Evita que la página recargue
-                let region = this.getAttribute("data-region"); // Obtiene la región del atributo
-    
-                // Hacer la petición AJAX a Django
-                fetch(`/filtrar_apr/?region=${region}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        let container = document.getElementById("apr-container");
-                        container.innerHTML = "";  // Limpiar contenido anterior
-    
-                        if (data.length === 0) {
-                            container.innerHTML = "<p>No hay datos disponibles para esta región.</p>";
-                            return;
-                        }
-    
-                        data.forEach(apr => {
-                            let card = `
-                                <div class="card committees-grid" id="${apr.region}">
-                                    <article class="committee-card">
-                                        <div class="card-image">
-                                            ${apr.imagen ? `<img class="imagensota" src="${apr.imagen}" alt="imagen ${apr.comuna}">` : ""}
-                                            <h3>${apr.nameapr}</h3>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="location">
-                                                <h4>${apr.comuna}</h4>
-                                                <p>Región ${apr.region}</p>
-                                            </div>
-                                            <a href="/apr/${apr.id}" class="details-btn">Detalles →</a>
-                                        </div>
-                                    </article>
-                                </div>`;
-                            container.innerHTML += card;
-                        });
-                    })
-                    .catch(error => console.error("Error:", error));
-            });
-        });
-    });
-    </script>
-    
-
-{% endblock %}

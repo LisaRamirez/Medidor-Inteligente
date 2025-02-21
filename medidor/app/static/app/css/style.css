@@ -87,6 +87,47 @@ body {
     flex: 0 0 100%;
     padding: 1rem;
 }
+.butte{
+    background: linear-gradient(45deg, #5661f1, #100058);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.butte:hover {
+    background: linear-gradient(45deg, #fcfcfc, #06001f);
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
+.butte:active{
+    background: linear-gradient(45deg, #505050, #8b8b8b);
+}
+.mapo{
+    width: 100%;
+    height: 100%;
+    
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: linear-gradient(45deg, #000000, #000000);
+}
+.mapita{
+    width: 80%;
+    height: 80%;
+    border-radius: 25px;
+    margin: auto auto;
+    padding-top: 10rem;
+    
+}
+.mapa{
+    width: 100%;
+    height: 100%;
+    
+}
+
 
 .video-container {
     position: relative;
@@ -234,6 +275,7 @@ body {
         padding: 1rem 0;
     }
 }
+
 
 /* Animaciones y efectos adicionales */
 .view-more:hover svg {
@@ -498,8 +540,9 @@ body {
     /* Añadir estos estilos al CSS existente */
 
 .ñapa{
-    width: 100%;
+    width: 80%;
     height: 100%;
+    margin: auto auto;
 
 }
 
@@ -919,7 +962,7 @@ transform: none !important;
     border-radius: 20px;
 }
 .reamm{
-    width:80%;
+    width:70%;
     margin: auto auto;
     margin: border 1px solid rgb(209, 205, 205);
     background-color: #e2eaec;
@@ -928,6 +971,15 @@ transform: none !important;
     padding-top: 3rem;
     padding-left: 3rem;
     padding-right: 3rem;
+}
+
+
+.lleno{
+    background-color: #325394;
+    width:100%;
+    height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 .rea{
     width: 80%;
@@ -2156,19 +2208,7 @@ h1 {
  /* CLIENTE */
 
 /* HERO CLIENTE*/
-.herocliente {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('');             
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+
 
 .hero-content {
     color: var(--text-light);
@@ -2229,11 +2269,11 @@ h1 {
     padding: 60px 0;
     background-color: #f8f9fa;
     
-    background-size: cover;  /* La imagen cubre todo el contenedor */
-    background-position: center;  /* Centra la imagen */
+
+    background-position: left;  /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     width: 100%; /* Se expande en todo el ancho */
-    min-height: 200px; /* Ajusta la altura según necesidad */
+    min-height: 100px; /* Ajusta la altura según necesidad */
 }
 
 .regions-title {
@@ -2473,7 +2513,7 @@ h1 {
 }
 
 .cliente {
-    max-width: 70%;
+    max-width: 75%;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -2607,6 +2647,16 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
     align-items: start;
+}
+@media screen and (max-width: 1200px) {
+    .map-grid {
+        grid-template-columns:1fr 1fr;
+    }
+}
+@media screen and (max-width: 800px) {  
+    .map-grid {
+        grid-template-columns:1fr;
+    }
 }
 
 .map-container {

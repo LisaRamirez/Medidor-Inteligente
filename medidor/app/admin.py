@@ -3,17 +3,22 @@ from .models import Contacto, Apr
 # Register your models here.
 
 class ContactoAdmin(admin.ModelAdmin):
-    list_display = ('id','name', 'email', 'phone', 'ssr_apr', 'cargo_apr', 'comuna', 'fecha', 'radio')
-    search_fields = ('name', 'comuna')
-    list_filter = ['name']
-    ordering = ('name', 'email', 'phone', 'ssr_apr', 'cargo_apr', 'comuna', 'fecha', 'radio')
+    nombre = "name"
+    correo = "email"
+    telefono = "phone"
+    cargo = "cargo_apr"
+    list_display = ('id',nombre, correo, telefono, 'ssr_apr',cargo , 'comuna', 'fecha', 'radio')
+    search_fields = (nombre, 'comuna')
+    list_filter = [nombre]
+    ordering = (nombre, correo, telefono, 'ssr_apr',cargo , 'comuna', 'fecha', 'radio')
     list_per_page = 10
 
 class AprAdmin(admin.ModelAdmin):
-    list_display = ('id','nameapr', 'comuna', 'region')
-    search_fields = ('nameapr', 'comuna', 'region')
-    list_filter = ('nameapr', 'comuna', 'region')
-    ordering = ('nameapr', 'comuna', 'region')
+    nombre = "nameapr"
+    list_display = ('id',nombre, 'comuna', 'region')
+    search_fields = (nombre, 'comuna', 'region')
+    list_filter = (nombre, 'comuna', 'region')
+    ordering = (nombre, 'comuna', 'region')
     list_per_page = 10
 
 admin.site.register(Apr, AprAdmin)

@@ -5,39 +5,54 @@ from django.utils import timezone
 
 
 class Contacto(models.Model):
-    name = models.CharField(max_length=100,null=True)
-    email = models.EmailField(null=True)
-    phone = models.CharField(max_length=12,null=True)
-    ssr_apr = models.CharField(max_length=100,null=True)
-    cargo_apr = models.CharField(max_length=100,null=True)
-    comuna = models.CharField(max_length=100,null=True)
-    cantidad = models.IntegerField(null=True)
-    fecha = models.DateTimeField(default=timezone.now,null=True)
-    radio = models.CharField(max_length=20, null=True)
-    message = models.TextField(null=True)
+    name = models.CharField("Nombre",max_length=100,null=True)
+    email = models.EmailField("Correo Electrónico",null=True)
+    phone = models.CharField("Numero de Telefono",max_length=12,null=True)
+    ssr_apr = models.CharField("ssr o apr",max_length=100,null=True)
+    cargo_apr = models.CharField("Cargo en comité Apr",max_length=100,null=True)
+    comuna = models.CharField("Comuna",max_length=100,null=True)
+    cantidad = models.IntegerField("Cantidad de Apr",null=True)
+    fecha = models.DateTimeField("Fecha",default=timezone.now,null=True)
+    radio = models.CharField("Tipo de financiamiento",max_length=20, null=True)
+    message = models.TextField("Mensaje:",null=True)
 
     def __str__(self):
         return self.name
 
 
+opciones_consultas = [
+    
+    ["Coquimbo","Coquimbo"],
+    ["Valparaíso","Valparaíso"],
+    ["Metropolitana","Metropolitana"],
+    ["Ohiggins","Ohiggins"],
+    ["Maule","Maule"],
+    ["Biobio","Biobio"],
+    ["Araucania","Araucania"],
+    ["Los Rios","Los Rios"],
+    ["Los Lagos","Los Lagos"],
+    ["Aysen","Aysen"],
+    
+]
+
 class Apr(models.Model):
-    nameapr = models.CharField(max_length=100,null=True)
-    comuna = models.CharField(max_length=100,null=True)
-    region = models.CharField(max_length=100,null=True)
-    presidente = models.CharField(max_length=100,null=True)
-    secretario= models.CharField(max_length=100,null=True)
-    tesorero = models.CharField(max_length=100,null=True)
-    facebook = models.CharField(max_length=100,null=True)
-    twitter = models.CharField(max_length=100,null=True)
-    instagram = models.CharField(max_length=100,null=True)
-    direccion = models.CharField(max_length=100,null=True)
-    phone = models.CharField(max_length=12,null=True)
-    email = models.EmailField(null=True)
-    socios = models.IntegerField(null=True)
-    horario = models.CharField(max_length=100,null=True)
-    mapa = models.CharField(max_length=100,null=True)
-    activo = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='apr',null=True)
+    nameapr = models.CharField("Nombre APR",max_length=100,null=True)
+    comuna = models.CharField("Comuna",max_length=100,null=True)
+    region = models.CharField("Región",choices = opciones_consultas,max_length=100,null=True)
+    presidente = models.CharField("Presidente",max_length=100,null=True)
+    secretario= models.CharField("Secretario",max_length=100,null=True)
+    tesorero = models.CharField("Tesorero",max_length=100,null=True)
+    facebook = models.CharField("Facebook",max_length=100,null=True)
+    twitter = models.CharField("Twitter",max_length=100,null=True)
+    instagram = models.CharField("Instagram",max_length=100,null=True)
+    direccion = models.CharField("Dirección",max_length=100,null=True)
+    phone = models.CharField("Teléfono",max_length=24,null=True)
+    email = models.EmailField("Correo Electrónico",null=True)
+    socios = models.IntegerField("Número de Socios",null=True)
+    horario = models.CharField("Horario de Atención",max_length=100,null=True)
+    mapa = models.CharField("Mapa",max_length=100,null=True)
+    activo = models.BooleanField("Activo",default=True)
+    imagen = models.ImageField("Imagen",upload_to='apr',null=True)
 
     
     
