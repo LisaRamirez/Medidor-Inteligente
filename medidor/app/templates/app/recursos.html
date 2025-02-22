@@ -107,7 +107,7 @@
 
     .product-image1 {
         margin: 10px auto;
-        max-width: 100px;
+        max-width: 00px;
     }
 
     .product-image1 img {
@@ -176,17 +176,161 @@
             </div>
         </div>
     </div>
+    <style>
+        
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #002366;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .left-content {
+            flex: 1;
+        }
+
+        .discover {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .center-content {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .device-image {
+            position: relative;
+            z-index: 1;
+            height: 300px;
+            object-fit: contain;
+        }
+
+        .right-content {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .button {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .main-content {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            color: #00205B;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-text {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .right-content {
+                justify-content: center;
+            }
+
+            .device-image {
+                height: 200px;
+            }
+
+            .image-circle {
+                width: 300px;
+                height: 300px;
+            }
+        }
+    </style>
     <!-- Product Section -->
-    <section class="product-section1">
-        <h2>DESCUBRE MÁS</h2>
-        <h3>Ficha técnica Medidor Hand Held</h3>
-        <div class="product-image1">
-            <img src="{% static 'app/img/handheld.png'%}" alt="Hand Held">
+
+    <div class="container">
+        <div class="header-content">
+            <div class="left-content">
+                <p class="discover">DESCUBRE MÁS</p>
+                <h1 class="title">Ficha técnica Medidor</h1>
+                <p class="subtitle">Hand Held</p>
+            </div>
+            <div class="center-content">
+                <div class="image-circle"></div>
+                <img src="{% static 'app/img/handheld.png'%}" alt="Medidor Hand Held" class="device-image">
+            </div>
+            <div class="right-content">
+                <button class="button">
+                    Ver informe
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <a href="https://medidorinteligente.cl/FICHA_TECNICA-MEDIDOR_INTELIGENTE-HANDHELD.pdf" class="card-button">Ver informe</a>
-    </section>
-</div>
+    </div>
+
+
     <!-- Manuals Section -->
     <section class="manuals-section">
         <h2>MANUALES</h2>
@@ -309,7 +453,7 @@
 
     .video-container iframe {
         width: 100%;
-        height: 200px;
+        height: 180px;
         border-radius: 8px;
         border: none;
     }

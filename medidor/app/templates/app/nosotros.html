@@ -4,19 +4,19 @@
 <style>
     /* Hero Section */
     .herosomos {
-        position: relative;
-        height: 60vh;
-        min-height: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                    url('');
-        background-size: cover;
-        background-position: center;
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('');
+    background-size: cover;
+    background-position: center;
     }
     
     .herosomos h1 {
@@ -190,40 +190,18 @@
 </section>
 <style>
   
-    h1, h2 {
-        text-align: center;
-        color: #333;
-    }
-
-    h1 {
-        font-size: 2rem;
-        margin: 1rem 0;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-        color: #555;
-        margin-bottom: 1rem;
-    }
-
     .section-title {
-        font-size: 1.3rem;
+        font-size: 24px;
         color: #000;
-        margin: 2rem 0 1rem;
-        text-align: left;
+        margin: 30px 0 20px;
         padding-left: 20px;
-    }
-
-    .slider-section {
-        margin-bottom: 3rem;
-        width: 100%;
     }
 
     .slider-container {
         position: relative;
-        width: 100%;
+        max-width: 1600px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 50px;
     }
 
     .slider {
@@ -231,72 +209,47 @@
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        gap: 10px; /* Espaciado entre videos */
+        gap: 20px;
         padding: 10px 0;
         scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-    
+
     .slider::-webkit-scrollbar {
         display: none;
     }
 
-    .video-container {
-        flex: 0 0 calc(10% - 5px); /* 4 videos por fila en pantallas grandes */
-        max-width: 250px; /* Limita el tamaño máximo del video */
-        aspect-ratio: 16 / 9; /* Mantiene la proporción correcta (relación 16:9) */
+    .video-wrapper {
+        flex: 0 0 auto;
+        width: 800px; /* Tamaño fijo más grande como en la imagen */
         scroll-snap-align: start;
+    }
+
+    .video-container {
         position: relative;
-        background: #fff;
-        border-radius: 8px;
+        width: 100%;
+        padding-top: 56.25%; /* Mantiene ratio 16:9 */
+        background: #000;
+        border-radius: 12px;
         overflow: hidden;
     }
-    
-    @media (max-width: 1200px) {
-        .video-container {
-            flex: 0 0 calc(33.33% - 10px); /* 3 videos por fila en pantallas medianas */
-            max-width: 250px;
-        }
-    }
-    
-    @media (max-width: 1024px) {
-        .video-container {
-            flex: 0 0 calc(50% - 10px); /* 2 videos por fila en pantallas más pequeñas */
-            max-width: 250px;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .video-container {
-            flex: 0 0 calc(33.33% - 10px); /* 3 videos por fila en pantallas pequeñas */
-            max-width: 300px;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .video-container {
-            flex: 0 0 calc(50% - 10px); /* 2 videos por fila en pantallas muy pequeñas */
-            max-width: 100%;
-            padding-bottom: 56.25%; /* Mantener la proporción 16:9 */
-        }
-    }
-    
-    /* Ajuste en el iframe para asegurarse de que no se deforme el video */
+
     .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         border: none;
-        object-fit: cover; /* Ajusta el video para que no se deforme */
     }
-    
 
     .slider-button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 30px;
-        height: 30px;
-        background: rgba(0, 0, 0, 0.5);
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.7);
         border: none;
         border-radius: 50%;
         color: white;
@@ -304,102 +257,135 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
+        font-size: 20px;
         z-index: 10;
     }
 
     .slider-button.prev {
-        left: -10px;
+        left: 5px;
     }
 
     .slider-button.next {
-        right: -10px;
+        right: 5px;
     }
 
-    /* Responsive breakpoints manteniendo proporción similar a la imagen */
-    @media (max-width: 1200px) {
-        .video-container {
-            width: 45%;
-            padding-bottom: 25.3%;
-        }
-    }
-
+    /* Ajustes responsive manteniendo videos grandes */
     @media (max-width: 768px) {
-        .video-container {
-            width: 80%;
-            padding-bottom: 45%;
+        .video-wrapper {
+            width: calc(100% - 40px);
+            min-width: 300px;
         }
         
         .slider-container {
-            padding: 0 15px;
+            padding: 0 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            margin: 20px 0 15px;
         }
     }
 
 </style>  
-<h1>Impactando comunidades</h1>
-    <h2>Reconocidos en los medios</h2>
-
-    <div class="slider-section">
-        <h3 class="section-title">Entrevistas en televisión</h3>
-        <div class="slider-container">
-            <button class="slider-button prev" onclick="slideVideos('tvSlider', -1)">&#10094;</button>
-            <button class="slider-button next" onclick="slideVideos('tvSlider', 1)">&#10095;</button>
-            <div class="slider" id="tvSlider">
+<section>
+    <h2 class="section-title">Entrevistas en televisión</h2>
+    <div class="slider-container">
+        <button class="slider-button prev" onclick="slideVideos('tvSlider', -1)">&#10094;</button>
+        <button class="slider-button next" onclick="slideVideos('tvSlider', 1)">&#10095;</button>
+        <div class="slider" id="tvSlider">
+            <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/Ett9Fh4SVUQ" title="TV Interview 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/Ett9Fh4SVUQ" 
+                        title="TV Interview 1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
+            </div>
+            <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/1u9x0isMnjg" title="TV Interview 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/1u9x0isMnjg" 
+                        title="TV Interview 2" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
+            </div>
+            <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/I7BJNUEhu98" title="TV Interview 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/Ett9Fh4SVUQ" title="TV Interview 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/1u9x0isMnjg" title="TV Interview 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/I7BJNUEhu98" 
+                        title="TV Interview 3" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="slider-section">
-        <h3 class="section-title">Entrevistas</h3>
-        <div class="slider-container">
-            <button class="slider-button prev" onclick="slideVideos('interviewSlider', -1)">&#10094;</button>
-            <button class="slider-button next" onclick="slideVideos('interviewSlider', 1)">&#10095;</button>
-            <div class="slider" id="interviewSlider">
+<section>
+    <h2 class="section-title">Entrevistas</h2>
+    <div class="slider-container">
+        <button class="slider-button prev" onclick="slideVideos('interviewSlider', -1)">&#10094;</button>
+        <button class="slider-button next" onclick="slideVideos('interviewSlider', 1)">&#10095;</button>
+        <div class="slider" id="interviewSlider">
+            <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/zPBtnvu9QdA" title="Interview 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/zPBtnvu9QdA" 
+                        title="Interview 1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
+            </div>
+            <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/mSEJlKinapg" title="Interview 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/mSEJlKinapg" 
+                        title="Interview 2" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
+            </div>
+            <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/YX13Quhfzy4" title="Interview 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/zPBtnvu9QdA" title="Interview 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/mSEJlKinapg" title="Interview 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/YX13Quhfzy4" 
+                        title="Interview 3" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <script>
-        function slideVideos(sliderId, direction) {
-            const slider = document.getElementById(sliderId);
-            const videoWidth = slider.querySelector('.video-container').offsetWidth;
-            const scrollAmount = videoWidth + 15; // 15px es el gap entre videos
-            slider.scrollBy({
-                left: direction * scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-    </script>
+<script>
+    function slideVideos(sliderId, direction) {
+        const slider = document.getElementById(sliderId);
+        const videoWidth = slider.querySelector('.video-wrapper').offsetWidth;
+        const gap = 20; // 20px es el gap entre videos
+        const scrollAmount = videoWidth + gap;
+        
+        slider.scrollBy({
+            left: direction * scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+</script>
 
 {%endblock%}
 

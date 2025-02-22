@@ -7,7 +7,7 @@
     <div class="slides">
         <div class="slide" style="background-image: url('{% static 'app/img/banner2.png' %}');">
             <div class="slide-content">
-                <h1>Gestiona de manera eficiente el agua para tu comunidad con <span>la tecnología más avanzada</span> de Chile</h1>
+                <h1>Gestiona de manera eficiente el agua para tu comunidad con <span class= "highlight">la tecnología más avanzada</span > de Chile</h1>
                 <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
                 <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
             </div>
@@ -148,9 +148,6 @@
             margin-top: 40px;
         }
         
-        .meter-image img {
-            max-width: 300px;
-        }
         
         @media (max-width: 1024px) {
             .features-grid {
@@ -194,11 +191,14 @@
         .meter-image {
             text-align: center;
             margin-top: 10px;
+            
         }
 
         .meter-image img {
             max-width: 300px;
             width: 100%;
+            z-index: 10;
+            margin-bottom: -70px;
             
         }
 
@@ -261,7 +261,7 @@
     <style>
         
 </style>
-    <section class="testimonials-section slider ">
+    <section class="testimonials-section home ">
         <div class="testimonials-container">
             <!-- Columna izquierda con texto -->
             <div class="testimonials-text">
@@ -289,7 +289,7 @@
                                              
                         <div class="testimonial-card">
                             <div class="video-container">
-                                <img src="{% static 'app/img/inicio.ico'%}" alt="Certificado" class="certificate-badge">
+                               
                                 <iframe 
                                     src="https://www.youtube.com/embed/crhAwARwYKw" 
                                     frameborder="0" 
@@ -307,7 +307,7 @@
                         <!-- Tarjeta 2 -->
                         <div class="testimonial-card">
                             <div class="video-container">
-                                <img src="{% static 'app/img/inicio.ico'%}" alt="Certificado" class="certificate-badge">
+                                
                                 <iframe 
                                     src="https://www.youtube.com/embed/ZsXCr20WgWY" 
                                     frameborder="0" 
@@ -325,7 +325,7 @@
                         <!-- Tarjeta 3 -->
                         <div class="testimonial-card">
                             <div class="video-container">
-                                <img src="{% static 'app/img/medidor1.png'%}" alt="Certificado" class="certificate-badge">
+                               
                                 <iframe 
                                     src="https://www.youtube.com/embed/X_d1ceK9G-I" 
                                     frameborder="0" 
