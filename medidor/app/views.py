@@ -17,18 +17,30 @@ from django.http import JsonResponse
 def mi_vista(request):
     return render(request, 'recursos.html', {'MEDIA_URL': settings.MEDIA_URL})
 # Create your views here.
+
+
 def clientes(request):
-    appr = Apr.objects.all()
-    data = {    
-        'apr': appr
-    }
+    try:
+        appr = Apr.objects.all()
+        data = {    
+            'apr': appr
+        }
+    except Exception as e:
+            print(f"Unexpected error: {e}")
+            messages.error(request, 'Hubo un problema con tu solicitud.')
+            return redirect('app/e404.html')
     return render(request, 'app/clientes.html',data)
 
 def filtrar_apr(request):
-    region = request.GET.get('region')  # Obtiene la región desde el GET
-    if region:
-        aprs = Apr.objects.filter(region__iexact=region).values('id', 'nameapr', 'comuna', 'region', 'imagen')
-        return JsonResponse(list(aprs), safe=False)  # Retorna JSON con los datos filtrados
+    try:
+        region = request.GET.get('region')  # Obtiene la región desde el GET
+        if region:
+            aprs = Apr.objects.filter(region__iexact=region).values('id', 'nameapr', 'comuna', 'region', 'imagen')
+            return JsonResponse(list(aprs), safe=False)  # Retorna JSON con los datos filtrados
+    except Exception as e:
+            print(f"Unexpected error: {e}")
+            messages.error(request, 'Hubo un problema con tu solicitud.')
+            return redirect('app/e404.html')    
     return JsonResponse([], safe=False)
 
 
@@ -37,11 +49,14 @@ def filtrar_apr(request):
 
 
 def apr(request, apr_id):
-    apppr = get_object_or_404(Apr, id=apr_id)
-    data = {    
-        'appr': apppr,
-        
-    }
+    try:
+        apppr = get_object_or_404(Apr, id=apr_id)
+        data = {    
+            'appr': apppr,
+
+        }
+    except data.DoesNotExist:
+        return redirect('app/e404.html')
     return render(request, 'app/apr.html',data)
 
 def home(request):
@@ -138,9 +153,6 @@ def nosotros(request):
 
 
 
-def prueba(request,filtro):
-    filt = Apr.objects.filter(region=filtro)
-    return render(request, 'app/prueba.html',{'filt':filt})
 
 def recursos(request):
     return render(request, 'app/recursos.html')
@@ -148,8 +160,12 @@ def recursos(request):
 def soluciones(request):
     return render(request, 'app/soluciones.html')
 
-
-
 def e404(request):
     return render(request, 'app/e404.html')
 
+def prueba(request,filtro):
+    try:
+        filt = Apr.objects.filter(region=filtro)
+    except filt.DoesNotExist:
+        return redirect('app/e404.html')
+    return render(request, 'app/prueba.html',{'filt':filt})

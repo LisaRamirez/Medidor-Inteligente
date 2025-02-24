@@ -227,8 +227,7 @@
 </section>
 
 <!-- Community Section -->
-<section class="community">
-    <div class="cliente">
+
         <div class="community-grid">
             <div class="community-image">
                 <img src="{% static 'app/img/somos.png'%}" alt="Miembros de la comunidad">
@@ -244,8 +243,6 @@
     </div>
 </section>
 
-<!-- Regions Section -->
-
 
 <section class="regions" style="background-image: url('{% static 'app/img/chile.png'%}');">   
     <div class="cliente">
@@ -254,9 +251,9 @@
         
         <nav class="regions-nav">
             <ul>
-                <li class="btn_active"><button class="butte" data-region="all">Todas</button></li>
+                <li><button class="butte btn_active" data-region="all">Todas</button></li>
                 <li><button class="butte" data-region="Coquimbo">Coquimbo</button></li>
-                <li><button class="butte" data-region="Valparaíso" value="">Valparaíso</button></li>
+                <li><button class="butte" data-region="Valparaíso">Valparaíso</button></li>
                 <li><button class="butte" data-region="Metropolitana">Metropolitana</button></li>
                 <li><button class="butte" data-region="Ohiggins">O'Higgins</button></li>
                 <li><button class="butte" data-region="Maule">Maule</button></li>
@@ -267,12 +264,12 @@
                 <li><button class="butte" data-region="Aysen">Aysén</button></li>
             </ul>
         </nav>
-        <div class="">
+
+        <!-- Contenedor con scroll -->
+        <div class="scroll-container">
             <div class="map-grid">
                 {% for ap in apr %}
-
                     <div class="committees-grid" data-region="{{ap.region}}">
-
                         <article class="committee-card">
                             <div class="card-image">
                                 {% if ap.imagen %}
@@ -286,7 +283,6 @@
                                     <p>Región {{ap.region}}</p>
                                 </div>
                                 <a href="{% url 'apr' ap.id %}" class="details-btn">Detalles →</a>
-
                             </div>
                         </article>
                     </div>  
@@ -295,6 +291,10 @@
         </div>
     </div>
 </section>
+<!-- Regions Section -->
+
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll("button[data-region]");
@@ -304,8 +304,8 @@
             button.addEventListener("click", function () {
                 const selectedRegion = this.getAttribute("data-region");
                 
-                this.classList.add("btnactive");
-
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
                 committees.forEach(comm => {
                     if (selectedRegion === "all" || comm.getAttribute("data-region") === selectedRegion) {
                         comm.style.display = "block"; // Muestra los elementos que coincidan
