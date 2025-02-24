@@ -1,5 +1,7 @@
 from django.urls import path
 from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr,e404, filtrar_apr
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', home, name="home"),
@@ -13,4 +15,7 @@ urlpatterns = [
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),
     
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # Compare this snippet from medidor/app/models.py:

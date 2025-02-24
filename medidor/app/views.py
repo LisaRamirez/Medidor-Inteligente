@@ -14,6 +14,8 @@ from django.contrib import messages
 from smtplib import SMTPException
 from django.http import JsonResponse
 
+def mi_vista(request):
+    return render(request, 'recursos.html', {'MEDIA_URL': settings.MEDIA_URL})
 # Create your views here.
 def clientes(request):
     appr = Apr.objects.all()

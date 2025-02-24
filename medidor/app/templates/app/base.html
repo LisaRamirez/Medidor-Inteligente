@@ -16,79 +16,175 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 1rem;
             background: white;
+            
+            position: relative;
+            z-index: 1000;
         }
-
+    
         .logo {
-            height: 50px;
+            height: 40px;
         }
-
+    
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    
+        .navbar-toggler-icon {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #000;
+            position: relative;
+            transition: background 0.2s ease-out;
+        }
+    
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: #000;
+            transition: all 0.2s ease-out;
+        }
+    
+        .navbar-toggler-icon::before {
+            top: -6px;
+        }
+    
+        .navbar-toggler-icon::after {
+            bottom: -6px;
+        }
+    
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 2rem;
+            align-items: center;
         }
-
+    
         .nav-links a {
-            color: #002868;
             text-decoration: none;
-            padding: 10px;
+            color: #333;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
         }
-
+    
         .nav-links a:hover {
-            background:rgb(168, 197, 224);
-            border-radius: 5px;
+            color: #0046B5;
         }
-
-        /* Menú colapsado en móviles */
+    
+        /* Estilo para el enlace activo */
+        .nav-links a.active {
+            color: #0046B5;
+            font-weight: 600;
+        }
+    
+        /* Línea azul debajo del enlace activo */
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0046B5;
+        }
+    
+        .contact-btn {
+            background: #002868;
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+    
+        /* Estilo especial para el botón de contacto cuando está activo */
+        .contact-btn.active {
+            background: #003282;
+        }
+    
+        /* Quitar la línea azul del botón de contacto cuando está activo */
+        .contact-btn.active::after {
+            display: none;
+        }
+    
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+    
             .nav-links {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
+                position: fixed;
+                top: 0;
                 left: 0;
-                width: 100%;
-                background: #333;
-                padding: 10px 0;
-                text-align: center;
+                right: 0;
+                bottom: 0;
+                background: white;
+                flex-direction: column;
+                padding-top: 80px;
+                z-index: 999;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 2rem;
             }
-
-            .nav-links.show {
+    
+            .nav-links.active {
                 display: flex;
             }
-
-            .menu-toggle {
-                font-size: 24px;
-                background: none;
-                border: none;
-                color: white;
-                cursor: pointer;
+    
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+    
+            /* Ajuste de la línea indicadora en móvil */
+            .nav-links a.active::after {
+                bottom: -8px;
+                height: 3px;
+            }
+    
+            .contact-btn {
+                margin-top: 1rem;
+                padding: 0.8rem 2rem;
             }
         }
     </style>
+   
     <nav class="nav">
-        <a href="{% url 'home'%}">
-            <img src="{% static 'app/img/logo.png'%}" alt="Medidor Inteligente" class="logo">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'app/img/logo.png' %}" alt="Medidor Inteligente" class="logo">
         </a>
         <button class="menu-toggle navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="nav-links">
-            <a href="{% url 'home'%}">Inicio</a>
-            <a href="{% url 'soluciones'%}">Nuestras soluciones</a>
-            <a href="{% url 'nosotros'%}">Quiénes somos</a>
-            <a href="{% url 'clientes'%}">Clientes</a>
-            <a href="{% url 'recursos'%}">Recursos</a>
-            <a href="{% url 'contacto'%}" class="contact-btn">Contáctanos</a>
+            <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Inicio</a>
+            <a href="{% url 'soluciones' %}" class="nav-link {% if 'soluciones' in request.path %}active{% endif %}">Nuestras soluciones</a>
+            <a href="{% url 'nosotros' %}" class="nav-link {% if 'nosotros' in request.path %}active{% endif %}">Quiénes somos</a>
+            <a href="{% url 'clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>
+            <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Recursos</a>
+            <a href="{% url 'contacto' %}" class="contact-btn {% if 'contacto' in request.path %}active{% endif %}">Contáctanos</a>
         </div>
     </nav>
-    
+
     <script>
-        document.querySelector(".menu-toggle").addEventListener("click", function () {
-            document.querySelector(".nav-links").classList.toggle("show");
+        // Toggle mobile menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+    
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     </script>
+    
+   
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     

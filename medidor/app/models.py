@@ -1,7 +1,15 @@
 from django.db import models
 from django.utils import timezone
+from django.shortcuts import render
 
 # Create your models here.
+class Documento(models.Model):
+    titulo = models.CharField(max_length=100)
+    archivo = models.FileField(upload_to='pdfs/')
+
+    def __str__(self):
+        return self.titulo
+
 
 
 class Contacto(models.Model):
