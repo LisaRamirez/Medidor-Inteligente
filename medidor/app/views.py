@@ -64,117 +64,119 @@ def apr(request, apr_id):
     return render(request, 'app/apr.html',data)
 
 def home(request):
-    try:
-        if request.method == 'POST':
-            name = request.POST['name']
-            email = request.POST['email']
-            phone = request.POST['phone']
-            ssr_apr = request.POST['ssr_apr']
-            cargo_apr = request.POST['cargo_apr']
-            comuna = request.POST['comuna']
-            cantidad = request.POST['cantidad']
-            fecha = datetime.datetime.now()
-            radio = request.POST['financiamiento']
-            message = request.POST['message']   
+    if request.method == 'POST':
+        try:
+            name = request.POST.get('name', '')
+            email = request.POST.get('email', '')
+            phone = request.POST.get('phone', '')
+            ssr_apr = request.POST.get('ssr_apr', '')
+            cargo_apr = request.POST.get('cargo_apr', '')
+            comuna = request.POST.get('comuna', '')
+            cantidad = request.POST.get('cantidad', '')
+            radio = request.POST.get('financiamiento', '')
+            message = request.POST.get('message', '')
+            fecha = datetime.now()
 
-            contacto = Contacto(name=name, email=email, phone=phone, ssr_apr=ssr_apr, cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, fecha=fecha, radio=radio, message=message)
+            # Guardar en la base de datos
+            contacto = Contacto(
+                name=name, email=email, phone=phone, ssr_apr=ssr_apr, 
+                cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, 
+                fecha=fecha, radio=radio, message=message
+            )
             contacto.save()
-            inicio = settings.EMAIL_HOST_USER
+
+            # Enviar correo
+            sender_email = settings.EMAIL_HOST_USER
             password = settings.EMAIL_HOST_PASSWORD
-            info = f"nombre: {name} \n phone: {phone} \n ssr_apr: {ssr_apr} \n cargo_apr: {cargo_apr} \n comuna: {comuna} \n cantidad: {cantidad} \n fecha: {fecha} \n radio: {radio} \n message: {message}"
-            cc_recipients =['','']
-            try:
-                send_email('APR/SSR contacto', info, inicio, password, email, cc_recipients, 'smtp.gmail.com', 587)
-                messages.success(request, 'Tu mensaje ha sido enviado correctamente')
-            except send_email.error as e:
-                print(f"Error: Email could not be sent. {e}")   
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-        messages.error(request, 'Hubo un problema con tu solicitud.')
-        return redirect('app/e404.html')  # Change to an appropriate error page
+            smtp_server = settings.EMAIL_HOST
+            smtp_port = settings.EMAIL_PORT
+
+            info = (f"Nombre: {name}\nTeléfono: {phone}\nSSR/APR: {ssr_apr}\n"
+                    f"Cargo APR: {cargo_apr}\nComuna: {comuna}\nCantidad: {cantidad}\n"
+                    f"Fecha: {fecha}\nFinanciamiento: {radio}\nMensaje: {message}")
+
+            cc_emails = ['cristobalfariasfredes@gmail.com', 'lisaisabelc19@gmail.com']
+            subject = 'APR/SSR Contacto'
+
+            send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
+
+            messages.success(request, 'Tu mensaje ha sido enviado correctamente')
+            return redirect('home')  # Redirige a la vista principal después de enviar
+
+        except Exception as e:
+            print(f"Error: {e}")
+            messages.error(request, 'Hubo un error al procesar tu solicitud. Inténtalo nuevamente.')
+            return redirect('error_page')  # Cambiar por una vista de error adecuada
 
     return render(request, 'app/home.html')
 
 
 
 def contacto(request):
-    try:
-        if request.method == 'POST':
-            name = request.POST['name']
-            email = request.POST['email']
-            phone = request.POST['phone']
-            ssr_apr = request.POST['ssr_apr']
-            cargo_apr = request.POST['cargo_apr']
-            comuna = request.POST['comuna']
-            cantidad = request.POST['cantidad']
-            fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            radio = request.POST['financiamiento']
-            message = request.POST['message']   
+    if request.method == 'POST':
+        try:
+            name = request.POST.get('name', '')
+            email = request.POST.get('email', '')
+            phone = request.POST.get('phone', '')
+            ssr_apr = request.POST.get('ssr_apr', '')
+            cargo_apr = request.POST.get('cargo_apr', '')
+            comuna = request.POST.get('comuna', '')
+            cantidad = request.POST.get('cantidad', '')
+            radio = request.POST.get('financiamiento', '')
+            message = request.POST.get('message', '')
+            fecha = datetime.now()
 
-            # Save the data in the Contacto model
-            contacto = Contacto(name=name, email=email, phone=phone, ssr_apr=ssr_apr, cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, fecha=fecha, radio=radio, message=message)
+            # Guardar en la base de datos
+            contacto = Contacto(
+                name=name, email=email, phone=phone, ssr_apr=ssr_apr, 
+                cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, 
+                fecha=fecha, radio=radio, message=message
+            )
             contacto.save()
 
-            # Send email with the form data
-            inicio = settings.EMAIL_HOST_USER
+            # Enviar correo
+            sender_email = settings.EMAIL_HOST_USER
+            password = settings.EMAIL_HOST_PASSWORD
+            smtp_server = settings.EMAIL_HOST
+            smtp_port = settings.EMAIL_PORT
 
-            
-            cc_emails = ['lisaisabelc19@gmail.com']  # You can add more here
+            info = (f"Nombre: {name}\nTeléfono: {phone}\nSSR/APR: {ssr_apr}\n"
+                    f"Cargo APR: {cargo_apr}\nComuna: {comuna}\nCantidad: {cantidad}\n"
+                    f"Fecha: {fecha}\nFinanciamiento: {radio}\nMensaje: {message}")
 
-            
-            return render(request, 'app/contacto.html')  # Or redirect to a thank-you page, if needed
+            cc_emails = ['cristobalfariasfredes@gmail.com', 'lisaisabelc19@gmail.com']
+            subject = 'APR/SSR Contacto'
 
-    except Exception as e:
-        
-        messages.error(request, 'Hubo un problema con tu solicitud.')
+            send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
+
+            messages.success(request, 'Tu mensaje ha sido enviado correctamente')
+            return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
+
+        except Exception as e:
+            print(f"Error: {e}")
+            messages.error(request, 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.')
+            return redirect('error_page')  # Cambiar por una vista de error apropiada
 
     return render(request, 'app/contacto.html')
-
-def send_email(, info, inicio, password, email, cc_recipients,name,phone,ssr_apr,cargo_apr,comuna,cantidad,fecha,radio,message,cc_emails, 'smtp.gmail.com', 587):
-    # Obtener los valores del formulario
+    
     
 
-    # Configuración del servidor de correo
-    from_email = inicio  # Cambia esto por tu correo
-    to_email = email  # Correo del destinatario
-    password = password  # Contraseña del correo
-
-    # Crear el mensaje
-    subject = f"Formulario enviado por {name} - {fecha}"
-
-    body = f"""
-    Nombre: {name}
-    Correo: {email}
-    Teléfono: {phone}
-    SSR: {ssr_apr}
-    Cargo: {cargo_apr}
-    Comuna: {comuna}
-    Cantidad: {cantidad}
-    Fecha de envío: {fecha}
-    Tipo de financiamiento: {radio}
-
-    Mensaje: {message}
-    """
-
-    # Crear el mensaje MIME
-    msg = MIMEMultipart()
-    msg['From'] = from_email
-    msg['To'] = to_email
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain'))
-
-    # Enviar el correo
+def send_email(subject, info, sender_email, password, recipient_email,cc_emails, smtp_server, smtp_port):
     try:
-        # Conexión con el servidor SMTP
-        server = smtplib.SMTP('smtp.dominio.com', 587)  # Cambia a tu servidor SMTP
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.ehlo()
         server.starttls()
-        server.login(from_email, password)
-        text = msg.as_string()
-        server.sendmail(from_email, to_email, text)
+        server.login(sender_email, password)
+        msg = MIMEText(info)
+        msg['Subject'] = subject
+        msg['From'] = sender_email
+        msg['Cc'] = ', '.join(cc_emails)  # Agregar los correos de CC
+        all_recipients = [recipient_email] + cc_emails
+        server.sendmail(sender_email, all_recipients, msg.as_string())
         server.quit()
-        print("Correo enviado exitosamente!")
-    except Exception as e:
-        print(f"Error al enviar el correo: {e}")
+        print('Email sent successfully!')
+    except smtplib.SMTPException as e:
+        print(f"Error: Email could not be sent. {e}")
 
 
         
