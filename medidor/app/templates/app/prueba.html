@@ -1,8 +1,219 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
+<div class="slider">
+    <div class="slides">
+        <!-- Slide 1 -->
+        <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
+            <div class="slide-content">
+                <h1>Gestiona de manera eficiente el agua para tu comunidad con <span class="highlight">la tecnología más avanzada</span> de Chile</h1>
+                <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
+                <a href="{% url 'contacto' %}" class="cta-buttonhome">Solicita una cotización</a>
+            </div>
+        </div>
 
+        <!-- Slide 2 -->
+        <div class="slide medidornuevo-slide">
+            <div class="containerinteligente">
+                <div class="item medidornuevo-subtitulo">
+                    <h1>MEDIDOR<br>INTELIGENTE</h1>
+                </div>
+                <div class="item izaq">
+                    <img src="{% static 'app/img/medidor.png' %}" alt="Medidor inteligente sostenible" class="ñiv">
+                </div>
+                <div class="item medidornuevo-lista">
+                    <ul class="izq">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg> Batería 3 veces más potente
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg> Monitoreo en tiempo real
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg> Fácil de implementar
+                        </li>
+                    </ul>
+                </div>
+                <div class="item but">
+                    <a href="{% url 'soluciones' %}" class="cta-button medidornuevo-boton">Conoce más</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Botones de navegación -->
+    <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
+    <button class="slider-arrow arrow-next" aria-label="Siguiente">&#10095;</button>
 
+    <!-- Dots de navegación -->
+    <div class="slider-nav">
+        <button class="slider-dot active" data-slide="0"></button>
+        <button class="slider-dot" data-slide="1"></button>
+    </div>
+</div>
+<div class="slider">
+    <div class="slides">
+        <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
+            <div class="slide-content">
+                <h1>Gestiona de manera eficiente el agua para tu comunidad con <span class="highlight">la tecnología más avanzada</span> de Chile</h1>
+                <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
+                <a href="{% url 'contacto'%}" class="cta-buttonhome medidornuevo-boton" role="button">Solicita una cotización</a>
+            </div>
+        </div>
+        <div class="slide medidornuevo-slide">        
+            <div class="containerinteligente">
 
+                <div class="item medidornuevo-subtitulo">
+                    <h1>MEDIDOR<br>INTELIGENTE</h1>
+                </div>
+            
+                <div class="item izaq">
+                    <img src="{% static 'app/img/medidor.png'%}" alt="Medidor inteligente sostenible" class="ñiv">
+                </div>
+            
+                <div class="item medidornuevo-lista">
+                    <ul class="izq">
+                        <li >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Batería 3 veces más potente
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Monitoreo en tiempo real
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Fácil de implementar
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="item">
+                <ul class="der">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        Reduce tus pérdidas de agua
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        Sostenible a largo plazo
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        Diseño totalmente moderno
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="item but">
+                <a href="{% url 'soluciones'%}" class="cta-button medidornuevo-boton">Conoce más</a>
+            </div>
+        </div>
+      
+    </div>
+
+    <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
+    <button class="slider-arrow arrow-next" aria-label="Siguiente">&#10095;</button>
+    <div class="slider-nav" role="tablist">
+        <button class="slider-dot active" role="tab" aria-selected="true"></button>
+        <button class="slider-dot" role="tab" aria-selected="false"></button>
+        
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+const slider = document.querySelector('.slider');
+const slides = document.querySelector('.slides');
+const prevButton = document.querySelector('.arrow-prev');
+const nextButton = document.querySelector('.arrow-next');
+const dots = document.querySelectorAll('.slider-dot');
+let currentSlide = 0;
+const slideCount = document.querySelectorAll('.slide').length;
+
+function goToSlide(n) {
+    slides.style.transform = `translateX(-${n * 100}%)`;
+    currentSlide = n;
+    updateDots();
+}
+
+function nextSlide() {
+    goToSlide((currentSlide + 1) % slideCount);
+}
+
+function prevSlide() {
+    goToSlide((currentSlide - 1 + slideCount) % slideCount);
+}
+
+function updateDots() {
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+        dot.setAttribute('aria-selected', index === currentSlide);
+    });
+}
+
+prevButton.addEventListener('click', prevSlide);
+nextButton.addEventListener('click', nextSlide);
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => goToSlide(index));
+});
+
+// Swipe functionality
+let touchStartX = 0;
+let touchEndX = 0;
+
+slider.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+slider.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchEndX - touchStartX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+            prevSlide();
+        } else {
+            nextSlide();
+        }
+    }
+}
+
+// Auto-advance slides
+setInterval(nextSlide, 5000);
+
+// Optimize for low-end devices
+const isLowEnd = navigator.deviceMemory < 4 || !navigator.deviceMemory;
+
+if (isLowEnd) {
+    document.body.classList.add('low-end-device');
+    // Reduce transition duration for smoother performance on low-end devices
+    slides.style.transition = 'transform 0.3s ease-in-out';
+}
+});
+</script>
 {%endblock%}

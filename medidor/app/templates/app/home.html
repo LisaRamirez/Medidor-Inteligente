@@ -2,210 +2,87 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
-<style>
-    .medidornuevo-slide {
-        
-    }
-
-    .medidornuevo-contenido {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 1920px;
-        margin: auto auto;
-        padding: 2rem;
-    }
-
-    .medidornuevo-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .medidornuevo-titulo {
-        font-size: clamp(0.5rem, 2vw, 1rem);
-        margin-bottom: 0.5rem;
-        color: white;
-    }
-
-  
 
 
-    
-
-    .medidornuevo-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto;
-        gap: 20px;
-        align-items: center;
-    }
-    
-    
-    
-    .medidornuevo-item {
-        display: flex;
-        align-items: center;
-    }
-    .medidornuevo-imagen-container {
-        text-align: center;
-    }
-   
-    
-    .medidornuevo-imagen {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Media queries para responsividad */
-    @media (max-width: 1000px) {
-        .medidornuevo-grid {
-            grid-template-columns: 1fr 1fr; /* Cambio a una columna en pantallas pequeñas */
-            grid-template-rows:auto auto auto; /* Ajuste las filas */
-        
-        }
-    
-        
-    }
-    
-    @media (max-width: 480px) {
-        .medidornuevo-check {
-            width: 8px; /* Reducir el tamaño del check */
-            height: 8px;
-        }
-    }
-    
-
-    .medidornuevo-check {
-        width: 24px;
-        height: 24px;
-        border: 2px solid white;
-        border-radius: 50%;
-        margin-right: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .medidornuevo-check::before {
-        content: "✓";
-        color: white;
-    }
-
-    .medidornuevo-imagen {
-        max-width: 140px;
-        width: 100%;
-        height: auto;
-        z-index:6;
-    }
-
-    .medidornuevo-boton {
-        margin: 2rem auto;
-        background: #9eff00;
-        justify-content: center;
-    }
-    
-    
-</style>
 <div class="slider">
     <div class="slides">
-
-        <!-- Nuevo slide del medidor inteligente 
-         
+        <!-- Slide 1 -->
         <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
             <div class="slide-content">
                 <h1>Gestiona de manera eficiente el agua para tu comunidad con <span class="highlight">la tecnología más avanzada</span> de Chile</h1>
                 <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
-                <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
+                <a href="{% url 'contacto' %}" class="cta-buttonhome">Solicita una cotización</a>
             </div>
-        </div>-->
-        <!--<div class="slide medidornuevo-slide">
-            <div class="slide-content medidornuevo-contenido">
-                <div class="medidornuevo-header">
-                    <h2 class="medidornuevo-titulo">NUEVO</h2>-->
-                    
-             
-        <div class="containerinteligente">
+        </div>
 
-            <div class="item medidornuevo-subtitulo">
-                <h1>MEDIDOR<br>INTELIGENTE</h1>
+        <!-- Slide 2 -->
+        <div class="slide medidornuevo-slide">
+            <div class="containerinteligente">
+                <div class="item medidornuevo-subtitulo">
+                    <h1>MEDIDOR<br>INTELIGENTE</h1>
+                </div>
+                <div class="item izaq">
+                    <img src="{% static 'app/img/medidor.png' %}" alt="Medidor inteligente sostenible" class="ñiv">
+                </div>
+                <div class="item medidornuevo-lista">
+                    <ul class="izq">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg> Batería 3 veces más potente
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg> Monitoreo en tiempo real
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg> Fácil de implementar
+                        </li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <ul class="der">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Reduce tus pérdidas de agua
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Sostenible a largo plazo
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Diseño totalmente moderno
+                        </li>
+                    </ul>
+                </div>
+            
+                <div class="item but">
+                    <a href="{% url 'soluciones' %}" class="cta-button medidornuevo-boton">Conoce más</a>
+                </div>
             </div>
-        
-            <div class="item izaq">
-                <img src="{% static 'app/img/medidor.png'%}" alt="Medidor inteligente sostenible" class="ñiv">
-            </div>
-        
-            <div class="item medidornuevo-lista">
-                <ul class="izq">
-                    <li >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                        </svg>
-                        Batería 3 veces más potente
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                        </svg>
-                        Monitoreo en tiempo real
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                        </svg>
-                        Fácil de implementar
-                </li>
-            </ul>
         </div>
-      
-        <div class="item">
-            <ul class="der">
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                    </svg>
-                    Reduce tus pérdidas de agua
-                </li>
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                    </svg>
-                    Sostenible a largo plazo
-                </li>
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                    </svg>
-                    Diseño totalmente moderno
-                </li>
-            </ul>
-        </div>
-      
-        <div class="item but">
-            <a href="{% url 'soluciones'%}" class="cta-button medidornuevo-boton">Conoce más</a>
-        </div>
-      
     </div>
 
-
-
-
-
-
-
-
-
-
-
+    <!-- Botones de navegación -->
     <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
     <button class="slider-arrow arrow-next" aria-label="Siguiente">&#10095;</button>
-    <div class="slider-nav" role="tablist">
-        <button class="slider-dot active" role="tab" aria-selected="true"></button>
-        <button class="slider-dot" role="tab" aria-selected="false"></button>
-        
+
+    <!-- Dots de navegación -->
+    <div class="slider-nav">
+        <button class="slider-dot active" data-slide="0"></button>
+        <button class="slider-dot" data-slide="1"></button>
     </div>
 </div>
-</div>
-
 
 
 <section class="benefits">
@@ -242,7 +119,7 @@
             <p>Además cuenta con mantenimiento gratuito durante toda su vida útil.</p>
         </div>
         <div class="ima">
-            <img src="{% static 'app/img/logo-medidor.png'%}" alt="Medidor inteligente transparente" class="transparente">
+            <img src="{% static 'app/img/logotransparente.png'%}" alt="Medidor inteligente transparente" class="transparente">
         </div>
     </div>
 </div>
