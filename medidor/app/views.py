@@ -140,11 +140,26 @@ def contacto(request):
             smtp_server = settings.EMAIL_HOST
             smtp_port = settings.EMAIL_PORT
 
-            info = (f"Nombre: {name}\nTeléfono: {phone}\nSSR/APR: {ssr_apr}\n"
-                    f"Cargo APR: {cargo_apr}\nComuna: {comuna}\nCantidad: {cantidad}\n"
-                    f"Fecha: {fecha}\nFinanciamiento: {radio}\nMensaje: {message}")
+            info = (
+                    f"Estimado/a {name},\n\n"
+                    f"Agradecemos sinceramente tu solicitud. A continuación, te detallamos la información recibida:\n\n"
+                    f"Datos Personales:\n"
+                    f"• Nombre: {name}\n"
+                    f"• Teléfono: {phone}\n"
+                    f"• Comuna: {comuna}\n\n"
+                    f"Detalles de SSR Y APR:\n"
+                    f"• SSR/APR: {ssr_apr}\n"
+                    f"• Cargo APR: {cargo_apr}\n"
+                    f"• Cantidad: {cantidad}\n"
+                    f"• Fecha: {fecha}\n\n"
+                    f"Información de Financiamiento:\n"
+                    f"• Financiamiento: {radio}\n\n"
+                    f"Mensaje: {message}\n\n"
+                    f"Quedamos a tu disposición para cualquier consulta adicional.\n\n"
+                    f"Atentamente, {name}. \n"
+                    f"El equipo de atención al cliente de Medidor Inteligente.")
 
-            cc_emails = ['cristobalfariasfredes@gmail.com', 'lisaisabelc19@gmail.com']
+            cc_emails = ['', 'contacto@medidorinteligente.cl']
             subject = 'APR/SSR Contacto'
 
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
