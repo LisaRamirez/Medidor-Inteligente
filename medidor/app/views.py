@@ -111,7 +111,7 @@ def contacto(request):
             inicio = settings.EMAIL_HOST_USER
             password = settings.EMAIL_HOST_PASSWORD
             info = f"nombre: {name} \n phone: {phone} \n ssr_apr: {ssr_apr} \n cargo_apr: {cargo_apr} \n comuna: {comuna} \n cantidad: {cantidad} \n fecha: {fecha} \n radio: {radio} \n message: {message}"
-            cc_recipients =['','']
+            cc_recipients =['cristobalfariasfredes@gmail.com','']
             try:
                 send_email('APR/SSR contacto', info, inicio, password, email, cc_recipients, 'smtp.gmail.com', 587)
                 messages.success(request, 'Tu mensaje ha sido enviado correctamente')
@@ -121,7 +121,7 @@ def contacto(request):
     except Exception as e:
             print(f"Unexpected error: {e}")
             messages.error(request, 'Hubo un problema con tu solicitud.')
-            return redirect('app/e404.html')  # Change to an appropriate error page
+            
 
     return render(request, 'app/contacto.html')
 
@@ -163,9 +163,8 @@ def soluciones(request):
 def e404(request):
     return render(request, 'app/e404.html')
 
-def prueba(request,filtro):
-    try:
-        filt = Apr.objects.filter(region=filtro)
-    except filt.DoesNotExist:
-        return redirect('app/e404.html')
-    return render(request, 'app/prueba.html',{'filt':filt})
+def prueba(request):
+    
+   
+    
+    return render(request, 'app/prueba.html')

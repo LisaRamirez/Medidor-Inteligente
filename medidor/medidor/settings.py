@@ -131,8 +131,12 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+import os
 
 
+# cmd
+#set SECRET_KEY="mi_clave_secreta"
+#set DATABASE_URL="postgresql://user:password@localhost/db"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -142,9 +146,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'wamdigitalwd@gmail.com'
-EMAIL_HOST_PASSWORD = 'hnhu imoz muor chwn' # dejar en variables de entorno del sv
+EMAIL_HOST_USER = 'medidorinteligente25@gmail.com'
+EMAIL_HOST_PASSWORD = "zdxf thzc lauz kmxd"
 EMAIL_PORT = 587
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_PORT_SSL = 465
 EMAIL_FILE_PATH = "emails/"
+

@@ -42,6 +42,7 @@
     .medidornuevo-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
         gap: 20px;
         align-items: center;
     }
@@ -122,16 +123,16 @@
 </style>
 <div class="slider">
     <div class="slides">
-        
+
+        <!-- Nuevo slide del medidor inteligente 
+         
         <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
             <div class="slide-content">
                 <h1>Gestiona de manera eficiente el agua para tu comunidad con <span class="highlight">la tecnología más avanzada</span> de Chile</h1>
                 <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
                 <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
             </div>
-        </div>
-        
-        <!-- Nuevo slide del medidor inteligente -->
+        </div>-->
         <div class="slide medidornuevo-slide">
             <div class="slide-content medidornuevo-contenido">
                 <div class="medidornuevo-header">
@@ -144,53 +145,51 @@
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                              </svg>
+                            </svg>
                             Batería 3 veces más potente
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                              </svg>
+                            </svg>
                             Monitoreo en tiempo real
                         </li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                          </svg>
-                            
-                            Fácil de implementar
-                        </li>
-                    
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                              </svg>
+                            </svg>
+                            Fácil de implementar
+                        </li>
+                    </ul>
+                    <ul>
+                        <img src="{% static 'app/img/medidor.png'%}" alt="Medidor inteligente sostenible" class="ñiv">
+                    </ul>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
                             Reduce tus pérdidas de agua
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                              </svg>
+                            </svg>
                             Sostenible a largo plazo
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                              </svg>
+                            </svg>
                             Diseño totalmente moderno
                         </li>
                     </ul>
-                    <ul>
-                        <img src="{% static 'app/img/medidor.png'%}" alt="Medidor inteligente sostenible" class="ñiv">
-                    
-                    </ul>
                     
                     <ul>
-                        
-                    <a  href="{% url 'soluciones'%}" class="cta-button medidornuevo-boton" >Conoce más</a>
+                        <a href="{% url 'soluciones'%}" class="cta-button medidornuevo-boton">Conoce más</a>
                     </ul>
-
-                </div >
-               
+                </div>
+                
                 
             </div>
         </div>
@@ -207,325 +206,179 @@
 
 
 
-    <section class="benefits">
-        <h2>BENEFICIOS</h2>
-        <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">✓</div>
-                <h3>Fácil de implementar</h3>
-                <p>Diseñado para simplificar el proceso de instalación, nuestro medidor se adapta a las necesidades de cualquier comunidad, reduciendo tiempos y costos operativos.</p>
+<section class="benefits">
+    <h2>BENEFICIOS</h2>
+    <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3>Fácil de implementar</h3>
+            <p>Diseñado para simplificar el proceso de instalación, nuestro medidor se adapta a las necesidades de cualquier comunidad, reduciendo tiempos y costos operativos.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">💧</div>
+            <h3>Reducción de pérdidas</h3>
+            <p>Con tecnología avanzada de monitoreo, nuestro medidor identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">$</div>
+            <h3>Costo accesible</h3>
+            <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p> 
+        </div>
+    </div>
+</section>
+
+
+<div class="imagun">
+    <div class="imagon">
+        <div class="imagan">
+            <img src="{% static 'app/img/beneficios.png'%}" alt="Medidor inteligente sostenible" class="imm-img">
+        </div>
+        <div class="imm-info">
+            <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2><br>
+            <p>Nuestro medidor está construido con los mejores materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
+            <p>Además cuenta con mantenimiento gratuito durante toda su vida útil.</p>
+        </div>
+        <div class="ima">
+            <img src="{% static 'app/img/logo-medidor.png'%}" alt="Medidor inteligente transparente" class="transparente">
+        </div>
+    </div>
+</div><br><br>
+
+<section class="featurehome" style="background-image: url('{% static 'app/img/Vector1.png' %}'); background-repeat: no-repeat; background-size: cover;">
+
+    <div class="featurehome-container">
+        <h2>¿Qué hace <span class="highlight">nuestro medidor?</span></h2>
+        <div class="featurehome-grid">
+            <div class="featurehome-item">
+                <div class="feature-icon">
+                    <img src="{% static 'app/img/icono1.png'%}" alt="Icono de teléfono">
+                </div>
+                <h3>Toma lecturas a<br>distancia</h3>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💧</div>
-                <h3>Reducción de pérdidas</h3>
-                <p>Con tecnología avanzada de monitoreo, nuestro medidor identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
+            <div class="featurehome-item">
+                <div class="feature-icon">
+                    <img src="{% static 'app/img/icono2.png'%}" alt="Icono de detección">
+                </div>
+                <h3>Detecta fugas,<br>robos o pérdidas</h3>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">$</div>
-                <h3>Costo accesible</h3>
-                <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p>
+            <div class="featurehome-item">
+                <div class="feature-icon">
+                    <img src="{% static 'app/img/icono3.png'%}" alt="Icono de válvula">
+                </div>
+                <h3>Cierra el paso de<br>agua a distancia</h3>
+            </div>
+            <div class="featurehome-item">
+                <div class="feature-icon">
+                    <img src="{% static 'app/img/icono4.png'%}" alt="Icono de toque">
+                </div>
+                <h3>Traspasa datos con<br>un par de clicks</h3>
+            </div>
+            <div class="featurehome-item">
+                <div class="feature-icon">
+                    <img src="{% static 'app/img/icono5.png'%}" alt="Icono de ahorro">
+                </div>
+                <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
             </div>
         </div>
-    </section>
-
- 
-    <style>
-        
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            padding: 0 20px;
-        }
-        
-        .features h2 {
-            text-align: left;
-            margin-bottom: 60px;
-            font-size: 2em;
-            color: #002B5C;
-        }
-        
-        .features .highlight {
-            color: #0066CC;
-        }
-        
-        .curve-line {
-            position: absolute;
-            bottom: 800px;
-            left: 0;
-            width: 10%;
-            height: 500px;
-            z-index: 1;
-        }
-        
-        .features-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 2;
-            margin-bottom: 100px;
-        }
-        
-        .feature-item {
-            text-align: center;
-            flex: 0 1 calc(20% - 20px);
-            margin-bottom: 50px;
-        }
-        
-        .feature-icon {
-            width: 100px;
-            height: 100px;
-            
-            border-radius: 100%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            position: relative;
-            z-index: 3;
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-icon img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
-        .feature-item:nth-child(1) { margin-bottom: 80px; }
-        .feature-item:nth-child(2) { margin-bottom: 10px; }
-        .feature-item:nth-child(3) { margin-bottom: 80px; }
-        .feature-item:nth-child(4) { margin-bottom: 10px; }
-        .feature-item:nth-child(5) { margin-bottom: 80px; }
-        
-        .feature-item:hover .feature-icon {
-            transform: translateY(-10px);
-        }
-        
-        .feature-item h3 {
-            font-size: 1em;
-            line-height: 1.3;
-            color: #002B5C;
-        }
-        
-        .meter-image {
-            text-align: center;
-            margin-top: 40px;
-        }
-        
-        
-        @media (max-width: 1024px) {
-            .features-grid {
-                justify-content: center;
-            }
-        
-            .feature-item {
-                flex: 0 1 calc(33.33% - 20px);
-                margin-bottom: 40px !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .feature-item {
-                flex: 0 1 calc(50% - 20px);
-            }
-        
-            .curve-line {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .feature-item {
-                flex: 0 1 100%;
-            }
-        }
-
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-            max-width: 200px;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-
-        .meter-image {
-            text-align: center;
-            margin-top: 10px;
-            
-        }
-
-        .meter-image img {
-            max-width: 300px;
-            width: 100%;
-            z-index: 10;
-            margin-bottom: -70px;
-            
-        }
-
-    </style>
-
-    <section class="sustainability">
-        <div class="sustainability-container">
-            <div class="sustainability-image">
-                <img src="{% static 'app/img/beneficios.png'%}" alt="Medidor inteligente sostenible" class="smart-meter-img">
-            </div>
-            <div class="sustainability-content">
-                <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2>
-                <p>Nuestro medidor está construido con los mejores materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
-                <p>Además cuenta con mantenimiento gratuito durante toda su vida útil.</p>
-            </div>
+        <div class="meter-image">
+            <img class="arri" src="{% static 'app/img/medidor1.png'%}" alt="Medidor inteligente">
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="features" style="background-image: url('{% static 'app/img/Vector.png' %}');">
-        <div class="features-container">
-            <h2>¿Qué hace <span class="highlight">nuestro medidor?</span></h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <img src="{% static 'app/img/icono1.png'%}" alt="Icono de teléfono">
-                    </div>
-                    <h3>Toma lecturas a<br>distancia</h3>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <img src="{% static 'app/img/icono2.png'%}" alt="Icono de detección">
-                    </div>
-                    <h3>Detecta fugas,<br>robos o pérdidas</h3>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <img src="{% static 'app/img/icono3.png'%}" alt="Icono de válvula">
-                    </div>
-                    <h3>Cierra el paso de<br>agua a distancia</h3>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <img src="{% static 'app/img/icono4.png'%}" alt="Icono de toque">
-                    </div>
-                    <h3>Traspasa datos con<br>un par de clicks</h3>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <img src="{% static 'app/img/icono5.png'%}" alt="Icono de ahorro">
-                    </div>
-                    <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
-                </div>
-            </div>
-            <div class="meter-image">
-                <img src="{% static 'app/img/medidor1.png'%}" alt="Medidor inteligente">
-            </div>
+
+<section class="testimonials-section home ">
+    <div class="testimonials-container">
+        <!-- Columna izquierda con texto -->
+        <div class="testimonials-text">
+            <h2>Que dicen <span>nuestros clientes</span> de nosotros</h2>
+            <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
+            <a href="https://www.youtube.com/watch?v=iSDKmmRJ7MU" class="view-more">
+                Ver más testimonios
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </a>
         </div>
-
-    </section>
-    <style>
-        
-</style>
-    <section class="testimonials-section home ">
-        <div class="testimonials-container">
-            <!-- Columna izquierda con texto -->
-            <div class="testimonials-text">
-                <h2>Que dicen <span>nuestros clientes</span> de nosotros</h2>
-                <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
-                <a href="https://www.youtube.com/watch?v=iSDKmmRJ7MU" class="view-more">
-                    Ver más testimonios
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Columna derecha con slider -->
-            <div class="testimonials-slider">
-                <button class="slider-btn prev" id="prevBtn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M15 18l-6-6 6-6"/>
-                    </svg>
-                </button>
-
-                <div class="slider-container" id="sliderContainer">
-                    <div class="slider-track" id="sliderTrack">
-                        <!-- Tarjeta 1 -->
-                                             
-                        <div class="testimonial-card">
-                            <div class="video-containerhome">
-                               
-                                <iframe 
-                                    src="https://www.youtube.com/embed/crhAwARwYKw" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="card-info">
-                                <h3>Asociación de Vecinos La Parva</h3>
-                                <p class="region">Región Metropolitana</p>
-                                <p class="person">Don Roberto - Operador</p>
-                            </div>
+        <!-- Columna derecha con slider -->
+        <div class="testimonials-slider">
+            <button class="slider-btn prev" id="prevBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <div class="slider-container" id="sliderContainer">
+                <div class="slider-track" id="sliderTrack">
+                    <!-- Tarjeta 1 -->
+                                         
+                    <div class="testimonial-card">
+                        <div class="video-containerhome">
+                           
+                            <iframe 
+                                src="https://www.youtube.com/embed/crhAwARwYKw" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
-
-                        <!-- Tarjeta 2 -->
-                        <div class="testimonial-card">
-                            <div class="video-containerhome">
-                                
-                                <iframe 
-                                    src="https://www.youtube.com/embed/MwuYC75PbNs" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="card-info">
-                                <h3>APR «Batuco – Santa Sara», Lampa R. M.</h3>
-                                <p class="region">Región Metropolitana</p>
-                                <p class="person">Luis Parada - Presidente</p>
-                            </div>
+                        <div class="card-info">
+                            <h3>Asociación de Vecinos La Parva</h3>
+                            <p class="region">Región Metropolitana</p>
+                            <p class="person">Don Roberto - Operador</p>
                         </div>
-
-                        <!-- Tarjeta 3 -->
-                        <div class="testimonial-card">
-                            <div class="video-containerhome">
-                               
-                                <iframe 
-                                    src="https://www.youtube.com/embed/OGuwWp3nTBw" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="card-info">
-                                <h3>Fundación Amulén, «Cuidamos el Agua», en la Comuna de Codegua</h3>
-                                <p class="region">Región de O’Higgins</p>
-                                <p class="person">Antonia Rivera - Directora Ejecutiva</p>
-                            </div>
+                    </div>
+                    <!-- Tarjeta 2 -->
+                    <div class="testimonial-card">
+                        <div class="video-containerhome">
+                            
+                            <iframe 
+                                src="https://www.youtube.com/embed/MwuYC75PbNs" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="card-info">
+                            <h3>APR «Batuco – Santa Sara», Lampa R. M.</h3>
+                            <p class="region">Región Metropolitana</p>
+                            <p class="person">Luis Parada - Presidente</p>
+                        </div>
+                    </div>
+                    <!-- Tarjeta 3 -->
+                    <div class="testimonial-card">
+                        <div class="video-containerhome">
+                           
+                            <iframe 
+                                src="https://www.youtube.com/embed/OGuwWp3nTBw" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="card-info">
+                            <h3>Fundación Amulén, «Cuidamos el Agua», en la Comuna de Codegua</h3>
+                            <p class="region">Región de O’Higgins</p>
+                            <p class="person">Antonia Rivera - Directora Ejecutiva</p>
                         </div>
                     </div>
                 </div>
-
-                <button class="slider-btn next" id="nextBtn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                </button>
-
-                <div class="slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
+            </div>
+            <button class="slider-btn next" id="nextBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+            <div class="slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>document.addEventListener('DOMContentLoaded', function() {
+<script>document.addEventListener('DOMContentLoaded', function() {
         const track = document.getElementById('sliderTrack');
         const slides = track.children;
         const nextButton = document.getElementById('nextBtn');
@@ -630,7 +483,7 @@
             }, 5000);
         });
     });</script>
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', function() {
     const slider = document.querySelector('.slider');
     const slides = document.querySelector('.slides');
@@ -706,16 +559,17 @@
         slides.style.transition = 'transform 0.3s ease-in-out';
     }
 });
-    </script>
+</script>
 
 
-
-<section class="sustainability" style="background-image: url('{% static 'app/img/chilehorizontal.png' %}');">
-    <div class="cta-content">
-        <h2>Conoce a todas las comunidades alrededor de Chile que <span>confían en nosotros</span></h2>
-        
-        <a href="{% url 'clientes' %}" class="card-button">Ver más</a>
-    </div>
+<section class="sustainability" >
+    <div class="sustainability" style="background-image: url('{% static 'app/img/chilehorizontal.png' %}');">
+ 
+        <div class="cta-content">
+            <h2>Conoce a todas las comunidades alrededor de Chile que <span>confían en nosotros</span></h2>
+            
+            <a href="{% url 'clientes' %}" class="card-button">Ver más</a>
+        </div>
 </section>
 
 <section>

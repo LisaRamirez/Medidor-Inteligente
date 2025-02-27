@@ -2,30 +2,60 @@
 {%block contenido%}
 {% load static %}
 
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        display: flex;
+        width: 800px;
+        margin: 40px auto;
+        background-color: #002F6C;
+        color: white;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .image-section {
+        flex: 1;
+    }
+    .image-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .text-section {
+        flex: 1;
+        padding: 20px;
+    }
+    .text-section h2 {
+        font-size: 22px;
+    }
+    .text-section h2 strong {
+        font-weight: bold;
+    }
+    .text-section p {
+        font-size: 16px;
+        margin-top: 10px;
+        line-height: 1.5;
+    }
+</style>
+</head>
 <body>
-
-    <h1>Filtrar por Categoría</h1>
-    <div>
-        <button onclick="window.location.href='/prueba/2/'">Categoría 1</button>
-        <button onclick="window.location.href='/prueba/Valparaíso/'">Categoría 2</button>
-        <button onclick="window.location.href='/prueba/Metropolitana/'">Categoría 3</button>
-        <button onclick="window.location.href='/prueba/categoria4/'">Categoría 4</button>
-        <button onclick="window.location.href='/prueba/categoria5/'">Categoría 5</button>
-        <button onclick="window.location.href='/prueba/categoria6/'">Categoría 6</button>
-        <button onclick="window.location.href='/prueba/categoria7/'">Categoría 7</button>
-        <button onclick="window.location.href='/prueba/categoria8/'">Categoría 8</button>
-        <button onclick="window.location.href='/prueba/categoria9/'">Categoría 9</button>
-        <button onclick="window.location.href='/prueba/categoria10/'">Categoría 10</button>
+<div class="container">
+    <div class="image-section">
+        <img src="{% static 'app/img/beneficios.png'%}" alt="Medidor Sostenible">
     </div>
-    <h2>Resultados</h2>
-    <ul>
-        {% for item in items %}
-            <li>{{ item.nameapr }} - {{ item.comuna }}</li>
-        {% empty %}
-            <li>No hay resultados</li>
-        {% endfor %}
-    </ul>
-
+    <div class="text-section">
+        <h2>Diseñado para <strong>durar y ser sostenible a largo plazo</strong></h2>
+        <p>Nuestro medidor está construido con los mejores materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
+        <p>Además, cuenta con mantenimiento gratuito durante toda su vida útil.</p>
+    </div>
+</div>
+</body>
+</html>
 
 
 {%endblock%}
