@@ -4,10 +4,7 @@
 {% load static %}
 <style>
     .medidornuevo-slide {
-        background: url("{% static 'app/img/banner2.png' %}");
-
-        background-size: cover;
-        background-position: center;
+        
     }
 
     .medidornuevo-contenido {
@@ -30,11 +27,7 @@
         color: white;
     }
 
-    .medidornuevo-subtitulo {
-        font-size: clamp(0.5rem, 2vw, 1rem);
-        letter-spacing: 0.5px;
-        color: white;
-    }
+  
 
 
     
@@ -47,10 +40,7 @@
         align-items: center;
     }
     
-    .medidornuevo-lista {
-        list-style-type: none;
-        padding: 0;
-    }
+    
     
     .medidornuevo-item {
         display: flex;
@@ -133,68 +123,84 @@
                 <a href="{% url 'contacto'%}" class="cta-button" role="button">Solicita una cotización</a>
             </div>
         </div>-->
-        <div class="slide medidornuevo-slide">
+        <!--<div class="slide medidornuevo-slide">
             <div class="slide-content medidornuevo-contenido">
                 <div class="medidornuevo-header">
-                    <h2 class="medidornuevo-titulo">NUEVO</h2>
-                    <h1 class="medidornuevo-subtitulo">MEDIDOR<br>INTELIGENTE</h1>
-                </div>
-                
-                <div class="medidornuevo-grid">
-                    <ul class="medidornuevo-lista medidornuevo-lista-izquierda">
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Batería 3 veces más potente
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Monitoreo en tiempo real
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Fácil de implementar
-                        </li>
-                    </ul>
-                    <ul>
-                        <img src="{% static 'app/img/medidor.png'%}" alt="Medidor inteligente sostenible" class="ñiv">
-                    </ul>
-                    <ul>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Reduce tus pérdidas de agua
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Sostenible a largo plazo
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Diseño totalmente moderno
-                        </li>
-                    </ul>
+                    <h2 class="medidornuevo-titulo">NUEVO</h2>-->
                     
-                    <ul>
-                        <a href="{% url 'soluciones'%}" class="cta-button medidornuevo-boton">Conoce más</a>
-                    </ul>
-                </div>
-                
-                
+             
+        <div class="containerinteligente">
+
+            <div class="item medidornuevo-subtitulo">
+                <h1>MEDIDOR<br>INTELIGENTE</h1>
             </div>
+        
+            <div class="item">
+                <img src="{% static 'app/img/medidor.png'%}" alt="Medidor inteligente sostenible" class="ñiv">
+            </div>
+        
+            <div class="item medidornuevo-lista">
+                <ul>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        Batería 3 veces más potente
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        Monitoreo en tiempo real
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        Fácil de implementar
+                </li>
+            </ul>
         </div>
+      
+        <div class="item">
+            <ul>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                    Reduce tus pérdidas de agua
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                    Sostenible a largo plazo
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                    Diseño totalmente moderno
+                </li>
+            </ul>
+        </div>
+      
+        <div class="item">
+            <a href="{% url 'soluciones'%}" class="cta-button medidornuevo-boton">Conoce más</a>
+        </div>
+      
     </div>
-    
+
+
+
+
+
+
+
+
+
+
+
     <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
     <button class="slider-arrow arrow-next" aria-label="Siguiente">&#10095;</button>
     <div class="slider-nav" role="tablist">
@@ -202,6 +208,7 @@
         <button class="slider-dot" role="tab" aria-selected="false"></button>
         
     </div>
+</div>
 </div>
 
 
@@ -285,6 +292,7 @@
             <img class="arri" src="{% static 'app/img/medidor1.png'%}" alt="Medidor inteligente">
         </div>
     </div>
+    
 </section>
 
 

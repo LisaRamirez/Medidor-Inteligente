@@ -171,6 +171,7 @@
             <a href="{% url 'clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>
             <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Recursos</a>
             <a href="{% url 'contacto' %}" class="contact-btn {% if 'contacto' in request.path %}active{% endif %}">Contáctanos</a>
+            
         </div>
     </nav>
 
@@ -273,4 +274,18 @@
             </div>
         </div>
     </div>   
+
+    <div class="invit">
+        <span class="inv" id="visitor-count">0</span>
+    </div>
 </footer>
+{%block js%}
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  socket.on("updateCount", (count) => {
+    document.getElementById("visitor-count").innerText = count;
+  });
+</script>
+{%endblock%}
