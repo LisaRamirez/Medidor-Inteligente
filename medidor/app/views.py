@@ -15,6 +15,9 @@ from smtplib import SMTPException
 from django.http import JsonResponse
 from datetime import datetime
 
+
+from django.core.mail import EmailMultiAlternatives
+
 def mi_vista(request):
     return render(request, 'recursos.html', {'MEDIA_URL': settings.MEDIA_URL})
 # Create your views here.
@@ -104,7 +107,7 @@ def contacto(request):
             cargo_apr = request.POST['cargo_apr']
             comuna = request.POST['comuna']
             cantidad = request.POST['cantidad']
-            fecha = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+            fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             radio = request.POST['financiamiento']
             message = request.POST['message']   
 
@@ -114,89 +117,70 @@ def contacto(request):
 
             # Send email with the form data
             inicio = settings.EMAIL_HOST_USER
-            password = settings.EMAIL_HOST_PASSWORD
-            smtp = settings.EMAIL_HOST
+
+            
             cc_emails = ['lisaisabelc19@gmail.com']  # You can add more here
 
-            try:
-                send_email(
-                    subject="Nuevo Mensaje de Contacto",
-                    message=message,
-                    sender_email=inicio,
-                    sender_password=password,
-                    recipient_email=email,
-                    cc_emails=cc_emails,
-                    smtp_server= smtp,  # Replace with actual SMTP server
-                    smtp_port=587,
-                    name=name,
-                    phone=phone,
-                    ssr_apr=ssr_apr,
-                    cargo_apr=cargo_apr,
-                    comuna=comuna,
-                    cantidad=cantidad,
-                    fecha=fecha,
-                    radio=radio
-                )
-                messages.success(request, 'Tu mensaje ha sido enviado correctamente.')
-            except smtplib.SMTPException as e:
-                print(f"❌ Error: No se pudo enviar el email. {e}")
-                messages.error(request, 'Hubo un problema al enviar el correo. Intenta de nuevo.')
-
+            
             return render(request, 'app/contacto.html')  # Or redirect to a thank-you page, if needed
 
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        
         messages.error(request, 'Hubo un problema con tu solicitud.')
 
     return render(request, 'app/contacto.html')
 
-def send_email(subject, message, sender_email, sender_password, recipient_email, cc_emails, smtp_server, smtp_port, name, phone, ssr_apr, cargo_apr, comuna, cantidad, fecha, radio):
+def send_email(, info, inicio, password, email, cc_recipients,name,phone,ssr_apr,cargo_apr,comuna,cantidad,fecha,radio,message,cc_emails, 'smtp.gmail.com', 587):
+    # Obtener los valores del formulario
+    
+
+    # Configuración del servidor de correo
+    from_email = inicio  # Cambia esto por tu correo
+    to_email = email  # Correo del destinatario
+    password = password  # Contraseña del correo
+
+    # Crear el mensaje
+    subject = f"Formulario enviado por {name} - {fecha}"
+
+    body = f"""
+    Nombre: {name}
+    Correo: {email}
+    Teléfono: {phone}
+    SSR: {ssr_apr}
+    Cargo: {cargo_apr}
+    Comuna: {comuna}
+    Cantidad: {cantidad}
+    Fecha de envío: {fecha}
+    Tipo de financiamiento: {radio}
+
+    Mensaje: {message}
+    """
+
+    # Crear el mensaje MIME
+    msg = MIMEMultipart()
+    msg['From'] = from_email
+    msg['To'] = to_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Enviar el correo
     try:
-        # Configurar servidor SMTP
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.ehlo()
+        # Conexión con el servidor SMTP
+        server = smtplib.SMTP('smtp.dominio.com', 587)  # Cambia a tu servidor SMTP
         server.starttls()
-        server.login(sender_email, sender_password)
-
-        # Crear el correo en formato HTML
-        msg = MIMEMultipart()
-        msg['Subject'] = subject
-        msg['From'] = sender_email
-        msg['To'] = recipient_email
-        msg['Cc'] = ', '.join(cc_emails)  # Agregar CC
-        all_recipients = [recipient_email] + cc_emails
-
-        # Estilizar el mensaje HTML
-        html_message = f"""
-         <html>
-            <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-                <h2 style="color: #2C3E50;">Nuevo Mensaje de Contacto</h2>
-                <table border="1" cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%;">
-                    <tr><th style="background: #f2f2f2; text-align: left;">Nombre</th><td>{name}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">Teléfono</th><td>{phone}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">SSR/APR</th><td>{ssr_apr}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">Cargo APR</th><td>{cargo_apr}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">Comuna</th><td>{comuna}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">Cantidad</th><td>{cantidad}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">Fecha</th><td>{fecha}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">Financiamiento</th><td>{radio}</td></tr>
-                    <tr><th style="background: #f2f2f2; text-align: left;">Mensaje</th><td>{message}</td></tr>
-                </table>
-                <p style="margin-top: 20px;">Este mensaje fue enviado desde el formulario de contacto.</p>
-            </body>
-            </html>
-            """
-
-        # Agregar HTML como parte del correo
-        msg.attach(MIMEText(html_message, "html"))
-
-        # Enviar correo
-        server.sendmail(sender_email, all_recipients, msg.as_string())
+        server.login(from_email, password)
+        text = msg.as_string()
+        server.sendmail(from_email, to_email, text)
         server.quit()
-        print('✅ Email enviado correctamente!')
-    except smtplib.SMTPException as e:
-        print(f"❌ Error: No se pudo enviar el email. {e}")
-        messages.error('Hubo un problema al enviar el correo. Intenta de nuevo.')
+        print("Correo enviado exitosamente!")
+    except Exception as e:
+        print(f"Error al enviar el correo: {e}")
+
+
+        
+    
+
+    
 
 
 

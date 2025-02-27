@@ -64,14 +64,19 @@
                                 {% if ap.imagen %}
                                    <img class="imagensota" src="{{ap.imagen.url}}" alt="imagen {{ap.comuna}}">
                                 {% endif %}
-                                <h3>{{ap.nameapr}}</h3>
+                                <h3 class="chiq">{{ap.nameapr}}</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="location">
-                                    <h4>{{ap.comuna}}</h4>
-                                    <p>Región {{ap.region}}</p>
+                                    <div class="dettt">
+                                        <h4 class="chiq">{{ap.comuna}}</h4>
+                                        <p>Región {{ap.region}}</p>
+                                    </div>
+                                
+                                    <div class="dettt">
+                                        <a href="{% url 'apr' ap.id %}" class="details-btn">Detalles →</a>
+                                    </div>
                                 </div>
-                                <a href="{% url 'apr' ap.id %}" class="details-btn">Detalles →</a>
                             </div>
                         </article>
                     </div>  

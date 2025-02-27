@@ -284,9 +284,7 @@ body {
         display: none;
     }
 
-    .video-container {
-        margin: 0 -1rem; /* Ajuste para móviles */
-    }
+    
 }
 
 @media (max-width: 480px) {
@@ -1029,15 +1027,14 @@ transform: none !important;
 }
 
 .imm-img {
+    
     display: flex;
     margin-left: -60%;
     height: auto;
     z-index:5;
     border-radius: 10px;
 }
-.arri{
-    padding-bottom: 60px;
-}
+
 
 .imm-info {
     max-width: 900px;
@@ -1064,6 +1061,8 @@ transform: none !important;
         text-align: center;
     }
     .imm-img {
+        width: 160%;
+        height: 160%;
         display: flex;
         margin-left: -40%;
         height: auto;
@@ -1094,12 +1093,15 @@ transform: none !important;
         width: 90%;
     }
     .imm-img {
-        display: flex;
-        margin-left: -20%;
+        width: 80%;
+        height: 80%;
+        display: grid;
+        margin-left: -10%;
         height: auto;
         z-index:5;
         border-radius: 10px;
     }
+    
     .imm-info {
         width: 80%;
         margin-left: 0;
@@ -1121,16 +1123,15 @@ transform: none !important;
         margin-left: 0;
     }
     .imm-img {
+        width: 80%;
+        height: 80%;
         display: flex;
         margin-left:0%;
         height: auto;
         z-index:5;
         border-radius: 10px;
     }
-    .arri{
-        padding-bottom: 0px;
-        margin-right: 0px;
-    }
+    
 }
 @media (max-width: 400px) {
     .imagun {
@@ -1146,16 +1147,58 @@ transform: none !important;
         margin-left: 0;
     }
     .imm-img {
+        width: 80%;
+        height: 80%;
         display: flex;
         margin-left:0%;
         height: auto;
         z-index:5;
         border-radius: 10px;
     }
-    .arri{
-        padding-bottom: 0px;
-        margin-right: 0px;
-    }
+   
+}
+.coso{
+    width: 100%;
+}
+.arri{
+    display: grid;
+    margin: 0 auto;
+
+}
+
+.tv-sec{
+    width:100%;
+    height: 80%;
+    display: grid;
+}
+
+.video-container {
+    margin: auto auto;
+    display:grid;
+    width: 100%;
+    max-width: 900px; /* Puedes ajustar este valor según necesites */
+    aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
+}
+
+/* Hace que el video ocupe el contenedor */
+.video-container iframe {
+    margin: auto auto;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px; /* Bordes redondeados opcionales */
+}
+
+
+.headerr {
+
+    align-items: center;
+    flex-direction: column;
+    padding-top: 1rem;
+    margin: auto auto;
+   
+    width: 100%; /* Ocupará todo el ancho disponible */
+    max-width: 900px; /* Ajusta según el diseño */
+    aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
 }
 
 /* Centrar el video */
@@ -1369,31 +1412,9 @@ transform: none !important;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
 }
-.headerr {
-    height: 100%;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 1rem;
-    margin: auto auto;
-   
-    width: 100%; /* Ocupará todo el ancho disponible */
-    max-width: 900px; /* Ajusta según el diseño */
-    aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
-}
-/* Contenedor responsivo del video */
-.video-container {
-    margin: auto auto;
-    width: 100%;
-    max-width: 900px; /* Puedes ajustar este valor según necesites */
-    aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
-}
 
-/* Hace que el video ocupe el contenedor */
-.video-container iframe {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px; /* Bordes redondeados opcionales */
-}
+/* Contenedor responsivo del video */
+
 .nav {
     max-width: 1200px;
     margin: 0 auto;
@@ -2727,7 +2748,7 @@ h1 {
     background-position: left;  /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     width: 100%; /* Se expande en todo el ancho */
-    min-height: 100px; /* Ajusta la altura según necesidad */
+    min-height: 1140px; /* Ajusta la altura según necesidad */
 }
 
 .regions-title {
@@ -2815,8 +2836,33 @@ h1 {
     height:100%;
     margin: auto auto;
 }
+.location{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+}
+.dett{
+    width:80%;
+    height:80%;
+    margin:auto auto;
+}
+.details-btn {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-light);
+    border-radius: var(--border-radius);
+    transition: all 0.3s;
+    margin: auto auto;
+    
+}
 
-
+.details-btn:hover {
+    background: var(--text-light);
+    color: var(--primary-blue);
+}
 
 @media (max-width: 1200px){
     .map-grid {
@@ -2846,29 +2892,52 @@ h1 {
     
     }
 }
-@media (max-width: 600px) { 
-    .map-grid {
-        display: grid;
-        grid-template-columns:1fr;
-    }
-    .committees-grid{
-        width:250px;
-        height: 150px;
-        padding-top:2rem;
-        padding-bottom: 2rem;
-    
-    }
-}
-@media (min-width: 400px) and (max-width: 410px) {
+
+
+@media (min-width: 400px) and (max-width: 600px) {
     .map-grid {
         display: grid;
         grid-template-columns: 1fr;
+        gap:10px;
     }
     .committees-grid {
-        width: 180px;
-        height: 100px;
-        padding-top: 0.8rem;
-        padding-bottom: 0.8rem;
+        width: 320px;
+        height: 300px;
+      
+    }
+    .imagg {
+        width: 100%;
+        height: 60%;
+        margin: auto auto;
+        
+    }
+    .imagensota{
+        margin: auto auto;
+    }
+    .chiq{
+        font-size: 5px;
+    }
+    .card-footer{
+        width:100%;
+        height:40%;
+
+    }
+    .location{
+        max-width:400px;
+        max-height:100px;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .dett{
+        width:80%;
+        height:80%;
+        margin:auto auto;
+    }
+    .details-btn{
+        display:inline-block;
+        width:80%;
+        height:80%;
+        margin:auto auto;
     }
 }
 .map-container {
@@ -2912,19 +2981,7 @@ h1 {
     opacity: 0.9;
 }
 
-.details-btn {
-    color: var(--text-light);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--text-light);
-    border-radius: var(--border-radius);
-    transition: all 0.3s;
-}
 
-.details-btn:hover {
-    background: var(--text-light);
-    color: var(--primary-blue);
-}
 
 
 
@@ -2976,9 +3033,7 @@ h1 {
         text-align: center;
     }
 
-    .details-btn {
-        width: 100%;
-    }
+   
 }
 
 /* Móviles pequeños */
@@ -3006,11 +3061,7 @@ h1 {
 }
 
 /* Optimizaciones táctiles */
-@media (hover: none) {
-    .details-btn {
-        padding: 0.75rem 1rem;
-    }
-}
+
 
 
 /* Committee Cards */
@@ -3054,19 +3105,7 @@ h1 {
     opacity: 0.9;
 }
 
-.details-btn {
-    color: var(--text-light);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--text-light);
-    border-radius: var(--border-radius);
-    transition: all 0.3s;
-}
 
-.details-btn:hover {
-    background: var(--text-light);
-    color: var(--primary-blue);
-}
 
 /* Responsive Design */
 
@@ -3113,9 +3152,7 @@ h1 {
         text-align: center;
     }
 
-    .details-btn {
-        width: 100%;
-    }
+    
 }
 
 /* Móviles pequeños */
@@ -3143,11 +3180,7 @@ h1 {
 }
 
 /* Optimizaciones táctiles */
-@media (hover: none) {
-    .details-btn {
-        padding: 0.75rem 1rem;
-    }
-}
+
 
 .cliente {
     width: 75%;
@@ -3305,19 +3338,7 @@ h1 {
     opacity: 0.9;
 }
 
-.details-btn {
-    color: var(--text-light);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--text-light);
-    border-radius: var(--border-radius);
-    transition: all 0.3s;
-}
 
-.details-btn:hover {
-    background: var(--text-light);
-    color: var(--primary-blue);
-}
 
 /* Responsive Design */
 
@@ -3369,9 +3390,7 @@ h1 {
         text-align: center;
     }
 
-    .details-btn {
-        width: 100%;
-    }
+    
 }
 
 /* Móviles pequeños */
@@ -3399,11 +3418,7 @@ h1 {
 }
 
 /* Optimizaciones táctiles */
-@media (hover: none) {
-    .details-btn {
-        padding: 0.75rem 1rem;
-    }
-}
+
 /* RECURSO */
 
     /* Cards Grid */
@@ -3765,7 +3780,7 @@ a:hover {
     line-height: 1.4;
 }
 
-.card-button {
+.card-buttons {
     display: inline-block;
     padding: 8px 20px;
     border: 2px solid white;
@@ -3777,7 +3792,7 @@ a:hover {
     background: transparent;
 }
 
-.card-button:hover {
+.card-buttons:hover {
     background: white;
     color: black;
 }
@@ -3897,8 +3912,11 @@ a:hover {
 }
 .handheld {
     width:100%;
+    height:350px;
+    margin:auto auto;
     background-color: #002366;
 }
+
 
 .header-content {
     display: flex;
@@ -3909,6 +3927,34 @@ a:hover {
     width:65%;
     margin:auto auto;
     height:350px;
+}
+@media (max-width: 800px) {
+    .handheld {
+        width:100%;
+        height:700px;
+        margin:auto auto;
+        background-color: #002366;
+    }
+    .header-content {
+        margin:auto auto;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .right-content {
+        justify-content: center;
+    }
+
+    .device-image {
+        height: 200px;
+        
+    }
+
+    .image-circle {
+        width: 300px;
+        height: 300px;
+        z-index: 0;
+    }
 }
 
 .left-content {
@@ -3950,12 +3996,12 @@ a:hover {
     background: rgba(59, 130, 246, 0.3);
     border-radius: 50%;
     filter: blur(40px);
-    z-index:-0;
+    z-index:0;
 }
 
 .device-image {
     position: relative;
-    z-index: 4;
+    z-index: 5;
     height: 300px;
     object-fit: contain;
     
@@ -3966,6 +4012,7 @@ a:hover {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    z-index: 5;
 }
 
 .button {
@@ -4008,26 +4055,7 @@ a:hover {
     margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-    .header-content {
-        margin:auto auto;
-        flex-direction: column;
-        text-align: center;
-    }
 
-    .right-content {
-        justify-content: center;
-    }
-
-    .device-image {
-        height: 200px;
-    }
-
-    .image-circle {
-        width: 300px;
-        height: 300px;
-    }
-}
 .steps-grid {
     display: flex;
     gap: 20px;
@@ -4142,10 +4170,10 @@ a:hover {
     
     /* Stats Section */
     .stats {
-        background-color: #002868;
+        background-color: #020750;
         color: white;
         padding: 4rem 2rem;
-        
+
         background-size: cover;  /* La imagen cubre todo el contenedor */
         background-position: center;  /* Centra la imagen */
         background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -4161,6 +4189,29 @@ a:hover {
         gap: 2rem;
         text-align: center;
     }
+    @media (max-width: 600px) {
+        .stats{
+            background-image: url("{% static 'app/img/chileflaco.png' %}");
+            background-color: #002868;
+            color: white;
+            padding: 4rem 2rem;
+            background-size: cover;  /* La imagen cubre todo el contenedor */
+            background-position: center;  /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            width: 100%;  
+            
+            height: auto;
+        }
+        .stats-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+    }
+
     
     .stat-item {
         display: flex;
@@ -4216,19 +4267,25 @@ a:hover {
         color: #000;
         margin: 30px 0 20px;
         padding-left: 20px;
+        margin-left: 15%;
         
-        
+    }
+    .entrevista--titlea{
+        text-align: center;
+        font-size: 36px;    
+        color:rgb(7, 37, 121);
+
     }
     .entrevista--title{
         text-align: center;
-        font-size: 24px;    
+        font-size: 27px;    
         color:rgb(7, 37, 121);
 
     }
 
     .entrevista-slider-container {
         position: relative;
-        max-width: 1600px;
+        width:80%;
         margin: 0 auto;
         padding: 0 50px;
     }
@@ -4256,7 +4313,7 @@ a:hover {
 
     .entrevista-video-container {
         position: relative;
-        width: 100%;
+        width: 80%;
         padding-top: 56.25%;
         background: #000;
         border-radius: 12px;
@@ -4310,7 +4367,7 @@ a:hover {
         
         .entrevista-section-title {
             font-size: 20px;
-            margin: 20px 0 15px;
+            
         }
     }
 
