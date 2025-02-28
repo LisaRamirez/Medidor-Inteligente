@@ -163,4 +163,4 @@ pip install -r requirements.txt
 Licencia
 Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
 
-Creado por Programadora / Lisa Ramírez y Cristóbal Farías de WamDigital.cl
+Creado por WamDigital.cl
