@@ -10,20 +10,22 @@
     </div>
 </div>
 <br>
+<br>
 <div class="ñeee">
     <br>
-    <div class="conta">
-        <div>
-            <div class="container ñapa"> 
-                {% if appr.imagen %}
-                    <img class="imagenn" src="{{appr.imagen.url}}" alt="imagen {{appr.comuna}}">
-                {% endif %}
-            </div>
-
+    <div>
+        <div class="ñapa"> 
+            {% if appr.imagen %}
+                <img class="imagenn" src="{{appr.imagen.url}}" alt="imagen {{appr.comuna}}">
+            {% endif %}
         </div>
 
+    </div>
+    <br>
+    <br>
+    <div class="conta">
+        
         <div class="infore">
-            <div>
                 <h1 class="tittlle">Directorio:</h1>
                 <p class="pres">Presidente: {{appr.presidente}}</p>
                 <p class="pres">Secretario: {{appr.secretario}}</p>
@@ -48,11 +50,11 @@
                     <br>
                     
                 </div>
-            </div>
+        </div>
         
 
         
-            <div>
+        <div class="infore">
                 <h1 class="tittlle">Información de Contacto:</h1>
                 <p class="pres">📍 Dirección: {{appr.direccion}}, Región de {{appr.region}}.</p>
                 <p class="pres">📞 Teléfono: {{appr.phone}}</p>

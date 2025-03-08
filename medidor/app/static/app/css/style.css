@@ -36,9 +36,9 @@ body {
 .testimonials-container {
     display: flex;
     gap: 4rem;
+    width: 100%;
     align-items: center;
     justify-content: center;
-    width: 100%;
     max-width: 1200px;
     background-color:#09498d;/* Asegurar fondo azul dentro del contenedor */
     padding: 2rem;
@@ -675,9 +675,8 @@ body {
     }
 .ñapa{
     width: 90%;
-    height: 100%;
-    padding-left: 5rem;
-    
+    height: auto;
+    margin: auto auto;
 
 }
 .apra{
@@ -699,11 +698,17 @@ text-align: center;
 .conta{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: auto auto;
+}
+.infore{
+    margin: auto auto;
+    
 }
 
 .imagenn{
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: auto auto;
     border-radius: 20px;
 
@@ -715,27 +720,38 @@ text-align: center;
     margin: auto auto;
 
 }
-@media (max-width: 1100px) {
-    .conta{
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-    .infore{
-        margin-left: 75px;
-    }
-    
-}
+
 @media (max-width: 768px) {
     .imagenn{
         width: 100%;
-        height: 100%;
         margin: auto auto;
         border-radius: 20px;
         
     }
 
 }
-
+@media (min-width: 800px) and (max-width: 1199px) {
+    .conta{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 80%;
+    }
+    .infore{
+        margin-left:0;
+        
+    }
+}
+@media (min-width: 200px) and (max-width: 799px) {
+    .conta{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+    .infore{
+        margin-left: 0;
+        
+    }
+}
 .sustainability {
 background-color: #002868;
 color: white;
@@ -1308,8 +1324,9 @@ transform: none !important;
 
 .headerr {
     padding-top: 1rem;
+    padding-bottom: 5rem;
     margin: auto auto;
-    height: 100%;
+    height: auto;
     width: 100%; /* Ocupará todo el ancho disponible */
     max-width: 900px; /* Ajusta según el diseño */
     aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
@@ -1580,7 +1597,7 @@ transform: none !important;
     border-radius: 20px;
 }
 .reamm{
-    width:70%;
+    width:80%;
     margin: auto auto;
     margin: border 1px solid rgb(209, 205, 205);
     background-color: #e2eaec;
@@ -1589,6 +1606,13 @@ transform: none !important;
     padding-top: 3rem;
     padding-left: 3rem;
     padding-right: 3rem;
+}
+.reammm{
+    width:80%;
+    margin: auto auto;
+    margin: border 1px solid rgb(209, 205, 205);
+    background-color: #e2eaec;
+
 }
 
 
@@ -1600,6 +1624,7 @@ transform: none !important;
     padding-bottom: 2rem;
 }
 .rea{
+    display: grid;
     width: 90%;
     margin: auto auto;
     padding-bottom: 5rem;
@@ -1643,37 +1668,68 @@ transform: none !important;
     padding: 0.5rem 1rem;
     border-radius: 4px;
 }
-@media (min-width: 1024px) and (max-width: 1920px) {
-.rea{
-    width: 95%;
-    margin: auto auto;
-    padding-bottom: 5rem;
-    padding-top: 5rem;
-    color: #1a169d;}
-}
-.ream{
-    width:100%;
-    margin: auto auto;
-    margin: border 1px solid rgb(255, 255, 255);
-    background-color: #f7f8fa;
-    border-radius: 20px;
-}
-
-@media (min-width: 200px) and (max-width: 1000px) {
-    .rea{
-        width:100%;
-        margin: auto auto;
+@media (min-width: 1200px) and (max-width: 1920px) {
+    .rea {
+        width: 95%;
+        margin: auto;
         padding-bottom: 5rem;
         padding-top: 5rem;
-        color: #1a169d;}
+        color: #1a169d;
     }
-    .ream{
-        width:100%;
-        margin: auto auto;
-        margin: border 1px solid rgb(255, 255, 255);
+
+    .ream {
+        width: 95%;
+        margin: auto;
+        border: 1px solid rgb(255, 255, 255); /* Corrección */
         background-color: #f7f8fa;
         border-radius: 20px;
     }
+
+    .reamm {
+        width: 80%;
+        margin: auto;
+        border: 1px solid rgb(209, 205, 205); /* Corrección */
+        background-color: #e2eaec;
+        border-radius: 20px;
+        padding: 3rem; /* Se simplificó el padding */
+    }
+}
+
+
+
+@media (min-width: 200px) and (max-width: 1199px) {
+    .rea {
+        width: 100%;
+        margin: auto;
+        padding-bottom: 5rem;
+        padding-top: 5rem;
+        color: #1a169d;
+    }
+
+    .ream {
+        width: 100%;
+        margin: auto;
+        border: 1px solid rgb(255, 255, 255); /* Corrección */
+        background-color: #f7f8fa;
+        border-radius: 20px;
+    }
+
+    .reamm {
+        width: 90%;
+        margin: auto;
+        border: 1px solid rgb(209, 205, 205); /* Corrección */
+        background-color: #e2eaec;
+        border-radius: 20px;
+    }
+    .reammm{
+        width:90%;
+        margin: auto auto;
+        margin: border 1px solid rgb(209, 205, 205);
+        background-color: #e2eaec;
+    
+    }
+}
+
 
         
     /* Hero Section */
@@ -2271,8 +2327,14 @@ transition: none;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
         margin-bottom: 3rem;
+        margin: auto auto;
     }
-   
+   .asa{
+    margin-right: 4rem;
+   }
+   .ase{
+    margin-left: 4rem;
+   }
     .contact-info h2,
     .social-info h2 {
         color: #002B5C;
@@ -2384,6 +2446,12 @@ transition: none;
         .info-columns {
             grid-template-columns: 1fr;
         }
+        .asa{
+            margin-right: 0rem;
+           }
+           .ase{
+            margin-left: 0rem;
+           }
     
         .form-row {
             grid-template-columns: 1fr;
@@ -2886,12 +2954,10 @@ h1 {
 .regions {
     padding: 60px 0;
     background-color: #f8f9fa;
-    
-
     background-position: left;  /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     width: 100%; /* Se expande en todo el ancho */
-    min-height: 1140px; /* Ajusta la altura según necesidad */
+    height: auto; /* Ajusta la altura según necesidad */
 }
 
 .regions-title {
@@ -2942,7 +3008,7 @@ h1 {
 
 
 .scroll-container { 
-    max-height: calc(3 * 250px); /* Ajusta según el tamaño real de tus tarjetas */
+    max-height: calc(3 * auto); /* Ajusta según el tamaño real de tarjetas */
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -2951,6 +3017,8 @@ h1 {
 /* Map and Committees Grid */
 
 .map-grid {
+    width: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
@@ -2959,9 +3027,9 @@ h1 {
 }
 .committees-grid{
     width:100%;
-    height: 100%;
-    padding-top:3rem;
-    padding-bottom: 3rem;
+    height: auto;
+    padding-top:4rem;
+    padding-bottom: 4rem;
     border-radius: 20px;
 }
 
@@ -3002,17 +3070,43 @@ h1 {
     margin: auto auto;
     
 }
+.cliente {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+
+    
+}
 
 .details-btn:hover {
     background: var(--text-light);
     color: var(--primary-blue);
 }
-
-@media (max-width: 1200px){
+@media (min-width: 1301px) and (max-width: 1920px) { 
+    .map-grid {
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr;
+        justify-items: stretch;
+        width: 100%;
+        height: 1100px;
+    }
+    .committees-grid{
+        width:100%;
+        height: 100%;
+        padding-top:3rem;
+        padding-bottom: 3rem;
+        border-radius: 20px;
+    }
+    
+    
+}
+@media (min-width: 801px) and (max-width: 1300px) { 
     .map-grid {
         display: grid;
         grid-template-columns:1fr 1fr;
         justify-items: stretch;
+        width: 100%;
+        height: 1100px;
     }
     .committees-grid{
         width:100%;
@@ -3024,11 +3118,14 @@ h1 {
     
     
 }
-@media (max-width: 800px) { 
+
+@media (min-width: 601px) and (max-width: 800px) { 
     .map-grid {
         display: grid;
         grid-template-columns:1fr;
         justify-items: stretch;
+        width: 100%;
+        height: 700px;
     }
     .committees-grid{
         width:100%;
@@ -3040,12 +3137,14 @@ h1 {
 }
 
 
-@media (min-width: 400px) and (max-width: 600px) {
+@media (min-width: 200px) and (max-width: 600px) {
     .map-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap:10px;
         justify-items: stretch;
+        width: 100%;
+        height: 600px;
     }
     .committees-grid {
         width:100%;
@@ -3066,7 +3165,7 @@ h1 {
     }
     .card-footers{
         width:100%;
-        height:50%;
+        height:82px;
 
     }
     .locations{
@@ -3085,6 +3184,13 @@ h1 {
         width:80%;
         height:80%;
         margin:auto auto;
+    }
+    .cliente {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0 20px;
+        
     }
 }
 .map-container {
@@ -3329,13 +3435,7 @@ h1 {
 /* Optimizaciones táctiles */
 
 
-.cliente {
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    padding: 0 20px;
-    
-}
+
 
 /* Hero Section */
 .hero {
