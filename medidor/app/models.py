@@ -33,7 +33,7 @@ opciones_consultas = [
     ["Coquimbo","Coquimbo"],
     ["Valparaíso","Valparaíso"],
     ["Metropolitana","Metropolitana"],
-    ["Ohiggins","Ohiggins"],
+    ["O'higgins","O'higgins"],
     ["Maule","Maule"],
     ["Biobio","Biobio"],
     ["Araucania","Araucania"],

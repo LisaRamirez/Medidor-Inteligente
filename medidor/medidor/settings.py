@@ -56,6 +56,7 @@ SILENCED_SYSTEM_CHECKS = ["security.W019"]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -117,12 +118,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-CL'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
@@ -132,6 +133,43 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 import os
+from pathlib import Path
+
+# Ruta base del proyecto
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Ruta de la carpeta de logs
+LOG_DIR = BASE_DIR / 'logs'
+LOG_DIR.mkdir(parents=True, exist_ok=True)  # Asegura que la carpeta existe
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '{levelname}: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {  # Guardar logs en un archivo
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOG_DIR, 'errors.log'),
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],  # SOLO archivo, sin 'console'
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+# Ruta base del proyecto
+
 
 
 # cmd
