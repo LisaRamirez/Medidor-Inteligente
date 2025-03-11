@@ -35,7 +35,7 @@ def clientes(request):
         # Validación de parámetros inesperados en la URL
         if request.GET or request.POST:
             messages.error(request, 'Parámetros no permitidos en la solicitud.')
-            return redirect('e404')  # Redirige a la página de error
+            return redirect('app/error_404')  # Redirige a la página de error
         
         # Obtener todos los objetos de Apr
         appr = Apr.objects.all()
@@ -46,7 +46,7 @@ def clientes(request):
     except Exception as e:
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema con tu solicitud.')
-        return redirect('e404')  # Redirige a la página de error
+        return redirect('app/error_404')  # Redirige a la página de error
 
 
 
@@ -56,7 +56,7 @@ def filtrar_apr(request):
         # Verificar si hay parámetros GET inesperados
         if not request.GET.get('region'):
             messages.error(request, 'Parámetros no permitidos o faltantes en la solicitud.')
-            return redirect('e404')  # Redirige a la página de error
+            return redirect('app/error_404')  # Redirige a la página de error
 
         # Obtener la región del parámetro GET
         region = request.GET.get('region')
@@ -72,9 +72,9 @@ def filtrar_apr(request):
     except Exception as e:
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema con tu solicitud.')
-        return redirect('e404')  # Redirige a la página de error
+        return redirect('app/error_404')  # Redirige a la página de error
 
-    
+
 
 
 
@@ -90,7 +90,7 @@ def apr(request, apr_id):
     except Exception as e:
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema al cargar la información.')
-        return redirect('e404')  # Redirige a una página de error
+        return redirect('app/error_404')  # Redirige a una página de error
 
 
 
@@ -98,22 +98,16 @@ def apr(request, apr_id):
 def home(request):
     if request.method == 'POST':
         try:
-            # Obtener datos del formulario
-            name = request.POST.get('name', '').strip()
-            email = request.POST.get('email', '').strip()
-            phone = request.POST.get('phone', '').strip()
-            ssr_apr = request.POST.get('ssr_apr', '').strip()
-            cargo_apr = request.POST.get('cargo_apr', '').strip()
-            comuna = request.POST.get('comuna', '').strip()
-            cantidad = request.POST.get('cantidad', '').strip()
-            radio = request.POST.get('financiamiento', '').strip()
-            message = request.POST.get('message', '').strip()
-            fecha = datetime.now()
-
-            # Validación básica
-            if not name or not email or not phone:
-                messages.error(request, 'Nombre, correo y teléfono son obligatorios.')
-                return redirect('home')
+            name = request.POST.get('name', '')
+            email = request.POST.get('email', '')
+            phone = request.POST.get('phone', '')
+            ssr_apr = request.POST.get('ssr_apr', '')
+            cargo_apr = request.POST.get('cargo_apr', '')
+            comuna = request.POST.get('comuna', '')
+            cantidad = request.POST.get('cantidad', '')
+            radio = request.POST.get('financiamiento', '')
+            message = request.POST.get('message', '')
+            fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             # Guardar en la base de datos
             contacto = Contacto(
@@ -133,7 +127,7 @@ def home(request):
                     f"Cargo APR: {cargo_apr}\nComuna: {comuna}\nCantidad: {cantidad}\n"
                     f"Fecha: {fecha}\nFinanciamiento: {radio}\nMensaje: {message}")
 
-            cc_emails = ['contacto@medidorinteligente.cl']
+            cc_emails = ['cristobalfariasfredes@gmail.com', '']
             subject = 'APR/SSR Contacto'
 
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
@@ -141,20 +135,10 @@ def home(request):
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
             return redirect('home')  # Redirige a la vista principal después de enviar
 
-        except ValidationError as ve:
-            logger.error(f"Error de validación: {ve}")
-            messages.error(request, 'Datos inválidos. Verifica e intenta nuevamente.')
-            return redirect('home')
-
-        except IntegrityError as ie:
-            logger.error(f"Error de integridad en la base de datos: {ie}")
-            messages.error(request, 'Error al guardar en la base de datos.')
-            return redirect('home')
-
         except Exception as e:
-            logger.error(f"Error inesperado: {e}", exc_info=True)
+            print(f"Error: {e}")
             messages.error(request, 'Hubo un error al procesar tu solicitud. Inténtalo nuevamente.')
-            return redirect('e404')  # Redirige a una página de error personalizada
+            return redirect('app/error_404')  # Cambiar por una vista de error adecuada
 
     return render(request, 'app/home.html')
 
@@ -163,15 +147,15 @@ def home(request):
 def contacto(request):
     if request.method == 'POST':
         try:
-            name = request.POST.get('name', '').strip()
-            email = request.POST.get('email', '').strip()
-            phone = request.POST.get('phone', '').strip()
-            ssr_apr = request.POST.get('ssr_apr', '').strip()
-            cargo_apr = request.POST.get('cargo_apr', '').strip()
-            comuna = request.POST.get('comuna', '').strip()
-            cantidad = request.POST.get('cantidad', '').strip()
-            radio = request.POST.get('financiamiento', '').strip()
-            message = request.POST.get('message', '').strip()
+            name = request.POST.get('name', '')
+            email = request.POST.get('email', '')
+            phone = request.POST.get('phone', '')
+            ssr_apr = request.POST.get('ssr_apr', '')
+            cargo_apr = request.POST.get('cargo_apr', '')
+            comuna = request.POST.get('comuna', '')
+            cantidad = request.POST.get('cantidad', '')
+            radio = request.POST.get('financiamiento', '')
+            message = request.POST.get('message', '')
             fecha = datetime.now()
 
             # Guardar en la base de datos
@@ -182,48 +166,43 @@ def contacto(request):
             )
             contacto.save()
 
-            # Configuración de correo
+            # Enviar correo
             sender_email = settings.EMAIL_HOST_USER
             password = settings.EMAIL_HOST_PASSWORD
             smtp_server = settings.EMAIL_HOST
             smtp_port = settings.EMAIL_PORT
 
             info = (
-                f"Estimado/a {name},\n\n"
-                f"Agradecemos sinceramente tu solicitud. A continuación, te detallamos la información recibida:\n\n"
-                f"Datos Personales:\n"
-                f"• Nombre: {name}\n"
-                f"• Teléfono: {phone}\n"
-                f"• Comuna: {comuna}\n\n"
-                f"Detalles de SSR Y APR:\n"
-                f"• SSR/APR: {ssr_apr}\n"
-                f"• Cargo APR: {cargo_apr}\n"
-                f"• Cantidad: {cantidad}\n"
-                f"• Fecha: {fecha.strftime('%d-%m-%Y %H:%M:%S')}\n\n"
-                f"Información de Financiamiento:\n"
-                f"• Financiamiento: {radio}\n\n"
-                f"Mensaje: {message}\n\n"
-                f"Quedamos a tu disposición para cualquier consulta adicional.\n\n"
-                f"Atentamente,\n"
-                f"El equipo de atención al cliente de Medidor Inteligente."
-            )
+                    f"Estimado/a {name},\n\n"
+                    f"Agradecemos sinceramente tu solicitud. A continuación, te detallamos la información recibida:\n\n"
+                    f"Datos Personales:\n"
+                    f"• Nombre: {name}\n"
+                    f"• Teléfono: {phone}\n"
+                    f"• Comuna: {comuna}\n\n"
+                    f"Detalles de SSR Y APR:\n"
+                    f"• SSR/APR: {ssr_apr}\n"
+                    f"• Cargo APR: {cargo_apr}\n"
+                    f"• Cantidad: {cantidad}\n"
+                    f"• Fecha: {fecha}\n\n"
+                    f"Información de Financiamiento:\n"
+                    f"• Financiamiento: {radio}\n\n"
+                    f"Mensaje: {message}\n\n"
+                    f"Quedamos a tu disposición para cualquier consulta adicional.\n\n"
+                    f"Atentamente, {name}. \n"
+                    f"El equipo de atención al cliente de Medidor Inteligente.")
 
-            cc_emails = ['contacto@medidorinteligente.cl']
+            cc_emails = ['cristobalfariasfredes@gmail.com', '']
             subject = 'APR/SSR Contacto'
 
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
-            return redirect('contacto')
+            return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
 
         except Exception as e:
-            logger.error(f"Error en la vista contacto: {e}", exc_info=True)
-            messages.error(request, 'Hubo un error al procesar tu solicitud. Inténtalo nuevamente.')
-            return redirect('contacto')  # Redirige a la misma página de contacto
-        
-        except SMTPException as e:
-            logger.error(f"Error al enviar el correo: {e}", exc_info=True)
-            messages.error(request, 'Hubo un problema al enviar el correo. Inténtalo nuevamente.')
+            print(f"Error: {e}")
+            messages.error(request, 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.')
+            return redirect('app/error_404')  # Cambiar por una vista de error apropiada
 
     return render(request, 'app/contacto.html')
     
@@ -283,7 +262,7 @@ def recursos(request):
 
 def error_404(request, exception=None):
     try:
-        return render(request, 'app/e404.html', status=404)
+        return render(request, 'app/error_404', status=404)
     except Exception as e:
         logger.error(f"Error al renderizar la página 404: {e}", exc_info=True)
         return HttpResponseNotFound("Página no encontrada, pero ocurrió un error al cargar la plantilla.")
