@@ -160,6 +160,10 @@ pip install -r requirements.txt
 ## 6. Recursos Adicionales
 - [Documentación oficial de Django](https://docs.djangoproject.com/en/stable/)
 
+## 7. No ejecutar depuración actiivada en producción
+- SECURITY WARNING: don't run with debug turned on in production!
+"DEBUG = True" /setting.py
+
 Licencia
 Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
 
