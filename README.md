@@ -71,7 +71,7 @@ El proyecto sigue la estructura estándar de Django:
 │ ├── static/
 │ │ ├── app/
 │ │ ├── css/
-│ │ ├── img/ja
+│ │ ├── img/js
 │ │ 
 │ ├── templates/
 │ │ ├── app/
@@ -138,7 +138,7 @@ El proyecto sigue la estructura estándar de Django:
 - **apr/**: Carpeta relacionada con las Asociaciones de Agua Potable Rural (APR).
 - **media/**: Almacena archivos multimedia subidos por los usuarios.
 - **medidor/**: Contiene archivos relacionados con los medidores inteligentes.
-- **settings.py**: Configuración del proyecto Django.
+- **settings.py**: Configuración del proyecto Django. **
 - **urls.py**: Rutas URL principales del proyecto.
 - **db.sqlite3**: Base de datos SQLite utilizada en desarrollo.
 - **manage.py**: Script para gestionar el proyecto Django.
