@@ -142,7 +142,7 @@ def home(request):
                     f"Atentamente, {name}. \n"
                     f"El equipo de atención al cliente de Medidor Inteligente.")
 
-            cc_emails = ['cristobalfariasfredes@gmail.com', 'lisaisabelc19@gmail.com']
+            cc_emails = ['contacto@medidorinteligente.cl', '']
             subject = 'APR/SSR Contacto'
 
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
