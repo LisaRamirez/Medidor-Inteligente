@@ -4672,6 +4672,350 @@ a:hover {
     .testimoniocliente-seccion {
         background-color: #2B579A;
         color: white;
+        padding: 4rem 1rem;
+        width: 100%;
+        position: relative;
+    }
+
+    .testimoniocliente-encabezado {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .testimoniocliente-encabezado h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+    }
+
+    .testimoniocliente-encabezado p {
+        font-size: 1.4rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .testimoniocliente-contenedor {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 1rem;
+    }
+
+    .testimoniocliente-slider {
+        display: flex;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .testimoniocliente-tarjeta {
+        background: white;
+        color: #333;
+        padding: 1.5rem;
+        border-radius: 16px;
+        min-width: 100%;
+        flex-shrink: 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transform: scale(0.98);
+        transition: transform 0.3s ease;
+    }
+
+    .testimoniocliente-tarjeta.activo {
+        transform: scale(1);
+    }
+
+    .testimoniocliente-video-container {
+        width: 100%;
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .testimoniocliente-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 8px;
+    }
+
+    .testimoniocliente-info {
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .testimoniocliente-nombre {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+        color: #2B579A;
+    }
+
+    .testimoniocliente-ubicacion {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+
+    .testimoniocliente-descripcion {
+        font-size: 0.95rem;
+        color: #444;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .testimoniocliente-boton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: #2B579A;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimoniocliente-boton:hover {
+        background: #2B579A;
+        color: white;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .testimoniocliente-boton-prev {
+        left: 0;
+    }
+
+    .testimoniocliente-boton-next {
+        right: 0;
+    }
+
+    .testimoniocliente-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 2rem;
+    }
+
+    .testimoniocliente-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid white;
+    }
+
+    .testimoniocliente-dot:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .testimoniocliente-dot.activo {
+        background: white;
+        transform: scale(1.2);
+    }
+
+    /* Responsive Design */
+    /* Estilos base para móviles pequeños (320px-375px) */
+    @media screen and (max-width: 375px) {
+        .testimoniocliente-seccion {
+            padding: 2rem 0.5rem;
+        }
+
+        .testimoniocliente-encabezado h2 {
+            font-size: 1.75rem;
+        }
+
+        .testimoniocliente-encabezado p {
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+
+        .testimoniocliente-tarjeta {
+            padding: 1rem;
+        }
+
+        .testimoniocliente-nombre {
+            font-size: 1rem;
+        }
+
+        .testimoniocliente-ubicacion {
+            font-size: 0.85rem;
+        }
+
+        .testimoniocliente-descripcion {
+            font-size: 0.85rem;
+        }
+
+        .testimoniocliente-boton {
+            width: 35px;
+            height: 35px;
+            font-size: 1.25rem;
+        }
+    }
+
+    /* Móviles medianos (376px-414px) */
+    @media screen and (min-width: 376px) and (max-width: 414px) {
+        .testimoniocliente-seccion {
+            padding: 2.5rem 1rem;
+        }
+
+        .testimoniocliente-tarjeta {
+            padding: 1.25rem;
+        }
+    }
+
+    /* Móviles grandes/phablets (415px-767px) */
+    @media screen and (min-width: 415px) and (max-width: 767px) {
+        .testimoniocliente-encabezado h2 {
+            font-size: 2rem;
+        }
+
+        .testimoniocliente-encabezado p {
+            font-size: 1.1rem;
+        }
+
+        .testimoniocliente-tarjeta {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Tablets (768px-1023px) */
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        .testimoniocliente-seccion {
+            padding: 4rem 2rem;
+        }
+
+        .testimoniocliente-encabezado h2 {
+            font-size: 2.25rem;
+        }
+
+        .testimoniocliente-encabezado p {
+            font-size: 1.2rem;
+        }
+
+        .testimoniocliente-contenedor {
+            max-width: 700px;
+            padding: 1.5rem;
+        }
+
+        .testimoniocliente-tarjeta {
+            padding: 2rem;
+        }
+
+        .testimoniocliente-boton {
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Notebooks (1024px-1366px) */
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+        .testimoniocliente-seccion {
+            padding: 5rem 3rem;
+        }
+
+        .testimoniocliente-contenedor {
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .testimoniocliente-encabezado h2 {
+            font-size: 2.5rem;
+        }
+
+        .testimoniocliente-encabezado p {
+            font-size: 1.3rem;
+        }
+
+        .testimoniocliente-tarjeta {
+            padding: 2.5rem;
+        }
+
+        .testimoniocliente-boton {
+            width: 45px;
+            height: 45px;
+            font-size: 1.8rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .testimoniocliente-boton:hover {
+            opacity: 1;
+        }
+    }
+
+    /* Desktops (1367px y superior) */
+    @media screen and (min-width: 1367px) {
+        .testimoniocliente-seccion {
+            padding: 6rem 4rem;
+        }
+
+        .testimoniocliente-contenedor {
+            max-width: 1100px;
+        }
+
+        .testimoniocliente-encabezado h2 {
+            font-size: 3rem;
+        }
+
+        .testimoniocliente-encabezado p {
+            font-size: 1.4rem;
+            max-width: 700px;
+        }
+
+        .testimoniocliente-tarjeta {
+            padding: 3rem;
+        }
+    }
+
+    /* Orientación Landscape para móviles */
+    @media screen and (max-height: 500px) and (orientation: landscape) {
+        .testimoniocliente-seccion {
+            padding: 2rem 1rem;
+        }
+
+        .testimoniocliente-encabezado {
+            margin-bottom: 1.5rem;
+        }
+
+        .testimoniocliente-tarjeta {
+            padding: 1rem;
+        }
+
+        .testimoniocliente-video-container {
+            margin-bottom: 1rem;
+        }
+
+        .testimoniocliente-info {
+            padding: 0.5rem 0;
+        }
+    }
+
+    .testimoniocliente-seccion {
+        background-color: #2B579A;
+        color: white;
         padding: 2rem 1rem;
         width: 100%;
         position: relative;

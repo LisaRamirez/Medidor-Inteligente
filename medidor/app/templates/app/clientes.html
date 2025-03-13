@@ -111,12 +111,10 @@
         });
     });
 </script>
-
- 
 <section class="testimoniocliente-seccion">
     <div class="testimoniocliente-encabezado">
         <h2>TESTIMONIOS</h2>
-        <p>Que dicen nuestros clientes de nosotros</p>
+        <p>Experiencias de nuestros clientes</p>
     </div>
     
     <div class="testimoniocliente-contenedor">
@@ -124,46 +122,47 @@
         <button class="testimoniocliente-boton testimoniocliente-boton-next">&#8250;</button>
         
         <div class="testimoniocliente-slider">
-            <!-- Testimonial 1 -->
+            <!-- Testimonio 1 -->
             <div class="testimoniocliente-tarjeta">
-                <div class="testimoniocliente-comilla">"</div>
-                <p class="testimoniocliente-texto">Me encanta que podamos controlar y medir el consumo sin complicaciones. Es una solución confiable que ha mejorado significativamente nuestra gestión.</p>
-                <div class="testimoniocliente-autor">
-                    <img src="{% static 'app/img/3.png'%}" alt="Avatar" class="testimoniocliente-avatar">
-                    <div class="testimoniocliente-info">
-                        <div class="testimoniocliente-nombre">Soledad Vargas</div>
-                        <div class="testimoniocliente-ubicacion">Región Metropolitana</div>
-                    </div>
+                <div class="testimoniocliente-video-container">
+                    <iframe src="https://www.youtube.com/embed/1_bwMkz3pqM" title="Miriam Galvez APR La Puntilla de Lonquén" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="testimoniocliente-info">
+                    <div class="testimoniocliente-nombre">Miriam Galvez</div>
+                    <div class="testimoniocliente-ubicacion">APR "La Puntilla de Lonquén" - Isla de Maipo</div>
+                    <p class="testimoniocliente-descripcion">Testimonio sobre la experiencia con nuestros servicios y soluciones para la gestión del agua.</p>
                 </div>
             </div>
-            <!-- Testimonial 2 -->
+
+            <!-- Testimonio 2 -->
             <div class="testimoniocliente-tarjeta">
-                <div class="testimoniocliente-comilla">"</div>
-                <p class="testimoniocliente-texto">Desde que instalamos los medidores inteligentes, hemos logrado reducir el consumo de agua en nuestra comunidad. Además, el soporte técnico ha sido excelente.</p>
-                <div class="testimoniocliente-autor">
-                    <img src="{% static 'app/img/4.png'%}" alt="Avatar" class="testimoniocliente-avatar">
-                    <div class="testimoniocliente-info">
-                        <div class="testimoniocliente-nombre">María Contreras</div>
-                        <div class="testimoniocliente-ubicacion">Región del Maule</div>
-                    </div>
+                <div class="testimoniocliente-video-container">
+                    <iframe src="https://www.youtube.com/embed/ZKso4E9MkfY" title="Experiencia con el medidor inteligente de don Manuel Mundaca" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="testimoniocliente-info">
+                    <div class="testimoniocliente-nombre">Manuel Mundaca</div>
+                    <div class="testimoniocliente-ubicacion">Presidente APR Sonora Los Acacios</div>
+                    <p class="testimoniocliente-descripcion">Experiencia con el medidor inteligente y cómo ha mejorado la gestión del agua en su comunidad.</p>
                 </div>
             </div>
-            <!-- Testimonial 3 -->
+
+            <!-- Testimonio 3 -->
             <div class="testimoniocliente-tarjeta">
-                <div class="testimoniocliente-comilla">"</div>
-                <p class="testimoniocliente-texto">La implementación fue más fácil de lo que esperábamos. Ahora contamos con datos en tiempo real que nos permiten tomar decisiones mucho más rápidas y precisas.</p>
-                <div class="testimoniocliente-autor">
-                    <img src="{% static 'app/img/2.png'%}" alt="Avatar" class="testimoniocliente-avatar">
-                    <div class="testimoniocliente-info">
-                        <div class="testimoniocliente-nombre">Juan Araya</div>
-                        <div class="testimoniocliente-ubicacion">Región de Valparaíso</div>
-                    </div>
+                <div class="testimoniocliente-video-container">
+                    <iframe src="https://www.youtube.com/embed/5rehLhCMSG8" title="Testimonio Administrativa, Comité APR San Antonio de Naltagua" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="testimoniocliente-info">
+                    <div class="testimoniocliente-nombre">Administrativa</div>
+                    <div class="testimoniocliente-ubicacion">Comité APR "San Antonio de Naltagua" - Isla de Maipo</div>
+                    <p class="testimoniocliente-descripcion">Testimonio sobre la implementación y beneficios de nuestras soluciones para la gestión del agua.</p>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="testimoniocliente-dots"></div>
 </section>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const slider = document.querySelector('.testimoniocliente-slider');
@@ -174,8 +173,9 @@
         
         let currentSlide = 0;
         let autoplayInterval;
-        const autoplayDelay = 5000;
-
+        const autoplayDelay = 8000; // Más tiempo para ver los videos
+        
+        // Crear indicadores (dots)
         slides.forEach((_, index) => {
             const dot = document.createElement('div');
             dot.classList.add('testimoniocliente-dot');
@@ -186,6 +186,15 @@
 
         const dots = document.querySelectorAll('.testimoniocliente-dot');
         slides[0].classList.add('activo');
+
+        // Pausar todos los videos cuando cambia el slide
+        function pauseAllVideos() {
+            const iframes = document.querySelectorAll('iframe');
+            iframes.forEach(iframe => {
+                const src = iframe.src;
+                iframe.src = src;
+            });
+        }
 
         function updateDots() {
             dots.forEach((dot, index) => {
@@ -200,6 +209,7 @@
         }
 
         function goToSlide(index) {
+            pauseAllVideos();
             currentSlide = index;
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
             updateDots();
@@ -234,6 +244,7 @@
 
         slider.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
+            clearInterval(autoplayInterval); // Pausar autoplay al tocar
         }, { passive: true });
 
         slider.addEventListener('touchend', e => {
@@ -243,14 +254,19 @@
             } else if (touchEndX - touchStartX > 50) {
                 prevSlide();
             }
+            startAutoplay(); // Reiniciar autoplay después del toque
         }, { passive: true });
 
+        // Iniciar autoplay
         startAutoplay();
 
+        // Pausar autoplay cuando el mouse está sobre el slider
         slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
         slider.addEventListener('mouseleave', startAutoplay);
     });
 </script>
+
+
 <br><br>
   
   <div class="videocliente-container">
