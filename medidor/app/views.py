@@ -139,9 +139,9 @@ def home(request):
                     
                     f"Página web Medidor Inteligente.")
 
-            cc_emails = ['lisaisabelc19@gmail.com', '']
+            cc_emails = ['', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
-            email = "lisaisabelc19@gmail.com"
+            email = "contacto@medidorinteligente.cl"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
@@ -202,7 +202,7 @@ def contacto(request):
 
             cc_emails = ['', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
-            email = "lisaisabelc19@gmail.com"
+            email = "contacto@medidorinteligente.cl"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
