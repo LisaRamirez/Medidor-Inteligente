@@ -517,9 +517,16 @@
                                     <input type="text" name="comuna" placeholder="Escribe aquí" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Cantidad de Arranques</label>
-                                    <input type="text" name="cantidad" placeholder="Escribe aquí">
-                                </div>
+                                <label>Cantidad de Arranques</label>
+                                <input type="text" name="cantidad" placeholder="Escribe aquí" id="cantidad">
+                            </div>
+                            <script>
+                                const inputCantidad = document.getElementById('cantidad');
+                                inputCantidad.addEventListener('input', function () {
+                                    // Reemplaza cualquier carácter que no sea dígito
+                                    this.value = this.value.replace(/\D/g, '');
+                                });
+                            </script>
                             </div>
                             <div class="form-group full-width">
                                 <label>Tipo de financiamiento <span class="required">*</span></label>

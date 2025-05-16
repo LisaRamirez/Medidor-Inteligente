@@ -132,9 +132,7 @@ def home(request):
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
                     f"• Cargo APR: {cargo_apr}\n"
-                    f"• Cantidad: {cantidad}\n"                   
-
-                    f"Información de Financiamiento:\n"
+                    f"• Cantidad Arranques: {cantidad}\n"                   
                     f"• Financiamiento: {radio}\n\n"
                     f"Mensaje: {message}\n\n"
                     
@@ -143,7 +141,7 @@ def home(request):
 
             cc_emails = ['lisaisabelc19@gmail.com', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
-            email = "cristobalfariasfredes@gmail.com"
+            email = "lisaisabelc19@gmail.com"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
@@ -196,17 +194,15 @@ def contacto(request):
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
                     f"• Cargo APR: {cargo_apr}\n"
-                    f"• Cantidad: {cantidad}\n"
-                    
-                    f"Información de Financiamiento:\n"
+                    f"• Cantidad Arranques: {cantidad}\n"
                     f"• Financiamiento: {radio}\n\n"
                     f"Mensaje: {message}\n\n"
                    
                     f"Página web Medidor Inteligente.")
 
-            cc_emails = ['lisaisabelc19@gmail.com', '']
+            cc_emails = ['', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
-            email = "cristobalfariasfredes@gmail.com"
+            email = "lisaisabelc19@gmail.com"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
