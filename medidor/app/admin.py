@@ -2,9 +2,10 @@ from django.contrib import admin
 from .models import Contacto, Apr
 # Register your models here.
 
+
 class ContactoAdmin(admin.ModelAdmin):
     nombre = "name"
-    correo = "email"
+    correo = "correo"
     telefono = "phone"
     cargo = "cargo_apr"
     list_display = ('id',nombre, correo, telefono, 'ssr_apr',cargo , 'comuna', 'fecha', 'radio')
@@ -23,3 +24,4 @@ class AprAdmin(admin.ModelAdmin):
 
 admin.site.register(Apr, AprAdmin)
 admin.site.register(Contacto, ContactoAdmin)
+

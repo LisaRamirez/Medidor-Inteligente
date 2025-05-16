@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'es-cl'
 
 TIME_ZONE = 'America/Santiago'
 
@@ -186,8 +186,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'medidorinteligente25@gmail.com'
-EMAIL_HOST_PASSWORD = 'zdxf thzc lauz kmxd' # dejar en variables de entorno del sv
+EMAIL_HOST_USER = 'wamdigitalwd@gmail.com'
+EMAIL_HOST_PASSWORD = 'hnhu imoz muor chwn' # dejar en variables de entorno del sv
 EMAIL_PORT_SSL = 465
 EMAIL_FILE_PATH = "emails/"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

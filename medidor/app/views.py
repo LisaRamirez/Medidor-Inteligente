@@ -99,7 +99,7 @@ def home(request):
     if request.method == 'POST':
         try:
             name = request.POST.get('name', '')
-            email = request.POST.get('email', '')
+            correo = request.POST.get('correo', '')
             phone = request.POST.get('phone', '')
             ssr_apr = request.POST.get('ssr_apr', '')
             cargo_apr = request.POST.get('cargo_apr', '')
@@ -111,7 +111,7 @@ def home(request):
 
             # Guardar en la base de datos
             contacto = Contacto(
-                name=name, email=email, phone=phone, ssr_apr=ssr_apr, 
+                name=name, correo=correo, phone=phone, ssr_apr=ssr_apr, 
                 cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, 
                 fecha=fecha, radio=radio, message=message
             )
@@ -124,27 +124,26 @@ def home(request):
             smtp_port = settings.EMAIL_PORT
 
             info = (
-                    f"Estimado/a {name},\n\n"
-                    f"Agradecemos sinceramente tu solicitud. A continuación, te detallamos la información recibida:\n\n"
                     f"Datos Personales:\n"
                     f"• Nombre: {name}\n"
                     f"• Teléfono: {phone}\n"
                     f"• Comuna: {comuna}\n\n"
+
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
                     f"• Cargo APR: {cargo_apr}\n"
-                    f"• Cantidad: {cantidad}\n"
-                    f"• Fecha: {fecha}\n\n"
+                    f"• Cantidad: {cantidad}\n"                   
+
                     f"Información de Financiamiento:\n"
                     f"• Financiamiento: {radio}\n\n"
                     f"Mensaje: {message}\n\n"
-                    f"Quedamos a tu disposición para cualquier consulta adicional.\n\n"
-                    f"Atentamente, {name}. \n"
-                    f"El equipo de atención al cliente de Medidor Inteligente.")
+                    
+                    
+                    f"Página web Medidor Inteligente.")
 
-            cc_emails = ['contacto@medidorinteligente.cl', '']
-            subject = 'APR/SSR Contacto'
-
+            cc_emails = ['lisaisabelc19@gmail.com', '']
+            subject = 'Medidor Inteligente APR/SSR Contacto'
+            email = "cristobalfariasfredes@gmail.com"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
@@ -163,7 +162,7 @@ def contacto(request):
     if request.method == 'POST':
         try:
             name = request.POST.get('name', '')
-            email = request.POST.get('email', '')
+            correo = request.POST.get('correo', '')
             phone = request.POST.get('phone', '')
             ssr_apr = request.POST.get('ssr_apr', '')
             cargo_apr = request.POST.get('cargo_apr', '')
@@ -175,7 +174,7 @@ def contacto(request):
 
             # Guardar en la base de datos
             contacto = Contacto(
-                name=name, email=email, phone=phone, ssr_apr=ssr_apr, 
+                name=name, correo=correo, phone=phone, ssr_apr=ssr_apr, 
                 cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, 
                 fecha=fecha, radio=radio, message=message
             )
@@ -188,27 +187,26 @@ def contacto(request):
             smtp_port = settings.EMAIL_PORT
 
             info = (
-                    f"Estimado/a {name},\n\n"
-                    f"Agradecemos sinceramente tu solicitud. A continuación, te detallamos la información recibida:\n\n"
+                    
                     f"Datos Personales:\n"
                     f"• Nombre: {name}\n"
                     f"• Teléfono: {phone}\n"
                     f"• Comuna: {comuna}\n\n"
+                   
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
                     f"• Cargo APR: {cargo_apr}\n"
                     f"• Cantidad: {cantidad}\n"
-                    f"• Fecha: {fecha}\n\n"
+                    
                     f"Información de Financiamiento:\n"
                     f"• Financiamiento: {radio}\n\n"
                     f"Mensaje: {message}\n\n"
-                    f"Quedamos a tu disposición para cualquier consulta adicional.\n\n"
-                    f"Atentamente, {name}. \n"
-                    f"El equipo de atención al cliente de Medidor Inteligente.")
+                   
+                    f"Página web Medidor Inteligente.")
 
-            cc_emails = ['contacto@medidorinteligente.cl', '']
-            subject = 'APR/SSR Contacto'
-
+            cc_emails = ['lisaisabelc19@gmail.com', '']
+            subject = 'Medidor Inteligente APR/SSR Contacto'
+            email = "cristobalfariasfredes@gmail.com"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
@@ -223,23 +221,31 @@ def contacto(request):
     
     
 
-def send_email(subject, info, sender_email, password, recipient_email,cc_emails, smtp_server, smtp_port):
+def send_email(subject, info, sender_email, password, recipient_email, cc_emails, smtp_server, smtp_port):
+    server = None
     try:
         server = smtplib.SMTP(smtp_server, smtp_port)
         server.ehlo()
         server.starttls()
         server.login(sender_email, password)
-        msg = MIMEText(info)
+
+        msg = MIMEText(info, _charset='utf-8')
         msg['Subject'] = subject
         msg['From'] = sender_email
-        msg['Cc'] = ', '.join(cc_emails)  # Agregar los correos de CC
+        msg['To'] = recipient_email
+        msg['Cc'] = ', '.join(cc_emails)
+
         all_recipients = [recipient_email] + cc_emails
         server.sendmail(sender_email, all_recipients, msg.as_string())
-        server.quit()
         print('Email sent successfully!')
+
     except smtplib.SMTPException as e:
         print(f"Error: Email could not be sent. {e}")
+        raise  # Opcional: relanzar para que Django lo capture
 
+    finally:
+        if server:
+            server.quit()
 
         
     

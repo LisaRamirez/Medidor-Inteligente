@@ -14,7 +14,7 @@ class Documento(models.Model):
 
 class Contacto(models.Model):
     name = models.CharField("Nombre",max_length=100,null=True)
-    email = models.EmailField("Correo Electrónico",null=True)
+    correo = models.EmailField("Correo Electrónico",null=True)
     phone = models.CharField("Numero de Telefono",max_length=12,null=True)
     ssr_apr = models.CharField("ssr o apr",max_length=100,null=True)
     cargo_apr = models.CharField("Cargo en comité Apr",max_length=100,null=True)
@@ -55,7 +55,7 @@ class Apr(models.Model):
     instagram = models.CharField("Instagram",max_length=100,null=True)
     direccion = models.CharField("Dirección",max_length=100,null=True)
     phone = models.CharField("Teléfono",max_length=24,null=True)
-    email = models.EmailField("Correo Electrónico",null=True)
+    correo = models.EmailField("Correo Electrónico",null=True)
     socios = models.IntegerField("Número de Socios",null=True)
     horario = models.CharField("Horario de Atención",max_length=100,null=True)
     mapa = models.CharField("Mapa",max_length=100,null=True)
