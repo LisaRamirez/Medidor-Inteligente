@@ -279,7 +279,7 @@ def recursos(request):
 
 def error_404(request, exception=None):
     try:
-        return render(request, 'app/error_404', status=404)
+        return render(request, 'app/e404.html', status=404)
     except Exception as e:
         logger.error(f"Error al renderizar la página 404: {e}", exc_info=True)
         return HttpResponseNotFound("Página no encontrada, pero ocurrió un error al cargar la plantilla.")

@@ -191,3 +191,9 @@ EMAIL_HOST_PASSWORD = 'hnhu imoz muor chwn' # dejar en variables de entorno del 
 EMAIL_PORT_SSL = 465
 EMAIL_FILE_PATH = "emails/"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# Al final del archivo settings.py
+handler404 = 'medidor.views.error_404'
+ # Reemplaza "tu_app" con el nombre real de tu app
+

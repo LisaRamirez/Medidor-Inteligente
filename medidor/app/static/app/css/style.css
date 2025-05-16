@@ -1617,8 +1617,8 @@ transform: none !important;
 .reamm{
     width:80%;
     margin: auto auto;
-    margin: border 1px solid rgb(209, 205, 205);
-    background-color: #e2eaec;
+    margin: border 1px solid rgb(255, 255, 255);
+    background-color: #ffffff;
     border-radius: 20px;
     padding-bottom: 3rem;
     padding-top: 3rem;
@@ -1628,8 +1628,8 @@ transform: none !important;
 .reammm{
     width:80%;
     margin: auto auto;
-    margin: border 1px solid rgb(209, 205, 205);
-    background-color: #e2eaec;
+    margin: border 1px solid rgb(255, 255, 255);
+    
 
 }
 
@@ -1699,15 +1699,15 @@ transform: none !important;
         width: 95%;
         margin: auto;
         border: 1px solid rgb(255, 255, 255); /* Corrección */
-        background-color: #f7f8fa;
+        background-color: #ffffff;
         border-radius: 20px;
     }
 
     .reamm {
         width: 80%;
         margin: auto;
-        border: 1px solid rgb(209, 205, 205); /* Corrección */
-        background-color: #e2eaec;
+        border: 1px solid rgb(255, 255, 255); /* Corrección */
+        background-color: #ffffff;
         border-radius: 20px;
         padding: 3rem; /* Se simplificó el padding */
     }
@@ -1735,15 +1735,15 @@ transform: none !important;
     .reamm {
         width: 90%;
         margin: auto;
-        border: 1px solid rgb(209, 205, 205); /* Corrección */
-        background-color: #e2eaec;
+        border: 1px solid rgb(255, 255, 255); /* Corrección */
+        background-color: #ffffff;
         border-radius: 20px;
     }
     .reammm{
         width:90%;
         margin: auto auto;
-        margin: border 1px solid rgb(209, 205, 205);
-        background-color: #e2eaec;
+        margin: border 1px solid rgb(255, 255, 255);
+        
     
     }
 }
@@ -2321,7 +2321,7 @@ transition: none;
     }
     
     .headercontacto {
-        background-color: #002B5C;
+        background-color: #2842a0;
         color: white;
         text-align: center;
         padding: 2rem 1rem;
