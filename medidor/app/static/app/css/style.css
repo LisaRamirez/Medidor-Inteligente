@@ -1577,6 +1577,7 @@ transform: none !important;
     
 }
 .logoinicio{
+    
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -1584,7 +1585,7 @@ transform: none !important;
     z-index:5;
 }
 .logoinicio:hover{
-    background-image: url('app/img/logoinicio.ico');
+    background-image: url('app/img/logmedidor.ico');
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 70%;

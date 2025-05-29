@@ -2,11 +2,86 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
+<style>
+.concurso {
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+}
 
+.concurso-contenido {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 16px;
+}
+
+.concurso-contenido h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.concurso-contenido p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.concurso-destacado {
+    color: #c8ff00;
+}
+.concurso-boton {
+    display: inline-block;
+    margin: 8px 10px;
+    padding: 12px 24px;
+    background-color: #00aaff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.concurso-boton.secundario {
+    background-color: #005f7f;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .concurso-contenido h1 {
+        font-size: 1.5rem;
+    }
+
+    .concurso-contenido p {
+        font-size: 1rem;
+    }
+
+    .concurso-boton {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+</style>
 
 <div class="slider">
     <div class="slides">
         <!-- Slide 1 -->
+       <div class="slide concurso" style="background-image: url('{% static 'app/img/banner3.png' %}');">
+            <div class="concurso-contenido">
+                <h1>
+                    Postula al fondo <span class="concurso-destacado">"Presidente de la República"</span>
+                </h1>
+                <p>
+                    Fecha de apertura: <strong>2 de junio</strong> <br>
+                    Monto disponible: <strong>Hasta $15.000.000</strong> <br>
+                    Exclusivo para <strong>medidores inteligentes</strong>
+                </p>
+                <a href="{% url 'contacto' %}" class="concurso-boton">Enviar Solicitud</a>
+                <a href="{% get_media_prefix %}CONCURSO.pdf" class="concurso-boton secundario" download>Más información</a>
+            </div>
+        </div>
         <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
             <div class="slide-content">
                 <h1>Gestiona de manera eficiente el agua para tu comunidad con <span class="highlight">la tecnología más avanzada</span> de Chile</h1>
@@ -80,6 +155,7 @@
     <!-- Dots de navegación -->
     <div class="slider-nav">
         <button class="slider-dot active" data-slide="0"></button>
+        <button class="slider-dot" data-slide="1"></button>
         <button class="slider-dot" data-slide="1"></button>
     </div>
 </div>

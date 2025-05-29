@@ -12,7 +12,7 @@ urlpatterns = [
     path('soluciones/', soluciones, name="soluciones"),
     path('apr/<int:apr_id>/', apr, name="apr"),
     path('error-404/', error_404, name='e404'),
-    path('contacto/app/error_404', error_404, name='error_404_custom'),
+    path('error_404', error_404, name='error_404_custom'),
 
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),
     path('prueba/', prueba, name='prueba'),
@@ -21,4 +21,7 @@ urlpatterns = [
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'app.views.error_404'
+
 # Compare this snippet from medidor/app/models.py:

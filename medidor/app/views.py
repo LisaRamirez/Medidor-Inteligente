@@ -19,7 +19,8 @@ from smtplib import SMTPException
 from django.http import JsonResponse
 from datetime import datetime
 from django.core.mail import EmailMultiAlternatives
-
+from django.http import HttpResponseRedirect
+from django.http import HttpResponsePermanentRedirect
 
 
 
@@ -209,9 +210,7 @@ def contacto(request):
             return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
 
         except Exception as e:
-            print(f"Error: {e}")
-            messages.error(request, 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.')
-            return redirect('app/error_404')  # Cambiar por una vista de error apropiada
+            return render(request, 'app/e404')  # Cambiar por una vista de error apropiada
 
     return render(request, 'app/contacto.html')
     
@@ -282,7 +281,7 @@ def error_404(request, exception=None):
         return render(request, 'app/e404.html', status=404)
     except Exception as e:
         logger.error(f"Error al renderizar la página 404: {e}", exc_info=True)
-        return HttpResponseNotFound("Página no encontrada, pero ocurrió un error al cargar la plantilla.")
+        return HttpResponsePermanentRedirect ("Página no encontrada, pero ocurrió un error al cargar la plantilla.")
 
 def prueba(request):
     try:
