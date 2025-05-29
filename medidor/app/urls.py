@@ -12,7 +12,6 @@ urlpatterns = [
     path('soluciones/', soluciones, name="soluciones"),
     path('apr/<int:apr_id>/', apr, name="apr"),
     path('error-404/', error_404, name='e404'),
-    path('error_404', error_404, name='error_404_custom'),
 
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),
     path('prueba/', prueba, name='prueba'),
