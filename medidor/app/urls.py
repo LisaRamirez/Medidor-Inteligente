@@ -22,6 +22,6 @@ urlpatterns = [
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404 = 'app.views.error_404'
+
 
 # Compare this snippet from medidor/app/models.py:

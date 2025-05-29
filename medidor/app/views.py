@@ -142,16 +142,14 @@ def home(request):
 
             cc_emails = ['', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
-            email = "contacto@medidorinteligente.cl"
+            email = "lisaisabelc19@gmail.com"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
             return redirect('home')  # Redirige a la vista principal después de enviar
 
         except Exception as e:
-            print(f"Error: {e}")
-            messages.error(request, 'Hubo un error al procesar tu solicitud. Inténtalo nuevamente.')
-            return redirect('app/error_404')  # Cambiar por una vista de error adecuada
+            raise Http404("Ocurrió un error inesperado")
 
     return render(request, 'app/home.html')
 
@@ -203,14 +201,14 @@ def contacto(request):
 
             cc_emails = ['', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
-            email = "contacto@medidorinteligente.cl"
+            email = "lisaisabelc19@gmail.com"
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
             return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
 
         except Exception as e:
-            return render(request, 'app/e404')  # Cambiar por una vista de error apropiada
+            raise Http404("Ocurrió un error inesperado")
 
     return render(request, 'app/contacto.html')
     
@@ -276,12 +274,12 @@ def recursos(request):
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo más tarde.")
 
-def error_404(request, exception=None):
+def error_404(request, exception):
     try:
         return render(request, 'app/e404.html', status=404)
     except Exception as e:
         logger.error(f"Error al renderizar la página 404: {e}", exc_info=True)
-        return HttpResponsePermanentRedirect ("Página no encontrada, pero ocurrió un error al cargar la plantilla.")
+        return HttpResponseServerError("Página no encontrada, pero ocurrió un error al cargar la plantilla.")
 
 def prueba(request):
     try:

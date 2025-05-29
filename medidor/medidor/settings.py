@@ -181,13 +181,13 @@ LOGGING = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'contacto@medidorinteligente.cl'
-EMAIL_HOST_PASSWORD = '' # dejar en variables de entorno del sv
+EMAIL_HOST_USER = 'medidorinteligente25@gmail.com'
+EMAIL_HOST_PASSWORD = 'iovr zjpq tuzn tqjz' # dejar en variables de entorno del sv
 EMAIL_PORT_SSL = 465
 EMAIL_FILE_PATH = "emails/"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
