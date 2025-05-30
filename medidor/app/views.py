@@ -22,6 +22,10 @@ from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.http import HttpResponsePermanentRedirect
 
+from django.shortcuts import render
+
+def error_404(request, exception):
+    return render(request, 'app/e404.html', status=404)
 
 
 def mi_vista(request):
@@ -128,7 +132,8 @@ def home(request):
                     f"Datos Personales:\n"
                     f"• Nombre: {name}\n"
                     f"• Teléfono: {phone}\n"
-                    f"• Comuna: {comuna}\n\n"
+                    f"• Comuna: {comuna}\n"
+                    f"• Correo: {correo}\n\n"
 
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
@@ -149,7 +154,7 @@ def home(request):
             return redirect('home')  # Redirige a la vista principal después de enviar
 
         except Exception as e:
-            raise Http404("Ocurrió un error inesperado")
+            return redirect('app/e404.html')  # Cambiar por una vista de error apropiad
 
     return render(request, 'app/home.html')
 
@@ -188,7 +193,8 @@ def contacto(request):
                     f"Datos Personales:\n"
                     f"• Nombre: {name}\n"
                     f"• Teléfono: {phone}\n"
-                    f"• Comuna: {comuna}\n\n"
+                    f"• Comuna: {comuna}\n"
+                    f"• Correo: {correo}\n\n"
                    
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
@@ -208,7 +214,7 @@ def contacto(request):
             return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
 
         except Exception as e:
-            raise Http404("Ocurrió un error inesperado")
+            return redirect('app/e404.html')  # Cambiar por una vista de error apropiad
 
     return render(request, 'app/contacto.html')
     
@@ -234,12 +240,8 @@ def send_email(subject, info, sender_email, password, recipient_email, cc_emails
 
     except smtplib.SMTPException as e:
         print(f"Error: Email could not be sent. {e}")
-        raise  # Opcional: relanzar para que Django lo capture
-
-    finally:
-        if server:
-            server.quit()
-
+        
+   
         
     
 

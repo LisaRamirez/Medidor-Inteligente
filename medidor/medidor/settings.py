@@ -131,7 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 import os
 from pathlib import Path
 
@@ -181,7 +181,8 @@ LOGGING = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = True
@@ -192,8 +193,6 @@ EMAIL_PORT_SSL = 465
 EMAIL_FILE_PATH = "emails/"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-
-# Al final del archivo settings.py
-handler404 = 'medidor.views.error_404'
- # Reemplaza "tu_app" con el nombre real de tu app
-
+# Custom handler for 404
+handler404 = 'app.views.error_404'
+# Custom handler for 500

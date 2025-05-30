@@ -1,5 +1,5 @@
 from django.urls import path
-from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr,error_404, filtrar_apr,prueba
+from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr, filtrar_apr,prueba
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -11,7 +11,7 @@ urlpatterns = [
     path('recursos/', recursos, name="recursos"),
     path('soluciones/', soluciones, name="soluciones"),
     path('apr/<int:apr_id>/', apr, name="apr"),
-    path('error-404/', error_404, name='e404'),
+
 
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),
     path('prueba/', prueba, name='prueba'),
@@ -21,6 +21,6 @@ urlpatterns = [
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
+handler404 = 'app.views.error_404'
 
 # Compare this snippet from medidor/app/models.py:
