@@ -145,16 +145,16 @@ def home(request):
                     
                     f"Página web Medidor Inteligente.")
 
-            cc_emails = ['', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
             email = "lisaisabelc19@gmail.com"
+            cc_emails = [correo]
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
             return redirect('home')  # Redirige a la vista principal después de enviar
 
         except Exception as e:
-            return redirect('app/e404.html')  # Cambiar por una vista de error apropiad
+            return render(request, 'app/e404.html', {'error': str(e)})  # Cambiar por una vista de error apropiad
 
     return render(request, 'app/home.html')
 
@@ -205,22 +205,22 @@ def contacto(request):
                    
                     f"Página web Medidor Inteligente.")
 
-            cc_emails = ['', '']
             subject = 'Medidor Inteligente APR/SSR Contacto'
             email = "lisaisabelc19@gmail.com"
+            cc_emails = [correo]
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             messages.success(request, 'Tu mensaje ha sido enviado correctamente')
             return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
 
         except Exception as e:
-            return redirect('app/e404.html')  # Cambiar por una vista de error apropiad
+            return render(request, 'app/e404.html', {'error': str(e)})  # Cambiar por una vista de error apropiad
 
     return render(request, 'app/contacto.html')
     
     
 
-def send_email(subject, info, sender_email, password, recipient_email, cc_emails, smtp_server, smtp_port):
+def send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port):
     server = None
     try:
         server = smtplib.SMTP(smtp_server, smtp_port)
@@ -231,18 +231,21 @@ def send_email(subject, info, sender_email, password, recipient_email, cc_emails
         msg = MIMEText(info, _charset='utf-8')
         msg['Subject'] = subject
         msg['From'] = sender_email
-        msg['To'] = recipient_email
+        msg['To'] = email
         msg['Cc'] = ', '.join(cc_emails)
 
-        all_recipients = [recipient_email] + cc_emails
+        all_recipients = [email] + cc_emails
         server.sendmail(sender_email, all_recipients, msg.as_string())
         print('Email sent successfully!')
 
     except smtplib.SMTPException as e:
         print(f"Error: Email could not be sent. {e}")
         
-   
-        
+    finally:
+        if server:
+            server.quit()
+
+            
     
 
     
