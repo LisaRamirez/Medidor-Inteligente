@@ -9,7 +9,7 @@ from django.db import IntegrityError
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from django.http import HttpResponse
-from .models import Contacto, Apr
+from .models import Contacto, Apr, Testimonio
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
@@ -26,6 +26,16 @@ from django.shortcuts import render
 
 def error_404(request, exception):
     return render(request, 'app/e404.html', status=404)
+
+def testimonio(request):
+
+    
+    data = {
+        'tes': Testimonio.objects.all(),
+        'imag': Testimonio.imagenes.all(),
+    }
+
+    return render(request, 'app/testimonio.html', data)
 
 
 def mi_vista(request):

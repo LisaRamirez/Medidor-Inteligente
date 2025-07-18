@@ -1,5 +1,5 @@
 from django.urls import path
-from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr, filtrar_apr,prueba
+from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr, filtrar_apr,prueba, testimonio
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -11,6 +11,7 @@ urlpatterns = [
     path('recursos/', recursos, name="recursos"),
     path('soluciones/', soluciones, name="soluciones"),
     path('apr/<int:apr_id>/', apr, name="apr"),
+    path('testimonio/',testimonio , name="testimonio"),
 
 
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),

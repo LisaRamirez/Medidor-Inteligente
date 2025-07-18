@@ -117,3 +117,35 @@ Traceback (most recent call last):
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'postula_fondo' not found. 'postula_fondo' is not a valid view function or pattern name.
 ERROR: "GET / HTTP/1.1" 500 163713
+ERROR: Internal Server Error: /testimonio/
+Traceback (most recent call last):
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: testimonio() missing 1 required positional argument: 'exception'
+ERROR: "GET /testimonio/ HTTP/1.1" 500 63314
+ERROR: Internal Server Error: /testimonio/
+Traceback (most recent call last):
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: testimonio() missing 1 required positional argument: 'exception'
+ERROR: "GET /testimonio/ HTTP/1.1" 500 63578
+ERROR: Internal Server Error: /testimonio/
+Traceback (most recent call last):
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: testimonio() missing 1 required positional argument: 'exception'
+ERROR: "GET /testimonio/ HTTP/1.1" 500 63578
+ERROR: Internal Server Error: /testimonio/
+Traceback (most recent call last):
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\lisai\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: testimonio() missing 1 required positional argument: 'exception'
+ERROR: "GET /testimonio/ HTTP/1.1" 500 63312
