@@ -10,23 +10,6 @@ class Documento(models.Model):
     def __str__(self):
         return self.titulo
 
-class testimonio(models.Model):
-    titulo = models.CharField("Título",max_length=100,null=True)
-    sub_titulo = models.CharField("Subtítulo",max_length=100,null=True)
-    fecha = models.DateTimeField("Fecha",null=True)
-    creador = models.CharField("Creador",max_length=100,null=True)
-    fecha_creacion = models.DateTimeField(default=timezone.now,null=True)
-    contenido = models.TextField("Contenido",null=True)
-    id_yt = models.CharField("Link Youtube",max_length=100,null=True)
-    check_yt = models.BooleanField(default=False,null=True)
-    activo = models.BooleanField("Activo",default=True)
-
-    def __str__(self):
-        return self.titulo
-
-class ImagenTestimonio(models.Model):
-    testimonio = models.ForeignKey(testimonio, related_name='imagenes', on_delete=models.CASCADE)
-    imagen = models.ImageField("Imagen", upload_to='testimonios', null=True)
 
 
 

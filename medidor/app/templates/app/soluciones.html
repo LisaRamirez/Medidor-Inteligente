@@ -339,6 +339,7 @@
         </div>
     </div>
 </section>
+
 <section class="other-products">
     <div class="container">
         <h2>Descubre nuestros otros productos</h2>
@@ -370,4 +371,150 @@
         </div>
     </div>
 </section>
+
+ <section class="promedi-products-section">
+        <div class="promedi-container">
+            <h2 class="promedi-section-title">Descubre nuestros Servicios</h2>
+            
+            <div class="promedi-products-grid">
+                <!-- Producto 1: Páginas Web -->
+                <div class="promedi-product-card">
+                    <div class="promedi-product-icon promedi-web-icon">
+                        <img src="{% static 'app/img/visual.png' %}" alt="Páginas Web" class="promedi-icon-image">  
+
+                    </div>
+                    <h3 class="promedi-product-title">Páginas Web para APR y SSR</h3>
+                    <p class="promedi-product-description">
+                        Modernizamos la gestión de APR y SSR con sitios web profesionales, funcionales y adaptados a sus necesidades
+                    </p>
+                    <a href="{% url 'contacto'%}" class="promedi-product-button">
+                        Conoce más
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                </div>
+
+                <!-- Producto 2: Medidor Inteligente -->
+                <div class="promedi-product-card">
+                    <div class="promedi-product-icon promedi-meter-icon">
+                        <img src="{% static 'app/img/softwareapr.png' %}"  alt="Medidor Inteligente" class="promedi-icon-image">
+                         
+                    </div>
+                    <h3 class="promedi-product-title">Nuestra plataforma de gestión de APR</h3>
+                    <p class="promedi-product-description">
+                        Incluye Boleta Electrónica y Pago de APR en línea
+                    </p>
+                    <a href="https://software-apr.cl/"  class="promedi-product-button">
+                        Conoce más
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Producto 3: Punto Blue -->
+                <div class="promedi-product-card">
+                    <div class="promedi-product-icon promedi-payment-icon">
+                        <img src="{% static 'app/img/puntob.png' %}"  alt="Punto Blue" class="promedi-icon-image">
+                    </div>
+                    <h3 class="promedi-product-title">Paga tus cuentas de agua potable rural en línea</h3>
+                    <p class="promedi-product-description">
+                        Además conoce los puntos de pago en almacenes locales. Sistema de pagos integrado para mayor comodidad de los usuarios
+                    </p>
+                    <a href="https://www.punto-blue.cl" class="promedi-product-button">
+                        Conoce más
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Background Decorations -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100 rounded-full opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-100 rounded-full opacity-20 blur-3xl"></div>
+    </div>
+
+    <script>
+        class ImageSlider {
+            constructor(trackId, interval = 3000) {
+                this.track = document.getElementById(trackId);
+                this.items = this.track.querySelectorAll('.slider-item');
+                this.currentIndex = 0;
+                this.interval = interval;
+                this.isTransitioning = false;
+                
+                // Clone first item and append to end for seamless loop
+                const firstClone = this.items[0].cloneNode(true);
+                this.track.appendChild(firstClone);
+                
+                this.startSlider();
+            }
+            
+            startSlider() {
+                // Start with 60Hz smooth transitions
+                setInterval(() => {
+                    this.nextSlide();
+                }, this.interval);
+            }
+            
+            nextSlide() {
+                if (this.isTransitioning) return;
+                
+                this.isTransitioning = true;
+                this.currentIndex++;
+                
+                // Smooth transition at 60Hz
+                const translateX = -this.currentIndex * 100;
+                this.track.style.transform = `translateX(${translateX}%)`;
+                
+                // Reset to beginning when reaching the end (seamless loop)
+                if (this.currentIndex >= this.items.length) {
+                    setTimeout(() => {
+                        this.track.style.transition = 'none';
+                        this.currentIndex = 0;
+                        this.track.style.transform = 'translateX(0%)';
+                        
+                        // Re-enable transition after reset
+                        setTimeout(() => {
+                            this.track.style.transition = 'transform 0.5s ease-in-out';
+                            this.isTransitioning = false;
+                        }, 50);
+                    }, 500);
+                } else {
+                    setTimeout(() => {
+                        this.isTransitioning = false;
+                    }, 500);
+                }
+            }
+        }
+        
+        // Initialize sliders when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Desktop sliders
+            new ImageSlider('leftTrack', 2500);   // Left slider changes every 2.5s
+            new ImageSlider('rightTrack', 3500);  // Right slider changes every 3.5s (offset)
+            
+            // Mobile sliders
+            new ImageSlider('mobileLeftTrack', 2800);
+            new ImageSlider('mobileRightTrack', 3200);
+        });
+        
+        // Add smooth 60Hz animation frame updates
+        function smoothUpdate() {
+            // Any additional 60Hz updates can go here
+            requestAnimationFrame(smoothUpdate);
+        }
+        
+        // Start the 60Hz update loop
+        requestAnimationFrame(smoothUpdate);
+    </script>
 {% endblock %}

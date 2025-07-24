@@ -182,7 +182,7 @@
             <a href="{% url 'soluciones' %}" class="nav-link {% if 'soluciones' in request.path %}active{% endif %}">Nuestras soluciones</a>
             <a href="{% url 'nosotros' %}" class="nav-link {% if 'nosotros' in request.path %}active{% endif %}">Quiénes somos</a>
             <a href="{% url 'clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>
-            <a href="{% url 'testimonio' %}" class="nav-link {% if 'testimonio' in request.path %}active{% endif %}">testimonio</a>
+            <a href="{% url 'testimonio' %}" class="nav-link {% if 'testimonio' in request.path %}active{% endif %}">Testimonio</a>
             <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Recursos</a>
             <a href="{% url 'contacto' %}" class="contact-btn {% if 'contacto' in request.path %}active{% endif %}">Contáctanos</a>
             
@@ -219,7 +219,7 @@
             <h3>Medidor Inteligente</h3>
             <div class="logo-container">
                 <img src="{% static 'app/img/medidorinteligente.png'%}" alt="Medidor Inteligente Logo">
-                <img src="{% static 'app/img/softwareApr.png'%}" alt="software Apr">
+                <img src="{% static 'app/img/softwareapr.png'%}" alt="software Apr">
                 <img src="{% static 'app/img/puntoblue.png'%}" alt="Punto Blue">
                 
             </div>
@@ -236,6 +236,7 @@
                 <li><a href="{% url 'soluciones'%}">Nuestras soluciones</a></li>
                 <li><a href="{% url 'nosotros'%}">Quienes somos</a></li>
                 <li><a href="{% url 'clientes'%}">Clientes</a></li>
+                <li><a href="{% url 'testimonio'%}">Testimonio</a></li>
                 <li><a href="{% url 'recursos'%}">Recursos</a></li>
                 <li><a href="{% url 'contacto'%}">Contáctanos</a></li>
             </ul>

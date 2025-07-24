@@ -11,7 +11,8 @@ urlpatterns = [
     path('recursos/', recursos, name="recursos"),
     path('soluciones/', soluciones, name="soluciones"),
     path('apr/<int:apr_id>/', apr, name="apr"),
-    path('testimonio/',testimonio , name="testimonio"),
+    path('testimonio/', testimonio, name="testimonio"),
+ 
 
 
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),
