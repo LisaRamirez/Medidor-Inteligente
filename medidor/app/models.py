@@ -92,6 +92,3 @@ class ImagenTestimonio(models.Model):
     imagen = models.ImageField("Imagen", upload_to='testimonios', null=True)
     testimonio = models.ForeignKey(Testimonio, related_name='imagenes', on_delete=models.CASCADE)
 
-class likeTestimonio(models.Model):
-    testimonio = models.ForeignKey(Testimonio, related_name='likes', on_delete=models.CASCADE)
-    user = models.IntegerField(max_length=4,null=True)

@@ -30,7 +30,7 @@ def error_404(request, exception):
 
 def testimonio(request):
     try:
-        tes = Testimonio.objects.all()
+        tes = Testimonio.objects.filter(activo=True)
         imag = ImagenTestimonio.objects.all()
         data = {
             'testi' : tes,
