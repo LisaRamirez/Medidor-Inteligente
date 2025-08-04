@@ -1,7 +1,7 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
- <style>
+<style>
         
 
         .testimonio-container {
@@ -514,309 +514,72 @@
         }
     </style>
 
-<div class="testimonio-container">
-    <header class="testimonio-header">
-        <h1>Testimonios de Nuestra Comunidad</h1>
-        <p>Descubre las experiencias y opiniones de nuestros usuarios</p>
-    </header>
-        <!-- Testimonials Section -->
-        <section class="testimonio-testimonials-section">
-            <h2 style="text-align: center; color: #333; margin-bottom: 20px; font-size: 2.5rem;">Lo que dicen nuestros usuarios</h2>
-            
-            <div class="testimonio-testimonials-grid">
-                <!-- Testimonio 1 -->
-                <div class="testimonio-testimonial-card">
-                    <div class="testimonio-quote-icon">"</div>
-                    
-                    <!-- Media Section for Individual Testimonial <button class="testimonio-card-media-btn" onclick="showCardVideo(1)">Video</button> -->
-                    <div class="testimonio-card-media-section">
-                        <div class="testimonio-card-media-controls">
-                            <button class="testimonio-card-media-btn active" onclick="showCardImages(1)">Imágenes</button>
-                            
-                        </div>
 
-                        <div class="testimonio-card-slider-container" id="cardImageSlider1">
-                            <div class="testimonio-card-slider" id="cardSlider1">
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-latetera.jpeg' %}" alt="María Testimonio 1">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-latetera1.jpeg' %}" alt="María Testimonio 2">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-latetera2.jpeg' %}" alt="María Testimonio 3">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-latetera3.jpeg' %}" alt="María Testimonio 4">
-                                </div>
+
+<section class="testimonio-testimonials-section">
+    <h2 style="text-align: center; color: #333; margin-bottom: 20px; font-size: 2.5rem;">Lo que dicen nuestros usuarios</h2>
+    
+    <div class="testimonio-testimonials-grid" id="testimonialGrid">
+        {% for t in testi %}
+            <div class="testimonio-testimonial-card" data-testimonio-id="{{ t.id }}">
+                <div class="testimonio-quote-icon">"</div>
+
+                <div class="testimonio-card-media-section">
+                    <div class="testimonio-card-media-controls">
+                        <button class="testimonio-card-media-btn active" onclick="showCardImages({{ forloop.counter }})">Imágenes</button>
+                        {% if t.id_yt %}
+                        <button class="testimonio-card-media-btn" onclick="showCardVideo({{ forloop.counter }})">Video</button>
+                        {% endif %}
+                    </div>
+                    <div class="testimonio-card-slider-container" id="cardImageSlider{{ forloop.counter }}">
+                        <div class="testimonio-card-slider" id="cardSlider{{ forloop.counter }}">
+                            {% for imagen in t.imagenes.all %}
+                            <div class="testimonio-card-slide">
+                                <img src="{{ imagen.imagen.url }}" alt="{{ imagen.titulo }}">
                             </div>
-                            <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide(1)">❮</button>
-                            <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide(1)">❯</button>
+                            {% endfor %}
                         </div>
-
-                        <div class="testimonio-card-video-container" id="cardVideoContainer1">
-                            <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
-                        </div>
-
-                        <div class="testimonio-card-slider-dots" id="cardSliderDots1">
-                            <span class="testimonio-card-dot active" onclick="currentCardSlide(1, 1)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(1, 2)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(1, 3)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(1, 4)"></span>
-                        </div>
+                        <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide({{ forloop.counter }})">❮</button>
+                        <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide({{ forloop.counter }})">❯</button>
                     </div>
-
-                    <div class="testimonio-testimonial-header">
-                        <span class="testimonio-testimonial-date">9 feb, 2024 </span>
-                        <span class="testimonio-testimonial-creator">Software Apr</span>
+                    {% if t.id_yt %}
+                    <div class="testimonio-card-video-container" id="cardVideoContainer{{ forloop.counter }}">
+                        <iframe src="https://www.youtube.com/embed/{{ t.id_yt }}" allowfullscreen></iframe>
                     </div>
-                    <h3 class="testimonio-testimonial-title">APR LA TETERA - PUEBLO INDIO,</h3>
-
-                    <p class="testimonio-testimonial-subtitle">CAPACITACIÓN</p>
-                    <p class="testimonio-testimonial-text">
-                        "Nuestro equipo visitó el Servicio APR La Tetera, en Quillota, para una reunión sobre nuestra plataforma en línea Software APR. Agradecemos la excelente recepción de su personal.
-
-                    Software APR permite una gestión 100% online del servicio, incluyendo boleta electrónica, pagos con Punto Blue, finanzas, inventario y más.
-
-                    Además, contamos con el Medidor Inteligente de Agua Potable, certificado por Dictuc – UC, usado por más de 150 servicios APR/SSR. Realiza lecturas y cortes a distancia, detecta fugas y se integra directamente con nuestra plataforma.
-                    </p>
-                    <div class="testimonio-testimonial-news">
-                        <strong>Noticia:</strong> CAPACITACIÓN, CLIENTES, HAND HELD, MEDIDOR INTELIGENTE DE AGUA
-                    </div>
-
-                    <!-- Like Section -->
-                    <div class="testimonio-card-like-section">
-                        <button class="testimonio-card-like-btn" onclick="toggleCardLike(1)">♥</button>
-                        <span class="testimonio-card-like-count" id="likeCount1">127</span>
-                        <span style="font-size: 14px; color: #666;">likes</span>
+                    {% endif %}
+                    <div class="testimonio-card-slider-dots" id="cardSliderDots{{ forloop.counter }}">
+                        {% for imagen in t.imagenes.all %}
+                        <span class="testimonio-card-dot {% if forloop.first %}active{% endif %}" onclick="currentCardSlide({{ forloop.parentloop.counter }}, {{ forloop.counter }})"></span>
+                        {% endfor %}
                     </div>
                 </div>
-
-                <!-- Testimonio 2 -->
-                <div class="testimonio-testimonial-card">
-                    <div class="testimonio-quote-icon">"</div>
-                    
-                    <div class="testimonio-card-media-section">
-                        <div class="testimonio-card-media-controls">
-                            <button class="testimonio-card-media-btn active" onclick="showCardImages(2)">Imágenes</button>
-                            <button class="testimonio-card-media-btn" onclick="showCardVideo(2)">Video</button>
-                        </div>
-                        <div class="testimonio-card-video-container" id="cardVideoContainer2">
-                            <iframe src="https://www.youtube.com/embed/X_d1ceK9G-I" allowfullscreen></iframe>
-                        </div>
-                        <div class="testimonio-card-slider-container" id="cardImageSlider2">
-                            <div class="testimonio-card-slider" id="cardSlider2">
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/super.png' %}" alt="Carlos Testimonio 1">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/super1.png' %}" alt="Carlos Testimonio 2">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/super2.png' %}" alt="Carlos Testimonio 1">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/super1.png' %}" alt="Carlos Testimonio 2">
-                                </div>
-                                
-                            </div>
-                            <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide(2)">❮</button>
-                            <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide(2)">❯</button>
-                        </div>
-
-                        <div class="testimonio-card-video-container" id="cardVideoContainer2">
-                            <iframe src="https://www.youtube.com/embed/X_d1ceK9G-I" allowfullscreen></iframe>
-                        </div>
-
-                        <div class="testimonio-card-slider-dots" id="cardSliderDots2">
-                            <span class="testimonio-card-dot active" onclick="currentCardSlide(2, 1)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(2, 2)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(2, 3)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(2, 4)"></span>
-                        </div>
-                    </div>
-
-                    <div class="testimonio-testimonial-header">
-                        <span class="testimonio-testimonial-date">12 ene, 2024</span>
-                        <span class="testimonio-testimonial-creator">Punto Blue</span>
-                    </div>
-                    <h3 class="testimonio-testimonial-title">Experiencia Punto de Pago APR Punto Blue</h3>
-                    <p class="testimonio-testimonial-subtitle">Pago para Servicios de Agua Potable Rural</p>
-                    <p class="testimonio-testimonial-text">
-                        Loreto Orellana, dueña del supermercado Cajuva en Peñuelas, Placilla (Región de O’Higgins), compartió su positiva experiencia usando Punto Blue, la solución de pago para Servicios de Agua Potable Rural.
-
-                    Esta herramienta, respaldada por el Medidor Inteligente, permite modernizar la gestión del agua en zonas rurales, facilitando lecturas remotas, cortes automáticos, detección de fugas y pagos en línea sin necesidad de internet. Con más de 150 APR/SSR utilizándolo en Chile, se ha convertido en una solución confiable, eficiente y desarrollada 100% en el país.
-                    </p>
-                    <div class="testimonio-testimonial-news">
-                        <strong>Noticia:</strong> CLIENTES, MEDIDOR INTELIGENTE DE AGUA, PUNTO BLUE, SOFTWARE
-                    </div>
-
-                    <div class="testimonio-card-like-section">
-                        <button class="testimonio-card-like-btn" onclick="toggleCardLike(2)">♥</button>
-                        <span class="testimonio-card-like-count" id="likeCount2">89</span>
-                        <span style="font-size: 14px; color: #666;">likes</span>
-                    </div>
+                <div class="testimonio-testimonial-header">
+                    <span class="testimonio-testimonial-date">{{ t.fecha|date:"d M Y" }}</span>
+                    <span class="testimonio-testimonial-creator">{{ t.creador }}</span>
                 </div>
-
-                <!-- Testimonio 3 -->
-                <div class="testimonio-testimonial-card">
-                    <div class="testimonio-quote-icon">"</div>
-                    
-                    <div class="testimonio-card-media-section">
-                        <div class="testimonio-card-media-controls">
-                            <button class="testimonio-card-media-btn active" onclick="showCardImages(3)">Imágenes</button>
-                            
-                        </div>
-
-                        <div class="testimonio-card-slider-container" id="cardImageSlider3">
-                            <div class="testimonio-card-slider" id="cardSlider3">
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/APR-AGUABUENA.jpg' %}" alt="Ana Testimonio 1">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/APR-AGUABUENA1.jpg' %}" alt="Ana Testimonio 2">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/APR-AGUABUENA2.jpg' %}" alt="Ana Testimonio 3">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/APR-AGUABUENA.jpg' %}" alt="Ana Testimonio 4">
-                                </div>
-                            </div>
-                            <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide(3)">❮</button>
-                            <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide(3)">❯</button>
-                        </div>
-
-                        <div class="testimonio-card-video-container" id="cardVideoContainer3">
-                            <iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk" allowfullscreen></iframe>
-                        </div>
-
-                        <div class="testimonio-card-slider-dots" id="cardSliderDots3">
-                            <span class="testimonio-card-dot active" onclick="currentCardSlide(3, 1)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(3, 2)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(3, 3)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(3, 4)"></span>
-                        </div>
-                    </div>
-
-                    <div class="testimonio-testimonial-header">
-                        <span class="testimonio-testimonial-date">13 Sep, 2022</span>
-                        <span class="testimonio-testimonial-creator">Software APR</span>
-                    </div>
-                    <h3 class="testimonio-testimonial-title">Implementación y Capacitación de plataforma APR Cooperativa Agua Buena</h3>
-                    <p class="testimonio-testimonial-subtitle">Capacitaciónes</p>
-                    <p class="testimonio-testimonial-text">
-                        Esta semana, estuvimos realizando la Implementación y Capacitación de la Plataforma «Software
-                    APR» y Medidores Inteligentes de Agua Potable , a la Cooperativa APR «Agua Buena», de la Comuna de «San
-                    Fernando», en la Región de O’Higgins.
-                    Agradecemos al Personal y Operadores, por la excelente recepción que han tenido con nuestro Producto.
-                    Únase usted también, no deje atrás a su Comité o Cooperativa. Ya son más de un centenar, los Comités y
-                    Cooperativas APR, que disfrutan de los múltiples benecios, de nuestro innovador Producto.</p>
-                    <div class="testimonio-testimonial-news">
-                        <strong>Noticia:</strong> CAPACITACIÓN, CLIENTES, HAND HELD, MEDIDOR INTELIGENTE DE AGUA
-                    </div>
-
-                    <div class="testimonio-card-like-section">
-                        <button class="testimonio-card-like-btn" onclick="toggleCardLike(3)">♥</button>
-                        <span class="testimonio-card-like-count" id="likeCount3">156</span>
-                        <span style="font-size: 14px; color: #666;">likes</span>
-                    </div>
+                <h3 class="testimonio-testimonial-title">{{ t.titulo }}</h3>
+                <p class="testimonio-testimonial-subtitle">{{ t.sub_titulo }}</p>
+                <p class="testimonio-testimonial-text">{{ t.contenido }}</p>
+                <div class="testimonio-testimonial-news">
+                    <strong>Noticia:</strong> {{ t.descripcion }}
                 </div>
-
-                <!-- Testimonio 4 -->
-                <div class="testimonio-testimonial-card">
-                    <div class="testimonio-quote-icon">"</div>
-                    
-                    <div class="testimonio-card-media-section">
-                        <div class="testimonio-card-media-controls">
-                            <button class="testimonio-card-media-btn active" onclick="showCardImages(4)">Imágenes</button>
-                            
-                        </div>
-
-                        <div class="testimonio-card-slider-container" id="cardImageSlider4">
-                            <div class="testimonio-card-slider" id="cardSlider4">
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-manuel.jpg' %}" alt="Roberto Testimonio 1">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-manuel1.jpg' %}" alt="Roberto Testimonio 2">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-manuel2.jpg' %}" alt="Roberto Testimonio 3">
-                                </div>
-                                <div class="testimonio-card-slide">
-                                    <img src="{% static 'app/testimonio/apr-manuel3.jpg' %}" alt="Roberto Testimonio 4">
-                                </div>
-                            </div>
-                            <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide(4)">❮</button>
-                            <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide(4)">❯</button>
-                        </div>
-
-                        
-
-                        <div class="testimonio-card-slider-dots" id="cardSliderDots4">
-                            <span class="testimonio-card-dot active" onclick="currentCardSlide(4, 1)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(4, 2)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(4, 3)"></span>
-                            <span class="testimonio-card-dot" onclick="currentCardSlide(4, 4)"></span>
-                        </div>
-                    </div>
-
-                    <div class="testimonio-testimonial-header">
-                        <span class="testimonio-testimonial-date">25 May, 2022</span>
-                        <span class="testimonio-testimonial-creator">Medidor Inteligente</span>
-                    </div>
-                    <h3 class="testimonio-testimonial-title">Comité APR Manuel Rodríguez Visita Técnica</h3>
-                    <p class="testimonio-testimonial-subtitle">Capacitaciones</p>
-                    <p class="testimonio-testimonial-text">
-                        Preocupados en todo momento, de brindar «Soluciones Tecnológicas Integrales, para el Mundo Rural», realizamos
-una Visita Técnica a nuestros amigos del Comité APR «Manuel Rodríguez», perteneciente a la Comuna de Colina, en la
-Región Metropolitana.
-Únase usted también, no deje atrás a su Comité o Cooperativa. Ya son más de 100, los Comités y Cooperativas APR,
-que disfrutan de más de 20 MIL, Medidores, instalados, beneciando a más de 100 MIL, Felices Usuarios.
-</p>
-                    <div class="testimonio-testimonial-news">
-                        <strong>Noticia:</strong> APR MANUEL RODRÍGUEZ, CAPACITACIÓN, CLIENTES, HAND HELD, MEDIDOR INTELIGENTE DE AGUA
-                    </div>
-
-                    <div class="testimonio-card-like-section">
-                        <button class="testimonio-card-like-btn" onclick="toggleCardLike(4)">♥</button>
-                        <span class="testimonio-card-like-count" id="likeCount4">203</span>
-                        <span style="font-size: 14px; color: #666;">likes</span>
-                    </div>
+                <div class="testimonio-card-like-section">
+                    <button class="testimonio-card-like-btn" onclick="toggleCardLike({{ t.id }})">♥</button>
+                    <span class="testimonio-card-like-count" id="likeCount{{ t.id }}">{{ t.likes }}</span>
+                    <span style="font-size: 14px; color: #666;">likes</span>
                 </div>
             </div>
-        </section>
-
-        <!-- Logos Section 
-           <section class="testimonio-logos-section">
-            <h2 style="text-align: center; color: #333; margin-bottom: 30px; font-size: 2rem;">Nuestros Servicios</h2>
-            <div class="testimonio-logos-container">
-                <div class="testimonio-logo-item">
-                    <a href="https://software-apr.cl/" class="testimonio-logo-link" target="_blank">
-                        Software APR
-                        <button class="testimonio-like-btn" onclick="toggleLike(this, event)">♥</button>
-                        <span class="testimonio-like-count">42</span>
-                    </a>
-                </div>
-                <div class="testimonio-logo-item">
-                    <a href="https://www.punto-blue.cl/" class="testimonio-logo-link" target="_blank">
-                        Punto Blue
-                        <button class="testimonio-like-btn" onclick="toggleLike(this, event)">♥</button>
-                        <span class="testimonio-like-count">38</span>
-                    </a>
-                </div>
-                <div class="testimonio-logo-item">
-                    <a href="https://medidorinteligente.cl/" class="testimonio-logo-link" target="_blank">
-                        Medidor Inteligente
-                        <button class="testimonio-like-btn" onclick="toggleLike(this, event)">♥</button>
-                        <span class="testimonio-like-count">55</span>
-                    </a>
-                </div>
-            </div>
-        </section>-->
-      
+        {% endfor %}
     </div>
+
+        <!-- Add More Button -->
+       
+</section>
+
+
+
+
+
 
     <script>
         // Main slider functionality

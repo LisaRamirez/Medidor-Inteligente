@@ -4,65 +4,158 @@
 {% load static %}
 <style>
 .concurso {
-    background-size: cover;
-    background-position: center;
-    padding: 60px 20px;
-    color: white;
-    text-align: center;
+  position: relative;
+  padding: 60px 20px;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
 }
 
+/* Overlay oscuro para contraste */
+.concurso::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(41, 60, 100, 0.25);
+  z-index: 0;
+}
+
+/* Gotas grandes animadas (efecto movimiento suave) */
+.concurso::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size:
+    40px 40px,
+    60px 60px,
+    30px 30px,
+    50px 50px,
+    35px 35px;
+  background-image:
+    radial-gradient(circle at center, rgba(69, 119, 211, 0.35) 0%, transparent 70%),
+    radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, transparent 70%),
+    radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%),
+    radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%),
+    radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+  background-position:
+    10% 20%,
+    30% 70%,
+    50% 40%,
+    70% 80%,
+    80% 30%;
+  animation: gotas-mov 12s linear infinite;
+}
+
+
+
+/* Contenido sobre gotas */
 .concurso-contenido {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 30px;
-    border-radius: 16px;
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(4, 10, 24, 0.65);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .concurso-contenido h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  font-weight: 800;
+  line-height: 1.3;
 }
 
 .concurso-contenido p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    line-height: 1.6;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
 
 .concurso-destacado {
-    color: #c8ff00;
-}
-.concurso-boton {
-    display: inline-block;
-    margin: 8px 10px;
-    padding: 12px 24px;
-    background-color: #00aaff;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
+ color: #c8ff00;
+  font-weight: bold;
 }
 
-.concurso-boton.secundario {
-    background-color: #005f7f;
+.concurso-boton-llamativo {
+  display: inline-block;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 114, 255, 0.4);
+}
+
+.concurso-boton-llamativo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 114, 255, 0.6);
+}
+
+/* Animaciones */
+@keyframes gotas-mov {
+  0% {
+    background-position:
+      10% 20%,
+      30% 70%,
+      50% 40%,
+      70% 80%,
+      80% 30%;
+  }
+  50% {
+    background-position:
+      25% 35%,
+      45% 60%,
+      60% 55%,
+      85% 70%,
+      95% 50%;
+  }
+  100% {
+    background-position:
+      10% 20%,
+      30% 70%,
+      50% 40%,
+      70% 80%,
+      80% 30%;
+  }
+}
+
+@keyframes lluviaSuave {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 800px, 0 800px;
+  }
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
-    .concurso-contenido h1 {
-        font-size: 1.5rem;
-    }
+  .concurso-contenido h1 {
+    font-size: 1.6rem;
+  }
 
-    .concurso-contenido p {
-        font-size: 1rem;
-    }
+  .concurso-contenido p {
+    font-size: 1rem;
+  }
 
-    .concurso-boton {
-        width: 100%;
-        margin: 10px 0;
-    }
+  .concurso-boton-llamativo {
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px 0;
+  }
 }
+
+
 /* INVIERNO */
 /* Fondo azul frío con efecto nieve y cristales */
 
@@ -280,6 +373,21 @@
                 <a href="{% get_media_prefix %}CONCURSO.pdf" class="concurso-boton secundario" download>Más información</a>
             </div>
         </div> -->
+      <div class="slide concurso" style="background-image: url('{% static 'app/img/agua.png' %}');">
+        <div class="concurso-contenido">
+            <h1>
+            ¡Llegan los <span class="concurso-destacado">nuevos medidores inteligentes</span> a fines de agosto!
+            </h1>
+            <p>
+            Anticípate y asegura el tuyo hoy mismo.<br>
+            Alta demanda, cupos limitados.
+            </p>
+            <a href="{% url 'contacto' %}" class="concurso-boton-llamativo">🔒 Reservar Ahora</a>
+        </div>
+        <div class="agua"></div>  <!-- NUEVO div para las gotas animadas -->
+        </div>
+
+
       
         <div class="slide" style="background-image: url('{% static 'app/img/banner1.png' %}');">
             <div class="slide-content">
@@ -356,7 +464,7 @@
         <button class="slider-dot active" data-slide="0"></button>
         <button class="slider-dot" data-slide="1"></button>
         <button class="slider-dot" data-slide="1"></button>
-        
+        <button class="slider-dot" data-slide="1"></button>
     </div>
 </div>
 

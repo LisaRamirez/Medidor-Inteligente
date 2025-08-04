@@ -9,7 +9,7 @@ from django.db import IntegrityError
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from django.http import HttpResponse
-from .models import Contacto, Apr
+from .models import Contacto, Apr, Testimonio, ImagenTestimonio
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
@@ -30,7 +30,13 @@ def error_404(request, exception):
 
 def testimonio(request):
     try:
-        return render(request, 'app/testimonio.html')
+        tes = Testimonio.objects.all()
+        imag = ImagenTestimonio.objects.all()
+        data = {
+            'testi' : tes,
+            'imagenes': imag
+        }
+        return render(request, 'app/testimonio.html',data)
     except Exception as e:
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")

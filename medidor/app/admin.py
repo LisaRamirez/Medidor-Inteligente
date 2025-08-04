@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contacto, Apr
+from .models import Contacto, Apr, Testimonio, ImagenTestimonio
 # Register your models here.
 
 
@@ -19,8 +19,22 @@ class AprAdmin(admin.ModelAdmin):
     list_display = ('id',nombre, 'comuna', 'region')
     search_fields = (nombre, 'comuna', 'region')
     list_filter = (nombre, 'comuna', 'region')
-    ordering = (nombre, 'comuna', 'region')
+    ordering = ('id',nombre)
     list_per_page = 15
+
+class ImagenTestimonioAdmin(admin.TabularInline):
+    model = ImagenTestimonio
+
+
+class TestimonioAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'fecha_creacion', 'activo')
+    search_fields = ('titulo', 'fecha_creacion', 'activo')
+    list_filter = ('titulo', 'fecha_creacion', 'activo')
+    ordering = ('id','titulo')
+    inlines = [ImagenTestimonioAdmin]
+    list_per_page = 15
+
+admin.site.register(Testimonio, TestimonioAdmin)
 
 admin.site.register(Apr, AprAdmin)
 admin.site.register(Contacto, ContactoAdmin)
