@@ -1,3 +1,4 @@
+import json
 import logging
 import datetime
 import smtplib
@@ -21,11 +22,23 @@ from datetime import datetime
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.http import HttpResponsePermanentRedirect
-
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.shortcuts import render
+
+
+
+
+
 
 def error_404(request, exception):
     return render(request, 'app/e404.html', status=404)
+
+
+
+
+
+
 
 
 def testimonio(request):
@@ -43,6 +56,76 @@ def testimonio(request):
 
 
 
+
+
+
+
+@csrf_exempt
+@require_POST
+def incrementar_like_testimonio(request):
+    """API para incrementar likes de testimonios"""
+    try:
+        data = json.loads(request.body)
+        testimo = data.get('id')
+        
+        testimonio = get_object_or_404(Testimonio, id=testimo, activo=True)
+        testimonio.incrementar_like()
+        
+        return JsonResponse({
+            'success': True,
+            'likes': testimonio.likes
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        }, status=400)
+
+
+
+
+def cargar_mas_testimonios(request):
+    """API para cargar más testimonios"""
+    try:
+        offset = int(request.GET.get('offset', 4))
+        limit = int(request.GET.get('limit', 2))
+        
+        testimonios = Testimonio.objects.filter(activo=True)[offset:offset+limit]
+        
+        testimonios_data = []
+        for testimonio in testimonios:
+            imagenes = []
+            for imagen in testimonio.imagenes.all():
+                imagenes.append({
+                    'url': imagen.imagen.url,
+                    'alt': imagen.alt_text
+                })
+            
+            testimonios_data.append({
+                'id': testimonio.id,
+                'fecha': testimonio.fecha.strftime('%d %b %Y'),
+                'creador': testimonio.creador,
+                'titulo': testimonio.titulo,
+                'sub_titulo': testimonio.sub_titulo,
+                'contenido': testimonio.contenido,
+                'descripcion': testimonio.descripcion,
+                'id_yt': testimonio.id_yt,
+                'likes': testimonio.likes,
+                'imagenes': imagenes
+            })
+        
+        return JsonResponse({
+            'success': True,
+            'testimonios': testimonios_data,
+            'has_more': Testimonio.objects.filter(activo=True).count() > offset + limit
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        }, status=400)
+
+
 def prueba(request):
     try:
         return render(request, 'app/testimonio.html')
@@ -50,12 +133,22 @@ def prueba(request):
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
 
+
+
+
+
+
 def mi_vista(request):
     return render(request, 'recursos.html', {'MEDIA_URL': settings.MEDIA_URL})
 # Create your views here.
 
 logger = logging.getLogger(__name__)
 logger = logging.getLogger('django')
+
+
+
+
+
 
 def clientes(request):
     try:
@@ -74,6 +167,9 @@ def clientes(request):
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema con tu solicitud.')
         return redirect('app/error_404')  # Redirige a la página de error
+
+
+
 
 
 
@@ -118,6 +214,8 @@ def apr(request, apr_id):
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema al cargar la información.')
         return redirect('app/error_404')  # Redirige a una página de error
+
+
 
 
 
@@ -182,6 +280,9 @@ def home(request):
 
 
 
+
+
+
 def contacto(request):
     if request.method == 'POST':
         try:
@@ -241,6 +342,10 @@ def contacto(request):
     return render(request, 'app/contacto.html')
     
     
+
+
+
+
 
 def send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port):
     server = None

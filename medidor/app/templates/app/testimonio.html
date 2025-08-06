@@ -1,6 +1,7 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
+
 <style>
         
 
@@ -516,7 +517,12 @@
 
 
 
-<section class="testimonio-testimonials-section">
+<div class="testimonio-container">
+    <header class="testimonio-header">
+        <h1>Testimonios de Nuestra Comunidad</h1>
+        <p>Descubre las experiencias y opiniones de nuestros usuarios</p>
+    </header><section class="testimonio-testimonials-section">
+
     <h2 style="text-align: center; color: #333; margin-bottom: 20px; font-size: 2.5rem;">Lo que dicen nuestros usuarios</h2>
     
     <div class="testimonio-testimonials-grid" id="testimonialGrid">
@@ -538,7 +544,7 @@
                                 <img src="{{ imagen.imagen.url }}" alt="{{ imagen.titulo }}">
                             </div>
                             {% endfor %}
-                        </div>
+                        </div>¿
                         <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide({{ forloop.counter }})">❮</button>
                         <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide({{ forloop.counter }})">❯</button>
                     </div>
@@ -574,14 +580,23 @@
 
         <!-- Add More Button -->
        
-</section>
+    </section>
 
 
 
-
+ 
 
 
     <script>
+
+        const CSRF_TOKEN = '{{ csrf_token }}';
+        const API_URLS = {
+            likeTestimonio: '{% url "testimonios:like_testimonio" %}',
+            cargarMas: '{% url "testimonios:cargar_mas" %}'};
+    
+        let currentOffset = {{ testimonios|length }};
+        let totalTestimonios = {{ total_testimonios }};
+    
         // Main slider functionality
         let currentMainSlideIndex = 0;
         const mainSlides = document.querySelectorAll('.testimonio-slide');
@@ -679,38 +694,41 @@
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }
+        window.toggleCardLike = (testimonioId) => {
+            const button = event.target
+            const likeCount = document.getElementById(`likeCount${testimonioId}`)
 
-        // Like functionality for individual cards
-        function toggleCardLike(cardId) {
-            const button = event.target;
-            const likeCount = document.getElementById(`likeCount${cardId}`);
-            let count = parseInt(likeCount.textContent);
+            if (!button.classList.contains("liked")) {
+              button.classList.add("liked")
             
-            if (button.classList.contains('liked')) {
-                button.classList.remove('liked');
-                likeCount.textContent = count - 1;
-            } else {
-                button.classList.add('liked');
-                likeCount.textContent = count + 1;
+              // Hacer petición AJAX a Django
+              fetch(API_URLS.likeTestimonio, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRFToken": CSRF_TOKEN,
+                },
+                body: JSON.stringify({
+                  testimonio_id: testimonioId,
+                }),
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.success) {
+                    likeCount.textContent = data.likes
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error:", error)
+                })
+            
+              // Remove liked class after animation
+              setTimeout(() => {
+                button.classList.remove("liked")
+              }, 600)
             }
         }
-
-        // Logo like functionality
-        function toggleLike(button, event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            const likeCount = button.nextElementSibling;
-            let count = parseInt(likeCount.textContent);
-            
-            if (button.classList.contains('liked')) {
-                button.classList.remove('liked');
-                likeCount.textContent = count - 1;
-            } else {
-                button.classList.add('liked');
-                likeCount.textContent = count + 1;
-            }
-        }
+        
 
         // Auto-slide functionality for main slider
         setInterval(nextMainSlide, 5000);
@@ -721,4 +739,5 @@
             showCardSlide(i, 0);
         }
     </script>
+</div>
 {% endblock %}
