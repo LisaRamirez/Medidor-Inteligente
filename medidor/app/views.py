@@ -60,26 +60,7 @@ def testimonio(request):
 
 
 
-@csrf_exempt
-@require_POST
-def incrementar_like_testimonio(request):
-    """API para incrementar likes de testimonios"""
-    try:
-        data = json.loads(request.body)
-        testimo = data.get('id')
-        
-        testimonio = get_object_or_404(Testimonio, id=testimo, activo=True)
-        testimonio.incrementar_like()
-        
-        return JsonResponse({
-            'success': True,
-            'likes': testimonio.likes
-        })
-    except Exception as e:
-        return JsonResponse({
-            'success': False,
-            'error': str(e)
-        }, status=400)
+
 
 
 

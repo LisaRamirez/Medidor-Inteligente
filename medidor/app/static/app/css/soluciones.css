@@ -1,0 +1,236 @@
+ .background-image {
+        background-image: url('{% static "app/img/banner2.png" %}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .product-image-container,
+    .product-info {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .product-title,
+    .product-name,
+    .product-description,
+    .feature-item {
+        color: #ffffff; /* Cambia esto al color que mejor se adapte a tu imagen de fondo */
+    }
+    
+    /* Ajusta los estilos de los botones */
+    .btn-outline {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+    
+    .btn-primary {
+        background-color: #ffffff;
+        color: #000000; /* Ajusta este color según tu diseño */
+    }
+    .product-section {
+        display: flex;
+        flex-direction: column;
+       
+        gap: 20px;
+    }
+
+    .product-image-container {
+        position: relative;
+    background: linear-gradient(rgba(173, 173, 173, 0.9), rgba(17, 17, 17, 0.9)),
+    url("{% static 'app/img/medidor-bg.jpg'%}");
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    
+    min-height: 300px; /* Esta es la altura mínima en píxeles, pero ahora se adapta a la altura de la ventana con vh */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+    .background-image::before {
+        background: linear-gradient(rgba(173, 173, 173, 0.5), rgba(17, 17, 17, 0.5));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .product-image-container
+     {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .product-title {
+        font-size: clamp(1.5rem, 2vw, 2.5rem);
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ffffff;
+        letter-spacing: 2px;
+    }
+
+    .product-image {
+        max-width: 100%; /* Esto asegura que la imagen no sea más grande que su contenedor */
+        height: 300px;    /* Esto mantiene la proporción original de la imagen */
+        object-fit: contain; /* Asegura que la imagen se ajuste al contenedor sin perder su relación de aspecto */
+        margin: 0 auto; /* Centra la imagen horizontalmente */
+    }
+
+    .product-info {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .conoce-tag {
+        color:rgb(252, 252, 252);
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+    }
+
+    .product-name {
+        color:rgb(252, 252, 252);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: bold;
+    }
+
+    .product-description {
+        color:rgb(252, 252, 252);
+        line-height: 1.6;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+    }
+
+    .features-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color:rgb(252, 252, 252);
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+    }
+
+    .check-icon {
+        width: clamp(16px, 2vw, 20px);
+        height: clamp(16px, 2vw, 20px);
+        color:rgb(252, 252, 252);
+        flex-shrink: 0;
+    }
+
+    .buttons-container {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: auto;
+    }
+
+    .btn {
+        padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
+        border-radius: 4px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+        min-width: 150px;
+    }
+
+    .btn-outline {
+        border: 2px solid #002B5C;
+        color: #002B5C;
+        background: white;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
+        color: white;
+        border: none;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+        .product-section {
+            flex-direction: row;
+        }
+
+        .product-image-container {
+            width: 50%;
+            min-height: auto;
+        }
+
+        .product-info {
+            width: 50%;
+        }
+    }
+
+    /* Para tablets */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .catalog-container {
+            height: 70vh;
+        }
+
+        .buttons-container {
+            justify-content: flex-start;
+        }
+    }
+
+    /* Para móviles en landscape */
+    @media (max-height: 500px) {
+        .catalog-container {
+            height: auto;
+            min-height: 100vh;
+        }
+    }
+
+    /* Para dispositivos más pequeños */
+    @media (max-width: 480px) {
+        .catalog-container {
+            padding: 10px;
+        }
+
+        .buttons-container {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    /* Para pantallas grandes */
+    @media (min-width: 1400px) {
+        .catalog-container {
+            height: 70vh;
+        }
+
+        .product-image {
+            max-height: 90%;
+        }
+    }
+
+    /* Para asegurar la legibilidad en dispositivos con alta densidad de píxeles */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .product-description,
+        .feature-item {
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+        }
+    }

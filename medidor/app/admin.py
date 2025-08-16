@@ -31,6 +31,7 @@ class TestimonioAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'fecha_creacion', 'activo')
     list_filter = ('titulo', 'fecha_creacion', 'activo')
     ordering = ('id','titulo')
+    readonly_fields = ('fecha_creacion',)
     inlines = [ImagenTestimonioAdmin]
     list_per_page = 15
 

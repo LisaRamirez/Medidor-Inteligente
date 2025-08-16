@@ -1,0 +1,110 @@
+
+
+/* Contenedor principal APR */
+.apra {
+    background: linear-gradient(135deg, #004aad, #679bf1);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Títulos de APR */
+.apra .titlle h1 {
+    font-size: 2.2rem;
+    margin: 0 0 10px;
+    font-weight: 700;
+}
+
+.apra .titlle h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Imagen de la APR */
+.ñeee {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.ñapa {
+    width: 100%;
+    max-width: 700px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.ñapa img.imagenn {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.ñapa img.imagenn:hover {
+    transform: scale(1.05);
+}
+
+/* Contenedores de información */
+.conta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    width: 90%;
+    margin: auto;
+}
+
+.infore {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    flex: 1 1 300px;
+    min-width: 300px;
+}
+
+/* Títulos internos */
+.infore .tittlle {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #004aad;
+    border-bottom: 2px solid #679bf1;
+    padding-bottom: 5px;
+}
+
+/* Párrafos */
+.infore .pres {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+/* Redes sociales */
+.social-icons a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #004aad;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #18a3fa;
+    transform: translateX(5px);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .conta {
+        flex-direction: column;
+        align-items: center;
+    }
+}

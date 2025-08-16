@@ -1,12 +1,4 @@
 
-let currentMainSlideIndex = 0
-const cardSlideIndexes = []
-let currentOffset = 0
-const API_URLS = {
-    likeTestimonio: "/api/like-testimonio/",
-    likeSocio: "/api/like-socio/",
-    cargarMas: "/api/cargar-mas/",
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');

@@ -1,0 +1,141 @@
+.nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            
+            position: relative;
+            z-index: 1000;
+        }
+    
+        .logo {
+            height: 40px;
+        }
+    
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    
+        .navbar-toggler-icon {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #000;
+            position: relative;
+            transition: background 0.2s ease-out;
+        }
+    
+     .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background: #000;
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+        }
+        
+    
+        .navbar-toggler-icon::before {
+            top: -6px;
+        }
+    
+        .navbar-toggler-icon::after {
+            top: 6px;
+        }
+    
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+    
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+    
+        .nav-links a:hover {
+            color: #0046B5;
+        }
+    
+        /* Estilo para el enlace activo */
+        .nav-links a.active {
+            color: #0046B5;
+            font-weight: 600;
+        }
+    
+        /* Línea azul debajo del enlace activo */
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0046B5;
+        }
+    
+     
+    
+        /* Estilo especial para el botón de contacto cuando está activo */
+        .contact-btn.active {
+            background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
+        }
+    
+        /* Quitar la línea azul del botón de contacto cuando está activo */
+        .contact-btn.active::after {
+            display: none;
+        }
+    
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+    
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: white;
+                flex-direction: column;
+                padding-top: 80px;
+                z-index: 999;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 2rem;
+            }
+    
+            .nav-links.active {
+                display: flex;
+            }
+    
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+    
+            /* Ajuste de la línea indicadora en móvil */
+            .nav-links a.active::after {
+                bottom: -8px;
+                height: 3px;
+            }
+    
+            .contact-btn {
+                margin-top: 1rem;
+                padding: 0.8rem 2rem;
+            }
+        }

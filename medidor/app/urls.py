@@ -1,5 +1,5 @@
 from django.urls import path
-from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr, filtrar_apr,prueba, testimonio, incrementar_like_testimonio, cargar_mas_testimonios, cargar_mas_testimonios
+from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr, filtrar_apr,prueba, testimonio, cargar_mas_testimonios, cargar_mas_testimonios
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,7 +12,6 @@ urlpatterns = [
     path('soluciones/', soluciones, name="soluciones"),
     path('apr/<int:apr_id>/', apr, name="apr"),
     path('testimonio/', testimonio, name="testimonio"),
-    path('api/like-testimonio/', incrementar_like_testimonio, name='like_testimonio'),
     path('api/cargar-mas/', cargar_mas_testimonios, name='cargar_mas'),
  
 

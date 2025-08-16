@@ -1,743 +1,162 @@
-{%extends 'app/base.html'%}
-{%block contenido%}
+{% extends 'app/base.html' %}
+{% block contenido %}
 {% load static %}
-
-<style>
-        
-
-        .testimonio-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .testimonio-header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-        }
-
-        .testimonio-header h1 {
-            font-size: 3rem;
-            color: #4b5fcfff;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .testimonio-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        /* Media Slider Section */
-        .testimonio-media-section {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .testimonio-media-controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .testimonio-media-btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            background: #667eea;
-            color: white;
-        }
-
-        .testimonio-media-btn:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-        }
-
-        .testimonio-media-btn.active {
-            background: #764ba2;
-            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
-        }
-
-        .testimonio-slider-container {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-
-        .testimonio-slider {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonio-slide {
-            min-width: 100%;
-            height: 400px;
-        }
-
-        .testimonio-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .testimonio-video-container {
-            display: none;
-            width: 100%;
-            height: 400px;
-        }
-
-        .testimonio-video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .testimonio-slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.8);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .testimonio-slider-nav:hover {
-            background: rgba(255,255,255,1);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .testimonio-prev {
-            left: 20px;
-        }
-
-        .testimonio-next {
-            right: 20px;
-        }
-
-        .testimonio-slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .testimonio-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ccc;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .testimonio-dot.active {
-            background: #667eea;
-            transform: scale(1.2);
-        }
-
-        /* Testimonials Section */
-        .testimonio-testimonials-section {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .testimonio-testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .testimonio-testimonial-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            padding: 25px;
-            position: relative;
-            transition: all 0.3s ease;
-            border-left: 5px solid #667eea;
-        }
-
-        .testimonio-testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        /* Individual Testimonial Media */
-        .testimonio-card-media-section {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .testimonio-card-media-controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .testimonio-card-media-btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            background: #667eea;
-            color: white;
-        }
-
-        .testimonio-card-media-btn:hover {
-            background: #764ba2;
-        }
-
-        .testimonio-card-media-btn.active {
-            background: #764ba2;
-        }
-
-        .testimonio-card-slider-container {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 200px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-
-        .testimonio-card-slider {
-            display: flex;
-            transition: transform 0.5s ease;
-            height: 100%;
-        }
-
-        .testimonio-card-slide {
-            min-width: 100%;
-            height: 100%;
-        }
-
-        .testimonio-card-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .testimonio-card-video-container {
-            display: none;
-            width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .testimonio-card-video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .testimonio-card-slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.9);
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .testimonio-card-slider-nav:hover {
-            background: rgba(255,255,255,1);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .testimonio-card-prev {
-            left: 10px;
-        }
-
-        .testimonio-card-next {
-            right: 10px;
-        }
-
-        .testimonio-card-slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin-top: 10px;
-        }
-
-        .testimonio-card-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ccc;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .testimonio-card-dot.active {
-            background: #667eea;
-            transform: scale(1.2);
-        }
-
-        .testimonio-testimonial-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .testimonio-testimonial-date {
-            background: #667eea;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .testimonio-testimonial-creator {
-            font-weight: bold;
-            color: #764ba2;
-            font-size: 14px;
-        }
-
-        .testimonio-testimonial-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .testimonio-testimonial-subtitle {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .testimonio-testimonial-text {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .testimonio-testimonial-news {
-            background: #e8f4fd;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #2c5aa0;
-            border-left: 3px solid #667eea;
-            margin-bottom: 15px;
-        }
-
-        .testimonio-quote-icon {
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            font-size: 40px;
-            color: #667eea;
-            opacity: 0.3;
-        }
-
-        /* Like Button for Individual Testimonials */
-        .testimonio-card-like-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 25px;
-            margin-top: 15px;
-        }
-
-        .testimonio-card-like-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #ccc;
-            padding: 5px;
-        }
-
-        .testimonio-card-like-btn:hover {
-            transform: scale(1.2);
-            color: #ff4757;
-        }
-
-        .testimonio-card-like-btn.liked {
-            color: #ff4757;
-            animation: heartBeat 0.6s ease;
-        }
-
-        .testimonio-card-like-count {
-            font-weight: bold;
-            color: #333;
-            font-size: 16px;
-        }
-
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
-        }
-
-        /* Logos Section */
-        .testimonio-logos-section {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .testimonio-logos-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        .testimonio-logo-item {
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .testimonio-logo-item:hover {
-            transform: scale(1.1);
-        }
-
-        .testimonio-logo-link {
-            display: block;
-            padding: 20px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            text-align: center;
-            min-width: 120px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonio-logo-link:hover {
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-            transform: translateY(-3px);
-        }
-
-        .testimonio-like-btn {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff4757;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .testimonio-like-btn:hover {
-            background: #ff3742;
-            transform: scale(1.2);
-        }
-
-        .testimonio-like-btn.liked {
-            background: #2ed573;
-        }
-
-        .testimonio-like-count {
-            position: absolute;
-            bottom: -8px;
-            right: -8px;
-            background: #333;
-            color: white;
-            border-radius: 10px;
-            padding: 2px 6px;
-            font-size: 10px;
-            min-width: 20px;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .testimonio-header h1 {
-                font-size: 2rem;
-            }
-            
-            .testimonio-testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .testimonio-logos-container {
-                gap: 30px;
-            }
-            
-            .testimonio-media-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
 
 
 
 <div class="testimonio-container">
-    <header class="testimonio-header">
-        <h1>Testimonios de Nuestra Comunidad</h1>
-        <p>Descubre las experiencias y opiniones de nuestros usuarios</p>
-    </header><section class="testimonio-testimonials-section">
+<header class="testimonio-header">
+    <h1>Noticias de Nuestra Comunidad</h1>
+    <p>Descubre las experiencias y opiniones de nuestros usuarios</p>
+</header><section class="testimonio-testimonials-section">
+<h2 style="text-align: center; color: #333; margin-bottom: 20px; font-size: 2.5rem;">Actuales noticias de nuestra comunidad</h2>
 
-    <h2 style="text-align: center; color: #333; margin-bottom: 20px; font-size: 2.5rem;">Lo que dicen nuestros usuarios</h2>
-    
-    <div class="testimonio-testimonials-grid" id="testimonialGrid">
-        {% for t in testi %}
-            <div class="testimonio-testimonial-card" data-testimonio-id="{{ t.id }}">
-                <div class="testimonio-quote-icon">"</div>
-
-                <div class="testimonio-card-media-section">
-                    <div class="testimonio-card-media-controls">
-                        <button class="testimonio-card-media-btn active" onclick="showCardImages({{ forloop.counter }})">Imágenes</button>
-                        {% if t.id_yt %}
-                        <button class="testimonio-card-media-btn" onclick="showCardVideo({{ forloop.counter }})">Video</button>
-                        {% endif %}
-                    </div>
-                    <div class="testimonio-card-slider-container" id="cardImageSlider{{ forloop.counter }}">
-                        <div class="testimonio-card-slider" id="cardSlider{{ forloop.counter }}">
-                            {% for imagen in t.imagenes.all %}
-                            <div class="testimonio-card-slide">
-                                <img src="{{ imagen.imagen.url }}" alt="{{ imagen.titulo }}">
-                            </div>
-                            {% endfor %}
-                        </div>¿
-                        <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide({{ forloop.counter }})">❮</button>
-                        <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide({{ forloop.counter }})">❯</button>
-                    </div>
+<div class="testimonio-testimonials-grid" id="testimonialGrid">
+    {% for t in testi %}
+        
+        <div class="testimonio-testimonial-card" data-testimonio-id="{{ t.id }}">
+            <div class="testimonio-quote-icon">"</div>
+            <div class="testimonio-card-media-section">
+                <div class="testimonio-card-media-controls">
+                    <button class="testimonio-card-media-btn active" onclick="showCardImages({{ forloop.counter }})">Imágenes</button>
                     {% if t.id_yt %}
-                    <div class="testimonio-card-video-container" id="cardVideoContainer{{ forloop.counter }}">
-                        <iframe src="https://www.youtube.com/embed/{{ t.id_yt }}" allowfullscreen></iframe>
-                    </div>
+                    <button class="testimonio-card-media-btn" onclick="showCardVideo({{ forloop.counter }})">Video</button>
                     {% endif %}
-                    <div class="testimonio-card-slider-dots" id="cardSliderDots{{ forloop.counter }}">
+                </div>
+                <div class="testimonio-card-slider-container" id="cardImageSlider{{ forloop.counter }}">
+                    <div class="testimonio-card-slider" id="cardSlider{{ forloop.counter }}">
                         {% for imagen in t.imagenes.all %}
-                        <span class="testimonio-card-dot {% if forloop.first %}active{% endif %}" onclick="currentCardSlide({{ forloop.parentloop.counter }}, {{ forloop.counter }})"></span>
+                        <div class="testimonio-card-slide">
+                            <img src="{{ imagen.imagen.url }}" alt="{{ imagen.titulo }}">
+                        </div>
                         {% endfor %}
-                    </div>
+                    </div>¿
+                    <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide({{ forloop.counter }})">❮</button>
+                    <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide({{ forloop.counter }})">❯</button>
                 </div>
-                <div class="testimonio-testimonial-header">
-                    <span class="testimonio-testimonial-date">{{ t.fecha|date:"d M Y" }}</span>
-                    <span class="testimonio-testimonial-creator">{{ t.creador }}</span>
+                {% if t.id_yt %}
+                <div class="testimonio-card-video-container" id="cardVideoContainer{{ forloop.counter }}">
+                    <iframe src="https://www.youtube.com/embed/{{ t.id_yt }}" allowfullscreen></iframe>
                 </div>
-                <h3 class="testimonio-testimonial-title">{{ t.titulo }}</h3>
-                <p class="testimonio-testimonial-subtitle">{{ t.sub_titulo }}</p>
-                <p class="testimonio-testimonial-text">{{ t.contenido }}</p>
-                <div class="testimonio-testimonial-news">
-                    <strong>Noticia:</strong> {{ t.descripcion }}
-                </div>
-                <div class="testimonio-card-like-section">
-                    <button class="testimonio-card-like-btn" onclick="toggleCardLike({{ t.id }})">♥</button>
-                    <span class="testimonio-card-like-count" id="likeCount{{ t.id }}">{{ t.likes }}</span>
-                    <span style="font-size: 14px; color: #666;">likes</span>
+                {% endif %}
+                <div class="testimonio-card-slider-dots" id="cardSliderDots{{ forloop.counter }}">
+                    {% for imagen in t.imagenes.all %}
+                    <span class="testimonio-card-dot {% if forloop.first %}active{% endif %}" onclick="currentCardSlide({{ forloop.parentloop.counter }}, {{ forloop.counter }})"></span>
+                    {% endfor %}
                 </div>
             </div>
-        {% endfor %}
-    </div>
-
-        <!-- Add More Button -->
-       
-    </section>
-
-
-
- 
-
-
-    <script>
-
-        const CSRF_TOKEN = '{{ csrf_token }}';
-        const API_URLS = {
-            likeTestimonio: '{% url "testimonios:like_testimonio" %}',
-            cargarMas: '{% url "testimonios:cargar_mas" %}'};
-    
-        let currentOffset = {{ testimonios|length }};
-        let totalTestimonios = {{ total_testimonios }};
-    
-        // Main slider functionality
-        let currentMainSlideIndex = 0;
-        const mainSlides = document.querySelectorAll('.testimonio-slide');
-        const mainDots = document.querySelectorAll('.testimonio-dot');
-        const mainSlider = document.getElementById('mainSlider');
-
-        function showMainSlide(index) {
-            mainSlider.style.transform = `translateX(-${index * 100}%)`;
+            <div class="testimonio-testimonial-header">
+                <span class="testimonio-testimonial-date">{{ t.fecha|date:"d M Y" }}</span>
+                <span class="testimonio-testimonial-creator">{{ t.creador }}</span>
+            </div>
+            <h3 class="testimonio-testimonial-title">{{ t.titulo }}</h3>
+            <p class="testimonio-testimonial-subtitle">{{ t.sub_titulo }}</p>
+            <p class="testimonio-testimonial-text">{{ t.contenido }}</p>
+            <div class="testimonio-testimonial-news">
+                <strong>Noticia:</strong> {{ t.descripcion }}
+            </div>
             
-            mainDots.forEach(dot => dot.classList.remove('active'));
-            mainDots[index].classList.add('active');
-            
-            currentMainSlideIndex = index;
-        }
+        </div>
+    {% endfor %}
+</div>
+    <!-- Add More Button -->
+   
+</section>
 
-        function nextMainSlide() {
-            currentMainSlideIndex = (currentMainSlideIndex + 1) % mainSlides.length;
-            showMainSlide(currentMainSlideIndex);
-        }
-
-        function prevMainSlide() {
-            currentMainSlideIndex = (currentMainSlideIndex - 1 + mainSlides.length) % mainSlides.length;
-            showMainSlide(currentMainSlideIndex);
-        }
-
-        function currentMainSlide(index) {
-            showMainSlide(index - 1);
-        }
-
-        function showMainImages() {
-            document.getElementById('mainImageSlider').style.display = 'block';
-            document.getElementById('mainVideoContainer').style.display = 'none';
-            document.getElementById('mainSliderDots').style.display = 'flex';
-            
-            document.querySelectorAll('.testimonio-media-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        function showMainVideo() {
-            document.getElementById('mainImageSlider').style.display = 'none';
-            document.getElementById('mainVideoContainer').style.display = 'block';
-            document.getElementById('mainSliderDots').style.display = 'none';
-            
-            document.querySelectorAll('.testimonio-media-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        // Individual card slider functionality
-        let cardSlideIndexes = [0, 0, 0, 0]; // Track current slide for each card
-
-        function showCardSlide(cardId, index) {
-            const slider = document.getElementById(`cardSlider${cardId}`);
-            const dots = document.querySelectorAll(`#cardSliderDots${cardId} .testimonio-card-dot`);
-            
-            slider.style.transform = `translateX(-${index * 100}%)`;
-            
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-            
-            cardSlideIndexes[cardId - 1] = index;
-        }
-
-        function nextCardSlide(cardId) {
-            const slides = document.querySelectorAll(`#cardSlider${cardId} .testimonio-card-slide`);
-            cardSlideIndexes[cardId - 1] = (cardSlideIndexes[cardId - 1] + 1) % slides.length;
-            showCardSlide(cardId, cardSlideIndexes[cardId - 1]);
-        }
-
-        function prevCardSlide(cardId) {
-            const slides = document.querySelectorAll(`#cardSlider${cardId} .testimonio-card-slide`);
-            cardSlideIndexes[cardId - 1] = (cardSlideIndexes[cardId - 1] - 1 + slides.length) % slides.length;
-            showCardSlide(cardId, cardSlideIndexes[cardId - 1]);
-        }
-
-        function currentCardSlide(cardId, index) {
-            showCardSlide(cardId, index - 1);
-        }
-
-        function showCardImages(cardId) {
-            document.getElementById(`cardImageSlider${cardId}`).style.display = 'block';
-            document.getElementById(`cardVideoContainer${cardId}`).style.display = 'none';
-            document.getElementById(`cardSliderDots${cardId}`).style.display = 'flex';
-            
-            const buttons = document.querySelectorAll(`#cardImageSlider${cardId}`).parentNode.querySelectorAll('.testimonio-card-media-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        function showCardVideo(cardId) {
-            document.getElementById(`cardImageSlider${cardId}`).style.display = 'none';
-            document.getElementById(`cardVideoContainer${cardId}`).style.display = 'block';
-            document.getElementById(`cardSliderDots${cardId}`).style.display = 'none';
-            
-            const buttons = event.target.parentNode.querySelectorAll('.testimonio-card-media-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-        window.toggleCardLike = (testimonioId) => {
-            const button = event.target
-            const likeCount = document.getElementById(`likeCount${testimonioId}`)
-
-            if (!button.classList.contains("liked")) {
-              button.classList.add("liked")
-            
-              // Hacer petición AJAX a Django
-              fetch(API_URLS.likeTestimonio, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "X-CSRFToken": CSRF_TOKEN,
-                },
-                body: JSON.stringify({
-                  testimonio_id: testimonioId,
-                }),
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  if (data.success) {
-                    likeCount.textContent = data.likes
-                  }
-                })
-                .catch((error) => {
-                  console.error("Error:", error)
-                })
-            
-              // Remove liked class after animation
-              setTimeout(() => {
-                button.classList.remove("liked")
-              }, 600)
-            }
-        }
+<script>
+    // Main slider functionality
+    let currentMainSlideIndex = 0;
+    const mainSlides = document.querySelectorAll('.testimonio-slide');
+    const mainDots = document.querySelectorAll('.testimonio-dot');
+    const mainSlider = document.getElementById('mainSlider');
+    function showMainSlide(index) {
+        mainSlider.style.transform = `translateX(-${index * 100}%)`;
         
-
-        // Auto-slide functionality for main slider
-        setInterval(nextMainSlide, 5000);
-
-        // Initialize
-        showMainSlide(0);
-        for (let i = 1; i <= 4; i++) {
-            showCardSlide(i, 0);
-        }
-    </script>
+        mainDots.forEach(dot => dot.classList.remove('active'));
+        mainDots[index].classList.add('active');
+        
+        currentMainSlideIndex = index;
+    }
+    function nextMainSlide() {
+        currentMainSlideIndex = (currentMainSlideIndex + 1) % mainSlides.length;
+        showMainSlide(currentMainSlideIndex);
+    }
+    function prevMainSlide() {
+        currentMainSlideIndex = (currentMainSlideIndex - 1 + mainSlides.length) % mainSlides.length;
+        showMainSlide(currentMainSlideIndex);
+    }
+    function currentMainSlide(index) {
+        showMainSlide(index - 1);
+    }
+    function showMainImages() {
+        document.getElementById('mainImageSlider').style.display = 'block';
+        document.getElementById('mainVideoContainer').style.display = 'none';
+        document.getElementById('mainSliderDots').style.display = 'flex';
+        
+        document.querySelectorAll('.testimonio-media-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+    function showMainVideo() {
+        document.getElementById('mainImageSlider').style.display = 'none';
+        document.getElementById('mainVideoContainer').style.display = 'block';
+        document.getElementById('mainSliderDots').style.display = 'none';
+        
+        document.querySelectorAll('.testimonio-media-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+    // Individual card slider functionality
+    let cardSlideIndexes = [0, 0, 0, 0]; // Track current slide for each card
+    function showCardSlide(cardId, index) {
+        const slider = document.getElementById(`cardSlider${cardId}`);
+        const dots = document.querySelectorAll(`#cardSliderDots${cardId} .testimonio-card-dot`);
+        
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+        
+        cardSlideIndexes[cardId - 1] = index;
+    }
+    function nextCardSlide(cardId) {
+        const slides = document.querySelectorAll(`#cardSlider${cardId} .testimonio-card-slide`);
+        cardSlideIndexes[cardId - 1] = (cardSlideIndexes[cardId - 1] + 1) % slides.length;
+        showCardSlide(cardId, cardSlideIndexes[cardId - 1]);
+    }
+    function prevCardSlide(cardId) {
+        const slides = document.querySelectorAll(`#cardSlider${cardId} .testimonio-card-slide`);
+        cardSlideIndexes[cardId - 1] = (cardSlideIndexes[cardId - 1] - 1 + slides.length) % slides.length;
+        showCardSlide(cardId, cardSlideIndexes[cardId - 1]);
+    }
+    function currentCardSlide(cardId, index) {
+        showCardSlide(cardId, index - 1);
+    }
+    function showCardImages(cardId) {
+        document.getElementById(`cardImageSlider${cardId}`).style.display = 'block';
+        document.getElementById(`cardVideoContainer${cardId}`).style.display = 'none';
+        document.getElementById(`cardSliderDots${cardId}`).style.display = 'flex';
+        
+        const buttons = document.querySelectorAll(`#cardImageSlider${cardId}`).parentNode.querySelectorAll('.testimonio-card-media-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+    function showCardVideo(cardId) {
+        document.getElementById(`cardImageSlider${cardId}`).style.display = 'none';
+        document.getElementById(`cardVideoContainer${cardId}`).style.display = 'block';
+        document.getElementById(`cardSliderDots${cardId}`).style.display = 'none';
+        
+        const buttons = event.target.parentNode.querySelectorAll('.testimonio-card-media-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+    
+    
+    // Auto-slide functionality for main slider
+    setInterval(nextMainSlide, 5000);
+    // Initialize
+    showMainSlide(0);
+    for (let i = 1; i <= 4; i++) {
+        showCardSlide(i, 0);
+    }
+</script>
 </div>
 {% endblock %}

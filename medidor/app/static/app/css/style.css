@@ -40,7 +40,8 @@ body {
     align-items: center;
     justify-content: center;
     max-width: 1200px;
-    background-color:#09498d;/* Asegurar fondo azul dentro del contenedor */
+    
+
     padding: 2rem;
     border-radius: 10px; /* Opcional, para mejor diseño */
     
@@ -109,7 +110,7 @@ body {
     padding: 1rem;
 }
 .butte{
-    background: linear-gradient(45deg, #5661f1, #100058);
+    background: linear-gradient(45deg, #050c37, #004aad);
     border: none;
     color: white;
     padding: 15px 30px;
@@ -120,12 +121,12 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .butte:hover {
-    background: linear-gradient(45deg, #fcfcfc, #06001f);
+    background: linear-gradient(45deg, #004aad, #050c37);
     transform: scale(1.1);
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 10px rgba(6, 2, 68, 0.2);
 }
 .butte:active{
-    background: linear-gradient(45deg, #505050, #8b8b8b);
+    background: linear-gradient(45deg, #1e0fa7, #0c5d8b);
 }
 .butte .imagensota{
     width: 475px;
@@ -222,7 +223,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #DAFF01; /* Cambiado para mejor visibilidad */
+    background: #d0e4f4; /* Cambiado para mejor visibilidad */
     border: none;
     width: 40px;
     height: 40px;
@@ -502,7 +503,7 @@ body {
     .benefit-icon {
         width: clamp(50px, 10vw, 60px);
         height: clamp(50px, 10vw, 60px);
-        background-color: #002868;
+        background-color: #004aad;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -571,7 +572,7 @@ body {
     }
     
     ul.izq li, ul.der li {
-        font-size: 1rem;
+        font-size: 1.3rem;
         margin-bottom: 1rem;
     }
 }
@@ -691,87 +692,10 @@ body {
         
         text-align: auto auto;
     }
-.ñapa{
-    width: 90%;
-    height: auto;
-    margin: auto auto;
 
-}
-.apra{
-    background-color: #002B5C;
-    text-decoration-color: #F3F4F6;
-    margin: auto auto;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-.tittlle{
-    color:#09013b;
-}
-.titlle{
-color: #ffffff;
-text-align: center;
-}
-
-.conta{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 80%;
-    margin: auto auto;
-}
-.infore{
-    margin: auto auto;
-    
-}
-
-.imagenn{
-    width: 100%;
-    height: auto;
-    margin: auto auto;
-    border-radius: 20px;
-
-    
-}
-.image{
-    width: 100%;
-    height: 80%;
-    margin: auto auto;
-
-}
-
-@media (max-width: 768px) {
-    .imagenn{
-        width: 100%;
-        margin: auto auto;
-        border-radius: 20px;
-        
-    }
-
-}
-@media (min-width: 800px) and (max-width: 1199px) {
-    .conta{
-        display: grid;
-        grid-template-columns: 1fr;
-        width: 80%;
-    }
-    .infore{
-        margin-left:0;
-        
-    }
-}
-@media (min-width: 200px) and (max-width: 799px) {
-    .conta{
-        display: grid;
-        grid-template-columns: 1fr;
-        width: 90%;
-    }
-    .infore{
-        margin-left: 0;
-        
-    }
-}
 .sustainability {
-background-color: #002868;
+background: linear-gradient(to right, #113579, #004aad, #679bf1);
+
 color: white;
 background-repeat: no-repeat;
 background-position: center;
@@ -1020,7 +944,7 @@ transform: none !important;
         
 /* TERMINA */
 .containerinteligente {
-    background: url("/static/app/img/banner2.png");
+    background: url("/static/app/img/bann10.png");
 
     background-size: cover;
     background-position: center;
@@ -1147,7 +1071,8 @@ transform: none !important;
 }
 
 .imagun {
-    background-color: #113579;
+   background: linear-gradient(to right, #113579, #004aad, #679bf1);
+
     width:90%;
     border-start-start-radius: 30px;
     border-end-start-radius: 30px;
@@ -1155,7 +1080,7 @@ transform: none !important;
     display: grid;
     align-items: center;
     padding: 20px;
-    margin-left: 10%;
+    margin-left: 20%;
 }
 
 .imagon {
@@ -1175,11 +1100,11 @@ transform: none !important;
 
 .imm-img {
     width: 400px;
-    height: 225px;
+    height: 290px;
     display: grid;
     margin: auto auto;
     border-radius: 10px;
-    margin-left: -50%;
+    margin-left: -40%;
 }
 .ima{
     width:40%;
@@ -1595,7 +1520,7 @@ transform: none !important;
 .banner-img{
     width: 100%;
     margin: auto;
-    background-color: #1E3A8A;
+    background-color: #2842a0;
 }
 .ñam{
     width:90%;
@@ -1636,7 +1561,7 @@ transform: none !important;
 
 
 .lleno{
-    background-color: #325394;
+    
     width:100%;
     height: auto;
     padding-top: 2rem;
@@ -1682,7 +1607,7 @@ transform: none !important;
 }
 
 .contact-btn {
-    background: var(--primary-blue);
+    background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
     color: white !important;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -1693,7 +1618,7 @@ transform: none !important;
         margin: auto;
         padding-bottom: 5rem;
         padding-top: 5rem;
-        color: #1a169d;
+        color:  #2e3192;
     }
 
     .ream {
@@ -2004,7 +1929,8 @@ transform: none !important;
 }
 .home{
     position: relative;
-    background-color: #09498d;
+    background: linear-gradient(to right, #113579, #004aad);
+
     overflow: hidden;
     will-change: transform;
     -webkit-overflow-scrolling: touch;
@@ -2444,7 +2370,7 @@ transition: none;
     
     /* Botón de envío */
     button[type="submit"] {
-        background-color: #002B5C;
+        background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
         color: white;
         padding: 0.75rem 2rem;
         border: none;
@@ -2457,7 +2383,7 @@ transition: none;
     }
     
     button[type="submit"]:hover {
-        background-color: #001f42;
+        background-color: #050c37;
     }
     
     /* Responsive */
@@ -2655,7 +2581,7 @@ h1 {
 .step-number {
     font-size: 100px;
     font-weight: bold;
-    color: #E5E7EB;
+    color: #a5b5d4;
     position: absolute;
     top: -40px;
     left: 30%;
@@ -3070,7 +2996,8 @@ h1 {
 .card-footers {
     width:100%;
     height:82px;
-    background-color: var(--primary-blue);
+    background: linear-gradient(to right, #050c37, #18a3fa);
+
     color: var(--text-light);
     padding: 1rem;
     display: flex;
@@ -3812,7 +3739,8 @@ h1 {
     }
 
     .step-cardrecurso {
-        background-color: #2b71c7;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+
         color: #333;
         padding: 1.5rem;
         border-radius: 10px;
@@ -3909,6 +3837,7 @@ footer {
 .footer-text a {
     color: white;
     text-decoration: none;
+    
 }
 
 .footer-text a:hover {
@@ -3941,7 +3870,8 @@ footer {
 }
 
 .contact-info {
-    margin-bottom: 10px;
+    
+    margin-bottom: 2rem;
 }
 
 .social-links {
@@ -3949,6 +3879,7 @@ footer {
     flex-direction: column;
     gap: 10px;
     margin-top: 15px;
+    
 }
 
 .social-links a {
@@ -4214,7 +4145,7 @@ a:hover {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 15px;
-    background:rgb(110, 154, 202);
+    background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -4315,8 +4246,8 @@ a:hover {
 
 .image-circle {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     background: rgba(59, 130, 246, 0.3);
     border-radius: 50%;
     filter: blur(40px);
@@ -4495,7 +4426,7 @@ a:hover {
     
     /* Stats Section */
     .stats {
-        background-color: #020750;
+        background-color:#0a3280;
         color: white;
         padding: 4rem 2rem;
 
@@ -4662,7 +4593,7 @@ a:hover {
         transform: translateY(-50%);
         width: 40px;
         height: 40px;
-        background: rgba(26, 24, 99, 0.7);
+        background: rgba(0, 45, 243, 0.7);
         border: none;
         border-radius: 50%;
         color: white;
@@ -5262,7 +5193,7 @@ a:hover {
     }
 
     .videocliente {
-        background-color: #0a2657;
+        background-color: #2842a0;
         border-radius: 8px;
         overflow: hidden;
         position: relative;

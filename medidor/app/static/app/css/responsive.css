@@ -24,14 +24,14 @@
 /* iPads (iPad Mini, iPad Air, iPad Pro) */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
     body {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
 /* iPad Pro 12.9" y pantallas grandes */
 @media only screen and (min-width: 1025px) {
     body {
-        font-size: 22px;
+        font-size: 18px;
     }
 }
 

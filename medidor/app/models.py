@@ -83,10 +83,6 @@ class Testimonio(models.Model):
 
     def __str__(self):
         return self.titulo
-    
-    def incrementar_like(self):
-        self.likes += 1
-        self.save()
 
 class ImagenTestimonio(models.Model):
     imagen = models.ImageField("Imagen", upload_to='testimonios', null=True)
