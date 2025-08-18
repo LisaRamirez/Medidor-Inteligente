@@ -56,7 +56,7 @@
         <div class="nav-links">
             <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Inicio</a>
             <a href="{% url 'soluciones' %}" class="nav-link {% if 'soluciones' in request.path %}active{% endif %}">Soluciones</a>
-            <a href="{% url 'nosotros' %}" class="nav-link {% if 'nosotros' in request.path %}active{% endif %}">Quiénes somos</a>
+            <a href="{% url 'nosotros' %}" class="nav-link {% if 'nosotros' in request.path %}active{% endif %}">Nosotros</a>
             <a href="{% url 'clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>
             <a href="{% url 'testimonio' %}" class="nav-link {% if 'testimonio' in request.path %}active{% endif %}">Noticias</a>
             <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Recursos</a>
