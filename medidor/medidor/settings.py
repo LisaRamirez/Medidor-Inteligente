@@ -182,11 +182,10 @@ LOGGING = {
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True
+EMAIL_USE_SSL = False
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'wamdigitalwd@gmail.com'
-EMAIL_HOST_PASSWORD = 'hnhu imoz muor chwn' # dejar en variables de entorno del sv
+EMAIL_HOST_PASSWORD = 'okcy rndj omid vljz' 
 EMAIL_PORT = 587
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_PORT_SSL = 465
 EMAIL_FILE_PATH = "emails/"

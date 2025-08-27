@@ -122,34 +122,36 @@
                 <button type="submit" id="sendBtn">Enviar</button>
 
                 
-                <script>
-                    document.getElementById("sendBtn").addEventListener("click", function (event) {
-                      const emailInput = document.getElementById("email");
-                      const email = emailInput.value.trim();
-                      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                  
-                      // Evitar que el formulario se envíe automáticamente
-                      event.preventDefault();
-                  
-                      if (email === "" || !emailRegex.test(email)) {
-                        // Si el correo está vacío o mal escrito
-                        Swal.fire({
-                          title: "Error",
-                          text: "ingrese un correo válido",
-                          icon: "error",
-                          confirmButtonText: "OK"
-                        });
-                      } else {
-                        // Si el correo es válido, mostrar success y luego enviar el form
-                        Swal.fire({
-                          title: "enviado",										 
-                          icon: "success",
-                          confirmButtonText: "OK"
-                        }).then(() => {
-                          document.getElementById("emailForm").submit();
-                        });
-                      }
+             <script>
+                document.getElementById("sendBtn").addEventListener("click", function (event) {
+                    const emailInput = document.getElementById("email");
+                    const email = emailInput.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    // Evitar que el formulario se envíe automáticamente
+                    event.preventDefault();
+
+                    if (email === "" || !emailRegex.test(email)) {
+                    // Si el correo está vacío o mal escrito
+                    Swal.fire({
+                        title: "Error",
+                        text: "Ingrese un correo válido",
+                        icon: "error",
+                        confirmButtonText: "OK"
                     });
+                    } else {
+                    // Enviar el formulario inmediatamente
+                    document.getElementById("emailForm").submit();
+
+                    // Mostrar aviso de enviado (el OK solo cierra el aviso)
+                    Swal.fire({
+                        title: "Enviado",
+                        text: "Tu mensaje fue enviado correctamente",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    });
+                    }
+                });
                 </script>
             </form>
             <div id="confirmationMessage" class="confirmation-message" style="display: none;">
