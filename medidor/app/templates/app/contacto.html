@@ -68,8 +68,13 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Correo electrónico <span class="required">*</span></label>
-                        <input type="email" name="correo" id="email" placeholder="Escribe aquí" required>
+                        <input type="email" name="correo" id="emai" placeholder="Escribe aquí" required>
                     </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico <span class="required">*</span></label>
+                        <input type="email" name="correo2" id="email" placeholder="Escribe aquí" required>
+                    </div>
+                    
                 </div>
                 <div class="form-group full-width">
                     <label>Teléfono <span class="required">*</span></label>
@@ -91,16 +96,16 @@
                         <input type="text" name="comuna" placeholder="Escribe aquí" required>
                     </div>
                     <div class="form-group">
-                        <label>Cantidad de Arranques</label>
-                        <input type="text" name="cantidad" placeholder="Escribe aquí" id="cantidad">
-                    </div>
-                    <script>
-                        const inputCantidad = document.getElementById('cantidad');
-                        inputCantidad.addEventListener('input', function () {
-                            // Reemplaza cualquier carácter que no sea dígito
-                            this.value = this.value.replace(/\D/g, '');
-                        });
-                    </script>
+                    <label>Cantidad de Arranques</label>
+                    <input type="text" name="cantidad" placeholder="Escribe aquí" id="cantidad">
+                </div>
+                <script>
+                    const inputCantidad = document.getElementById('cantidad');
+                    inputCantidad.addEventListener('input', function () {
+                        // Reemplaza cualquier carácter que no sea dígito
+                        this.value = this.value.replace(/\D/g, '');
+                    });
+                </script>
                 </div>
                 <div class="form-group full-width">
                     <label>Tipo de financiamiento <span class="required">*</span></label>
@@ -121,39 +126,67 @@
                 </div>
                 <button type="submit" id="sendBtn">Enviar</button>
 
-                
-             <script>
-                document.getElementById("sendBtn").addEventListener("click", function (event) {
-                    const emailInput = document.getElementById("email");
-                    const email = emailInput.value.trim();
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                                
+                <script>
+                    document.getElementById("emailForm").addEventListener("submit", function (e) {
+                        const correo1 = document.getElementById("emai").value.trim();
+                        const correo2 = document.getElementById("email").value.trim();
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                    // Evitar que el formulario se envíe automáticamente
-                    event.preventDefault();
+                        // Validar campos vacíos
+                        if (correo1 === "" || correo2 === "") {
+                            e.preventDefault();
+                            Swal.fire({
+                                title: "Error",
+                                text: "Ambos campos deben estar completos",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 2500,
+                                timerProgressBar: true
+                            });
+                            return;
+                        }
 
-                    if (email === "" || !emailRegex.test(email)) {
-                    // Si el correo está vacío o mal escrito
-                    Swal.fire({
-                        title: "Error",
-                        text: "Ingrese un correo válido",
-                        icon: "error",
-                        confirmButtonText: "OK"
+                        // Validar formato
+                        if (!emailRegex.test(correo1) || !emailRegex.test(correo2)) {
+                            e.preventDefault();
+                            Swal.fire({
+                                title: "Error",
+                                text: "Formato de correo inválido",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 2500,
+                                timerProgressBar: true
+                            });
+                            return;
+                        }
+
+                        // Validar coincidencia
+                        if (correo1 !== correo2) {
+                            e.preventDefault();
+                            Swal.fire({
+                                title: "Error",
+                                text: "Los correos no coinciden",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 2500,
+                                timerProgressBar: true
+                            });
+                            return;
+                        }
+
+                        // Si todo está bien, mostrar éxito
+                        
+                        Swal.fire({
+                            title: "¡Éxito!",
+                            text: "Enviado correctamente.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 2500,
+                            timerProgressBar: true
+                        });
                     });
-                    } else {
-                    // Enviar el formulario inmediatamente
-                    document.getElementById("emailForm").submit();
-
-                    // Mostrar aviso de enviado (el OK solo cierra el aviso)
-                    Swal.fire({
-                        title: "Enviado",
-                        text: "Tu mensaje fue enviado correctamente",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    });
-                    }
-                });
                 </script>
-            </form>
             <div id="confirmationMessage" class="confirmation-message" style="display: none;">
                 ¡Gracias por contactarnos! Te responderemos pronto.
             </div>

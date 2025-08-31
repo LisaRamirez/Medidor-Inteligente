@@ -17,6 +17,11 @@
     <!-- Robots (para que Google lo indexe) -->
     <meta name="robots" content="index, follow">
 
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <title>Medidor Inteligente</title>
 
     {% load static %}
@@ -31,10 +36,18 @@
     <link rel="stylesheet" href="{% static 'app/css/evento.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/recurso.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/apr.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/chat.css' %}">
+    
 
+     <!-- script -->
+    <link rel="stylesheet" href="{% static 'css/asistente.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="{% static 'app/js/scrpt.js'%}"></script>
     <script src="{% static 'app/js/menu.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'app/js/asistente.js' %}"></script>
+
+
      <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4T1RRKTD74"></script>
     <script>
@@ -61,6 +74,10 @@
             <a href="{% url 'testimonio' %}" class="nav-link {% if 'testimonio' in request.path %}active{% endif %}">Noticias</a>
             <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Recursos</a>
             <a href="{% url 'contacto' %}" class="contact-btn {% if 'contacto' in request.path %}active{% endif %}">Contáctanos</a>
+            <a href="{% url 'asistente' %}" class="contact-btn {% if 'asistente' in request.path %}active{% endif %}">🤖</a>
+
+
+
             
         </div>
     </nav>
@@ -115,6 +132,7 @@
                 <li><a href="{% url 'testimonio'%}">Testimonio</a></li>
                 <li><a href="{% url 'recursos'%}">Recursos</a></li>
                 <li><a href="{% url 'contacto'%}">Contáctanos</a></li>
+                <li><a href="{% url 'asistente'%}">Asistencia</a></li>
             </ul>
         </div>
         <!-- Sección 3: Contáctanos y Síguenos -->

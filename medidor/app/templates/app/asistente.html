@@ -1,0 +1,1247 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<div class="acuaria-container">
+    <!-- Header compacto -->
+    <div class="acuaria-header">
+        <div class="acuaria-header-content">
+            <div class="acuaria-logo-container">
+                <div class="acuaria-logo">💧</div>
+                <div class="acuaria-logo-pulse"></div>
+            </div>
+            <div class="acuaria-header-titles">
+                <h1>Acua<span>RIA</span></h1>
+                <p>Tecnología de Medidor Inteligente</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="acuaria-body">
+        <!-- Izquierda: Asistente Virtual -->
+        <div class="acuaria-chat-side">
+            <div class="acuaria-chat-header">
+                <div class="acuaria-chat-title">
+                    <span class="acuaria-status-indicator"></span>
+                    <h3>Asistente Virtual</h3>
+                </div>
+                <button class="acuaria-clear-chat" title="Limpiar conversación">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="acuaria-messages" class="acuaria-messages">
+                <div class="acuaria-msg acuaria-bot">
+                    <div class="acuaria-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 8V12L15 15"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div class="acuaria-message-content">
+                        <div class="acuaria-message-sender">AcuaRIA</div>
+                        <div class="acuaria-message-text">¡Hola! 👋 Soy AcuaRIA, tu asistente especializado en medidores inteligentes. ¿En qué puedo ayudarte hoy?</div>
+                        <div class="acuaria-quick-questions">
+                            <div class="acuaria-quick-question" data-question="Error E-5">Error E-5</div>
+                            <div class="acuaria-quick-question" data-question="Cuidado en invierno">Cuidado en invierno</div>
+                            <div class="acuaria-quick-question" data-question="Contactar soporte">Contactar soporte</div>
+                            <div class="acuaria-quick-question" data-question="Medidor Inteligente">Medidor Inteligente</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acuaria-chat-input-container">
+                <div class="acuaria-suggestions">
+                    <span>Preguntas frecuentes:</span>
+                    <div class="acuaria-suggestion-tags">
+                        <span class="acuaria-suggestion-tag" data-question="Error E-6">Error E-6</span>
+                        <span class="acuaria-suggestion-tag" data-question="Software APR">Software APR</span>
+                        <span class="acuaria-suggestion-tag" data-question="Hand Held">Hand Held</span>
+                        <span class="acuaria-suggestion-tag" data-question="Punto Blue">Punto Blue</span>
+                    </div>
+                </div>
+                <div class="acuaria-chat-input">
+                    <input type="text" id="acuaria-pregunta" placeholder="Escribe tu pregunta aquí..." autocomplete="off">
+                    <button id="acuaria-enviar" class="acuaria-send-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Derecha: Documentación -->
+        <div class="acuaria-docs-side">
+            <div class="acuaria-docs-header">
+                <h3>Recursos de Ayuda</h3>
+                <p>Tutoriales, manuales y documentación</p>
+            </div>
+            
+            <div class="acuaria-chat-tabs">
+                <button class="acuaria-tab-btn acuaria-active" data-target="acuaria-videos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                    Videos
+                </button>
+                <button class="acuaria-tab-btn" data-target="acuaria-websites">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
+                    </svg>
+                    Sitios Web
+                </button>
+                <button class="acuaria-tab-btn" data-target="acuaria-errors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    Errores
+                </button>
+            </div>
+
+            <div class="acuaria-tab-content">
+                <div class="acuaria-section-tab acuaria-active" id="acuaria-videos">
+                    <div class="acuaria-resource-card acuaria-video">
+                        <h4>Crear Archivos de Sectores</h4>
+                        <p>Envío al Hand-Held y configuración</p>
+                        <button class="acuaria-resource-link acuaria-youtube" data-url="https://youtu.be/vlFjJpvJs0s">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                            </svg>
+                            Ver video
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-video">
+                        <h4>Toma de Lecturas</h4>
+                        <p>Medidores Inteligentes y procedimientos</p>
+                        <button class="acuaria-resource-link acuaria-youtube" data-url="https://youtu.be/gKM3jvDH3lc">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                            </svg>
+                            Ver video
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-video">
+                        <h4>Envío de Archivos al PC</h4>
+                        <p>Transferencia y organización de datos</p>
+                        <button class="acuaria-resource-link acuaria-youtube" data-url="https://youtu.be/6HOs6geiCyg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                            </svg>
+                            Ver video
+                        </button>
+                    </div>
+                </div>
+
+                <div class="acuaria-section-tab" id="acuaria-websites">
+                    <div class="acuaria-resource-card acuaria-website">
+                        <h4>Medidor Inteligente</h4>
+                        <p>Información técnica, especificaciones y recursos</p>
+                        <button class="acuaria-resource-link acuaria-web" data-url="https://medidorinteligente.cl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            Visitar sitio
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-website">
+                        <h4>Software APR</h4>
+                        <p>Gestión administrativa para APR</p>
+                        <button class="acuaria-resource-link acuaria-web" data-url="https://software-apr.cl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            Visitar sitio
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-website">
+                        <h4>Punto Blue</h4>
+                        <p>Sistema de pagos en línea</p>
+                        <button class="acuaria-resource-link acuaria-web" data-url="https://punto-blue.cl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            Visitar sitio
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-contact">
+                        <h4>Soporte Técnico</h4>
+                        <p>Contacto directo para asistencia</p>
+                        <button class="acuaria-resource-link acuaria-email" data-url="mailto:contacto@medidorinteligente.cl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            contacto@medidorinteligente.cl
+                        </button>
+                    </div>
+                </div>
+
+                <div class="acuaria-section-tab" id="acuaria-errors">
+                    <div class="acuaria-resource-card acuaria-error">
+                        <h4>Error E-5</h4>
+                        <p>El Medidor fue cerrado por un comando de cierre forzado.</p>
+                        <button class="acuaria-resource-link acuaria-error-btn" data-error="E-5">
+                            Ver solución
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-error">
+                        <h4>Error E-6</h4>
+                        <p>Se detectó interferencia con imán en el medidor.</p>
+                        <button class="acuaria-resource-link acuaria-error-btn" data-error="E-6">
+                            Ver solución
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-error">
+                        <h4>Error E-7</h4>
+                        <p>Fallo de memoria en el medidor.</p>
+                        <button class="acuaria-resource-link acuaria-error-btn" data-error="E-7">
+                            Ver solución
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-error">
+                        <h4>Error E-8</h4>
+                        <p>Fallo en válvula de corte del medidor.</p>
+                        <button class="acuaria-resource-link acuaria-error-btn" data-error="E-8">
+                            Ver solución
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-error">
+                        <h4>Error E-9</h4>
+                        <p>Existe pérdida de agua en la red o baja de 10 PSI en la presión de agua.</p>
+                        <button class="acuaria-resource-link acuaria-error-btn" data-error="E-9">
+                            Ver solución
+                        </button>
+                    </div>
+                    <div class="acuaria-resource-card acuaria-error">
+                        <h4>Error E-10</h4>
+                        <p>Fallo de medición o error al cerrar el medidor desde el Hand-Held.</p>
+                        <button class="acuaria-resource-link acuaria-error-btn" data-error="E-10">
+                            Ver solución
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Variables de colores */
+:root {
+    --acuaria-primary: #0066cc;
+    --acuaria-primary-dark: #0052a3;
+    --acuaria-secondary: #00a8ff;
+    --acuaria-accent: #34e7e4;
+    --acuaria-light: #e6f7ff;
+    --acuaria-dark: #1e272e;
+    --acuaria-gray: #485460;
+    --acuaria-light-gray: #d2dae2;
+    --acuaria-success: #0be881;
+    --acuaria-warning: #ffd32a;
+    --acuaria-danger: #ff5e57;
+    --acuaria-error: #ff3f34;
+    --acuaria-website: #9b59b6;
+    --acuaria-contact: #1abc9c;
+}
+
+/* Fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Animaciones personalizadas */
+@keyframes acuaria-fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes acuaria-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    70% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes acuaria-typing {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+@keyframes acuaria-bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes acuaria-slideInRight {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes acuaria-slideInLeft {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Contenedor principal */
+.acuaria-container {
+    max-width: 1400px;
+    height: 90vh;
+    margin: 15px auto;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 74, 173, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: acuaria-fadeIn 0.5s ease-out;
+}
+
+/* Header compacto */
+.acuaria-header {
+    background: linear-gradient(135deg, var(--acuaria-primary) 0%, var(--acuaria-secondary) 100%);
+    color: white;
+    padding: 10px 15px;
+    text-align: left;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.acuaria-header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.acuaria-logo-container {
+    position: relative;
+}
+
+.acuaria-logo {
+    font-size: 22px;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    z-index: 2;
+    position: relative;
+}
+
+.acuaria-logo-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38px;
+    height: 38px;
+    background: var(--acuaria-primary);
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 1;
+    animation: acuaria-pulse 2s infinite;
+}
+
+.acuaria-header-titles h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.acuaria-header-titles h1 span {
+    font-weight: 300;
+}
+
+.acuaria-header-titles p {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Body dos columnas */
+.acuaria-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    gap: 0;
+}
+
+/* Izquierda: Chat */
+.acuaria-chat-side {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background: #f9fbfd;
+    border-right: 1px solid var(--acuaria-light-gray);
+    min-width: 0;
+}
+
+.acuaria-chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: white;
+    border-bottom: 1px solid var(--acuaria-light-gray);
+    flex-shrink: 0;
+}
+
+.acuaria-chat-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.acuaria-status-indicator {
+    width: 8px;
+    height: 8px;
+    background: var(--acuaria-success);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+
+.acuaria-status-indicator::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--acuaria-success);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: acuaria-pulse 2s infinite;
+}
+
+.acuaria-chat-title h3 {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--acuaria-dark);
+}
+
+.acuaria-clear-chat {
+    background: none;
+    border: none;
+    color: var(--acuaria-gray);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.acuaria-clear-chat:hover {
+    color: var(--acuaria-danger);
+    background: rgba(255, 94, 87, 0.1);
+    transform: scale(1.1);
+}
+
+/* Mensajes */
+.acuaria-messages {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    background: #f9fbfd;
+}
+
+.acuaria-msg {
+    display: flex;
+    gap: 10px;
+    max-width: 88%;
+    animation: acuaria-fadeIn 0.3s ease-out;
+}
+
+.acuaria-user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+    animation: acuaria-slideInRight 0.3s ease-out;
+}
+
+.acuaria-bot {
+    animation: acuaria-slideInLeft 0.3s ease-out;
+}
+
+.acuaria-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--acuaria-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.acuaria-user .acuaria-avatar {
+    background: var(--acuaria-secondary);
+}
+
+.acuaria-message-content {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    position: relative;
+}
+
+.acuaria-user .acuaria-message-content {
+    background: var(--acuaria-primary);
+    color: white;
+}
+
+.acuaria-bot .acuaria-message-content {
+    border-top-left-radius: 5px;
+}
+
+.acuaria-user .acuaria-message-content {
+    border-top-right-radius: 5px;
+}
+
+.acuaria-message-sender {
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    color: var(--acuaria-gray);
+}
+
+.acuaria-user .acuaria-message-sender {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.acuaria-message-text {
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+.acuaria-quick-questions {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.acuaria-quick-question {
+    background: rgba(0, 102, 204, 0.1);
+    color: var(--acuaria-primary);
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.acuaria-quick-question:hover {
+    background: var(--acuaria-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 102, 204, 0.2);
+}
+
+/* Input */
+.acuaria-chat-input-container {
+    padding: 12px 15px;
+    background: white;
+    border-top: 1px solid var(--acuaria-light-gray);
+    flex-shrink: 0;
+}
+
+.acuaria-suggestions {
+    margin-bottom: 8px;
+}
+
+.acuaria-suggestions span {
+    font-size: 0.75rem;
+    color: var(--acuaria-gray);
+}
+
+.acuaria-suggestion-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.acuaria-suggestion-tag {
+    background: rgba(0, 168, 255, 0.1);
+    color: var(--acuaria-secondary);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.acuaria-suggestion-tag:hover {
+    background: var(--acuaria-secondary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.acuaria-chat-input {
+    display: flex;
+    background: #f1f9ff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--acuaria-light-gray);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.acuaria-chat-input:focus-within {
+    border-color: var(--acuaria-secondary);
+    box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.acuaria-chat-input input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.acuaria-send-button {
+    background: var(--acuaria-primary);
+    color: white;
+    padding: 0 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.acuaria-send-button:hover {
+    background: var(--acuaria-primary-dark);
+    transform: scale(1.05);
+}
+
+/* Derecha: Documentación */
+.acuaria-docs-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    min-width: 0;
+}
+
+.acuaria-docs-header {
+    padding: 15px;
+    background: linear-gradient(to right, #f7fbff, #f1f8ff);
+    border-bottom: 1px solid var(--acuaria-light-gray);
+    flex-shrink: 0;
+}
+
+.acuaria-docs-header h3 {
+    margin: 0 0 4px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--acuaria-dark);
+}
+
+.acuaria-docs-header p {
+    margin: 0;
+    color: var(--acuaria-gray);
+    font-size: 0.8rem;
+}
+
+/* Tabs */
+.acuaria-chat-tabs {
+    display: flex;
+    background: #f1f8ff;
+    border-bottom: 1px solid var(--acuaria-light-gray);
+    flex-shrink: 0;
+}
+
+.acuaria-tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--acuaria-gray);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+}
+
+.acuaria-tab-btn.acuaria-active {
+    color: var(--acuaria-primary);
+    background: white;
+    border-bottom: 2px solid var(--acuaria-primary);
+}
+
+.acuaria-tab-btn:hover {
+    color: var(--acuaria-primary);
+    background: rgba(0, 102, 204, 0.05);
+}
+
+/* Contenido de pestañas */
+.acuaria-tab-content {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+}
+
+.acuaria-section-tab {
+    display: none;
+    padding: 15px;
+}
+
+.acuaria-section-tab.acuaria-active {
+    display: block;
+    animation: acuaria-fadeIn 0.3s ease-out;
+}
+
+/* Tarjetas de recursos */
+.acuaria-resource-card {
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.acuaria-resource-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.acuaria-resource-card h4 {
+    margin: 0 0 6px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--acuaria-dark);
+}
+
+.acuaria-resource-card p {
+    margin: 0 0 10px 0;
+    font-size: 0.8rem;
+    color: var(--acuaria-gray);
+    line-height: 1.4;
+}
+
+.acuaria-resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0, 102, 204, 0.1);
+    color: var(--acuaria-primary);
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.acuaria-resource-link:hover {
+    background: var(--acuaria-primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.acuaria-youtube {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+}
+
+.acuaria-youtube:hover {
+    background: #ff0000;
+    color: white;
+}
+
+.acuaria-error {
+    border-left: 3px solid var(--acuaria-error);
+}
+
+.acuaria-error-btn {
+    background: rgba(255, 63, 52, 0.1);
+    color: var(--acuaria-error);
+}
+
+.acuaria-error-btn:hover {
+    background: var(--acuaria-error);
+    color: white;
+}
+
+.acuaria-website {
+    border-left: 3px solid var(--acuaria-website);
+}
+
+.acuaria-web {
+    background: rgba(155, 89, 182, 0.1);
+    color: var(--acuaria-website);
+}
+
+.acuaria-web:hover {
+    background: var(--acuaria-website);
+    color: white;
+}
+
+.acuaria-contact {
+    border-left: 3px solid var(--acuaria-contact);
+}
+
+.acuaria-email {
+    background: rgba(26, 188, 156, 0.1);
+    color: var(--acuaria-contact);
+}
+
+.acuaria-email:hover {
+    background: var(--acuaria-contact);
+    color: white;
+}
+
+/* Efectos de typing */
+.acuaria-typing-indicator {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.acuaria-typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--acuaria-gray);
+    border-radius: 50%;
+    animation: acuaria-typing 1.4s infinite ease-in-out;
+}
+
+.acuaria-typing-dot:nth-child(1) { animation-delay: 0s; }
+.acuaria-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.acuaria-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .acuaria-body {
+        flex-direction: column;
+    }
+    
+    .acuaria-chat-side, .acuaria-docs-side {
+        flex: none;
+    }
+    
+    .acuaria-chat-side {
+        border-right: none;
+        border-bottom: 1px solid var(--acuaria-light-gray);
+        flex: 1;
+    }
+    
+    .acuaria-docs-side {
+        flex: 1;
+        max-height: 35vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .acuaria-container {
+        height: 95vh;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+    .acuaria-header {
+        padding: 8px 10px;
+    }
+    
+    .acuaria-header-titles h1 {
+        font-size: 1.1rem;
+    }
+    
+    .acuaria-header-titles p {
+        font-size: 0.7rem;
+    }
+    
+    .acuaria-logo {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+    
+    .acuaria-logo-pulse {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .acuaria-msg {
+        max-width: 95%;
+    }
+    
+    .acuaria-chat-tabs {
+        flex-direction: column;
+    }
+    
+    .acuaria-tab-btn {
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+}
+</style>
+
+<script>
+// Base de conocimiento mejorada con respuestas naturales y conversacionales
+const acuariaKnowledgeBase = {
+    "error e-5": {
+        respuesta: `El Error E-5 indica que el medidor se cerró por un comando forzado. 🔒
+
+Esto suele pasar cuando:
+• Hay una orden de cierre desde el sistema
+• Se activó un protocolo de seguridad
+• Problema de comunicación
+
+**Solución rápida:**
+1. Revisa si hay órdenes de cierre activas
+2. Intenta reabrir desde el Hand-Held
+3. Si persiste, reinicia el medidor
+
+¿Necesitas que te ayude con algún paso en específico?`,
+        recursos: ["medidorinteligente.cl"]
+    },
+    "cuidado en invierno": {
+        respuesta: `Para proteger tu medidor en épocas de frío: ❄️
+
+**Medidas esenciales:**
+• Aísla el medidor con material termoaislante
+• Mantén una gota de agua corriendo en días muy fríos
+• Verifica que no haya fugas en tuberías
+• Protege la instalación exterior con cubiertas
+
+**En caso de heladas:**
+• Revisa temprano si hay congelamiento
+• No uses agua caliente directamente
+• Contacta a un técnico si detectas problemas
+
+¿Tu medidor ya tiene protección para invierno?`,
+        recursos: ["medidorinteligente.cl"]
+    },
+    "contactar soporte": {
+        respuesta: `¡Claro! Estamos aquí para ayudarte. 🛠️
+
+**📧 Email:** contacto@medidorinteligente.cl
+**🌐 Web:** medidorinteligente.cl
+
+**Horario:**
+L-V: 9:00 - 18:00 hrs
+Sáb: 10:00 - 14:00 hrs
+
+¿Qué tipo de asistencia necesitas? Puedo orientarte mientras tanto.`,
+        recursos: ["medidorinteligente.cl"]
+    },
+    "medidor inteligente": {
+        respuesta: `¡Los medidores inteligentes son nuestra especialidad! 💧
+
+**Características principales:**
+• Lectura remota automática
+• Control de válvula desde el Hand-Held
+• Detección de fugas y fraudes
+• Comunicación bidireccional
+
+**Sitio web oficial:** medidorinteligente.cl
+Encontrarás:
+• Especificaciones técnicas
+• Manuales de usuario
+• Videos tutoriales
+• Fichas técnicas
+
+¿Te interesa algún modelo en particular?`,
+        recursos: ["medidorinteligente.cl"]
+    },
+    "software apr": {
+        respuesta: `El Software APR es nuestra plataforma de gestión integral. 💻
+
+**Funcionalidades:**
+• Administración de socios y medidores
+• Facturación y cobranza automática
+• Control de consumos y pagos
+• Reportes personalizados
+
+**Sitio web:** software-apr.cl
+Ahí encontrarás:
+• Demos interactivas
+• Manuales de uso
+• Precios y planes
+• Casos de éxito
+
+¿Te gustaría saber más sobre alguna función específica?`,
+        recursos: ["software-apr.cl"]
+    },
+    "punto blue": {
+        respuesta: `Punto Blue es nuestro sistema de pagos en línea. 💰
+
+**Beneficios:**
+• Pagos 24/7 desde cualquier dispositivo
+• Integración con Webpay y otros métodos
+• Notificaciones automáticas
+• Reportes financieros detallados
+
+**Sitio web:** punto-blue.cl
+Encontrarás:
+• Instrucciones de integración
+• Costos y comisiones
+• API para desarrolladores
+• Soporte técnico
+
+¿Necesitas ayuda con la integración de pagos?`,
+        recursos: ["punto-blue.cl"]
+    },
+    "error e-6": {
+        respuesta: `El Error E-6 muestra interferencia con imán. 🧲
+
+**Significa que:**
+• Se detectó un imán cerca del medidor
+• Hay objeto metálico interfiriendo
+• Posible intento de manipulación
+
+**Solución:**
+• Retira cualquier imán cercano
+• Verifica que no haya objetos metálicos
+• Si persiste, contacta soporte
+
+¿Lograste resolver el problema?`,
+        recursos: ["medidorinteligente.cl"]
+    },
+    "default": {
+        respuesta: `¡Hola! 👋 Soy AcuaRIA, tu asistente especializado.
+
+Puedo ayudarte con:
+• Errores de medidores (E-5, E-6, etc.)
+• Cuidado en invierno y heladas
+• Uso del Hand Held
+• Contacto con soporte
+• Información de nuestros sitios web
+
+¿En qué necesitas ayuda hoy?`,
+        recursos: ["medidorinteligente.cl", "software-apr.cl", "punto-blue.cl"]
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Tabs funcionalidad
+    const acuariaTabBtns = document.querySelectorAll(".acuaria-tab-btn");
+    const acuariaTabSections = document.querySelectorAll(".acuaria-section-tab");
+    
+    acuariaTabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            acuariaTabBtns.forEach(b => b.classList.remove("acuaria-active"));
+            acuariaTabSections.forEach(s => s.classList.remove("acuaria-active"));
+            btn.classList.add("acuaria-active");
+            document.getElementById(btn.dataset.target).classList.add("acuaria-active");
+        });
+    });
+
+    // Preguntas rápidas
+    const acuariaQuickQuestions = document.querySelectorAll('.acuaria-quick-question');
+    acuariaQuickQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const questionText = this.getAttribute('data-question');
+            acuariaSimulateNaturalConversation(questionText);
+        });
+    });
+
+    // Sugerencias de tags
+    const acuariaSuggestionTags = document.querySelectorAll('.acuaria-suggestion-tag');
+    acuariaSuggestionTags.forEach(tag => {
+        tag.addEventListener('click', function() {
+            const questionText = this.getAttribute('data-question');
+            acuariaSimulateNaturalConversation(questionText);
+        });
+    });
+
+    // Enlaces de recursos
+    const acuariaResourceLinks = document.querySelectorAll('.acuaria-resource-link');
+    acuariaResourceLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            if (url && url !== '#') {
+                if (url.startsWith('mailto:')) {
+                    window.location.href = url;
+                } else {
+                    window.open(url, '_blank');
+                }
+            }
+        });
+    });
+
+    // Botones de error
+    const acuariaErrorButtons = document.querySelectorAll('.acuaria-error-btn');
+    acuariaErrorButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const errorCode = this.getAttribute('data-error');
+            acuariaSimulateNaturalConversation(`Error ${errorCode}`);
+        });
+    });
+
+    // Limpiar chat
+    const acuariaClearChatBtn = document.querySelector('.acuaria-clear-chat');
+    acuariaClearChatBtn.addEventListener('click', function() {
+        const messages = document.getElementById('acuaria-messages');
+        const initialMsg = messages.querySelector('.acuaria-msg.acuaria-bot');
+        messages.innerHTML = '';
+        if (initialMsg) {
+            messages.appendChild(initialMsg);
+        }
+    });
+
+    // Chat funcionalidad
+    document.getElementById("acuaria-enviar").addEventListener("click", acuariaEnviarMensaje);
+    document.getElementById("acuaria-pregunta").addEventListener("keypress", e => { 
+        if(e.key === "Enter") acuariaEnviarMensaje(); 
+    });
+
+    // Simular conversación natural
+    function acuariaSimulateNaturalConversation(question) {
+        document.getElementById('acuaria-pregunta').value = question;
+        acuariaEnviarMensaje();
+    }
+
+    // Función para mostrar typing animation
+    function acuariaShowTypingAnimation() {
+        const messages = document.getElementById('acuaria-messages');
+        messages.innerHTML += `
+            <div class="acuaria-msg acuaria-bot">
+                <div class="acuaria-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 8V12L15 15"></path>
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                </div>
+                <div class="acuaria-message-content">
+                    <div class="acuaria-message-sender">AcuaRIA</div>
+                    <div class="acuaria-message-text">
+                        <div class="acuaria-typing-indicator">
+                            <div class="acuaria-typing-dot"></div>
+                            <div class="acuaria-typing-dot"></div>
+                            <div class="acuaria-typing-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        messages.scrollTop = messages.scrollHeight;
+        return messages.lastChild;
+    }
+
+    async function acuariaEnviarMensaje() {
+        const pregunta = document.getElementById("acuaria-pregunta").value.trim();
+        if(!pregunta) return;
+
+        const messages = document.getElementById("acuaria-messages");
+        
+        // Limitar mensajes
+        if(messages.children.length > 30) {
+            messages.removeChild(messages.children[0]);
+        }
+
+        // Añadir mensaje de usuario
+        messages.innerHTML += `
+            <div class="acuaria-msg acuaria-user">
+                <div class="acuaria-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="acuaria-message-content">
+                    <div class="acuaria-message-sender">Tú</div>
+                    <div class="acuaria-message-text">${pregunta}</div>
+                </div>
+            </div>
+        `;
+        
+        messages.scrollTop = messages.scrollHeight;
+        document.getElementById("acuaria-pregunta").value = "";
+
+        // Mostrar indicador de typing con animación
+        const typingIndicator = acuariaShowTypingAnimation();
+
+        // Simular tiempo de respuesta natural
+        setTimeout(() => {
+            // Eliminar el indicador de typing
+            if (typingIndicator && typingIndicator.parentNode) {
+                typingIndicator.parentNode.removeChild(typingIndicator);
+            }
+            
+            const preguntaLower = pregunta.toLowerCase();
+            let respuestaData = acuariaKnowledgeBase.default;
+            
+            for (const [key, value] of Object.entries(acuariaKnowledgeBase)) {
+                if (preguntaLower.includes(key.toLowerCase())) {
+                    respuestaData = value;
+                    break;
+                }
+            }
+            
+            // Añadir respuesta
+            messages.innerHTML += `
+                <div class="acuaria-msg acuaria-bot">
+                    <div class="acuaria-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 8V12L15 15"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div class="acuaria-message-content">
+                        <div class="acuaria-message-sender">AcuaRIA</div>
+                        <div class="acuaria-message-text">${respuestaData.respuesta}</div>
+                    </div>
+                </div>
+            `;
+            
+            messages.scrollTop = messages.scrollHeight;
+        }, 1000 + Math.random() * 500); // Tiempo variable para hacerlo más natural
+    }
+});
+</script>
+
+{% endblock %}

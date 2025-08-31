@@ -1,7 +1,13 @@
 from django.urls import path
-from.views import home, clientes, contacto, nosotros, recursos, soluciones,apr, filtrar_apr,prueba, testimonio, cargar_mas_testimonios, cargar_mas_testimonios
+from . import views  # Aquí importas todo el módulo views
+from .views import (
+    home, clientes, contacto, nosotros, recursos, soluciones, apr,
+    filtrar_apr, prueba, testimonio, cargar_mas_testimonios
+)
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+
 
 urlpatterns = [
     path('', home, name="home"),
@@ -13,17 +19,13 @@ urlpatterns = [
     path('apr/<int:apr_id>/', apr, name="apr"),
     path('testimonio/', testimonio, name="testimonio"),
     path('api/cargar-mas/', cargar_mas_testimonios, name='cargar_mas'),
- 
-
-
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),
     path('prueba/', prueba, name='prueba'),
     
+    path("asistente/", views.asistente_view, name="asistente"),  # frontend
+    path("chat-ai/", views.asistente_ai, name="chat-ai"),        # backend
 ]
 
-
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 handler404 = 'app.views.error_404'
 
-# Compare this snippet from medidor/app/models.py:

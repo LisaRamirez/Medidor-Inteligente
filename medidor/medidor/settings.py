@@ -130,8 +130,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 import os
 from pathlib import Path
 
@@ -169,8 +172,36 @@ LOGGING = {
 }
 
 # Ruta base del proyecto
+# medidor/settings.py
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # carga variables del .env
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+
+#middleware
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+
+
+# ... el resto de tu settings.py ...
+
+# ... el resto de tu configuración ...
 
 # cmd
 #set SECRET_KEY="mi_clave_secreta"

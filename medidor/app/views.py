@@ -22,24 +22,89 @@ from datetime import datetime
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.http import HttpResponsePermanentRedirect
+
+import openai
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+import json
+from django.conf import settings
+
+openai.api_key = settings.OPENAI_API_KEY
+
+@csrf_exempt
+def asistente_ai(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        pregunta = data.get("pregunta", "")
+
+        try:
+            completion = openai.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "Eres un asistente experto en medidores APR y sistemas hídricos."},
+                    {"role": "user", "content": pregunta}
+                ]
+            )
+            respuesta = completion.choices[0].message.content
+            return JsonResponse({"respuesta": respuesta})
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
+
+    return JsonResponse({"error": "Método no permitido"}, status=405)
+
 from django.shortcuts import render
 
+def asistente_view(request):
+    return render(request, "app/asistente.html")
+
+# asistente/views.py
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .utils import extraer_texto_pdf
+from openai import OpenAI
+
+client = OpenAI(api_key="TU_API_KEY")
+
+@csrf_exempt
+def asistente_ai(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            pregunta = data.get('pregunta', '')
+
+            # 1. Extraer texto del PDF
+            texto_pdf = extraer_texto_pdf("media/FICHA-TECNICA.pdf")
+
+            # 2. Pasar contexto al modelo
+            respuesta = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "Eres un asistente de soporte técnico especializado en medidores inteligentes."},
+                    {"role": "user", "content": f"Usa la siguiente información del PDF como apoyo:\n{texto_pdf}\n\nAhora responde esta pregunta: {pregunta}"}
+                ]
+            )
+
+            return JsonResponse({"respuesta": respuesta.choices[0].message["content"]})
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    else:
+        return JsonResponse({"error": "Método no permitido"}, status=405)
 
 
 
 
 
-def error_404(request, exception):
-    return render(request, 'app/e404.html', status=404)
+def home(request):
+    return render(request, 'app/base.html')
 
+# Otras vistas que tengas...
+def home(request):
+    return render(request, 'app/base.html')
 
-
-
-
-
-
+def otra_vista(request):
+    return render(request, 'app/otra_template.html')
 
 def testimonio(request):
     try:
@@ -53,17 +118,6 @@ def testimonio(request):
     except Exception as e:
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
-
-
-
-
-
-
-
-
-
-
-
 
 def cargar_mas_testimonios(request):
     """API para cargar más testimonios"""
@@ -114,22 +168,12 @@ def prueba(request):
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
 
-
-
-
-
-
 def mi_vista(request):
     return render(request, 'recursos.html', {'MEDIA_URL': settings.MEDIA_URL})
 # Create your views here.
 
 logger = logging.getLogger(__name__)
 logger = logging.getLogger('django')
-
-
-
-
-
 
 def clientes(request):
     try:
@@ -148,12 +192,6 @@ def clientes(request):
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema con tu solicitud.')
         return redirect('app/error_404')  # Redirige a la página de error
-
-
-
-
-
-
 
 def filtrar_apr(request):
     try:
@@ -178,13 +216,6 @@ def filtrar_apr(request):
         messages.error(request, 'Hubo un problema con tu solicitud.')
         return redirect('app/error_404')  # Redirige a la página de error
 
-
-
-
-
-
-
-
 def apr(request, apr_id):
     try:
         apppr = get_object_or_404(Apr, id=apr_id)  # get_object_or_404 ya maneja errores
@@ -196,16 +227,11 @@ def apr(request, apr_id):
         messages.error(request, 'Hubo un problema al cargar la información.')
         return redirect('app/error_404')  # Redirige a una página de error
 
-
-
-
-
-
 def home(request):
     if request.method == 'POST':
         try:
             name = request.POST.get('name', '')
-            correo = request.POST.get('correo', '')
+            correo = request.POST.get('correo2', '')
             phone = request.POST.get('phone', '')
             ssr_apr = request.POST.get('ssr_apr', '')
             cargo_apr = request.POST.get('cargo_apr', '')
@@ -250,8 +276,6 @@ def home(request):
             email = "lisaisabelc19@gmail.com"
             cc_emails = [correo]
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
-
-            messages.success(request, 'Tu mensaje ha sido enviado correctamente')
             return redirect('home')  # Redirige a la vista principal después de enviar
 
         except Exception as e:
@@ -259,16 +283,11 @@ def home(request):
 
     return render(request, 'app/home.html')
 
-
-
-
-
-
 def contacto(request):
     if request.method == 'POST':
         try:
             name = request.POST.get('name', '')
-            correo = request.POST.get('correo', '')
+            correo = request.POST.get('correo2', '')
             phone = request.POST.get('phone', '')
             ssr_apr = request.POST.get('ssr_apr', '')
             cargo_apr = request.POST.get('cargo_apr', '')
@@ -276,7 +295,7 @@ def contacto(request):
             cantidad = request.POST.get('cantidad', '')
             radio = request.POST.get('financiamiento', '')
             message = request.POST.get('message', '')
-            fecha = datetime.now()
+            fecha = datetime.now("%Y-%m-%d %H:%M:%S")
 
             # Guardar en la base de datos
             contacto = Contacto(
@@ -314,20 +333,14 @@ def contacto(request):
             cc_emails = [correo]
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
-            messages.success(request, 'Tu mensaje ha sido enviado correctamente')
+            
             return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
 
         except Exception as e:
             return render(request, 'app/e404.html', {'error': str(e)})  # Cambiar por una vista de error apropiad
 
     return render(request, 'app/contacto.html')
-    
-    
-
-
-
-
-
+ 
 def send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port):
     server = None
     try:
@@ -353,25 +366,12 @@ def send_email(subject, info, sender_email, password, email, cc_emails, smtp_ser
         if server:
             server.quit()
 
-            
-    
-
-    
-
-
-
-
-
-
 def nosotros(request):
     try:
         return render(request, 'app/nosotros.html')
     except Exception as e:
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo más tarde.")
-
-
-
 
 def soluciones(request):
     try:
@@ -400,9 +400,6 @@ def prueba(request):
     except Exception as e:
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
-
-
-
 
 def test_logging():
     logger.info("Este es un mensaje informativo.")
