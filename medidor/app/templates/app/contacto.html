@@ -71,8 +71,8 @@
                         <input type="email" name="correo" id="emai" placeholder="Escribe aquí" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Correo electrónico <span class="required">*</span></label>
-                        <input type="email" name="correo2" id="email" placeholder="Escribe aquí" required>
+                            <label for="email">Correo electrónico <span class="required">*</span></label>
+                            <input type="email" name="correo2" id="email" placeholder="Escribe aquí" required>
                     </div>
                     
                 </div>
@@ -126,8 +126,7 @@
                 </div>
                 <button type="submit" id="sendBtn">Enviar</button>
 
-                                                
-                <script>
+               <script>
                     document.getElementById("emailForm").addEventListener("submit", function (e) {
                         const correo1 = document.getElementById("emai").value.trim();
                         const correo2 = document.getElementById("email").value.trim();
@@ -182,11 +181,12 @@
                             text: "Enviado correctamente.",
                             icon: "success",
                             showConfirmButton: false,
-                            timer: 2500,
+                            timer: 1500,
                             timerProgressBar: true
                         });
                     });
                 </script>
+
             <div id="confirmationMessage" class="confirmation-message" style="display: none;">
                 ¡Gracias por contactarnos! Te responderemos pronto.
             </div>

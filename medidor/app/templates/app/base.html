@@ -74,7 +74,7 @@
             <a href="{% url 'testimonio' %}" class="nav-link {% if 'testimonio' in request.path %}active{% endif %}">Noticias</a>
             <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Recursos</a>
             <a href="{% url 'contacto' %}" class="contact-btn {% if 'contacto' in request.path %}active{% endif %}">Contáctanos</a>
-            <a href="{% url 'asistente' %}" class="contact-btn {% if 'asistente' in request.path %}active{% endif %}">🤖</a>
+            <a href="{% url 'asistente_virtual' %}" class="contact-btn {% if 'asistente' in request.path %}active{% endif %}">asistente</a>
 
 
 
@@ -132,7 +132,7 @@
                 <li><a href="{% url 'testimonio'%}">Testimonio</a></li>
                 <li><a href="{% url 'recursos'%}">Recursos</a></li>
                 <li><a href="{% url 'contacto'%}">Contáctanos</a></li>
-                <li><a href="{% url 'asistente'%}">Asistencia</a></li>
+                <li><a href="{% url 'asistente_virtual'%}">Asistencia</a></li>
             </ul>
         </div>
         <!-- Sección 3: Contáctanos y Síguenos -->

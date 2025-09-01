@@ -22,78 +22,19 @@ from datetime import datetime
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.http import HttpResponsePermanentRedirect
-
-import openai
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
-from django.conf import settings
-
-openai.api_key = settings.OPENAI_API_KEY
-
-@csrf_exempt
-def asistente_ai(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        pregunta = data.get("pregunta", "")
-
-        try:
-            completion = openai.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "Eres un asistente experto en medidores APR y sistemas hídricos."},
-                    {"role": "user", "content": pregunta}
-                ]
-            )
-            respuesta = completion.choices[0].message.content
-            return JsonResponse({"respuesta": respuesta})
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
-
-    return JsonResponse({"error": "Método no permitido"}, status=405)
-
+# views.py
 from django.shortcuts import render
-
-def asistente_view(request):
-    return render(request, "app/asistente.html")
-
-# asistente/views.py
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
-from .utils import extraer_texto_pdf
-from openai import OpenAI
+from .services import obtener_respuesta
 
-client = OpenAI(api_key="TU_API_KEY")
-
-@csrf_exempt
-def asistente_ai(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            pregunta = data.get('pregunta', '')
-
-            # 1. Extraer texto del PDF
-            texto_pdf = extraer_texto_pdf("media/FICHA-TECNICA.pdf")
-
-            # 2. Pasar contexto al modelo
-            respuesta = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "Eres un asistente de soporte técnico especializado en medidores inteligentes."},
-                    {"role": "user", "content": f"Usa la siguiente información del PDF como apoyo:\n{texto_pdf}\n\nAhora responde esta pregunta: {pregunta}"}
-                ]
-            )
-
-            return JsonResponse({"respuesta": respuesta.choices[0].message["content"]})
-
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
-    else:
-        return JsonResponse({"error": "Método no permitido"}, status=405)
-
-
-
+def asistente_virtual(request):
+    if request.method == "POST":
+        pregunta = request.POST.get("pregunta", "").strip()
+        if not pregunta:
+            return JsonResponse({"respuesta": "No se envió ninguna pregunta."})
+        respuesta = obtener_respuesta(pregunta)
+        return JsonResponse({"respuesta": respuesta})
+    return render(request, "app/asistente.html")
 
 
 def home(request):
@@ -240,6 +181,7 @@ def home(request):
             radio = request.POST.get('financiamiento', '')
             message = request.POST.get('message', '')
             fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            
 
             # Guardar en la base de datos
             contacto = Contacto(
@@ -295,7 +237,7 @@ def contacto(request):
             cantidad = request.POST.get('cantidad', '')
             radio = request.POST.get('financiamiento', '')
             message = request.POST.get('message', '')
-            fecha = datetime.now("%Y-%m-%d %H:%M:%S")
+            fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             # Guardar en la base de datos
             contacto = Contacto(
