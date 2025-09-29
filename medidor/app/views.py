@@ -27,6 +27,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .services import obtener_respuesta
 
+
 def asistente_virtual(request):
     if request.method == "POST":
         pregunta = request.POST.get("pregunta", "").strip()

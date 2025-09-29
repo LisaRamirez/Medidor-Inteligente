@@ -169,7 +169,8 @@
             padding: 25px;
             position: relative;
             transition: all 0.3s ease;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid  #17ac93;
+            
         }
 
         .testimonio-testimonial-card:hover {
@@ -308,7 +309,7 @@
         }
 
         .testimonio-testimonial-date {
-            background: #004aad;
+                background: linear-gradient(135deg, #0044ff 0%, #00ce89 100%);
             color: white;
             padding: 5px 12px;
             border-radius: 20px;

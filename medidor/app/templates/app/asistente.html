@@ -1039,442 +1039,1442 @@
 </style>
 
 <script>
- // Fixed JavaScript to properly handle Django POST requests
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+// Fixed JavaScript to properly handle Django POST requests
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+async function enviarPregunta(pregunta) {
+    try {
+        const formData = new FormData();
+        formData.append('pregunta', pregunta);
+        
+        const response = await fetch('/asistente/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return data.respuesta || 'Contacta a soporte para más información.';
+    } catch (error) {
+        console.error('[v0] Error en enviarPregunta:', error);
+        return 'Error al procesar la consulta. Contacta a soporte técnico al +56 9 1234 5678.';
+    }
+}
+
+async function sendMessage() {
+    const input = document.getElementById('user-input');
+    const message = input.value.trim();
+    
+    if (message === '') return;
+    
+    // Add user message
+    appendMessage(message, 'user');
+    input.value = '';
+    
+    // Show typing indicator
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message assistant typing';
+    typingDiv.innerHTML = '<div class="message-content">Procesando...</div>';
+    document.getElementById('chat-messages').appendChild(typingDiv);
+    
+    // Simulate brief processing delay for better UX
+    setTimeout(() => {
+        // Get response from JavaScript function
+        const response = obtenerRespuesta(message);
+        
+        // Remove typing indicator
+        typingDiv.remove();
+        
+        // Add assistant response
+        appendMessage(response, 'assistant');
+    }, 500);
+}
+
+// Enhanced JavaScript with better error handling and accessibility
+(function() {
+    'use strict';
+    
+    // Tab functionality with accessibility support
+    window.openTab = function(evt, tabName) {
+        try {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tab buttons and update aria-selected
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+                tabButtons[i].setAttribute("aria-selected", "false");
+            }
+            
+            // Show selected tab content
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.style.display = "block";
+                selectedTab.classList.add("active");
+            }
+            
+            // Mark clicked button as active
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add("active");
+                evt.currentTarget.setAttribute("aria-selected", "true");
+            }
+        } catch (error) {
+            console.error('Error switching tabs:', error);
+        }
+    };
+    
+    // CORREGIDO: Enhanced message adding with better DOM manipulation
+    window.agregarMensaje = function(mensaje, esUsuario = false) {
+        try {
+            const chatBox = document.getElementById("chat-box");
+            if (!chatBox) return;
+            
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${esUsuario ? 'user' : 'assistant'}`;
+            messageDiv.setAttribute('role', 'article');
+            
+            const avatarDiv = document.createElement("div");
+            avatarDiv.className = `avatar ${esUsuario ? 'user-avatar' : 'assistant-avatar'}`;
+            avatarDiv.setAttribute('aria-hidden', 'true');
+            
+            const contentDiv = document.createElement("div");
+            contentDiv.className = "message-content";
+            
+            // CORRECCIÓN: Cambiar textContent por innerHTML para interpretar HTML
+            contentDiv.innerHTML = mensaje;
+            
+            messageDiv.appendChild(avatarDiv);
+            messageDiv.appendChild(contentDiv);
+            
+            // Add to chat
+            chatBox.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                chatBox.scrollTo({
+                    top: chatBox.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 100);
+            
+        } catch (error) {
+            console.error('Error adding message:', error);
+        }
+    };
+    
+    // Clear chat functionality
+    window.limpiarChat = function() {
+        try {
+            const chatBox = document.getElementById("chat-box");
+            if (chatBox) {
+                // Keep only the initial assistant message
+                const messages = chatBox.querySelectorAll('.message');
+                for (let i = 1; i < messages.length; i++) {
+                    messages[i].remove();
+                }
+            }
+        } catch (error) {
+            console.error('Error clearing chat:', error);
+        }
+    };
+    
+    // Main function to handle sending questions
+    window.enviarPregunta = function() {
+        try {
+            const input = document.getElementById("user-input");
+            if (!input) {
+                console.error('[v0] Input element not found');
+                return;
+            }
+            
+            const mensaje = input.value.trim();
+            if (!mensaje) {
+                input.focus();
+                return;
+            }
+            
+            // Add user message
+            agregarMensaje(mensaje, true);
+            
+            // Clear input
+            input.value = "";
+            
+            // Show processing message briefly
+            const processingMessageId = 'processing-' + Date.now();
+            const processingDiv = document.createElement("div");
+            processingDiv.id = processingMessageId;
+            processingDiv.className = 'message assistant';
+            processingDiv.setAttribute('role', 'article');
+            
+            const avatarDiv = document.createElement("div");
+            avatarDiv.className = 'avatar assistant-avatar';
+            avatarDiv.setAttribute('aria-hidden', 'true');
+            
+            const contentDiv = document.createElement("div");
+            contentDiv.className = "message-content";
+            
+            // CORRECCIÓN: Usar innerHTML también para el mensaje de procesamiento
+            contentDiv.innerHTML = "Procesando...";
+            
+            processingDiv.appendChild(avatarDiv);
+            processingDiv.appendChild(contentDiv);
+            
+            const chatBox = document.getElementById("chat-box");
+            chatBox.appendChild(processingDiv);
+            
+            // Scroll to bottom
+            chatBox.scrollTo({
+                top: chatBox.scrollHeight,
+                behavior: 'smooth'
+            });
+            
+            // Get response from JavaScript function
+            setTimeout(() => {
+                const respuesta = obtenerRespuesta(mensaje);
+                
+                // Remove processing message
+                const processingElement = document.getElementById(processingMessageId);
+                if (processingElement) {
+                    processingElement.remove();
+                }
+                
+                // Add real response
+                agregarMensaje(respuesta, false);
+            }, 500);
+            
+        } catch (error) {
+            console.error('[v0] Error in enviarPregunta:', error);
+            
+            // Remove processing message if it exists
+            const processingElements = document.querySelectorAll('[id^="processing-"]');
+            processingElements.forEach(el => el.remove());
+            
+            agregarMensaje("Lo siento, ocurrió un error. Contacta a soporte técnico al +56 9 1234 5678.", false);
+        }
+    };
+    
+    // Enhanced enter key handling
+    window.enviarEnter = function(event) {
+        if (event && event.key === "Enter") {
+            event.preventDefault();
+            enviarPregunta();
+        }
+    };
+    
+    // Initialize the interface when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('[v0] DOM loaded, initializing interface');
+        
+        // Focus on input for better UX
+        const input = document.getElementById("user-input");
+        if (input) {
+            input.focus();
+        }
+        
+        // Initialize first tab as active
+        const firstTab = document.querySelector('.tab-content');
+        if (firstTab) {
+            firstTab.classList.add('active');
+            firstTab.style.display = 'block';
+        }
+        
+        console.log('[v0] Interface initialized successfully');
+    });
+    
+})();
+
+// Function to append messages to the chat box
+function appendMessage(message, sender) {
+    const chatBox = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}`;
+    messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function obtenerRespuesta(mensaje) {
+    const respuestas = {
+        // =============================================
+        // MEDIDOR INTELIGENTE LXSZ-15
+        // =============================================
+        "QUE ES EL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>💧 Medidor Inteligente LXSZ-15</strong><br><br>
+                Es un <strong>medidor digital certificado</strong> que permite:<br><br>
+                • Medir consumo de agua automáticamente<br>
+                • Controlar válvulas remotamente<br>
+                • Detectar fugas de manera inteligente<br>
+                • Enviar datos sin intervención manual<br><br>
+                <em>Tecnología avanzada para una gestión eficiente del agua</em>
+            </div>
+        `,
+
+        "QUE ES MEDIDOR INTELIGENTE": `
+            <div style="padding: 10px;">
+                <strong>🤖 ¿Qué es un Medidor Inteligente?</strong><br><br>
+                El <strong>LXSZ-15</strong> es la evolución de los medidores tradicionales:<br><br>
+                • ✅ Certificado y homologado<br>
+                • ✅ Comunicación inalámbrica RF<br>
+                • ✅ Válvula motorizada controlable<br>
+                • ✅ Detección automática de anomalías<br><br>
+                <em>Más que medir, gestiona inteligentemente</em>
+            </div>
+        `,
+
+        "COMO FUNCIONA EL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>🔧 Funcionamiento del Medidor Inteligente</strong><br><br>
+                Opera mediante <strong>tecnología RF 475MHz</strong>:<br><br>
+                • Mide el consumo de agua en tiempo real<br>
+                • Envía datos automáticamente al Hand-Held<br>
+                • Incluye válvula motorizada controlable remotamente<br>
+                • Detecta y reporta irregularidades<br><br>
+                <em>Tecnología confiable y de fácil uso</em>
+            </div>
+        `,
+
+        "PARA QUE SIRVE EL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>🎯 ¿Para qué sirve el Medidor Inteligente?</strong><br><br>
+                Este dispositivo sirve para:<br><br>
+                • Medir consumo de agua con precisión<br>
+                • Controlar válvulas de forma remota<br>
+                • Detectar pérdidas y fugas automáticamente<br>
+                • Enviar lecturas al Hand-Held sin intervención<br>
+                • Optimizar la gestión de recursos hídricos<br><br>
+                <em>Eficiencia y control total en un solo dispositivo</em>
+            </div>
+        `,
+
+        "QUE HACE EL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>⚙️ ¿Qué hace el Medidor Inteligente?</strong><br><br>
+                Sus funciones principales son:<br><br>
+                • Mide consumo de agua en tiempo real<br>
+                • Controla válvulas de corte automáticamente<br>
+                • Detecta fugas de manera inteligente<br>
+                • Transmite datos al sistema de gestión<br>
+                • Opera con batería de larga duración<br><br>
+                <em>Un equipo multifuncional para tu APR/SSR</em>
+            </div>
+        `,
+
+        "CUANTO SOPORTA DE TEMPERATURA EL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>🌡️ Resistencia a Temperatura</strong><br><br>
+                El medidor soporta hasta <strong>40°C</strong> de temperatura.<br><br>
+                <strong>Importante:</strong> La garantía no cubre daños causados por temperaturas extremas.<br><br>
+                <em>Diseñado para condiciones normales de operación</em>
+            </div>
+        `,
+
+        "GARANTIA DEL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>🛡️ Garantía del Medidor</strong><br><br>
+                • <strong>Duración:</strong> 1 año de garantía<br>
+                • <strong>Cobertura:</strong> Fallas de fábrica que impidan funcionamiento normal<br>
+                • <strong>No cubre:</strong> Daños por golpes, temperaturas extremas o mal uso<br><br>
+                <em>Tu tranquilidad es nuestra prioridad</em>
+            </div>
+        `,
+
+        "TIPO DE MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>📋 Especificaciones Técnicas</strong><br><br>
+                • <strong>Modelo:</strong> LXSZ-15<br>
+                • <strong>Tipo:</strong> Medidor eléctrico inalámbrico<br>
+                • <strong>Batería:</strong> 8500mAh<br>
+                • <strong>Certificación:</strong> ISO 4064<br>
+                • <strong>Temperatura:</strong> Soporta hasta 40°C<br><br>
+                <em>Calidad y tecnología certificada</em>
+            </div>
+        `,
+
+        "BATERIA DEL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>🔋 Batería del Medidor</strong><br><br>
+                • <strong>Tipo:</strong> Batería de litio<br>
+                • <strong>Capacidad:</strong> 8500mAh<br>
+                • <strong>Duración:</strong> Aproximadamente 8 años en condiciones normales<br><br>
+                <em>Larga vida útil sin mantenimiento frecuente</em>
+            </div>
+        `,
+
+        "ALCANCE DEL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>📡 Alcance de Comunicación</strong><br><br>
+                • <strong>Rango:</strong> 1 a 500 metros en condiciones óptimas<br>
+                • <strong>Variable:</strong> Depende del entorno y obstáculos<br>
+                • <strong>Tecnología:</strong> RF 475MHz<br><br>
+                <em>Cobertura amplia para áreas rurales y urbanas</em>
+            </div>
+        `,
+
+        "CERTIFICACION DEL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>📜 Certificaciones</strong><br><br>
+                Certificado bajo <strong>norma ISO 4064</strong> para medidores de agua, garantizando:<br><br>
+                • Precisión en mediciones<br>
+                • Calidad internacional<br>
+                • Cumplimiento de estándares<br>
+                • Homologación Dictuc<br><br>
+                <em>Calidad certificada para tu tranquilidad</em>
+            </div>
+        `,
+
+        "INSTALACION DEL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>🔧 Instalación del Medidor</strong><br><br>
+                • Debe ser realizada por <strong>personal técnico calificado</strong><br>
+                • Seguir especificaciones del manual técnico<br>
+                • Verificar condiciones del sitio de instalación<br>
+                • Realizar pruebas de funcionamiento<br><br>
+                <em>Instalación profesional para óptimo rendimiento</em>
+            </div>
+        `,
+
+        "MANTENIMIENTO DEL MEDIDOR": `
+            <div style="padding: 10px;">
+                <strong>🔍 Mantenimiento</strong><br><br>
+                • <strong>Periódico:</strong> Inspección visual y limpieza externa<br>
+                • <strong>Interno:</strong> Solo por técnicos autorizados<br>
+                • <strong>Verificación:</strong> Funcionamiento de válvula y comunicación<br><br>
+                <em>Mantenimiento simple para máxima durabilidad</em>
+            </div>
+        `,
+
+        // =============================================
+        // HAND-HELD A380
+        // =============================================
+        "QUE ES EL HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>📱 Hand-Held A380</strong><br><br>
+                Es un <strong>dispositivo receptor manual</strong> que permite:<br><br>
+                • Recibir lecturas de medidores<br>
+                • Abrir/cerrar válvulas remotamente<br>
+                • Almacenar datos de los medidores<br>
+                • Configurar parámetros del sistema<br><br>
+                <em>Control total en la palma de tu mano</em>
+            </div>
+        `,
+
+        "COMO FUNCIONA HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>🔄 Funcionamiento del Hand-Held</strong><br><br>
+                Opera mediante <strong>comunicación RF 475MHz</strong> con los medidores:<br><br>
+                • Permite configurar parámetros<br>
+                • Toma lecturas automáticamente<br>
+                • Controla válvulas remotamente<br>
+                • Almacena datos localmente<br><br>
+                <em>Interfaz intuitiva para gestión eficiente</em>
+            </div>
+        `,
+
+        "TIPO DE HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>📋 Especificaciones Hand-Held</strong><br><br>
+                • <strong>Modelo:</strong> A380<br>
+                • <strong>Batería:</strong> 3.7V recargable<br>
+                • <strong>Memoria:</strong> 512K/4M-64M Flash<br>
+                • <strong>RF:</strong> 475MHz<br>
+                • <strong>Alcance:</strong> 1-500m<br>
+                • <strong>Capacidad:</strong> 20 sectores y 1000 usuarios<br><br>
+                <em>Dispositivo robusto para trabajo en terreno</em>
+            </div>
+        `,
+
+        "COMO INGRESAR EXCEL AL HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>📊 Importar Excel al Hand-Held</strong><br><br>
+                Pasos para importar datos:<br><br>
+                1. Duplicar archivos list.xls<br>
+                2. Abrir 'Test.exe'<br>
+                3. Seleccionar 'PC PDA'<br>
+                4. Enviar archivos al Hand-Held<br>
+                5. Seguir instrucciones del manual<br><br>
+                <em>Proceso simple para carga masiva de datos</em>
+            </div>
+        `,
+
+        "COMO TOMAR LECTURAS": `
+            <div style="padding: 10px;">
+                <strong>📈 Tomar Lecturas</strong><br><br>
+                Procedimiento:<br><br>
+                1. Encender el Hand-Held<br>
+                2. Seleccionar 'Task List' → 'ReadMeter'<br>
+                3. Ingresar archivo del sector (ej: S1)<br>
+                4. Presionar Enter para iniciar lectura<br><br>
+                <em>Proceso automatizado para eficiencia</em>
+            </div>
+        `,
+
+        "COMO DESCARGAR LECTURAS AL PC": `
+            <div style="padding: 10px;">
+                <strong>💾 Descargar Lecturas al PC</strong><br><br>
+                Pasos para descarga:<br><br>
+                1. Conectar Hand-Held al PC<br>
+                2. Abrir 'Test.exe'<br>
+                3. Seleccionar 'PC PDA' (recibir)<br>
+                4. Elegir archivos a descargar<br>
+                5. Transferir datos al sistema<br><br>
+                <em>Transferencia segura de información</em>
+            </div>
+        `,
+
+        "CONFIGURAR HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>⚙️ Configurar Hand-Held</strong><br><br>
+                Acceder al menú 'Config' para:<br><br>
+                • Frecuencia RF<br>
+                • Tiempo de espera<br>
+                • Configuración de sectores<br>
+                • Parámetros de comunicación<br><br>
+                <em>Personalización según tus necesidades</em>
+            </div>
+        `,
+
+        "PROBLEMAS HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>🔧 Problemas Comunes - Hand-Held</strong><br><br>
+                Si no recibe datos, verificar:<br><br>
+                • Estado de la batería<br>
+                • Distancia al medidor<br>
+                • Interferencias RF<br>
+                • Configuración de frecuencia<br><br>
+                <em>Solución rápida para continuidad operacional</em>
+            </div>
+        `,
+
+        "BATERIA HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>🔋 Batería Hand-Held</strong><br><br>
+                • <strong>Tipo:</strong> Batería recargable 3.7V<br>
+                • <strong>Duración:</strong> 8-10 horas de uso continuo<br>
+                • <strong>Carga:</strong> Completamente recargable<br><br>
+                <em>Autonomía suficiente para jornadas completas</em>
+            </div>
+        `,
+
+        "MEMORIA HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>💾 Memoria Hand-Held</strong><br><br>
+                • <strong>Tipo:</strong> Memoria Flash<br>
+                • <strong>Capacidad:</strong> 512K a 64M<br>
+                • <strong>Almacenamiento:</strong> 1000 registros y 20 sectores<br><br>
+                <em>Amplia capacidad para datos de usuarios</em>
+            </div>
+        `,
+
+        "ALCANCE HAND HELD": `
+            <div style="padding: 10px;">
+                <strong>📡 Alcance Hand-Held</strong><br><br>
+                • <strong>Comunicación:</strong> 1 a 500 metros con los medidores<br>
+                • <strong>Variables:</strong> Depende de obstáculos y condiciones ambientales<br>
+                • <strong>Optimización:</strong> Posicionamiento estratégico<br><br>
+                <em>Cobertura extensa para áreas de trabajo</em>
+            </div>
+        `,
+
+        // =============================================
+        // SOFTWARE APR
+        // =============================================
+        "QUE ES SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>💻 Software APR SPA</strong><br><br>
+                Es una <strong>plataforma online completa</strong> para gestionar APR/SSR que incluye:<br><br>
+                • Inventario y activos<br>
+                • Boletas electrónicas<br>
+                • Sistema de pagos<br>
+                • Reportes detallados<br><br>
+                <em>Gestión integral para tu organización</em>
+            </div>
+        `,
+
+        "PARA QUE SIRVE SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>🎯 ¿Para qué sirve el Software APR?</strong><br><br>
+                Sirve para:<br><br>
+                • Automatizar gestión administrativa<br>
+                • Controlar consumo de agua<br>
+                • Generar informes detallados<br>
+                • Gestionar pagos de usuarios<br>
+                • Optimizar operaciones<br><br>
+                <em>Eficiencia operacional total</em>
+            </div>
+        `,
+
+        "COMO FUNCIONA SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>🔄 Funcionamiento Software APR</strong><br><br>
+                Plataforma web que centraliza:<br><br>
+                • Gestión de usuarios<br>
+                • Lecturas de medidores<br>
+                • Facturación automatizada<br>
+                • Pagos y cobranzas<br>
+                • Sistema de reportes<br><br>
+                <em>Todas las funciones en una sola plataforma</em>
+            </div>
+        `,
+
+        "USUARIOS SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>👥 Gestión de Usuarios</strong><br><br>
+                Permite:<br><br>
+                • Gestionar usuarios eficientemente<br>
+                • Crear perfiles personalizados<br>
+                • Asignar medidores<br>
+                • Configurar tarifas diferenciadas<br>
+                • Generar reportes de consumo<br><br>
+                <em>Control completo de la cartera de usuarios</em>
+            </div>
+        `,
+
+        "REPORTES SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>📊 Sistema de Reportes</strong><br><br>
+                Genera reportes de:<br><br>
+                • Consumo de agua<br>
+                • Facturación y cobranza<br>
+                • Pagos pendientes<br>
+                • Estadísticas de uso<br>
+                • Análisis de pérdidas<br><br>
+                <em>Información valiosa para la toma de decisiones</em>
+            </div>
+        `,
+
+        "FACTURACION SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>🧾 Sistema de Facturación</strong><br><br>
+                • Facturación automatizada<br>
+                • Boletas electrónicas<br>
+                • Cálculo automático de consumos<br>
+                • Gestión de tarifas diferenciadas<br>
+                • Historial completo<br><br>
+                <em>Facturación eficiente y sin errores</em>
+            </div>
+        `,
+
+        "PAGOS SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>💳 Sistema de Pagos</strong><br><br>
+                Integrado con <strong>Punto Blue</strong> para:<br><br>
+                • Recibir pagos online<br>
+                • Pagos presenciales<br>
+                • Confirmación automática<br>
+                • Conciliación bancaria<br><br>
+                <em>Múltiples opciones de pago para usuarios</em>
+            </div>
+        `,
+
+        "SEGURIDAD SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>🔒 Seguridad del Sistema</strong><br><br>
+                • Encriptación SSL<br>
+                • Respaldos automáticos<br>
+                • Control de acceso por roles<br>
+                • Auditoría de actividades<br><br>
+                <em>Protección de datos de nivel empresarial</em>
+            </div>
+        `,
+
+        "SOPORTE SOFTWARE APR": `
+            <div style="padding: 10px;">
+                <strong>🛟 Soporte Software APR</strong><br><br>
+                • <strong>Soporte técnico 24/7</strong><br>
+                • Capacitación online<br>
+                • Manuales digitales<br>
+                • Actualizaciones automáticas incluidas<br><br>
+                <em>Apoyo continuo para tu operación</em>
+            </div>
+        `,
+
+        // =============================================
+        // PUNTO BLUE
+        // =============================================
+        "QUE ES PUNTO BLUE": `
+            <div style="padding: 10px;">
+                <strong>🔵 Punto Blue</strong><br><br>
+                Sistema de pago <strong>en línea y presencial</strong> integrado con Software APR que permite a los usuarios pagar sus cuentas de agua fácilmente.<br><br>
+                <em>Facilidad y accesibilidad en pagos</em>
+            </div>
+        `,
+
+        "COMO FUNCIONA PUNTO BLUE": `
+            <div style="padding: 10px;">
+                <strong>💸 Funcionamiento Punto Blue</strong><br><br>
+                Plataforma que permite:<br><br>
+                • Pagos online desde cualquier dispositivo<br>
+                • Pagos en puntos físicos autorizados<br>
+                • Confirmación automática al Software APR<br>
+                • Actualización en tiempo real<br><br>
+                <em>Integración perfecta con tu sistema</em>
+            </div>
+        `,
+
+        "PAGOS ONLINE PUNTO BLUE": `
+            <div style="padding: 10px;">
+                <strong>🌐 Pagos Online</strong><br><br>
+                Los usuarios pueden pagar usando:<br><br>
+                • Tarjetas de crédito/débito<br>
+                • Transferencias bancarias<br>
+                • Billeteras digitales<br>
+                • Desde cualquier dispositivo con internet<br><br>
+                <em>Comodidad y accesibilidad 24/7</em>
+            </div>
+        `,
+
+        "PAGOS PRESENCIALES PUNTO BLUE": `
+            <div style="padding: 10px;">
+                <strong>🏪 Pagos Presenciales</strong><br><br>
+                Red de puntos de pago físicos:<br><br>
+                • Comercios autorizados<br>
+                • Pago en efectivo<br>
+                • Pago con tarjeta<br>
+                • Amplia cobertura nacional<br><br>
+                <em>Alternativas para todos los usuarios</em>
+            </div>
+        `,
+
+        "INTEGRACION PUNTO BLUE": `
+            <div style="padding: 10px;">
+                <strong>🔗 Integración Punto Blue</strong><br><br>
+                Se integra automáticamente con Software APR:<br><br>
+                • Actualiza estado de pagos en tiempo real<br>
+                • Sin intervención manual requerida<br>
+                • Conciliación automática<br>
+                • Reportes integrados<br><br>
+                <em>Flujo de trabajo optimizado</em>
+            </div>
+        `,
+
+        "COMISIONES PUNTO BLUE": `
+            <div style="padding: 10px;">
+                <strong>💰 Comisiones Punto Blue</strong><br><br>
+                • Comisiones competitivas por transacción<br>
+                • Tarifas preferenciales para APR<br>
+                • Descuentos por volumen de transacciones<br>
+                • Estructura transparente<br><br>
+                <em>Costos accesibles para tu organización</em>
+            </div>
+        `,
+
+        // =============================================
+        // WATERMETER SYSTEM
+        // =============================================
+        "QUE ES WATERMETER SYSTEM": `
+            <div style="padding: 10px;">
+                <strong>🌊 WaterMeter System</strong><br><br>
+                Sistema integral que incluye:<br><br>
+                • Medidores Inteligentes<br>
+                • Hand-Held A380<br>
+                • Software APR<br>
+                • Punto Blue<br><br>
+                <em>Solución completa para gestión de agua</em>
+            </div>
+        `,
+
+        "PLANTILLAS EXCEL": `
+            <div style="padding: 10px;">
+                <strong>📑 Plantillas Excel</strong><br><br>
+                Plantillas predefinidas para importar:<br><br>
+                • Datos de usuarios<br>
+                • Sectores operativos<br>
+                • Tarifas y configuraciones<br>
+                • Información masiva al sistema<br><br>
+                <em>Migración eficiente de datos</em>
+            </div>
+        `,
+
+        "SECTORES WATERMETER": `
+            <div style="padding: 10px;">
+                <strong>🗺️ Gestión de Sectores</strong><br><br>
+                Permite dividir la red en:<br><br>
+                • Hasta 20 sectores diferentes<br>
+                • Mejor control territorial<br>
+                • Gestión distribuida<br>
+                • Reportes por sector<br><br>
+                <em>Organización eficiente de la red</em>
+            </div>
+        `,
+
+        "IMPORTAR DATOS": `
+            <div style="padding: 10px;">
+                <strong>📥 Importar Datos</strong><br><br>
+                Función para importar masivamente:<br><br>
+                • Usuarios y clientes<br>
+                • Medidores instalados<br>
+                • Configuraciones del sistema<br>
+                • Desde archivos Excel preformateados<br><br>
+                <em>Implementación rápida y eficiente</em>
+            </div>
+        `,
+
+        "EXPORTAR DATOS": `
+            <div style="padding: 10px;">
+                <strong>📤 Exportar Datos</strong><br><br>
+                Permite exportar:<br><br>
+                • Lecturas de medidores<br>
+                • Reportes del sistema<br>
+                • Datos operativos<br>
+                • A Excel para análisis externos<br><br>
+                <em>Flexibilidad en el manejo de información</em>
+            </div>
+        `,
+
+        // =============================================
+        // CÓDIGOS DE ERROR
+        // =============================================
+        "CODIGOS DE ERROR": `
+            <div style="padding: 10px;">
+                <strong>🚨 Códigos de Error - Medidor Inteligente</strong><br><br>
+                
+                <strong>🔴 E-5:</strong> Medidor cerrado por comando de cierre forzado<br>
+                <em>Solución: Abrir válvula desde Hand-Held</em><br><br>
+
+                <strong>🔴 E-6:</strong> Interferencia de imán detectada<br>
+                <em>Solución: Retirar imanes y verificar integridad</em><br><br>
+
+                <strong>🔴 E-7:</strong> Fallo de memoria interna<br>
+                <em>Solución: Reiniciar o contactar soporte</em><br><br>
+
+                <strong>🔴 E-8:</strong> Fallo en válvula de corte<br>
+                <em>Solución: Verificar conexiones mecánicas</em><br><br>
+
+                <strong>🔴 E-9:</strong> Pérdida de agua o baja presión (<10 PSI)<br>
+                <em>Solución: Verificar presión y posibles fugas</em><br><br>
+
+                <strong>🔴 E-10:</strong> Error de medición o comunicación<br>
+                <em>Solución: Verificar distancia y reconectar</em><br><br>
+
+                <strong>📞 Soporte 24/7: +56 9 1234 5678</strong>
+            </div>
+        `,
+
+        "E-5": "🔴 <strong>E-5: Medidor cerrado por comando de cierre forzado</strong><br><br>El medidor recibió un comando de cierre. <em>Solución: Abrir válvula desde Hand-Held o contactar soporte.</em>",
+        "E-6": "🔴 <strong>E-6: Interferencia de imán detectada</strong><br><br>Se detectó interferencia magnética. <em>Solución: Retirar imanes y verificar integridad del medidor.</em>",
+        "E-7": "🔴 <strong>E-7: Fallo de memoria</strong><br><br>Problema en memoria interna. <em>Solución: Reiniciar o contactar soporte técnico.</em>",
+        "E-8": "🔴 <strong>E-8: Fallo en válvula de corte</strong><br><br>Válvula no responde. <em>Solución: Verificar conexiones y contactar soporte.</em>",
+        "E-9": "🔴 <strong>E-9: Pérdida de agua o baja presión</strong><br><br>Presión insuficiente (<10 PSI). <em>Solución: Verificar presión y posibles fugas.</em>",
+        "E-10": "🔴 <strong>E-10: Error de medición</strong><br><br>Problema de comunicación. <em>Solución: Verificar distancia y reconectar Hand-Held.</em>",
+
+        // =============================================
+        // SOPORTE Y GENERALES
+        // =============================================
+        "COMO CONTACTAR SOPORTE": `
+            <div style="padding: 10px;">
+                <strong>📞 Contactar Soporte Técnico</strong><br><br>
+                • <strong>Teléfono:</strong> +56 9 1234 5678<br>
+                • <strong>Email:</strong> contacto@medidorinteligente.cl<br>
+                • <strong>Horario:</strong> Soporte 24/7<br>
+                • <strong>Emergencias:</strong> Disponibilidad permanente<br><br>
+                <em>Estamos aquí para ayudarte siempre</em>
+            </div>
+        `,
+
+        "NUMERO DE SOPORTE": `
+            <div style="padding: 10px;">
+                <strong>📱 Número de Soporte</strong><br><br>
+                <strong>+56 9 1234 5678</strong><br><br>
+                • Disponible 24/7<br>
+                • Atención técnica especializada<br>
+                • Soporte para emergencias<br>
+                • Asesoría comercial<br><br>
+                <em>Un solo número para todas tus necesidades</em>
+            </div>
+        `,
+
+        "EMAIL SOPORTE": `
+            <div style="padding: 10px;">
+                <strong>📧 Email de Soporte</strong><br><br>
+                <strong>contacto@medidorinteligente.cl</strong><br><br>
+                • Respondemos en máximo 24 horas<br>
+                • Atención personalizada<br>
+                • Soporte técnico y comercial<br>
+                • Documentación y manuales<br><br>
+                <em>Comunicación escrita para seguimiento</em>
+            </div>
+        `,
+
+        "HORARIOS SOPORTE": `
+            <div style="padding: 10px;">
+                <strong>🕒 Horarios de Soporte</strong><br><br>
+                • <strong>Atención General:</strong> Lunes a Viernes 9:00 - 18:00 hrs<br>
+                • <strong>Soporte Técnico:</strong> 24/7 para emergencias<br>
+                • <strong>Emergencias:</strong> Contactar al +56 9 1234 5678<br>
+                • <strong>Respuesta Email:</strong> Máximo 24 horas<br><br>
+                <em>Disponibilidad extendida para tu tranquilidad</em>
+            </div>
+        `,
+
+        "CAPACITACION": `
+            <div style="padding: 10px;">
+                <strong>🎓 Capacitación</strong><br><br>
+                Ofrecemos capacitación para:<br><br>
+                • Uso de Medidores Inteligentes<br>
+                • Operación del Hand-Held<br>
+                • Software APR completo<br>
+                • Sistema Punto Blue<br>
+                • Modalidad presencial y online<br><br>
+                <em>Formación completa para tu equipo</em>
+            </div>
+        `,
+
+        "MANUALES": `
+            <div style="padding: 10px;">
+                <strong>📚 Manuales y Documentación</strong><br><br>
+                Incluimos con la compra del sistema:<br><br>
+                • Manuales técnicos digitales<br>
+                • Guías de instalación<br>
+                • Manuales de usuario<br>
+                • Documentación de software<br>
+                • Videos instructivos<br><br>
+                <em>Recursos completos para el uso correcto</em>
+            </div>
+        `,
+
+        "ACTUALIZACIONES": `
+            <div style="padding: 10px;">
+                <strong>🔄 Actualizaciones del Sistema</strong><br><br>
+                • <strong>Software:</strong> Se actualiza automáticamente<br>
+                • <strong>Firmware:</strong> Mediante el Hand-Held<br>
+                • <strong>Mejoras:</strong> Continuas y gratuitas<br>
+                • <strong>Seguridad:</strong> Parches automáticos<br><br>
+                <em>Sistema siempre actualizado y seguro</em>
+            </div>
+        `,
+
+        "GARANTIA SISTEMA": `
+            <div style="padding: 10px;">
+                <strong>🛡️ Garantía del Sistema</strong><br><br>
+                • <strong>Medidor Inteligente:</strong> 1 año de garantía<br>
+                • <strong>Hand-Held:</strong> 1 año de garantía<br>
+                • <strong>Software:</strong> Actualizaciones permanentes<br>
+                • <strong>Soporte:</strong> Incluido durante garantía<br><br>
+                <em>Protección completa para tu inversión</em>
+            </div>
+        `,
+
+        // =============================================
+        // CLIENTES Y APR/SSR
+        // =============================================
+        "CUANTOS CLIENTES EXISTEN": `
+            <div style="padding: 10px;">
+                <strong>🏢 Total de Clientes: Más de 150 APR y SSR</strong><br><br>
+                <strong>📊 Distribución por Región de Chile:</strong><br>
+                • <strong>Región IV (Coquimbo):</strong> Múltiples clientes<br>
+                • <strong>Región V (Valparaíso):</strong> Varios clientes<br>
+                • <strong>Región VI (O'Higgins):</strong> Amplia cobertura<br>
+                • <strong>Región VII (Maule):</strong> Presencia establecida<br>
+                • <strong>Región VIII (Biobío):</strong> Clientes activos<br>
+                • <strong>Región IX (Araucanía):</strong> Operación continua<br>
+                • <strong>Región X (Los Lagos):</strong> Cobertura regional<br>
+                • <strong>Región XI (Aysén):</strong> Clientes estratégicos<br>
+                • <strong>Región XIV (Los Ríos):</strong> Presencia activa<br>
+                • <strong>Región Metropolitana:</strong> Extensa cartera<br><br>
+                <em>¿Quieres ver el listado completo de todos los clientes?</em>
+            </div>
+        `,
+
+        "CLIENTES TOTALES": `
+            <div style="padding: 10px;">
+                <strong>🏢 Total de Clientes: Más de 150 APR y SSR</strong><br><br>
+                <strong>📊 Distribución por Región:</strong><br>
+                • Región IV (Coquimbo): Múltiples clientes<br>
+                • Región V (Valparaíso): Varios clientes<br>
+                • Región VI (O'Higgins): Amplia cobertura<br>
+                • Región VII (Maule): Presencia establecida<br>
+                • Región VIII (Biobío): Clientes activos<br>
+                • Región IX (Araucanía): Operación continua<br>
+                • Región X (Los Lagos): Cobertura regional<br>
+                • Región XI (Aysén): Clientes estratégicos<br>
+                • Región XIV (Los Ríos): Presencia activa<br>
+                • Región Metropolitana: Extensa cartera
+            </div>
+        `,
+
+        "CLIENTES REGION IV": `
+            <div style="padding: 10px;">
+                <strong>🏔️ Región IV (Coquimbo) - Múltiples Clientes</strong><br><br>
+                • APR Punta De Choros<br>
+                • APR Quebrada Talca<br>
+                • APR Gabriela Mistral<br>
+                • APR Pelicana<br>
+                • APR El Esfuerzo Pichidangui<br>
+                • APR Sonora Los Acacios<br>
+                • APR Los Cerrillos De Tamaya<br>
+                • APR Unión La Paloma<br>
+                • APR La Unión Yaconi<br>
+                • APR La Jarilla<br>
+                • APR El Molle<br>
+                • Altovalsol GYO Ingeniería<br>
+                • SSR Punta Negra
+            </div>
+        `,
+
+        "CLIENTES REGION V": `
+            <div style="padding: 10px;">
+                <strong>🌊 Región V (Valparaíso) - Varios Clientes</strong><br><br>
+                • APR El Turco<br>
+                • Parcelero Olmué<br>
+                • APR Lo Alvarado<br>
+                • APR La Tetera Pueblo<br>
+                • APR El Troncal San Pedro<br>
+                • APR Comunidad Veraniega Las Brisas De Loncura<br>
+                • APR El Asiento<br>
+                • APR El Algarrobal<br>
+                • APR Barrancas<br>
+                • APR Bellavista<br>
+                • Cooperativa Santa Filomena Las Vertientes<br>
+                • SSR San Pedro de Pucón
+            </div>
+        `,
+
+        "CLIENTES REGION VI": `
+            <div style="padding: 10px; max-height: 300px; overflow-y: auto;">
+                <strong>🍇 Región VI (O'Higgins) - Amplia Cobertura</strong><br><br>
+                • Cooperativa Auquinco<br>
+                • APR San Antonio Chepica<br>
+                • APR Paredones de Auquinco<br>
+                • APR San Enrique<br>
+                • APR Peor es Nada<br>
+                • APR Cuesta los Gonzáles<br>
+                • APR San Juan de la Sierra<br>
+                • APR Tinguiririca<br>
+                • APR Quicharco<br>
+                • SSR Codegua<br>
+                • APR Cruz de Chillegue<br>
+                • Cooperativa El Rulo-Millahue<br>
+                • APR Rinconada de Parral<br>
+                • APR La Estrella<br>
+                • APR Cocalan<br>
+                • APR Los Aromos el Durazno<br>
+                • APR Las Balsas<br>
+                • APR Chacayes<br>
+                • APR El Cajon el Guindal<br>
+                • APR Panquehue<br>
+                • APR Los Maquis Cuenca Rigolemu<br>
+                • APR Caracoles<br>
+                • APR Trinidad los Maitenes<br>
+                • Cooperativa Cunaco<br>
+                • APR Rapel<br>
+                • APR Olivar Bajo<br>
+                • APR Lihueimo Rinconada<br>
+                • APR El Huique<br>
+                • APR Las Garzas<br>
+                • APR La Esperanza<br>
+                • SSR Tuniche<br>
+                • APR La Palma<br>
+                • APR Santa Amalia<br>
+                • APR El Abra<br>
+                • APR Union Polonia<br>
+                • APR Roma Arriba La Marinana<br>
+                • APR Talcarehue<br>
+                • APR Agua Buena<br>
+                • APR Angostura<br>
+                • APR La Paloma<br>
+                • SSR Roma-San José de los Lingues<br>
+                • APR La Reserva La Candelaria<br>
+                • APR Peuco Santa Teresa<br>
+                • APR El Naranjal<br>
+                • APR La Puntilla Pueblo de Indios<br>
+                • APR Copset<br>
+                • APR Quinahue<br>
+                • APR Guindo Alto El Boldal<br>
+                • APR La Isla de Guindo Chomedahue<br>
+                • APR La Finca<br>
+                • APR San Jose de Peñuelas<br>
+                • Oficina
+            </div>
+        `,
+
+        "CLIENTES REGION METROPOLITANA": `
+            <div style="padding: 10px; max-height: 300px; overflow-y: auto;">
+                <strong>🏙️ Región Metropolitana - Extensa Cartera</strong><br><br>
+                • APR La Linea<br>
+                • APR Las Canteras<br>
+                • APR Manuel Rodríguez<br>
+                • APR Quilapilún<br>
+                • APR Hermanos Carrera<br>
+                • APR Santa Luisa<br>
+                • APR Santa Filomena-San Luis<br>
+                • APR Las Rosas<br>
+                • APR El Rosario Los Olmos<br>
+                • APR Chiñigue<br>
+                • APR La Puntilla de Lonquen<br>
+                • APR Monte Las Mercedes<br>
+                • APR San Antonio De Naltagua<br>
+                • APR Villa Las Mercedes<br>
+                • APR Gacitúa<br>
+                • APR San Vicente de Naltagua- Llavería<br>
+                • APR Batuco Santa Sara<br>
+                • APR Estación Colina<br>
+                • APR Asociacion de vecinos la Parva<br>
+                • APR Proci-Lo Ovalle<br>
+                • APR Chorombo<br>
+                • APR Los Rulos<br>
+                • APR Rumay Campo Lindo<br>
+                • APR Popeta<br>
+                • APR EL Vinculo<br>
+                • APR Águila Norte Águila Sur<br>
+                • APR Chada-Culitrin<br>
+                • APR El Manzano<br>
+                • Condominio Lomas Del Pangue<br>
+                • APR Labrador Castillo<br>
+                • APR Santa Matilde<br>
+                • APR Ejemplo Campesino
+            </div>
+        `,
+
+
+       "TODOS LOS CLIENTES": `
+    <div style="padding: 15px; max-height: 500px; overflow-y: auto; background: #f8f9fa; border-radius: 8px;">
+        <strong style="font-size: 18px; color: #2c5aa0;">🏢 LISTA COMPLETA DE CLIENTES - MÁS DE 150 APR Y SSR</strong><br><br>
+        
+        <strong>📍 REGIÓN IV - COQUIMBO (13):</strong><br>
+        • APR Punta De Choros<br>
+        • APR Quebrada Talca<br>
+        • APR Gabriela Mistral<br>
+        • APR Pelicana<br>
+        • APR El Esfuerzo Pichidangui<br>
+        • APR Sonora Los Acacios<br>
+        • APR Los Cerrillos De Tamaya<br>
+        • APR Unión La Paloma<br>
+        • APR La Unión Yaconi<br>
+        • APR La Jarilla<br>
+        • APR El Molle<br>
+        • Altovalsol GYO Ingeniería<br>
+        • SSR Punta Negra<br><br>
+
+        <strong>📍 REGIÓN V - VALPARAÍSO (12):</strong><br>
+        • APR El Turco<br>
+        • Parcelero Olmué<br>
+        • APR Lo Alvarado<br>
+        • APR La Tetera Pueblo<br>
+        • APR El Troncal San Pedro<br>
+        • APR Comunidad Veraniega Las Brisas De Loncura<br>
+        • APR El Asiento<br>
+        • APR El Algarrobal<br>
+        • APR Barrancas<br>
+        • APR Bellavista<br>
+        • Cooperativa Santa Filomena Las Vertientes<br>
+        • SSR San Pedro de Pucón<br><br>
+
+        <strong>📍 REGIÓN VI - O'HIGGINS (51):</strong><br>
+        • Cooperativa Auquinco<br>
+        • APR San Antonio Chepica<br>
+        • APR Paredones de Auquinco<br>
+        • APR San Enrique<br>
+        • APR Peor es Nada<br>
+        • APR Cuesta los Gonzáles<br>
+        • APR San Juan de la Sierra<br>
+        • APR Tinguiririca<br>
+        • APR Quicharco<br>
+        • SSR Codegua<br>
+        • APR Cruz de Chillegue<br>
+        • Cooperativa El Rulo-Millahue<br>
+        • APR Rinconada de Parral<br>
+        • APR La Estrella<br>
+        • APR Cocalan<br>
+        • APR Los Aromos el Durazno<br>
+        • APR Las Balsas<br>
+        • APR Chacayes<br>
+        • APR El Cajon el Guindal<br>
+        • APR Panquehue<br>
+        • APR Los Maquis Cuenca Rigolemu<br>
+        • APR Caracoles<br>
+        • APR Trinidad los Maitenes<br>
+        • Cooperativa Cunaco<br>
+        • APR Rapel<br>
+        • APR Olivar Bajo<br>
+        • APR Lihueimo Rinconada<br>
+        • APR El Huique<br>
+        • APR Las Garzas<br>
+        • APR La Esperanza<br>
+        • SSR Tuniche<br>
+        • APR La Palma<br>
+        • APR Santa Amalia<br>
+        • APR El Abra<br>
+        • APR Union Polonia<br>
+        • APR Roma Arriba La Marinana<br>
+        • APR Talcarehue<br>
+        • APR Agua Buena<br>
+        • APR Angostura<br>
+        • APR La Paloma<br>
+        • SSR Roma-San José de los Lingues<br>
+        • APR La Reserva La Candelaria<br>
+        • APR Peuco Santa Teresa<br>
+        • APR El Naranjal<br>
+        • APR La Puntilla Pueblo de Indios<br>
+        • APR Copset<br>
+        • APR Quinahue<br>
+        • APR Guindo Alto El Boldal<br>
+        • APR La Isla de Guindo Chomedahue<br>
+        • APR La Finca<br>
+        • APR San Jose de Peñuelas<br>
+        • Oficina<br><br>
+
+        <strong>📍 REGIÓN VII - MAULE (8):</strong><br>
+        • APR San Antonio - Linares<br>
+        • APR El Llano el Arrozal Huencuecho Norte<br>
+        • APR Chovellén<br>
+        • APR Copihue<br>
+        • APR Santa Rosa<br>
+        • APR Quesería-Pelarco<br>
+        • Agua y Campo spa<br>
+        • Comite Agua Potable La Posada<br><br>
+
+        <strong>📍 REGIÓN VIII - BIOBÍO (4):</strong><br>
+        • APR Laraquete<br>
+        • APR Huillingo<br>
+        • APR Violeta Parra<br>
+        • APR Valle Simpsons<br><br>
+
+        <strong>📍 REGIÓN IX - ARAUCANÍA (10):</strong><br>
+        • APR Santa Julia Curautin<br>
+        • SSR Metrenco<br>
+        • APR Villa San Pedro<br>
+        • APR Quetroleufu<br>
+        • APR Teodoro Schmidt<br>
+        • APR Agua Sur/Sierra Nevada<br>
+        • APR Quillem<br>
+        • SSR San Pedro de Pucón<br>
+        • Claudio (Ñancul Llilliucura)<br>
+        • Luis Antonio Siles<br><br>
+
+        <strong>📍 REGIÓN X - LOS LAGOS (7):</strong><br>
+        • APR San Javier<br>
+        • APR Langunitas Cardonal<br>
+        • APR La Ensenada<br>
+        • APR Canaan<br>
+        • APR Ducan<br>
+        • APR El Progreso de Nalhuitad<br>
+        • Sociedad Agricola Moreno y Rosso Ltda<br><br>
+
+        <strong>📍 REGIÓN XI - AYSÉN (1):</strong><br>
+        • SSR Río Claro<br><br>
+
+        <strong>📍 REGIÓN XIV - LOS RÍOS (4):</strong><br>
+        • APR Coñaripe<br>
+        • Comite SSR Carhuello<br>
+        • Sociedad Agricola Moreno y Rosso Ltda<br>
+        • Claudio (Ñancul Llilliucura)<br><br>
+
+        <strong>📍 REGIÓN METROPOLITANA (29):</strong><br>
+        • APR La Linea<br>
+        • APR Las Canteras<br>
+        • APR Manuel Rodríguez<br>
+        • APR Quilapilún<br>
+        • APR Hermanos Carrera<br>
+        • APR Santa Luisa<br>
+        • APR Santa Filomena-San Luis<br>
+        • APR Las Rosas<br>
+        • APR El Rosario Los Olmos<br>
+        • APR Chiñigue<br>
+        • APR La Puntilla de Lonquen<br>
+        • APR Monte Las Mercedes<br>
+        • APR San Antonio De Naltagua<br>
+        • APR Villa Las Mercedes<br>
+        • APR Gacitúa<br>
+        • APR San Vicente de Naltagua- Llavería<br>
+        • APR Batuco Santa Sara<br>
+        • APR Estación Colina<br>
+        • APR Asociacion de vecinos la Parva<br>
+        • APR Proci-Lo Ovalle<br>
+        • APR Chorombo<br>
+        • APR Los Rulos<br>
+        • APR Rumay Campo Lindo<br>
+        • APR Popeta<br>
+        • APR EL Vinculo<br>
+        • APR Águila Norte Águila Sur<br>
+        • APR Chada-Culitrin<br>
+        • APR El Manzano<br>
+        • Condominio Lomas Del Pangue<br>
+        • APR Labrador Castillo<br>
+        • APR Santa Matilde<br>
+        • APR Ejemplo Campesino<br><br>
+
+        <div style="background: #2c5aa0; color: white; padding: 10px; border-radius: 5px; text-align: center;">
+            <strong>📊 TOTAL: MÁS DE 150 CLIENTES ACTIVOS</strong><br>
+            <em>Distribuidos en 9 regiones de Chile</em>
+        </div>
+    </div>
+`
+    };
+
+    const palabras_clave = {
+        "clientes": ["cliente", "usuarios", "aprs", "ssr", "cooperativas", "personas", "gente", "trabajan", "comunidades", "asociaciones", "listado", "lista", "todos"],
+        "errores": ["error", "falla", "problema", "codigo", "código", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "fallo", "defecto", "mal funcionamiento"],
+        "cuantos": ["cuantos", "cuántos", "cantidad", "total", "numero", "número", "existen", "hay", "tienen", "disponibles"],
+        "region": ["region", "región", "zona", "area", "área", "iv", "v", "vi", "4", "5", "6", "séptima", "octava", "novena", "décima", "metropolitana", "rm", "coquimbo", "valparaíso", "higgins", "maule", "biobío", "araucanía", "lagos", "aysén", "ríos"],
+        "medidor": ["medidor", "contador", "aparato", "dispositivo", "equipo", "lxsz", "inteligente", "funcionamiento"],
+        "hand held": ["hand held", "handheld", "hand-held", "receptor", "dispositivo manual", "lector", "control", "portátil"],
+        "software": ["software", "programa", "sistema", "plataforma", "aplicacion", "aplicación", "digital"],
+        "soporte": ["soporte", "ayuda", "support", "asistencia", "contacto", "telefono", "teléfono", "email", "correo", "emergencia"],
+        "punto blue": ["punto blue", "pago", "pagos", "payment", "blue"],
+        "watermeter": ["watermeter", "sistema", "integral", "completo"]
+    };
+
+    // Función mejorada de normalización
+    function normalizarTexto(texto) {
+        return texto.toUpperCase()
+            .replace(/[ÁÀÄÂ]/g, 'A')
+            .replace(/[ÉÈËÊ]/g, 'E')
+            .replace(/[ÍÌÏÎ]/g, 'I')
+            .replace(/[ÓÒÖÔ]/g, 'O')
+            .replace(/[ÚÙÜÛ]/g, 'U')
+            .replace(/Ñ/g, 'N')
+            .replace(/[^A-Z0-9\s]/g, '')
+            .trim();
+    }
+
+    let mensaje_normalizado = normalizarTexto(mensaje);
+
+    // Detección MEJORADA de consultas
+    const tieneClientes = /CLIENTE|USUARIO|APR|SSR|COOPERATIVA|PERSONA|GENTE|TRABAJAN|COMUNIDAD|LISTA|LISTADO/.test(mensaje_normalizado);
+    const tieneErrores = /ERROR|FALLA|PROBLEMA|CODIGO|E\-5|E\-6|E\-7|E\-8|E\-9|E\-10|FALLO|DEFECTO/.test(mensaje_normalizado);
+    const tieneCuantos = /CUANTOS|CANTIDAD|TOTAL|NUMERO|EXISTEN|HAY|TIENEN/.test(mensaje_normalizado);
+    const tieneTodos = /TODOS|COMPLETO|LISTA|LISTADO/.test(mensaje_normalizado);
+    
+    // Detección de regiones específicas
+    const tieneRegionIV = /IV|4|CUARTA|COQUIMBO/.test(mensaje_normalizado);
+    const tieneRegionV = /V|5|QUINTA|VALPARAISO|VALPO/.test(mensaje_normalizado);
+    const tieneRegionVI = /VI|6|SEXTA|OHIGGINS|HIGGINS/.test(mensaje_normalizado);
+    const tieneRegionRM = /RM|METROPOLITANA|SANTIAGO|CAPITAL/.test(mensaje_normalizado);
+
+    // RESPUESTAS INTELIGENTES MEJORADAS
+    if (tieneClientes && tieneTodos) {
+        return respuestas["TODOS LOS CLIENTES"];
+    }
+    
+    if (tieneErrores && tieneTodos) {
+        return respuestas["CODIGOS DE ERROR"];
+    }
+    
+    if (tieneErrores) {
+        return respuestas["CODIGOS DE ERROR"];
+    }
+    
+    if (tieneClientes && tieneCuantos && !tieneRegionIV && !tieneRegionV && !tieneRegionVI && !tieneRegionRM) {
+        return respuestas["CUANTOS CLIENTES EXISTEN"];
+    }
+    
+    if (tieneClientes && tieneRegionIV) {
+        return respuestas["CLIENTES REGION IV"];
+    }
+    
+    if (tieneClientes && tieneRegionV) {
+        return respuestas["CLIENTES REGION V"];
+    }
+    
+    if (tieneClientes && tieneRegionVI) {
+        return respuestas["CLIENTES REGION VI"];
+    }
+    
+    if (tieneClientes && tieneRegionRM) {
+        return respuestas["CLIENTES REGION METROPOLITANA"];
+    }
+
+    // Direct match first
+    if (respuestas[mensaje_normalizado]) {
+        const res = respuestas[mensaje_normalizado];
+        if (Array.isArray(res)) {
+            return "<ul>" + res.map(item => `<li>${item}</li>`).join("") + "</ul>";
+        }
+        return res;
+    }
+
+    // Keyword matching con mejoras
+    let mejor_coincidencia = "";
+    let mejor_puntaje = 0;
+
+    for (const [clave, respuesta] of Object.entries(respuestas)) {
+        let puntaje = 0;
+
+        // Check for keyword matches
+        for (const [categoria, sinonimos] of Object.entries(palabras_clave)) {
+            for (const sinonimo of sinonimos) {
+                const sinonimoNormalizado = normalizarTexto(sinonimo);
+                if (mensaje_normalizado.includes(sinonimoNormalizado) &&
+                    normalizarTexto(clave).includes(sinonimoNormalizado)) {
+                    puntaje += 2;
+                }
+            }
+        }
+
+        // Direct word matching
+        const palabras_mensaje = mensaje_normalizado.split(' ');
+        const palabras_clave_item = normalizarTexto(clave).split(' ');
+
+        for (const palabra of palabras_mensaje) {
+            if (palabra.length > 2) {
+                for (const pc of palabras_clave_item) {
+                    if (pc.includes(palabra)) {
+                        puntaje += 1;
                         break;
                     }
                 }
             }
-            return cookieValue;
         }
 
-        async function enviarPregunta(pregunta) {
-            try {
-                const formData = new FormData();
-                formData.append('pregunta', pregunta);
-                
-                const response = await fetch('/asistente/', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': getCookie('csrftoken')
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`Error ${response.status}: ${response.statusText}`);
-                }
-                
-                const data = await response.json();
-                return data.respuesta || 'Contacta a soporte para más información.';
-            } catch (error) {
-                console.error('[v0] Error en enviarPregunta:', error);
-                return 'Error al procesar la consulta. Contacta a soporte técnico al +56 9 1234 5678.';
-            }
+        if (puntaje > mejor_puntaje) {
+            mejor_puntaje = puntaje;
+            mejor_coincidencia = respuesta;
         }
+    }
 
-        async function sendMessage() {
-            const input = document.getElementById('user-input');
-            const message = input.value.trim();
-            
-            if (message === '') return;
-            
-            // Add user message
-            appendMessage(message, 'user');
-            input.value = '';
-            
-            // Show typing indicator
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message assistant typing';
-            typingDiv.innerHTML = '<div class="message-content">Procesando...</div>';
-            document.getElementById('chat-messages').appendChild(typingDiv);
-            
-            // Simulate brief processing delay for better UX
-            setTimeout(() => {
-                // Get response from JavaScript function
-                const response = obtenerRespuesta(message);
-                
-                // Remove typing indicator
-                typingDiv.remove();
-                
-                // Add assistant response
-                appendMessage(response, 'assistant');
-            }, 500);
+    // Return best match or fallback
+    if (mejor_puntaje >= 2) {
+        if (Array.isArray(mejor_coincidencia)) {
+            return "<ul>" + mejor_coincidencia.map(item => `<li>${item}</li>`).join("") + "</ul>";
         }
+        return mejor_coincidencia;
+    }
 
-        // Enhanced JavaScript with better error handling and accessibility
-        (function() {
-            'use strict';
-            
-            // Tab functionality with accessibility support
-            window.openTab = function(evt, tabName) {
-                try {
-                    // Hide all tab contents
-                    const tabContents = document.getElementsByClassName("tab-content");
-                    for (let i = 0; i < tabContents.length; i++) {
-                        tabContents[i].style.display = "none";
-                        tabContents[i].classList.remove("active");
-                    }
-                    
-                    // Remove active class from all tab buttons and update aria-selected
-                    const tabButtons = document.getElementsByClassName("tab-button");
-                    for (let i = 0; i < tabButtons.length; i++) {
-                        tabButtons[i].classList.remove("active");
-                        tabButtons[i].setAttribute("aria-selected", "false");
-                    }
-                    
-                    // Show selected tab content
-                    const selectedTab = document.getElementById(tabName);
-                    if (selectedTab) {
-                        selectedTab.style.display = "block";
-                        selectedTab.classList.add("active");
-                    }
-                    
-                    // Mark clicked button as active
-                    if (evt && evt.currentTarget) {
-                        evt.currentTarget.classList.add("active");
-                        evt.currentTarget.setAttribute("aria-selected", "true");
-                    }
-                } catch (error) {
-                    console.error('Error switching tabs:', error);
-                }
-            };
-            
-            // Enhanced message adding with better DOM manipulation
-            window.agregarMensaje = function(mensaje, esUsuario = false) {
-                try {
-                    const chatBox = document.getElementById("chat-box");
-                    if (!chatBox) return;
-                    
-                    const messageDiv = document.createElement("div");
-                    messageDiv.className = `message ${esUsuario ? 'user' : 'assistant'}`;
-                    messageDiv.setAttribute('role', 'article');
-                    
-                    const avatarDiv = document.createElement("div");
-                    avatarDiv.className = `avatar ${esUsuario ? 'user-avatar' : 'assistant-avatar'}`;
-                    avatarDiv.setAttribute('aria-hidden', 'true');
-                    
-                    const contentDiv = document.createElement("div");
-                    contentDiv.className = "message-content";
-                    
-                    const p = document.createElement("p");
-                    p.textContent = mensaje;
-                    contentDiv.appendChild(p);
-                    
-                    messageDiv.appendChild(avatarDiv);
-                    messageDiv.appendChild(contentDiv);
-                    
-                    // Add to chat
-                    chatBox.appendChild(messageDiv);
-                    
-                    setTimeout(() => {
-                        chatBox.scrollTo({
-                            top: chatBox.scrollHeight,
-                            behavior: 'smooth'
-                        });
-                    }, 100);
-                    
-                } catch (error) {
-                    console.error('Error adding message:', error);
-                }
-            };
-            
-            // Clear chat functionality
-            window.limpiarChat = function() {
-                try {
-                    const chatBox = document.getElementById("chat-box");
-                    if (chatBox) {
-                        // Keep only the initial assistant message
-                        const messages = chatBox.querySelectorAll('.message');
-                        for (let i = 1; i < messages.length; i++) {
-                            messages[i].remove();
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error clearing chat:', error);
-                }
-            };
-            
-            // Main function to handle sending questions
-            window.enviarPregunta = function() {
-                try {
-                    const input = document.getElementById("user-input");
-                    if (!input) {
-                        console.error('[v0] Input element not found');
-                        return;
-                    }
-                    
-                    const mensaje = input.value.trim();
-                    if (!mensaje) {
-                        input.focus();
-                        return;
-                    }
-                    
-                    // Add user message
-                    agregarMensaje(mensaje, true);
-                    
-                    // Clear input
-                    input.value = "";
-                    
-                    // Show processing message briefly
-                    const processingMessageId = 'processing-' + Date.now();
-                    const processingDiv = document.createElement("div");
-                    processingDiv.id = processingMessageId;
-                    processingDiv.className = 'message assistant';
-                    processingDiv.setAttribute('role', 'article');
-                    
-                    const avatarDiv = document.createElement("div");
-                    avatarDiv.className = 'avatar assistant-avatar';
-                    avatarDiv.setAttribute('aria-hidden', 'true');
-                    
-                    const contentDiv = document.createElement("div");
-                    contentDiv.className = "message-content";
-                    
-                    const p = document.createElement("p");
-                    p.textContent = "Procesando...";
-                    contentDiv.appendChild(p);
-                    
-                    processingDiv.appendChild(avatarDiv);
-                    processingDiv.appendChild(contentDiv);
-                    
-                    const chatBox = document.getElementById("chat-box");
-                    chatBox.appendChild(processingDiv);
-                    
-                    // Scroll to bottom
-                    chatBox.scrollTo({
-                        top: chatBox.scrollHeight,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Get response from JavaScript function
-                    setTimeout(() => {
-                        const respuesta = obtenerRespuesta(mensaje);
-                        
-                        // Remove processing message
-                        const processingElement = document.getElementById(processingMessageId);
-                        if (processingElement) {
-                            processingElement.remove();
-                        }
-                        
-                        // Add real response
-                        agregarMensaje(respuesta, false);
-                    }, 500);
-                    
-                } catch (error) {
-                    console.error('[v0] Error in enviarPregunta:', error);
-                    
-                    // Remove processing message if it exists
-                    const processingElements = document.querySelectorAll('[id^="processing-"]');
-                    processingElements.forEach(el => el.remove());
-                    
-                    agregarMensaje("Lo siento, ocurrió un error. Contacta a soporte técnico al +56 9 1234 5678.", false);
-                }
-            };
-            
-            // Enhanced enter key handling
-            window.enviarEnter = function(event) {
-                if (event && event.key === "Enter") {
-                    event.preventDefault();
-                    enviarPregunta();
-                }
-            };
-            
-            // Initialize the interface when DOM is loaded
-            document.addEventListener('DOMContentLoaded', function() {
-                console.log('[v0] DOM loaded, initializing interface');
-                
-                // Focus on input for better UX
-                const input = document.getElementById("user-input");
-                if (input) {
-                    input.focus();
-                }
-                
-                // Initialize first tab as active
-                const firstTab = document.querySelector('.tab-content');
-                if (firstTab) {
-                    firstTab.classList.add('active');
-                    firstTab.style.display = 'block';
-                }
-                
-                console.log('[v0] Interface initialized successfully');
-            });
-            
-        })();
-        
-        // Function to append messages to the chat box
-        function appendMessage(message, sender) {
-            const chatBox = document.getElementById('chat-messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
-            chatBox.appendChild(messageDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
+    // FALLBACK MEJORADO
+    if (tieneClientes) {
+        return `
+            <div style="padding: 10px;">
+                <strong>🏢 Información de Clientes</strong><br><br>
+                Tenemos <strong>más de 150 clientes entre APR y SSR</strong> en todo Chile.<br><br>
+                <strong>Puedes preguntar:</strong><br>
+                • <strong>'Todos los clientes'</strong> - Lista completa<br>
+                • <strong>'Cuántos clientes existen'</strong> - Total y distribución<br>
+                • <strong>'Clientes región [número]'</strong> - Por región específica<br>
+                • <strong>'Errores comunes'</strong> - Códigos de error del medidor
+            </div>
+        `;
+    }
 
-        function obtenerRespuesta(mensaje) {
-            const respuestas = {
-                // Medidor Inteligente LXSZ-15
-                "QUE ES EL MEDIDOR": "El Medidor Inteligente LXSZ-15 es un medidor digital certificado que permite medir consumo de agua, controlar válvulas y detectar fugas de manera automática.",
-                "QUE ES MEDIDOR INTELIGENTE": "El Medidor Inteligente LXSZ-15 es un medidor digital certificado que permite medir consumo de agua, controlar válvulas y detectar fugas de manera automática.",
-                "COMO FUNCIONA EL MEDIDOR": "Funciona mediante tecnología inalámbrica RF 475MHz, mide el consumo de agua y envía datos automáticamente al Hand-Held. Incluye válvula motorizada controlable remotamente.",
-                "PARA QUE SIRVE EL MEDIDOR": "Sirve para medir el consumo de agua, controlar válvulas remotamente, detectar pérdidas y enviar lecturas automáticamente al Hand-Held.",
-                "QUE HACE EL MEDIDOR": "Mide el consumo de agua en tiempo real, controla válvulas de corte, detecta fugas automáticamente y transmite datos al sistema de gestión.",
-                "CUANTO SOPORTA DE TEMPERATURA EL MEDIDOR": "El medidor soporta temperaturas de hasta 40°C. La garantía no cubre daños causados por temperaturas extremas.",
-                "GARANTIA DEL MEDIDOR": " 1 año de Garantía. La garantía cubre fallas de fábrica que impidan el funcionamiento normal del medidor. No cubre daños por golpes, temperaturas extremas o mal uso.",
-                "TIPO DE MEDIDOR": "LXSZ-15, medidor eléctrico inalámbrico con batería de 8500mAh, certificado ISO 4064, soporta hasta 40°C de temperatura.",
-                "BATERIA DEL MEDIDOR": "Batería de litio de 8500mAh con duración aproximada de 8 años en condiciones normales de uso.",
-                "ALCANCE DEL MEDIDOR": "El alcance de transmisión es de 1 a 500 metros en condiciones óptimas, dependiendo del entorno y obstáculos.",
-                "CERTIFICACION DEL MEDIDOR": "Certificado bajo norma ISO 4064 para medidores de agua, garantizando precisión y calidad internacional.",
-                "INSTALACION DEL MEDIDOR": "La instalación debe ser realizada por personal técnico calificado siguiendo las especificaciones del manual técnico.",
-                "MANTENIMIENTO DEL MEDIDOR": "Requiere inspección visual periódica y limpieza externa. El mantenimiento interno debe ser realizado por técnicos autorizados.",
+    if (tieneErrores) {
+        return respuestas["CODIGOS DE ERROR"];
+    }
 
-                // Hand-Held A380
-                "QUE ES EL HAND HELD": "El Hand-Held es un dispositivo receptor manual que permite recibir lecturas, abrir/cerrar válvulas y almacenar datos de los medidores.",
-                "QUE ES HAND HELD": "El Hand-Held es un dispositivo receptor manual que permite recibir lecturas, abrir/cerrar válvulas y almacenar datos de los medidores.",
-                "COMO FUNCIONA HAND HELD": "Funciona mediante comunicación RF 475MHz con los medidores, permite configurar parámetros, tomar lecturas y controlar válvulas remotamente.",
-                "TIPO DE HAND HELD": "Modelo A380 con batería 3.7V, memoria 512K/4M-64M Flash, RF 475MHz, alcance de 1-500m, soporta hasta 20 sectores y 1000 usuarios.",
-                "COMO INGRESAR EXCEL AL HAND HELD": "Duplica los archivos list.xls, abre 'Test.exe', selecciona 'PC PDA', y envía los archivos al Hand-Held siguiendo las instrucciones del manual.",
-                "COMO TOMAR LECTURAS": "Enciende el Hand-Held, selecciona 'Task List' → 'ReadMeter', ingresa el archivo S1 y presiona Enter para iniciar la lectura.",
-                "COMO DESCARGAR LECTURAS AL PC": "Conecta el Hand-Held al PC, abre 'Test.exe', selecciona 'PC PDA' (recibir), elige los archivos y descárgalos.",
-                "CONFIGURAR HAND HELD": "Accede al menú 'Config', selecciona los parámetros deseados como frecuencia RF, tiempo de espera y configuración de sectores.",
-                "PROBLEMAS HAND HELD": "Si no recibe datos, verifica la batería, distancia al medidor, interferencias RF y configuración de frecuencia.",
-                "BATERIA HAND HELD": "Batería recargable de 3.7V. Carga completa dura aproximadamente 8-10 horas de uso continuo.",
-                "MEMORIA HAND HELD": "Memoria Flash de 512K a 64M, capaz de almacenar hasta 1000 registros de usuarios y 20 sectores diferentes.",
-                "ALCANCE HAND HELD": "Alcance de comunicación de 1 a 500 metros con los medidores, dependiendo de obstáculos y condiciones ambientales.",
-
-                // Software APR
-                "QUE ES SOFTWARE APR": "Software APR SPA es una plataforma online para gestionar APR/SSR que incluye inventario, boletas electrónicas, pagos y reportes.",
-                "PARA QUE SIRVE SOFTWARE APR": "Automatiza la gestión administrativa, controla el consumo, genera informes detallados y gestiona los pagos de los usuarios.",
-                "COMO FUNCIONA SOFTWARE APR": "Plataforma web que centraliza la gestión de usuarios, lecturas, facturación y pagos de sistemas de agua potable rural.",
-                "USUARIOS SOFTWARE APR": "Permite gestionar usuarios, crear perfiles, asignar medidores, configurar tarifas y generar reportes de consumo.",
-                "REPORTES SOFTWARE APR": "Genera reportes de consumo, facturación, pagos pendientes, estadísticas de uso y análisis de pérdidas de agua.",
-                "FACTURACION SOFTWARE APR": "Sistema automatizado de facturación con boletas electrónicas, cálculo de consumos y gestión de tarifas diferenciadas.",
-                "PAGOS SOFTWARE APR": "Integrado con Punto Blue para recibir pagos online y presenciales, con confirmación automática y conciliación.",
-                "SEGURIDAD SOFTWARE APR": "Sistema seguro con encriptación SSL, respaldos automáticos y control de acceso por roles de usuario.",
-                "SOPORTE SOFTWARE APR": "Soporte técnico 24/7, capacitación online, manuales digitales y actualizaciones automáticas incluidas.",
-
-                // Punto Blue
-                "QUE ES PUNTO BLUE": "Sistema de pago en línea y presencial integrado con Software APR que permite a los usuarios pagar sus cuentas de agua fácilmente.",
-                "COMO FUNCIONA PUNTO BLUE": "Plataforma de pagos que permite a los usuarios pagar online o en puntos físicos, con confirmación automática al Software APR.",
-                "PAGOS ONLINE PUNTO BLUE": "Los usuarios pueden pagar desde cualquier dispositivo con internet usando tarjetas, transferencias o billeteras digitales.",
-                "PAGOS PRESENCIALES PUNTO BLUE": "Red de puntos de pago físicos donde los usuarios pueden pagar en efectivo o con tarjeta en comercios autorizados.",
-                "INTEGRACION PUNTO BLUE": "Se integra automáticamente con Software APR, actualizando el estado de pagos en tiempo real sin intervención manual.",
-                "COMISIONES PUNTO BLUE": "Comisiones competitivas por transacción, con tarifas preferenciales para APR y descuentos por volumen de transacciones.",
-
-                // WaterMeterSystem
-                "QUE ES WATERMETER SYSTEM": "Sistema integral que incluye medidores inteligentes, Hand-Held, Software APR y Punto Blue para gestión completa de agua.",
-                "PLANTILLAS EXCEL": "Plantillas predefinidas para importar datos de usuarios, sectores, tarifas y configuraciones al sistema de manera masiva.",
-                "SECTORES WATERMETER": "Permite dividir la red en hasta 20 sectores diferentes para mejor control y gestión de la distribución de agua.",
-                "IMPORTAR DATOS": "Función para importar masivamente usuarios, medidores y configuraciones desde archivos Excel con formato predefinido.",
-                "EXPORTAR DATOS": "Permite exportar lecturas, reportes y datos del sistema a Excel para análisis externos o respaldos.",
-
-                // Códigos de error
-                "e-5": "E-5: Medidor cerrado por comando de cierre forzado.",
-                "e-6": "E-6: Interferencia de imán detectada.",
-                "e-7": "E-7: Fallo de memoria.",
-                "e-8": "E-8: Fallo en válvula de corte.",
-                "e-9": "E-9: Pérdida de agua o baja de presión (<10 PSI).",
-                "e-10": "E-10: Error de medición o al cerrar desde Hand-Held.",
-
-                // Preguntas generales y soporte
-                "COMO CONTACTAR SOPORTE": "Puedes contactar al soporte técnico al teléfono +56 9 1234 5678 o al email contacto@medidorinteligente.cl",
-                "NUMERO DE SOPORTE": "El número de soporte técnico es +56 9 1234 5678, disponible de lunes a viernes de 9:00 a 18:00 hrs.",
-                "EMAIL SOPORTE": "El email de soporte técnico es contacto@medidorinteligente.cl, respondemos en máximo 24 horas.",
-                "HORARIOS SOPORTE": "Soporte técnico disponible de lunes a viernes de 9:00 a 18:00 hrs. Para emergencias, contactar al +56 9 1234 5678.",
-                "CAPACITACION": "Ofrecemos capacitación presencial y online para el uso de todos los componentes del sistema WaterMeter.",
-                "MANUALES": "Todos los manuales técnicos están disponibles en formato digital y se incluyen con la compra del sistema.",
-                "ACTUALIZACIONES": "El software se actualiza automáticamente. Las actualizaciones de firmware se realizan mediante el Hand-Held.",
-                "GARANTIA SISTEMA": "Garantía de 1 año para Medidor Inteligente."
-            };
-
-            const palabras_clave = {
-                "medidor": ["medidor", "contador", "aparato", "dispositivo", "equipo"],
-                "hand held": ["hand held", "handheld", "hand-held", "receptor", "dispositivo manual", "lector"],
-                "software": ["software", "programa", "sistema", "plataforma", "aplicacion"],
-                "punto blue": ["punto blue", "pago", "pagos", "payment", "blue"],
-                "que es": ["que es", "qué es", "define", "definir", "explicar", "explica"],
-                "como": ["como", "cómo", "de que manera", "de qué manera"],
-                "para que": ["para que", "para qué", "para que sirve", "utilidad", "funcion"],
-                "funciona": ["funciona", "funcionamiento", "opera", "trabaja"],
-                "temperatura": ["temperatura", "calor", "grados", "celsius"],
-                "bateria": ["bateria", "batería", "pila", "energia", "energía"],
-                "garantia": ["garantia", "garantía", "cobertura", "warranty"],
-                "soporte": ["soporte", "ayuda", "support", "asistencia", "contacto"],
-                "excel": ["excel", "archivo", "importar", "exportar", "plantilla"],
-                "lecturas": ["lecturas", "leer", "tomar", "capturar", "datos"],
-                "descargar": ["descargar", "bajar", "transferir", "exportar"],
-                "configurar": ["configurar", "setup", "ajustar", "parametros"],
-                "problemas": ["problemas", "error", "falla", "no funciona", "ayuda"]
-            };
-
-            // Normalize message
-            let mensaje_normalizado = mensaje.toUpperCase();
-            mensaje_normalizado = mensaje_normalizado.replace(/[ÁÀÄÂ]/g, 'A');
-            mensaje_normalizado = mensaje_normalizado.replace(/[ÉÈËÊ]/g, 'E');
-            mensaje_normalizado = mensaje_normalizado.replace(/[ÍÌÏÎ]/g, 'I');
-            mensaje_normalizado = mensaje_normalizado.replace(/[ÓÒÖÔ]/g, 'O');
-            mensaje_normalizado = mensaje_normalizado.replace(/[ÚÙÜÛ]/g, 'U');
-            mensaje_normalizado = mensaje_normalizado.replace(/Ñ/g, 'N');
-
-            // Direct match first
-            if (respuestas[mensaje_normalizado]) {
-                return respuestas[mensaje_normalizado];
-            }
-
-            // Keyword matching with scoring
-            let mejor_coincidencia = "";
-            let mejor_puntaje = 0;
-
-            for (const [clave, respuesta] of Object.entries(respuestas)) {
-                let puntaje = 0;
-                
-                // Check for keyword matches
-                for (const [categoria, sinonimos] of Object.entries(palabras_clave)) {
-                    for (const sinonimo of sinonimos) {
-                        if (mensaje_normalizado.includes(sinonimo.toUpperCase()) && 
-                            clave.includes(categoria.toUpperCase().replace(" ", " "))) {
-                            puntaje += 2;
-                        }
-                    }
-                }
-
-                // Direct word matching
-                const palabras_mensaje = mensaje_normalizado.split(' ');
-                const palabras_clave_item = clave.split(' ');
-                
-                for (const palabra of palabras_mensaje) {
-                    if (palabra.length > 2) {
-                        for (const pc of palabras_clave_item) {
-                            if (pc.includes(palabra)) {
-                                puntaje += 1;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if (puntaje > mejor_puntaje) {
-                    mejor_puntaje = puntaje;
-                    mejor_coincidencia = respuesta;
-                }
-            }
-
-            // Return best match or fallback
-            if (mejor_puntaje >= 2) {
-                return mejor_coincidencia;
-            }
-
-            return "Contacta a soporte para más información.";
-        }
-
-
+    return "¡Hola! Soy tu asistente para Medidor Inteligente. Escribe tu consulta ";
+}
 </script>
 
 {% endblock %}

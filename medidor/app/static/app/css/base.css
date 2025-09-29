@@ -84,14 +84,14 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: #0046B5;
+            background-color: #10b981;
         }
     
      
     
         /* Estilo especial para el botón de contacto cuando está activo */
         .contact-btn.active {
-            background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #004aad 0%, #10b981 100%);
         }
     
         /* Quitar la línea azul del botón de contacto cuando está activo */
