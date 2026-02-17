@@ -1,7 +1,7 @@
 
 :root {
     --primary-blue: #002B5C;
-    --accent-green: #9FE870;
+    --accent-green: #ffffff;
     --text-white: #FFFFFF;
     --text-dark: #333333;
     --primary-blue: #002B5C;
@@ -811,6 +811,7 @@ line-height: 1.4;
 .low-end-device .sustainability-image {
 transform: none !important;
 }
+
  .featurehome-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -1223,10 +1224,14 @@ transform: none !important;
 
 .coso{
     width: 100%;
+    display: grid;
+    margin: 0 auto;
+    width: 400px; 
 }
 .arri{
     display: grid;
     margin: 0 auto;
+    width: 300px;  
 
 }
 
@@ -2250,7 +2255,7 @@ transition: none;
     }
     
     .headercontacto {
-         background: linear-gradient(135deg, #00ce89 0%, #0335c0 100%);
+         background: linear-gradient(135deg, #00ffd8 0%, #0335c0 100%);
                 
         color: white;
         text-align: center;
@@ -3831,10 +3836,23 @@ h1 {
     }
 /* FOOTER */
 footer {
-    background-color: #2c2c2c;
-    color: white;
-    padding: 40px 20px;
+    background: linear-gradient(180deg, #0f1115, #141414);
+    color: #e6e6e6;
+    padding: 70px 20px;
+    border-top: 1px solid #242424;
 }
+
+footer a {
+    color: #9ca3af;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+
+
 .footer-text {
     color: white;
 }
@@ -5586,3 +5604,5 @@ a:hover {
         min-width: auto;
     }
 }
+
+

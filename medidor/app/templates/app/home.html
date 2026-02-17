@@ -1,145 +1,207 @@
-
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
 
-<div class="slider">
-    <div class="slides">
-        <!-- Nuevo Slide Invierno / Frío 
-           <div class="slide invierno" style="background-image: url('{% static 'app/img/banner4.png' %}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+<section class="hero-slider" id="inicio">
+  <div class="hero-track" id="heroTrack">
 
-            <div class="invierno-contenido">
-                <h1>
-                    PROTEGE TU MEDIDOR DE "HELADAS"<br>
-                    Consejos para el invierno
-                </h1>
-                <ul>
-                    <li>Aísla el medidor del frío</li>
-                    <li>Aísla las tuberías</li>
-                    <li>Despeja el área del medidor</li>
-                    <li>Infórmate para evitar daños por heladas</li>
-                </ul>
-                <div class="botones-invierno">
-                    <a href="{% get_media_prefix %}medidas_heladas.pdf" class="btn-descargar" download>
-                        Descargar PDF de Información
-                    </a>
-                   
+    <!-- ───── SLIDE 1: SPLIT ───── -->
+    <div class="hero-slide hs-s1 active">
+      <div class="hs-circles" aria-hidden="true">
+        <span class="hc-a"></span><span class="hc-b"></span>
+        <span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span>
+      </div>
+      <div class="hs-inner">
+        <div><!-- columna texto -->
+          <span class="hs-tag">La tecnología más avanzada de Chile</span>
+          <h1 class="hs-h1">Gestiona de manera eficiente el agua para tu comunidad</h1>
+          <p class="hs-p">Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
+          <div class="hs-btns">
+            <a href="{% url 'contacto' %}" class="hs-btn-wh">Solicita una cotización</a>
+            <a href="{% url 'soluciones' %}" class="hs-btn-wo">Conocer más</a>
+          </div>
+        </div>
+        <div class="hs-s1-img"><!-- columna imagen -->
+          <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente">
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── SLIDE 2: ENTREGA / SOPORTE (foto real derecha + fondo claro) ───── -->
+    <div class="hero-slide hs-s2" id="slide2">
+      <div class="hs-circles" aria-hidden="true">
+        <span class="hc-a"></span><span class="hc-b"></span>
+        <span class="hc-c"></span><span class="hc-d"></span>
+      </div>
+      <div class="hs-s2-inner">
+
+        <!-- Texto izquierda -->
+        <!-- Texto izquierda -->
+        <div class="hs-s2-left">
+            <div class="hs-s2-logo">
+                <div class="hs-s2-logo-icon">
+                <img src="{% static 'app/img/logmedidor.ico' %}" alt="" style="height:30px;">
                 </div>
+                <span class="hs-s2-logo-txt">medidor<br>inteligente</span>
             </div>
-        </div>-->
-      
 
-        <!-- Slide 1  <div class="slide concurso" style="background-image: url('{% static 'app/img/banner3.png' %}');">
-            <div class="concurso-contenido">
-                <h1>
-                    Postula al fondo <span class="concurso-destacado">"Presidente de la República"</span>
-                </h1>
-                <p>
-                    Fecha de apertura: <strong>2 de junio</strong> <br>
-                    Monto disponible: <strong>Hasta $15.000.000</strong> <br>
-                    Exclusivo para <strong>medidores inteligentes</strong>
-                </p>
-                <a href="{% url 'contacto' %}" class="concurso-boton">Enviar Solicitud</a>
-                <a href="{% get_media_prefix %}CONCURSO.pdf" class="concurso-boton secundario" download>Más información</a>
-            </div>
-        </div> 
-        <div class="slide concurso" style="background-image: url('{% static 'app/img/bann5.png' %}');">
-        <div class="concurso-contenido">
-            <h1>
-            ¡Llegan los <span class="concurso-destacado">nuevos medidores inteligentes</span> a fines de agosto!
-            </h1>
-            <p>
-            Anticípate y asegura el tuyo hoy mismo.<br>
-            Alta demanda, cupos limitados.
+            <p class="hs-s2-overline">APR Olivar Bajo</p>
+
+            <h2 class="hs-s2-h2">Entrega de Medidores Inteligentes</h2>
+
+            <p class="hs-s2-p">
+                Realizamos 3 entregas de medidores inteligentes 💧 junto al maestro José Palma y funcionarios del APR Olivar Bajo. 
+                Seguimos fortaleciendo más de 10 años de trabajo en conjunto.
             </p>
-            <a href="{% url 'contacto' %}" class="concurso-boton-llamativo">🔒 Reservar Ahora</a>
-        </div>
-        <div class="agua"></div>  
-        </div>-->
-      
 
-
-      
-        <div class="slide" style="background-image: url('{% static 'app/img/slider11.jpg' %}');">
-            <div class="slide-content">
-                <h1>Gestiona de manera eficiente el agua para tu comunidad con <span class="highlight">la tecnología más avanzada</span> de Chile</h1>
-                <p>Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
-                <a href="{% url 'contacto' %}" class="cta-buttonhome">Solicita una cotización</a>
+            <div class="hs-s2-btns">
+                <a href="{% url 'soluciones' %}" class="hs-s2-btn-out">Conoce más</a>
+                <a href="{% url 'testimonio' %}" class="hs-s2-btn-sol">Ver noticia</a>
             </div>
         </div>
 
-        <!-- Slide 2 -->
-        <div class="slide medidornuevo-slide">
-            <div class="containerinteligente">
-                <div class="item medidornuevo-subtitulo">
-                    <h1>MEDIDOR<br>INTELIGENTE</h1>
-                </div>
-                <div class="item izaq">
-                    <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor inteligente sostenible" class="ñiv">
-                </div>
-                <div class="item medidornuevo-lista">
-                    <ul class="izq">
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg> Batería 3 veces más potente
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg> Monitoreo en tiempo real
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg> Fácil de implementar
-                        </li>
-                    </ul>
-                </div>
-                <div class="item">
-                    <ul class="der">
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Reduce tus pérdidas de agua
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Sostenible a largo plazo
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            Diseño totalmente moderno
-                        </li>
-                    </ul>
-                </div>
+
+
+        <!-- Foto derecha con recorte curvo -->
+        <div class="hs-s2-photo" id="s2photo">
+          {# Reemplaza con tu foto real: app/img/soporte_terreno.jpg #}
+          <img
+            src="{% static 'app/img/olivarbajo.jpeg' %}"
             
-                <div class="item but">
-                    <a href="{% url 'soluciones' %}" class="cta-button medidornuevo-boton">Conoce más</a>
-                </div>
-            </div>
+            alt="Soporte técnico en terreno"
+            id="s2img">
         </div>
+
+      </div>
     </div>
 
-    <!-- Botones de navegación -->
-    <button class="slider-arrow arrow-prev" aria-label="Anterior">&#10094;</button>
-    <button class="slider-arrow arrow-next" aria-label="Siguiente">&#10095;</button>
+    <!-- ───── SLIDE 3: COMERCIAL (centrado)
+       <div class="hero-slide hs-s3">
+      <div class="hs-circles" aria-hidden="true">
+        <span class="hc-a"></span><span class="hc-b"></span>
+        <span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span>
+      </div>
+      <div class="hs-inner">
+        <span class="hs-tag">Monitoreo IoT de última generación</span>
+        <h1 class="hs-h1">Monitoreo en tiempo real y análisis inteligente de consumo de agua</h1>
+        <p class="hs-p">Tecnología avanzada para comunidades modernas. Control total desde cualquier dispositivo.</p>
+        <div class="hs-btns">
+          <a href="{% url 'contacto' %}" class="hs-btn-wh">Solicita una demo</a>
+          <a href="{% url 'soluciones' %}" class="hs-btn-wo">Ver características</a>
+        </div>
+      </div>
+    </div>
+ ───── -->
+  
+        <!-- ───── SLIDE 4: PRODUCTO (split) ───── -->
+    <div class="hero-slide hs-s4">
+    <div class="hs-circles" aria-hidden="true">
+        <span class="hc-a"></span><span class="hc-b"></span>
+        <span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span>
+    </div>
 
-    <!-- Dots de navegación -->
-    <div class="slider-nav">
-        <button class="slider-dot active" data-slide="0"></button>
-        <button class="slider-dot" data-slide="1"></button>
-       
+    <div class="hs-inner">
         
+        <!-- Columna texto -->
+        <div>
+        <span class="hs-tag">Respaldo y Garantía</span>
+
+        <h2 class="hs-h2">
+            Medidor Inteligente con Respaldo Real
+        </h2>
+
+        <p class="hs-p">
+            ✔ 1 año de garantía en el medidor<br>
+            ✔ Capturador de datos con garantía indefinida<br>
+            ✔ Batería con duración de hasta 30 años
+        </p>
+
+        <div class="hs-btns">
+            <a href="{% url 'contacto' %}" class="hs-btn-wh">
+            Solicita información
+            </a>
+            <a href="{% url 'soluciones' %}" class="hs-btn-wo">
+            Explorar tecnología
+            </a>
+        </div>
+        </div>
+
+        <!-- Columna producto flotante -->
+        <div class="hs-prod-wrap">
+        <div class="hs-prod-frame">
+            <div class="hs-prod-glow"></div>
+            <img src="{% static 'app/img/medidor3dh.png' %}" alt="Medidor Inteligente">
+        </div>
+        </div>
+
     </div>
-</div>
+    </div>
 
 
+    <!-- ───── SLIDE 5: CARACTERÍSTICAS (siempre 3 columnas) ───── -->
+    <div class="hero-slide hs-s5">
+      <div class="hs-circles" aria-hidden="true">
+        <span class="hc-a"></span><span class="hc-b"></span>
+        <span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span>
+      </div>
+      <div class="hs-f5-outer">
+
+        <div class="hs-f5-head">
+          <p class="hs-f5-title">MEDIDOR INTELIGENTE</p>
+          <p class="hs-f5-sub">Medidor inteligente sostenible</p>
+        </div>
+
+        <div class="hs-f5-grid">
+          <!-- Izquierda -->
+          <div class="hs-f5-left">
+            <div class="hs-f5-feat"><div class="hs-f5-icon">✓</div><p class="hs-f5-txt">Batería 3 veces más potente</p></div>
+            <div class="hs-f5-feat"><div class="hs-f5-icon">✓</div><p class="hs-f5-txt">Monitoreo en tiempo real</p></div>
+            <div class="hs-f5-feat"><div class="hs-f5-icon">✓</div><p class="hs-f5-txt">Fácil de implementar</p></div>
+          </div>
+          <!-- Centro: producto siempre visible -->
+          <div class="hs-f5-mid">
+            <div class="hs-f5-prod">
+              <div class="hs-f5-glow"></div>
+              <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente">
+            </div>
+          </div>
+          <!-- Derecha -->
+          <div class="hs-f5-right">
+            <div class="hs-f5-feat"><div class="hs-f5-icon">✓</div><p class="hs-f5-txt">Reduce tus pérdidas de agua</p></div>
+            <div class="hs-f5-feat"><div class="hs-f5-icon">✓</div><p class="hs-f5-txt">Sostenible a largo plazo</p></div>
+            <div class="hs-f5-feat"><div class="hs-f5-icon">✓</div><p class="hs-f5-txt">Diseño totalmente moderno</p></div>
+          </div>
+        </div>
+
+        <div class="hs-f5-cta">
+          <a href="{% url 'soluciones' %}" class="hs-btn-f5">Conoce más</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero-track -->
+
+  <!-- Controles del slider
+   <button class="hs-dot"        onclick="sliderGoTo(2)" aria-label="Slide 3"></button> -->
+  <div class="hs-controls">
+    <div class="hs-dots">
+      <button class="hs-dot active" onclick="sliderGoTo(0)" aria-label="Slide 1"></button>
+      <button class="hs-dot"        onclick="sliderGoTo(1)" aria-label="Slide 2"></button>
+      
+      <button class="hs-dot"        onclick="sliderGoTo(3)" aria-label="Slide 4"></button>
+      <button class="hs-dot"        onclick="sliderGoTo(4)" aria-label="Slide 5"></button>
+    </div>
+    <div class="hs-arrows">
+      <button class="hs-arrow" onclick="sliderPrev()" aria-label="Anterior">&#8249;</button>
+      <button class="hs-arrow" onclick="sliderNext()" aria-label="Siguiente">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     BENEFICIOS
+═══════════════════════════════════════════════════════ -->
 <section class="benefits">
     <h2>BENEFICIOS</h2>
     <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
@@ -157,200 +219,130 @@
         <div class="benefit-card">
             <div class="benefit-icon">$</div>
             <h3>Costo accesible</h3>
-            <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p> 
+            <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p>
         </div>
     </div>
 </section>
 
 
+<!-- ═══════════════════════════════════════════════════════
+     IMAGEN + TEXTO SOSTENIBLE
+═══════════════════════════════════════════════════════ -->
 <div class="imagun">
     <div class="imagon">
         <div class="imagan">
-            <img src="{% static 'app/img/beneficios.png'%}" alt="Medidor inteligente sostenible" class="imm-img">
+            <img src="{% static 'app/img/beneficios.png' %}" alt="Medidor inteligente sostenible" class="imm-img">
         </div>
         <div class="imm-info">
             <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2><br>
             <p>Nuestro medidor está construido con materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
-        
         </div>
         <div class="ima">
-            <img src="{% static 'app/img/logotransparente.png'%}" alt="Medidor inteligente transparente" class="transparente">
+            <img src="{% static 'app/img/logotransparente.png' %}" alt="Medidor inteligente transparente" class="transparente">
         </div>
     </div>
 </div>
 
 
-
-
-<br>
-<br>
-
-<section class="featurehome" style="background-image: url('{% static 'app/img/Vector1.png' %}'); background-repeat: no-repeat; background-size: cover;">
+<!-- ═══════════════════════════════════════════════════════
+     ¿QUÉ HACE NUESTRO MEDIDOR?
+═══════════════════════════════════════════════════════ -->
+<section class="featurehome"
+    style="background-image: url('{% static 'app/img/Vector1.png' %}');
+           background-repeat: no-repeat;
+           background-size: cover;">
+           <br><br><br><br><br>
 
     <div class="featurehome-container">
         <h2>¿Qué hace <span class="highlight">nuestro medidor?</span></h2>
         <div class="featurehome-grid">
             <div class="featurehome-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/icono1.png'%}" alt="Icono de teléfono">
-                </div>
+                <div class="feature-icon"><img src="{% static 'app/img/icono1.png' %}" alt="Toma lecturas a distancia"></div>
                 <h3>Toma lecturas a<br>distancia</h3>
             </div>
             <div class="featurehome-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/icono2.png'%}" alt="Icono de detección">
-                </div>
+                <div class="feature-icon"><img src="{% static 'app/img/icono2.png' %}" alt="Detecta fugas"></div>
                 <h3>Detecta fugas,<br>robos o pérdidas</h3>
             </div>
             <div class="featurehome-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/icono3.png'%}" alt="Icono de válvula">
-                </div>
+                <div class="feature-icon"><img src="{% static 'app/img/icono3.png' %}" alt="Cierra paso de agua"></div>
                 <h3>Cierra el paso de<br>agua a distancia</h3>
             </div>
             <div class="featurehome-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/icono4.png'%}" alt="Icono de toque">
-                </div>
+                <div class="feature-icon"><img src="{% static 'app/img/icono4.png' %}" alt="Traspasa datos"></div>
                 <h3>Traspasa datos con<br>un par de clicks</h3>
             </div>
             <div class="featurehome-item">
-                <div class="feature-icon">
-                    <img src="{% static 'app/img/icono5.png'%}" alt="Icono de ahorro">
-                </div>
+                <div class="feature-icon"><img src="{% static 'app/img/icono5.png' %}" alt="Ahorra tiempo"></div>
                 <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
             </div>
         </div>
         <div class="coso">
-            <img class="arri" src="{% static 'app/img/medidor1.png'%}" alt="Medidor inteligente">
+            <img class="arri" src="{% static 'app/img/medidor1.png' %}" alt="Medidor inteligente">
         </div>
     </div>
-    
 </section>
 
 
-<section class="testimonials-section home ">
+<!-- ═══════════════════════════════════════════════════════
+     TESTIMONIOS (slider propio, JS abajo)
+═══════════════════════════════════════════════════════ -->
+<section class="testimonials-section home">
     <div class="testimonials-container">
-        <!-- Columna izquierda con texto -->
+
         <div class="testimonials-text">
-            <h2>Que dicen <span class= "highlight"> nuestros clientes</h2>
+            <h2>Que dicen <span class="highlight">nuestros clientes</span></h2>
             <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
-            <a href="https://www.youtube.com/watch?v=iSDKmmRJ7MU" class="view-more">
+            <a href="https://www.youtube.com/watch?v=iSDKmmRJ7MU" class="view-more" target="_blank" rel="noopener noreferrer">
                 Ver más testimonios
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
             </a>
         </div>
-        <!-- Columna derecha con slider -->
+
         <div class="testimonials-slider">
             <button class="slider-btn prev" id="prevBtn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
+
             <div class="slider-container" id="sliderContainer">
                 <div class="slider-track" id="sliderTrack">
-                    <!-- Tarjeta 1 -->
-                     <!-- Tarjeta 2 -->
                     <div class="testimonial-card">
                         <div class="video-containerhome">
-                            
-                            <iframe 
-                                src="https://www.youtube.com/embed/7ZLX-EPbhcs" 
-                                referrerpolicy="strict-origin"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                            <iframe src="https://www.youtube.com/embed/RjTlcUPfCVA" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="card-info">
-                            <h3>Experiencia con Medidores Inteligentes: APR «Villa Las Mercedes» – Isla de Maipo</h3>
-                            <p class="region">Región Metropolitana</p>
-                            <p class="person">Betsabé Hernández - Secretaria</p>
+                            <h3>Testimonio: Paulino González, Operador Comité APR "Monte Las Mercedes"</h3>
+                            <p class="region">Isla de Maipo</p>
+                            <p class="person">Paulino González — Operador</p>
                         </div>
                     </div>
-                    <!-- Tarjeta 1 
                     <div class="testimonial-card">
                         <div class="video-containerhome">
-                           
-                            <iframe 
-                                src="https://www.youtube.com/embed/7YI-2D3zMQs" 
-                                referrerpolicy="strict-origin"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                            <iframe src="https://www.youtube.com/embed/TCAa7qUEVYs" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="card-info">
-                            <h3>Testimonio Sra. Ana, Operadora, Comité APR "El Turco" - Cartagena</h3>
-                            <p class="region">Región de Valparaíso</p>
-                            <p class="person">Ana Zárate - Operadora</p>
-                        </div>
-                    </div>-->
-                    <div class="testimonial-card">
-                        <div class="video-containerhome">
-                           
-                            <iframe 
-                                src="https://www.youtube.com/embed/5rehLhCMSG8" 
-                                referrerpolicy="strict-origin"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="card-info">
-                            <h3>Testimonio Administrativa, Comité APR "San Antonio de Naltagua" - Isla de Maipo</h3>
-                           <p class="region">Región Metropolitana de Santiago</p>
-                            <p class="person">Ignacia Núñez - Administrativa</p>
-                        </div>
-                    </div>                     
-                                       
-                    
-                   
-                    <!-- Tarjeta 3 
-                    <div class="testimonial-card">
-                        <div class="video-containerhome">
-                           
-                            <iframe 
-                                src="https://www.youtube.com/embed/1_bwMkz3pqM" 
-                                referrerpolicy="strict-origin"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="card-info">
-                            <h3>Testimonio sobre Medidores Inteligentes, de APR "La Puntilla de Lonquén" - Isla de Maipo</h3>
-                            <p class="region">Región Metropolitana</p>
-                            <p class="person">Miriam Galvez - Administrativa y Operaria</p>
-                        </div>
-                    </div>-->
-                    <div class="testimonial-card">
-                        <div class="video-containerhome">
-                           
-                            <iframe 
-                                src="https://www.youtube.com/embed/ITOEcR29PSs" 
-                                referrerpolicy="strict-origin"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="card-info">
-                            <h3>Testimonio: Marcelo Santibáñez, Presidente Comité APR "Monte Las Mercedes" - Isla de Maipo</h3>
-                            <p class="region">Región Metropolitana</p>
-                            <p class="person">Sebastián Santibñez - Presidente</p>
+                            <h3>Experiencia con Medidor Inteligente: Gerente Cooperativa APR "Tinguiririca"</h3>
+                            <p class="region">Tinguiririca</p>
+                            <p class="person">Nury Orellana — Gerente</p>
                         </div>
                     </div>
-                   
+                    <div class="testimonial-card">
+                        <div class="video-containerhome">
+                            <iframe src="https://www.youtube.com/embed/A_rxG90YzS8" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-info">
+                            <h3>Testimonio: José Flores, Operador Comité APR "San Antonio de Naltagua"</h3>
+                            <p class="region">Isla de Maipo</p>
+                            <p class="person">José Flores — Operador</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <button class="slider-btn next" id="nextBtn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
             </button>
+
             <div class="slider-dots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
@@ -360,243 +352,59 @@
     </div>
 </section>
 
-<script>document.addEventListener('DOMContentLoaded', function() {
-        const track = document.getElementById('sliderTrack');
-        const slides = track.children;
-        const nextButton = document.getElementById('nextBtn');
-        const prevButton = document.getElementById('prevBtn');
-        const dots = document.querySelectorAll('.dot');
-        
-        let currentIndex = 0;
-        let slideWidth = slides[0].getBoundingClientRect().width;
-        
-        // Actualizar ancho del slide en resize
-        window.addEventListener('resize', () => {
-            slideWidth = slides[0].getBoundingClientRect().width;
-            goToSlide(currentIndex);
-        });
-    
-        // Configurar posición inicial de slides
-        function setSlidePosition(slide, index) {
-            slide.style.left = slideWidth * index + 'px';
-        }
-    
-        // Mover a slide específico
-        function goToSlide(index) {
-            track.style.transform = `translateX(-${slideWidth * index}px)`;
-            currentIndex = index;
-            updateDots();
-        }
-    
-        // Actualizar dots
-        function updateDots() {
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
-        }
-    
-        // Event Listeners para botones
-        nextButton.addEventListener('click', () => {
-            if (currentIndex === slides.length - 1) {
-                goToSlide(0);
-            } else {
-                goToSlide(currentIndex + 1);
-            }
-        });
-    
-        prevButton.addEventListener('click', () => {
-            if (currentIndex === 0) {
-                goToSlide(slides.length - 1);
-            } else {
-                goToSlide(currentIndex - 1);
-            }
-        });
-    
-        // Event Listeners para dots
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-            });
-        });
-    
-        // Touch events para móviles
-        let touchStartX = 0;
-        let touchEndX = 0;
-    
-        track.addEventListener('touchstart', e => {
-            touchStartX = e.touches[0].clientX;
-        });
-    
-        track.addEventListener('touchmove', e => {
-            touchEndX = e.touches[0].clientX;
-        });
-    
-        track.addEventListener('touchend', () => {
-            const diffX = touchStartX - touchEndX;
-            if (Math.abs(diffX) > 50) { // Umbral mínimo para swipe
-                if (diffX > 0 && currentIndex < slides.length - 1) {
-                    goToSlide(currentIndex + 1);
-                } else if (diffX < 0 && currentIndex > 0) {
-                    goToSlide(currentIndex - 1);
-                }
-            }
-        });
-    
-        // Autoplay
-        let autoplayInterval = setInterval(() => {
-            if (currentIndex === slides.length - 1) {
-                goToSlide(0);
-            } else {
-                goToSlide(currentIndex + 1);
-            }
-        }, 9000); // Cambiar slide cada 5 segundos
-    
-        // Pausar autoplay al hover
-        track.addEventListener('mouseenter', () => {
-            clearInterval(autoplayInterval);
-        });
-    
-        track.addEventListener('mouseleave', () => {
-            autoplayInterval = setInterval(() => {
-                if (currentIndex === slides.length - 1) {
-                    goToSlide(0);
-                } else {
-                    goToSlide(currentIndex + 1);
-                }
-            }, 9000);
-        });
-    });</script>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.querySelector('.slider');
-    const slides = document.querySelector('.slides');
-    const prevButton = document.querySelector('.arrow-prev');
-    const nextButton = document.querySelector('.arrow-next');
-    const dots = document.querySelectorAll('.slider-dot');
-    let currentSlide = 0;
-    const slideCount = document.querySelectorAll('.slide').length;
 
-    function goToSlide(n) {
-        slides.style.transform = `translateX(-${n * 100}%)`;
-        currentSlide = n;
-        updateDots();
-    }
-
-    function nextSlide() {
-        goToSlide((currentSlide + 1) % slideCount);
-    }
-
-    function prevSlide() {
-        goToSlide((currentSlide - 1 + slideCount) % slideCount);
-    }
-
-    function updateDots() {
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-            dot.setAttribute('aria-selected', index === currentSlide);
-        });
-    }
-
-    prevButton.addEventListener('click', prevSlide);
-    nextButton.addEventListener('click', nextSlide);
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => goToSlide(index));
-    });
-
-    // Swipe functionality
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    slider.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    slider.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchEndX - touchStartX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                prevSlide();
-            } else {
-                nextSlide();
-            }
-        }
-    }
-
-    // Auto-advance slides
-    setInterval(nextSlide, 8000);
-
-    // Optimize for low-end devices
-    const isLowEnd = navigator.deviceMemory < 4 || !navigator.deviceMemory;
-
-    if (isLowEnd) {
-        document.body.classList.add('low-end-device');
-        // Reduce transition duration for smoother performance on low-end devices
-        slides.style.transition = 'transform 0.3s ease-in-out';
-    }
-});
-</script>
-
-
-<section class="sustainability" >
-    <div class="sustainability" style="background-image: url('{% static 'app/img/chilehorizontal.png' %}');">
- 
+<!-- ═══════════════════════════════════════════════════════
+     MAPA COMUNIDADES
+═══════════════════════════════════════════════════════ -->
+<section class="sustainability">
+    <div class="sustainability" style="background-image: url('{% static 'app/img/Vector1.png' %}');">
         <div class="cta-content">
             <h2>Conoce a todas las comunidades alrededor de Chile que <span>confían en nosotros</span></h2>
-            
             <a href="{% url 'clientes' %}" class="card-button">Ver más</a>
         </div>
+    </div>
 </section>
 
 
+<!-- ═══════════════════════════════════════════════════════
+     VIDEO PRINCIPAL
+═══════════════════════════════════════════════════════ -->
 <section class="headerr">
     <h1 class="poi">Así transformamos la gestión del agua</h1>
     <h2 class="poi">con nuestro medidor inteligente</h2><br>
-    
-    <!-- Contenedor para el video -->
     <div class="video-24">
-        <iframe 
-            src="https://www.youtube.com/embed/mSEJlKinapg" 
-            referrerpolicy="strict-origin"
-            frameborder="0" allowfullscreen>
-        </iframe>
-    </div>         
-</section>   
+        <iframe src="https://www.youtube.com/embed/mSEJlKinapg" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+    </div>
+</section>
 
 
+<!-- ═══════════════════════════════════════════════════════
+     FORMULARIO DE CONTACTO
+═══════════════════════════════════════════════════════ -->
 <section class="banner-img">
     <div class="container rea">
         <h1 class="ras">Únete a las más de 150 comunidades que ya dieron el paso hacia la innovación</h1>
-       <br>
-        <!-- Formulario -->
+        <br>
         <div class="contact-form col-12">
-            <section class="container ream">            
-                <!-- Formulario -->
-                <div class="contact-form ñam" >
-                    
+            <section class="container ream">
+                <div class="contact-form ñam">
                     <div class="contact-form col-12">
                         <h2>¿Más dudas? Escríbenos</h2>
-                        <form class="col-md-8" method="POST" action="" id="emailForm">{% csrf_token%}
+                        <form class="col-md-8" method="POST" action="" id="emailForm">
+                            {% csrf_token %}
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Nombre completo <span class="required">*</span></label>
                                     <input type="text" name="name" placeholder="Escribe aquí" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Correo electrónico <span class="required">*</span></label>
+                                    <label for="emai">Correo electrónico <span class="required">*</span></label>
                                     <input type="email" name="correo" id="emai" placeholder="Escribe aquí" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Correo electrónico <span class="required">*</span></label>
+                                    <label for="email">Confirmar correo <span class="required">*</span></label>
                                     <input type="email" name="correo2" id="email" placeholder="Escribe aquí" required>
                                 </div>
-                                
                             </div>
                             <div class="form-group full-width">
                                 <label>Teléfono <span class="required">*</span></label>
@@ -618,16 +426,9 @@
                                     <input type="text" name="comuna" placeholder="Escribe aquí" required>
                                 </div>
                                 <div class="form-group">
-                                <label>Cantidad de Arranques</label>
-                                <input type="text" name="cantidad" placeholder="Escribe aquí" id="cantidad">
-                            </div>
-                            <script>
-                                const inputCantidad = document.getElementById('cantidad');
-                                inputCantidad.addEventListener('input', function () {
-                                    // Reemplaza cualquier carácter que no sea dígito
-                                    this.value = this.value.replace(/\D/g, '');
-                                });
-                            </script>
+                                    <label>Cantidad de Arranques</label>
+                                    <input type="text" name="cantidad" placeholder="Escribe aquí" id="cantidad">
+                                </div>
                             </div>
                             <div class="form-group full-width">
                                 <label>Tipo de financiamiento <span class="required">*</span></label>
@@ -647,80 +448,97 @@
                                 <textarea name="message" placeholder="Escribe aquí" rows="6"></textarea>
                             </div>
                             <button type="submit" id="sendBtn">Enviar</button>
-
-                                                            
-                            <script>
-                                document.getElementById("emailForm").addEventListener("submit", function (e) {
-                                    const correo1 = document.getElementById("emai").value.trim();
-                                    const correo2 = document.getElementById("email").value.trim();
-                                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                                    // Validar campos vacíos
-                                    if (correo1 === "" || correo2 === "") {
-                                        e.preventDefault();
-                                        Swal.fire({
-                                            title: "Error",
-                                            text: "Ambos campos deben estar completos",
-                                            icon: "error",
-                                            showConfirmButton: false,
-                                            timer: 2500,
-                                            timerProgressBar: true
-                                        });
-                                        return;
-                                    }
-
-                                    // Validar formato
-                                    if (!emailRegex.test(correo1) || !emailRegex.test(correo2)) {
-                                        e.preventDefault();
-                                        Swal.fire({
-                                            title: "Error",
-                                            text: "Formato de correo inválido",
-                                            icon: "error",
-                                            showConfirmButton: false,
-                                            timer: 2500,
-                                            timerProgressBar: true
-                                        });
-                                        return;
-                                    }
-
-                                    // Validar coincidencia
-                                    if (correo1 !== correo2) {
-                                        e.preventDefault();
-                                        Swal.fire({
-                                            title: "Error",
-                                            text: "Los correos no coinciden",
-                                            icon: "error",
-                                            showConfirmButton: false,
-                                            timer: 2500,
-                                            timerProgressBar: true
-                                        });
-                                        return;
-                                    }
-
-                                    // Si todo está bien, mostrar éxito
-                                    
-                                    Swal.fire({
-                                        title: "¡Éxito!",
-                                        text: "Enviado correctamente.",
-                                        icon: "success",
-                                        showConfirmButton: false,
-                                        timer: 2500,
-                                        timerProgressBar: true
-                                    });
-                                });
-                            </script>
-
                         </form>
-                       
                     </div>
                 </div>
             </section>
-          
         </div>
     </div>
 </section>
-{% endblock %}
 
-{% block scripts %}
+{% endblock contenido %}
 
-{% endblock %}
+
+{# ─── Scripts específicos de home.html ─────────────────────────────────────
+   slider.js ya se cargó desde base.html (o puedes añadirlo aquí si prefieres).
+   Aquí van SOLO los scripts propios de esta página.
+────────────────────────────────────────────────────────────────────────── #}
+{% block scripts %}{% endblock %}
+
+<script>
+/* ── Validar solo números en cantidad de arranques ── */
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* Arranques: solo números */
+  var inputCantidad = document.getElementById('cantidad');
+  if (inputCantidad) {
+    inputCantidad.addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '');
+    });
+  }
+
+  /* ── Testimonios slider ── */
+  var track   = document.getElementById('sliderTrack');
+  var nextBtn = document.getElementById('nextBtn');
+  var prevBtn = document.getElementById('prevBtn');
+  var dots    = document.querySelectorAll('.dot');
+  if (!track) return;
+
+  var slides = track.children;
+  var idx    = 0;
+  var slideW = slides[0].getBoundingClientRect().width;
+
+  window.addEventListener('resize', function () {
+    slideW = slides[0].getBoundingClientRect().width;
+    go(idx);
+  });
+
+  function go(n) {
+    track.style.transform = 'translateX(-' + (slideW * n) + 'px)';
+    idx = n;
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === n); });
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', function () { go(idx >= slides.length - 1 ? 0 : idx + 1); });
+  if (prevBtn) prevBtn.addEventListener('click', function () { go(idx <= 0 ? slides.length - 1 : idx - 1); });
+  dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); }); });
+
+  var tx = 0;
+  track.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
+  track.addEventListener('touchend',   function (e) {
+    var dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) go(dx > 0 ? (idx < slides.length-1 ? idx+1 : 0) : (idx > 0 ? idx-1 : slides.length-1));
+  });
+
+  var auto = setInterval(function () { go(idx >= slides.length-1 ? 0 : idx+1); }, 9000);
+  track.addEventListener('mouseenter', function () { clearInterval(auto); });
+  track.addEventListener('mouseleave', function () { auto = setInterval(function () { go(idx >= slides.length-1 ? 0 : idx+1); }, 9000); });
+
+  /* ── Validación formulario de contacto ── */
+  var emailForm = document.getElementById('emailForm');
+  if (emailForm) {
+    emailForm.addEventListener('submit', function (e) {
+      var c1 = document.getElementById('emai').value.trim();
+      var c2 = document.getElementById('email').value.trim();
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!c1 || !c2) {
+        e.preventDefault();
+        Swal.fire({ title: 'Error', text: 'Ambos campos de correo deben estar completos', icon: 'error', showConfirmButton: false, timer: 2500, timerProgressBar: true });
+        return;
+      }
+      if (!re.test(c1) || !re.test(c2)) {
+        e.preventDefault();
+        Swal.fire({ title: 'Error', text: 'Formato de correo inválido', icon: 'error', showConfirmButton: false, timer: 2500, timerProgressBar: true });
+        return;
+      }
+      if (c1 !== c2) {
+        e.preventDefault();
+        Swal.fire({ title: 'Error', text: 'Los correos no coinciden', icon: 'error', showConfirmButton: false, timer: 2500, timerProgressBar: true });
+        return;
+      }
+      Swal.fire({ title: '¡Éxito!', text: 'Enviado correctamente.', icon: 'success', showConfirmButton: false, timer: 2500, timerProgressBar: true });
+    });
+  }
+
+});
+</script>

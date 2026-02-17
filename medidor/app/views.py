@@ -50,7 +50,7 @@ def otra_vista(request):
 
 def testimonio(request):
     try:
-        tes = Testimonio.objects.filter(activo=True)
+        tes = Testimonio.objects.filter(activo=True).order_by('-fecha')
         imag = ImagenTestimonio.objects.all()
         data = {
             'testi' : tes,
@@ -67,7 +67,7 @@ def cargar_mas_testimonios(request):
         offset = int(request.GET.get('offset', 4))
         limit = int(request.GET.get('limit', 2))
         
-        testimonios = Testimonio.objects.filter(activo=True)[offset:offset+limit]
+        testimonios = Testimonio.objects.filter(activo=True).order_by('-fecha')[offset:offset+limit]
         
         testimonios_data = []
         for testimonio in testimonios:

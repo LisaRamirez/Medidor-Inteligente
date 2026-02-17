@@ -1,141 +1,328 @@
 .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: white;
-            
-            position: relative;
-            z-index: 1000;
-        }
-    
-        .logo {
-            height: 40px;
-        }
-    
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            padding: 0.5rem;
-            cursor: pointer;
-            z-index: 1001;
-        }
-    
-        .navbar-toggler-icon {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: #000;
-            position: relative;
-            transition: background 0.2s ease-out;
-        }
-    
-     .navbar-toggler-icon::before,
-        .navbar-toggler-icon::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 24px;
-        height: 2px;
-        background: #000;
-        border-radius: 2px;
-        transition: all 0.3s ease-in-out;
-        }
-        
-    
-        .navbar-toggler-icon::before {
-            top: -6px;
-        }
-    
-        .navbar-toggler-icon::after {
-            top: 6px;
-        }
-    
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-    
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-    
-        .nav-links a:hover {
-            color: #0046B5;
-        }
-    
-        /* Estilo para el enlace activo */
-        .nav-links a.active {
-            color: #0046B5;
-            font-weight: 600;
-        }
-    
-        /* Línea azul debajo del enlace activo */
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #10b981;
-        }
-    
-     
-    
-        /* Estilo especial para el botón de contacto cuando está activo */
-        .contact-btn.active {
-            background: linear-gradient(135deg, #004aad 0%, #10b981 100%);
-        }
-    
-        /* Quitar la línea azul del botón de contacto cuando está activo */
-        .contact-btn.active::after {
-            display: none;
-        }
-    
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-    
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: white;
-                flex-direction: column;
-                padding-top: 80px;
-                z-index: 999;
-                align-items: center;
-                justify-content: flex-start;
-                gap: 2rem;
-            }
-    
-            .nav-links.active {
-                display: flex;
-            }
-    
-            .nav-links a {
-                font-size: 1.2rem;
-            }
-    
-            /* Ajuste de la línea indicadora en móvil */
-            .nav-links a.active::after {
-                bottom: -8px;
-                height: 3px;
-            }
-    
-            .contact-btn {
-                margin-top: 1rem;
-                padding: 0.8rem 2rem;
-            }
-        }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  position: relative;
+  z-index: 1000;
+}
+
+.nav.scrolled {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 40px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 1001;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  position: relative;
+  transition: background 0.2s ease-out;
+  border-radius: 2px;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before {
+  top: -6px;
+}
+
+.navbar-toggler-icon::after {
+  top: 6px;
+}
+
+.menu-toggle.active .navbar-toggler-icon {
+  background: transparent;
+}
+
+.menu-toggle.active .navbar-toggler-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active .navbar-toggler-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-blue-light, #009ee8 ), var(--accent-green, #00ffd8));
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.nav-links a:hover {
+  color: #0046b5;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: #0046b5;
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00cbac;
+}
+
+/* Modern gradient button with smooth transitions */
+.contact-btn {
+  background: linear-gradient(135deg, #004aad 0%, #00ffd8 100%);
+  color: white !important;
+  padding: 0.7rem 1.8rem !important;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 74, 173, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-btn:hover {
+  box-shadow: 0 8px 20px rgba(0, 74, 173, 0.35);
+  transform: scale(1.05);
+}
+
+.contact-btn:active {
+  box-shadow: 0 2px 8px rgba(0, 74, 173, 0.25);
+  transform: scale(0.95);
+}
+
+.contact-btn::after {
+  display: none !important;
+}
+
+.contact-btn.active {
+  background: linear-gradient(135deg, #004aad 0%, #00ffd9 100%);
+}
+
+.contact-btn.active::after {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    flex-direction: column;
+    padding-top: 80px;
+    z-index: 999;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: 5px;
+  }
+
+  .nav-links a::after {
+    bottom: 0;
+    height: 3px;
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    background: linear-gradient(90deg, var(--primary-blue-light, #004aad), var(--accent-green, #00cbac));
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-links a.active::after {
+    width: 100%;
+    background-color: #00cbac;
+  }
+
+  .contact-btn {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced hover effects for touch devices */
+@media (hover: none) {
+  .nav-links a:active {
+    color: var(--primary-blue-light, #004aad);
+  }
+
+  .contact-btn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav {
+    box-shadow: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex !important;
+  }
+}
+
+/* Agregando animaci車n al bot車n de ir arriba con la misma animaci車n del logo */
+.logoinicio {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #004aad 0%, #00cbac 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 74, 173, 0.3);
+}
+
+.logoinicio.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.logoinicio:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 74, 173, 0.4);
+}
+
+.logoinicio:active {
+  transform: scale(0.95);
+}
+
+.logoinicio .stoc {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 768px) {
+  .logoinicio {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .logoinicio .stoc {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoinicio {
+    bottom: 1rem;
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  .logoinicio .stoc {
+    width: 25px;
+    height: 25px;
+  }
+}

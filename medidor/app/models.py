@@ -84,6 +84,10 @@ class Testimonio(models.Model):
     def __str__(self):
         return self.titulo
 
+    class Meta:
+        
+        ordering = ['-fecha']  # más recientes primero
+
 class ImagenTestimonio(models.Model):
     imagen = models.ImageField("Imagen", upload_to='testimonios', null=True)
     testimonio = models.ForeignKey(Testimonio, related_name='imagenes', on_delete=models.CASCADE)
