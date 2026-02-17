@@ -326,3 +326,127 @@
     height: 25px;
   }
 }
+
+
+
+
+.sustainability {
+background: linear-gradient(to right, #113579, #004aad, #679bf1);
+
+color: white;
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+max-width: 3200px;
+}
+
+.sus{
+    
+    background-color: #002868;
+    color: white;
+    height: 200px;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.comunidadchile {
+    background-color: #002868;
+    color: white;
+    
+    
+    }
+.sustainability-container {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+gap: 2rem;
+}
+
+.sustainability-image {
+flex: 1;
+min-width: 280px;
+position: relative;
+}
+
+.smart-meter-img {
+width: 100%;
+height: auto;
+border-radius: 20px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+
+
+
+.sustainability-content {
+flex: 1;
+padding: 1rem;
+}
+
+.sustainability-content h2 {
+font-size: clamp(1.5rem, 4vw, 2.5rem);
+margin-bottom: 1rem;
+line-height: 1.3;
+}
+
+.highlight {
+ 
+
+color: #0011ff; /* Fallback */
+}
+
+.features {
+padding: clamp(2rem, 5vw, 4rem) 1rem;
+background-color: #f5f7ff;
+
+background-size: cover;  /* La imagen cubre todo el contenedor */
+background-position: center;  /* Centra la imagen */
+background-repeat: no-repeat; /* Evita que la imagen se repita */
+width: 100%; /* Se expande en todo el ancho */
+min-height: 200px; /* Ajusta la altura según necesidad */
+
+
+}
+
+.feature-item h3 {
+color: #002868;
+font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+line-height: 1.4;
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+.sustainability-container {
+    flex-direction: column;
+}
+
+.sustainability-image {
+    order: -1;
+}
+
+.features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+}
+
+@media (max-width: 480px) {
+.features-grid {
+    grid-template-columns: 1fr;
+}
+}
+
+/* Optimizaciones para dispositivos de gama baja */
+@media (prefers-reduced-motion: reduce) {
+.feature-icon {
+    transition: none;
+}
+}
+
+.low-end-device .sustainability-image {
+transform: none !important;
+}
+
+ 

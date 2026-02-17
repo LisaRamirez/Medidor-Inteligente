@@ -199,10 +199,15 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      BENEFICIOS
-═══════════════════════════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <section class="benefits">
+    <span class="ben-circle c1"></span><span class="ben-circle c2"></span>
+    <span class="ben-circle c3"></span><span class="ben-circle c4"></span>
+    <span class="ben-circle c5"></span><span class="ben-circle c6"></span>
+    <span class="ben-circle c7"></span><span class="ben-circle c8"></span>
+
     <h2>BENEFICIOS</h2>
     <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
     <div class="benefits-grid">
@@ -225,65 +230,155 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════════
-     IMAGEN + TEXTO SOSTENIBLE
-═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════
+     SOSTENIBLE
+═══════════════════════════════════════ -->
 <div class="imagun">
     <div class="imagon">
         <div class="imagan">
-            <img src="{% static 'app/img/beneficios.png' %}" alt="Medidor inteligente sostenible" class="imm-img">
+            <img src="{% static 'app/img/beneficios.png' %}"
+                 alt="Medidor inteligente sostenible" class="imm-img">
         </div>
         <div class="imm-info">
             <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2><br>
             <p>Nuestro medidor está construido con materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
         </div>
         <div class="ima">
-            <img src="{% static 'app/img/logotransparente.png' %}" alt="Medidor inteligente transparente" class="transparente">
+            <img class="arri" src="{% static 'app/img/logotransparente.png' %}" alt="medidorinteligente">
         </div>
     </div>
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      ¿QUÉ HACE NUESTRO MEDIDOR?
-═══════════════════════════════════════════════════════ -->
-<section class="featurehome"
-    style="background-image: url('{% static 'app/img/Vector1.png' %}');
-           background-repeat: no-repeat;
-           background-size: cover;">
-           <br><br><br><br><br>
-
+═══════════════════════════════════════ -->
+<section class="featurehome">
+    <br><br><br><br><br>
     <div class="featurehome-container">
         <h2>¿Qué hace <span class="highlight">nuestro medidor?</span></h2>
+
         <div class="featurehome-grid">
+
+            <!-- 1. Toma lecturas — señal WiFi con ondas + display digital -->
             <div class="featurehome-item">
-                <div class="feature-icon"><img src="{% static 'app/img/icono1.png' %}" alt="Toma lecturas a distancia"></div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- display digital -->
+                        <rect x="8" y="24" width="32" height="16" rx="3" fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
+                        <text x="24" y="36" text-anchor="middle" font-family="monospace" font-size="9" fill="#004aad" font-weight="bold">00042</text>
+                        <!-- ondas wifi arriba -->
+                        <path d="M24 20 C20 20 17 17 17 14" stroke="#004aad" stroke-width="2" stroke-linecap="round" fill="none" opacity=".4"/>
+                        <path d="M24 20 C28 20 31 17 31 14" stroke="#004aad" stroke-width="2" stroke-linecap="round" fill="none" opacity=".4"/>
+                        <path d="M24 16 C21 16 19 13.5 19 11" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round" fill="none" opacity=".7"/>
+                        <path d="M24 16 C27 16 29 13.5 29 11" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round" fill="none" opacity=".7"/>
+                        <path d="M24 12 C22 12 21 10.5 21 9" stroke="#004aad" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        <path d="M24 12 C26 12 27 10.5 27 9" stroke="#004aad" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        <circle cx="24" cy="22" r="2" fill="#004aad"/>
+                        <!-- flechas laterales: datos viajando -->
+                        <path d="M4 32 L9 32 M6 29 L9 32 L6 35" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M44 32 L39 32 M42 29 L39 32 L42 35" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
                 <h3>Toma lecturas a<br>distancia</h3>
             </div>
+
+            <!-- 2. Detecta fugas — gota con alerta triangular -->
             <div class="featurehome-item">
-                <div class="feature-icon"><img src="{% static 'app/img/icono2.png' %}" alt="Detecta fugas"></div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- gota de agua -->
+                        <path d="M24 8 C24 8 13 22 13 30 C13 36.6 18 42 24 42 C30 42 35 36.6 35 30 C35 22 24 8 24 8Z"
+                              fill="#dbeeff" stroke="#004aad" stroke-width="2"/>
+                        <!-- brillo interior gota -->
+                        <path d="M19 28 C19 24 21 21 23 19" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+                        <!-- triángulo alerta -->
+                        <path d="M32 10 L40 24 L24 24 Z" fill="#ff4444" opacity=".9"/>
+                        <line x1="32" y1="14" x2="32" y2="20" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="32" cy="22.5" r="1.2" fill="#fff"/>
+                    </svg>
+                </div>
                 <h3>Detecta fugas,<br>robos o pérdidas</h3>
             </div>
+
+            <!-- 3. Cierra paso de agua — válvula con candado -->
             <div class="featurehome-item">
-                <div class="feature-icon"><img src="{% static 'app/img/icono3.png' %}" alt="Cierra paso de agua"></div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- tubo horizontal -->
+                        <rect x="4" y="22" width="15" height="6" rx="2" fill="#004aad"/>
+                        <rect x="29" y="22" width="15" height="6" rx="2" fill="#004aad"/>
+                        <!-- válvula circular -->
+                        <circle cx="24" cy="25" r="9" fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
+                        <path d="M24 16 L24 34 M15 25 L33 25" stroke="#004aad" stroke-width="2" stroke-linecap="round" opacity=".4"/>
+                        <!-- candado encima -->
+                        <rect x="19" y="26" width="10" height="8" rx="2" fill="#004aad"/>
+                        <path d="M21 26 V23 C21 20.8 27 20.8 27 23 V26" stroke="#004aad" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <circle cx="24" cy="30" r="1.5" fill="#fff"/>
+                        <!-- señal remota -->
+                        <path d="M36 12 C38.5 14.5 38.5 19 36 21" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                        <path d="M39 9 C43 13 43 21 39 25" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" fill="none" opacity=".5"/>
+                    </svg>
+                </div>
                 <h3>Cierra el paso de<br>agua a distancia</h3>
             </div>
+
+            <!-- 4. Traspasa datos — nube con flechas de subida -->
             <div class="featurehome-item">
-                <div class="feature-icon"><img src="{% static 'app/img/icono4.png' %}" alt="Traspasa datos"></div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- nube -->
+                        <path d="M34 28 C38 28 41 25 41 21 C41 17 38 14 34 14 C33 10 29.5 7 25 7 C20 7 16 11 16 16 C13 16 10 18.7 10 22 C10 25.3 13 28 16 28 Z"
+                              fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
+                        <!-- flecha subiendo izq -->
+                        <line x1="20" y1="42" x2="20" y2="28" stroke="#004aad" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M16 32 L20 28 L24 32" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- flecha subiendo der -->
+                        <line x1="28" y1="42" x2="28" y2="28" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M24 32 L28 28 L32 32" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- punto de clic -->
+                        <circle cx="37" cy="38" r="4" fill="#004aad" opacity=".15"/>
+                        <circle cx="37" cy="38" r="2" fill="#004aad"/>
+                    </svg>
+                </div>
                 <h3>Traspasa datos con<br>un par de clicks</h3>
             </div>
+
+            <!-- 5. Ahorra tiempo, dinero y esfuerzo — reloj + moneda + rayo -->
             <div class="featurehome-item">
-                <div class="feature-icon"><img src="{% static 'app/img/icono5.png' %}" alt="Ahorra tiempo"></div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- reloj -->
+                        <circle cx="16" cy="28" r="10" fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
+                        <line x1="16" y1="28" x2="16" y2="22" stroke="#004aad" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="16" y1="28" x2="20" y2="28" stroke="#004aad" stroke-width="2" stroke-linecap="round"/>
+                        <!-- moneda -->
+                        <circle cx="34" cy="30" r="8" fill="#ffd84d" stroke="#e6a800" stroke-width="1.5"/>
+                        <text x="34" y="34" text-anchor="middle" font-family="Arial" font-size="9" fill="#b37700" font-weight="bold">$</text>
+                        <!-- rayo: esfuerzo/energía -->
+                        <path d="M28 8 L22 20 L27 20 L21 36 L35 18 L29 18 Z"
+                              fill="#004aad" opacity=".85"/>
+                    </svg>
+                </div>
                 <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
             </div>
+
         </div>
+
         <div class="coso">
-            <img class="arri" src="{% static 'app/img/medidor1.png' %}" alt="Medidor inteligente">
+            <img class="arri" src="{% static 'app/img/medidor3dh.png' %}" alt="medidorinteligente">
         </div>
     </div>
 </section>
 
-
+<script>
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.imagun, .featurehome-item').forEach(el => obs.observe(el));
+</script>
 <!-- ═══════════════════════════════════════════════════════
      TESTIMONIOS (slider propio, JS abajo)
 ═══════════════════════════════════════════════════════ -->

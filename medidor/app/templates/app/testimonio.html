@@ -2,161 +2,473 @@
 {% block contenido %}
 {% load static %}
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap');
 
+  :root {
+    --brand-start:  #006fff;
+    --brand-mid:    #2a85ff;
+    --brand-end:    #00cbac;
+    --brand-grad:   linear-gradient(135deg, #006fff 0%, #2a85ff 40%, #00cbac 100%);
 
-<div class="testimonio-container">
-<header class="testimonio-header">
-    <h1>Noticias de Nuestra Comunidad</h1>
-    <p></p>
-</header><section class="testimonio-testimonials-section">
-<h2 style="text-align: center; color: #333; margin-bottom: 20px; font-size: 2.5rem;"></h2>
+    --ink:        #002366;
+    --ink-soft:   #1a3a7a;
+    --ink-muted:  #5b7ab0;
+    --surface:    #f2f6fb;
+    --card:       #ffffff;
+    --blue-light: #e8f2ff;
+    --border:     rgba(42,133,255,0.12);
 
-<div class="testimonio-testimonials-grid" id="testimonialGrid">
-    {% for t in testi %}
-        
-        <div class="testimonio-testimonial-card" data-testimonio-id="{{ t.id }}">
-            <div class="testimonio-quote-icon">"</div>
-            <div class="testimonio-card-media-section">
-                <div class="testimonio-card-media-controls">
-                    <button class="testimonio-card-media-btn active" onclick="showCardImages({{ forloop.counter }})">Imágenes</button>
-                    {% if t.id_yt %}
-                    <button class="testimonio-card-media-btn" onclick="showCardVideo({{ forloop.counter }})">Video</button>
-                    {% endif %}
-                </div>
-                <div class="testimonio-card-slider-container" id="cardImageSlider{{ forloop.counter }}">
-                    <div class="testimonio-card-slider" id="cardSlider{{ forloop.counter }}">
-                        {% for imagen in t.imagenes.all %}
-                        <div class="testimonio-card-slide">
-                            <img src="{{ imagen.imagen.url }}" alt="{{ imagen.titulo }}">
-                        </div>
-                        {% endfor %}
-                    </div>¿
-                    <button class="testimonio-card-slider-nav testimonio-card-prev" onclick="prevCardSlide({{ forloop.counter }})">❮</button>
-                    <button class="testimonio-card-slider-nav testimonio-card-next" onclick="nextCardSlide({{ forloop.counter }})">❯</button>
-                </div>
-                {% if t.id_yt %}
-                <div class="testimonio-card-video-container" id="cardVideoContainer{{ forloop.counter }}">
-                    <iframe src="https://www.youtube.com/embed/{{ t.id_yt }}" allowfullscreen></iframe>
-                </div>
-                {% endif %}
-                <div class="testimonio-card-slider-dots" id="cardSliderDots{{ forloop.counter }}">
-                    {% for imagen in t.imagenes.all %}
-                    <span class="testimonio-card-dot {% if forloop.first %}active{% endif %}" onclick="currentCardSlide({{ forloop.parentloop.counter }}, {{ forloop.counter }})"></span>
-                    {% endfor %}
-                </div>
+    --shadow-card: 0 4px 20px rgba(0,111,255,0.08), 0 1px 4px rgba(0,35,102,0.06);
+    --shadow-hover: 0 16px 48px rgba(0,111,255,0.16), 0 4px 12px rgba(0,35,102,0.10);
+    --shadow-glow:  0 0 0 3px rgba(0,203,172,0.25);
+    --radius: 18px;
+    --radius-sm: 10px;
+  }
+
+  .nc-wrap {
+    font-family: 'Sora', sans-serif;
+    background: var(--surface);
+    min-height: 100vh;
+    padding-bottom: 80px;
+    color: var(--ink);
+  }
+
+  /* ── HERO ── */
+  .nc-hero {
+    background: #002366;
+    padding: 70px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .nc-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 70% at 15% 50%, rgba(0,111,255,.35) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 55% at 85% 55%, rgba(0,203,172,.28) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .nc-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -100%; width: 300%; height: 2px;
+    background: linear-gradient(90deg, transparent, #006fff, #00cbac, transparent);
+    animation: shimmer-line 4s linear infinite;
+  }
+  @keyframes shimmer-line {
+    from { transform: translateX(0); }
+    to   { transform: translateX(33.33%); }
+  }
+  .nc-hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(0,203,172,.12);
+    border: 1px solid rgba(0,203,172,.35);
+    color: #00cbac;
+    font-size: 10.5px; font-weight: 600; letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 6px 16px; border-radius: 99px; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .nc-hero-badge i {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #00cbac; display: inline-block;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:.4; transform:scale(.65); }
+  }
+  .nc-hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 600;
+    color: #fff; margin: 0 0 12px; line-height: 1.15; letter-spacing: -.02em;
+    position: relative; z-index: 1;
+  }
+  .nc-hero h1 em {
+    font-style: normal;
+    background: var(--brand-grad);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .nc-hero p {
+    color: rgba(255,255,255,.5); font-size: .95rem; font-weight: 300;
+    position: relative; z-index: 1;
+  }
+
+  /* ── SECTION ── */
+  .nc-section { max-width: 1300px; margin: 56px auto 0; padding: 0 28px; }
+  .nc-section-head { display:flex; align-items:center; gap:14px; margin-bottom:32px; }
+  .nc-section-pill {
+    background: var(--brand-grad); color:#fff;
+    font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    padding:5px 14px; border-radius:99px; white-space:nowrap;
+  }
+  .nc-section-line { flex:1; height:1px; background:linear-gradient(90deg,rgba(0,111,255,.2),transparent); }
+
+  /* ── GRID ── */
+  .nc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+    gap: 26px;
+  }
+
+  /* ── CARD ── */
+  .nc-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+    display: flex; flex-direction: column;
+    opacity: 0;
+    animation: fade-up .5s ease forwards;
+  }
+  .nc-card:nth-child(1){animation-delay:.06s}
+  .nc-card:nth-child(2){animation-delay:.14s}
+  .nc-card:nth-child(3){animation-delay:.22s}
+  .nc-card:nth-child(4){animation-delay:.30s}
+  .nc-card:nth-child(n+5){animation-delay:.36s}
+  @keyframes fade-up {
+    from{opacity:0;transform:translateY(22px)}
+    to  {opacity:1;transform:translateY(0)}
+  }
+  .nc-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-hover); }
+  .nc-card::before {
+    content:''; display:block; height:3px;
+    background: var(--brand-grad); flex-shrink:0;
+  }
+
+  /* ── MEDIA ── */
+  .nc-media { position:relative; height:250px; background:#002366; overflow:hidden; flex-shrink:0; }
+
+  .nc-tabs { position:absolute; top:12px; left:12px; z-index:10; display:flex; gap:6px; }
+  .nc-tab {
+    background: rgba(0,35,102,.6);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter:blur(10px);
+    border: 1px solid rgba(255,255,255,.18);
+    color: rgba(255,255,255,.85);
+    font-family: 'Sora',sans-serif; font-size:11px; font-weight:600;
+    padding:5px 14px; border-radius:99px; cursor:pointer;
+    transition: all .22s ease;
+  }
+  .nc-tab.active {
+    background: var(--brand-grad); border-color:transparent; color:#fff;
+    box-shadow: 0 2px 10px rgba(0,111,255,.4);
+  }
+
+  .nc-zoom-hint {
+    position:absolute; bottom:12px; right:12px; z-index:10;
+    background:rgba(0,35,102,.6); backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.18);
+    color:#fff; width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:14px;
+    opacity:0; transition:opacity .25s,transform .25s;
+  }
+  .nc-card:hover .nc-zoom-hint { opacity:1; }
+  .nc-zoom-hint:hover { transform:scale(1.12); background:rgba(0,111,255,.75); }
+
+  .nc-slider-wrap { width:100%; height:100%; overflow:hidden; position:relative; }
+  .nc-slider { display:flex; height:100%; transition:transform .5s cubic-bezier(.4,0,.2,1); }
+  .nc-slide { min-width:100%; height:100%; flex-shrink:0; cursor:zoom-in; }
+  .nc-slide img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease; }
+  .nc-card:hover .nc-slide img { transform:scale(1.04); }
+
+  .nc-video-wrap { display:none; position:absolute; inset:0; z-index:5; background:#001a5e; }
+  .nc-video-wrap iframe { width:100%; height:100%; border:none; }
+
+  .nc-arrow {
+    position:absolute; top:50%; transform:translateY(-50%); z-index:10;
+    background:rgba(255,255,255,.92); border:none;
+    width:36px; height:36px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px; color:#002366; opacity:0;
+    transition:opacity .25s,transform .25s,box-shadow .25s;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
+  }
+  .nc-card:hover .nc-arrow { opacity:1; }
+  .nc-arrow:hover { transform:translateY(-50%) scale(1.1); box-shadow:var(--shadow-glow); }
+  .nc-arrow-prev{left:10px} .nc-arrow-next{right:10px}
+
+  .nc-dots { position:absolute; bottom:12px; left:0; right:0; display:flex; justify-content:center; gap:5px; z-index:10; }
+  .nc-dot {
+    height:5px; width:5px; border-radius:3px;
+    background:rgba(255,255,255,.4); border:none; padding:0; cursor:pointer;
+    transition:all .3s ease;
+  }
+  .nc-dot.active { width:20px; background:#fff; }
+
+  /* ── BODY ── */
+  .nc-body { padding:22px 22px 20px; flex:1; display:flex; flex-direction:column; position:relative; }
+
+  .nc-meta { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:14px; }
+  .nc-date {
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:11px; font-weight:600; letter-spacing:.06em;
+    background:var(--brand-grad); color:#fff; padding:4px 12px; border-radius:99px;
+  }
+  .nc-creator { font-size:12px; font-weight:500; color:var(--ink-muted); max-width:130px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  .nc-title { font-family:'Lora',serif; font-size:1.2rem; font-weight:600; color:var(--ink); line-height:1.3; margin:0 0 6px; letter-spacing:-.01em; }
+  .nc-subtitle { font-size:.85rem; color:var(--ink-muted); font-style:italic; margin:0 0 12px; line-height:1.5; }
+  .nc-text { font-size:.86rem; line-height:1.72; color:var(--ink-soft); margin:0 0 16px; flex:1; }
+
+  .nc-news-box {
+    display:flex; gap:10px; align-items:flex-start;
+    background:var(--blue-light); border:1px solid rgba(0,111,255,.14);
+    border-radius:var(--radius-sm); padding:11px 13px; margin-top:auto;
+  }
+  .nc-news-icon {
+    flex-shrink:0; width:30px; height:30px; border-radius:8px;
+    background:var(--brand-grad); display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .nc-news-label {
+    display:block; font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    background:var(--brand-grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    margin-bottom:3px;
+  }
+  .nc-news-desc { font-size:12px; line-height:1.55; color:var(--ink-soft); }
+
+  .nc-quote-bg {
+    position:absolute; bottom:10px; right:14px;
+    font-family:'Lora',serif; font-size:72px; line-height:1;
+    background:var(--brand-grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    opacity:.07; pointer-events:none; user-select:none;
+  }
+
+  /* ── LIGHTBOX ── */
+  .nc-lightbox {
+    position:fixed; inset:0; z-index:9999;
+    background:rgba(0,20,80,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .nc-lightbox.open { opacity:1; pointer-events:all; }
+  .nc-lb-inner { position:relative; max-width:92vw; max-height:90vh; display:flex; align-items:center; justify-content:center; }
+  .nc-lb-img {
+    max-width:90vw; max-height:88vh; object-fit:contain;
+    border-radius:10px; box-shadow:0 32px 80px rgba(0,20,80,.7);
+    transform:scale(.94); transition:transform .35s cubic-bezier(.22,1,.36,1); display:block;
+  }
+  .nc-lightbox.open .nc-lb-img { transform:scale(1); }
+
+  .nc-lb-close {
+    position:fixed; top:20px; right:24px;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22);
+    color:#fff; width:42px; height:42px; border-radius:50%; cursor:pointer;
+    font-size:20px; display:flex; align-items:center; justify-content:center;
+    transition:background .2s,transform .2s; z-index:10000;
+  }
+  .nc-lb-close:hover { background:rgba(0,111,255,.5); transform:scale(1.08); }
+
+  .nc-lb-arrow {
+    position:fixed; top:50%; transform:translateY(-50%);
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22);
+    color:#fff; width:46px; height:46px; border-radius:50%; cursor:pointer;
+    font-size:20px; display:flex; align-items:center; justify-content:center;
+    transition:background .2s,transform .2s; z-index:10000;
+  }
+  .nc-lb-arrow:hover { background:var(--brand-grad); border-color:transparent; transform:translateY(-50%) scale(1.08); }
+  .nc-lb-prev{left:20px} .nc-lb-next{right:20px}
+
+  .nc-lb-counter {
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+    background:rgba(255,255,255,.1); backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.8);
+    font-family:'Sora',sans-serif; font-size:12px; font-weight:600;
+    padding:6px 18px; border-radius:99px; z-index:10000;
+  }
+
+  .nc-empty { grid-column:1/-1; text-align:center; padding:80px 20px; color:var(--ink-muted); }
+
+  @media(max-width:860px){
+    .nc-grid{grid-template-columns:1fr}
+    .nc-hero{padding:52px 20px 44px}
+    .nc-section{padding:0 16px}
+    .nc-lb-arrow{width:38px;height:38px;font-size:16px}
+    .nc-lb-prev{left:8px} .nc-lb-next{right:8px}
+  }
+</style>
+
+<!-- HTML -->
+<div class="nc-wrap">
+
+  <div class="nc-hero">
+    <div class="nc-hero-badge"><i></i> En vivo desde la comunidad</div>
+    <h1>Noticias de <em>Nuestra Comunidad</em></h1>
+    <p>Historias, testimonios y novedades que nos unen</p>
+  </div>
+
+  <div class="nc-section">
+    <div class="nc-section-head">
+      <span class="nc-section-pill">Publicaciones recientes</span>
+      <span class="nc-section-line"></span>
+    </div>
+
+    <div class="nc-grid">
+      {% for t in testi %}
+      <article class="nc-card" data-card="{{ forloop.counter }}">
+
+        <div class="nc-media">
+          {% if t.id_yt %}
+          <div class="nc-tabs">
+            <button class="nc-tab active" onclick="ncShowImages({{ forloop.counter }}, this)">📷 Imágenes</button>
+            <button class="nc-tab" onclick="ncShowVideo({{ forloop.counter }}, this)">▶ Video</button>
+          </div>
+          {% endif %}
+
+          <div class="nc-slider-wrap" id="ncWrap{{ forloop.counter }}">
+            <div class="nc-slider" id="ncSlider{{ forloop.counter }}">
+              {% for imagen in t.imagenes.all %}
+              <div class="nc-slide"
+                   onclick="ncOpenLightbox({{ forloop.parentloop.counter }}, {{ forloop.counter0 }})"
+                   title="Ver imagen ampliada">
+                <img src="{{ imagen.imagen.url }}" alt="{{ imagen.titulo }}" loading="lazy">
+              </div>
+              {% endfor %}
             </div>
-            <div class="testimonio-testimonial-header">
-                <span class="testimonio-testimonial-date">{{ t.fecha|date:"d M Y" }}</span>
-                <span class="testimonio-testimonial-creator">{{ t.creador }}</span>
+            <button class="nc-arrow nc-arrow-prev" onclick="ncPrev({{ forloop.counter }})">&#8249;</button>
+            <button class="nc-arrow nc-arrow-next" onclick="ncNext({{ forloop.counter }})">&#8250;</button>
+            <div class="nc-dots" id="ncDots{{ forloop.counter }}">
+              {% for imagen in t.imagenes.all %}
+              <button class="nc-dot {% if forloop.first %}active{% endif %}"
+                      onclick="ncGoto({{ forloop.parentloop.counter }}, {{ forloop.counter0 }})"></button>
+              {% endfor %}
             </div>
-            <h3 class="testimonio-testimonial-title">{{ t.titulo }}</h3>
-            <p class="testimonio-testimonial-subtitle">{{ t.sub_titulo }}</p>
-            <p class="testimonio-testimonial-text">{{ t.contenido }}</p>
-            <div class="testimonio-testimonial-news">
-                <strong>Noticia:</strong> {{ t.descripcion }}
-            </div>
-            
+          </div>
+
+          {% if t.id_yt %}
+          <div class="nc-video-wrap" id="ncVideo{{ forloop.counter }}">
+            <iframe src="https://www.youtube.com/embed/{{ t.id_yt }}"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
+          </div>
+          {% endif %}
+
+          <button class="nc-zoom-hint"
+                  onclick="ncOpenLightbox({{ forloop.counter }}, null)"
+                  title="Ampliar imagen">⛶</button>
         </div>
-    {% endfor %}
+
+        <div class="nc-body">
+          <div class="nc-meta">
+            <span class="nc-date">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              {{ t.fecha|date:"d M Y" }}
+            </span>
+            <span class="nc-creator">{{ t.creador }}</span>
+          </div>
+
+          <h3 class="nc-title">{{ t.titulo }}</h3>
+          <p class="nc-subtitle">{{ t.sub_titulo }}</p>
+          <p class="nc-text">{{ t.contenido }}</p>
+
+          {% if t.descripcion %}
+          <div class="nc-news-box">
+            <div class="nc-news-icon">📰</div>
+            <div>
+              <span class="nc-news-label">Noticia</span>
+              <span class="nc-news-desc">{{ t.descripcion }}</span>
+            </div>
+          </div>
+          {% endif %}
+
+          <span class="nc-quote-bg">"</span>
+        </div>
+      </article>
+      {% empty %}
+      <div class="nc-empty">
+        <p style="font-size:2rem;margin:0 0 10px">📭</p>
+        <p>Aún no hay publicaciones. ¡Vuelve pronto!</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
-    <!-- Add More Button -->
-   
-</section>
+
+<!-- Lightbox -->
+<div class="nc-lightbox" id="ncLightbox" onclick="ncCloseLightboxOutside(event)">
+  <div class="nc-lb-inner">
+    <img class="nc-lb-img" id="ncLbImg" src="" alt="">
+  </div>
+  <button class="nc-lb-close" onclick="ncCloseLightbox()">✕</button>
+  <button class="nc-lb-arrow nc-lb-prev" onclick="ncLbStep(-1)">&#8249;</button>
+  <button class="nc-lb-arrow nc-lb-next" onclick="ncLbStep(+1)">&#8250;</button>
+  <span class="nc-lb-counter" id="ncLbCounter">1 / 1</span>
+</div>
 
 <script>
-    // Main slider functionality
-    let currentMainSlideIndex = 0;
-    const mainSlides = document.querySelectorAll('.testimonio-slide');
-    const mainDots = document.querySelectorAll('.testimonio-dot');
-    const mainSlider = document.getElementById('mainSlider');
-    function showMainSlide(index) {
-        mainSlider.style.transform = `translateX(-${index * 100}%)`;
-        
-        mainDots.forEach(dot => dot.classList.remove('active'));
-        mainDots[index].classList.add('active');
-        
-        currentMainSlideIndex = index;
-    }
-    function nextMainSlide() {
-        currentMainSlideIndex = (currentMainSlideIndex + 1) % mainSlides.length;
-        showMainSlide(currentMainSlideIndex);
-    }
-    function prevMainSlide() {
-        currentMainSlideIndex = (currentMainSlideIndex - 1 + mainSlides.length) % mainSlides.length;
-        showMainSlide(currentMainSlideIndex);
-    }
-    function currentMainSlide(index) {
-        showMainSlide(index - 1);
-    }
-    function showMainImages() {
-        document.getElementById('mainImageSlider').style.display = 'block';
-        document.getElementById('mainVideoContainer').style.display = 'none';
-        document.getElementById('mainSliderDots').style.display = 'flex';
-        
-        document.querySelectorAll('.testimonio-media-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-    }
-    function showMainVideo() {
-        document.getElementById('mainImageSlider').style.display = 'none';
-        document.getElementById('mainVideoContainer').style.display = 'block';
-        document.getElementById('mainSliderDots').style.display = 'none';
-        
-        document.querySelectorAll('.testimonio-media-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-    }
-    // Individual card slider functionality
-    let cardSlideIndexes = [0, 0, 0, 0]; // Track current slide for each card
-    function showCardSlide(cardId, index) {
-        const slider = document.getElementById(`cardSlider${cardId}`);
-        const dots = document.querySelectorAll(`#cardSliderDots${cardId} .testimonio-card-dot`);
-        
-        slider.style.transform = `translateX(-${index * 100}%)`;
-        
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-        
-        cardSlideIndexes[cardId - 1] = index;
-    }
-    function nextCardSlide(cardId) {
-        const slides = document.querySelectorAll(`#cardSlider${cardId} .testimonio-card-slide`);
-        cardSlideIndexes[cardId - 1] = (cardSlideIndexes[cardId - 1] + 1) % slides.length;
-        showCardSlide(cardId, cardSlideIndexes[cardId - 1]);
-    }
-    function prevCardSlide(cardId) {
-        const slides = document.querySelectorAll(`#cardSlider${cardId} .testimonio-card-slide`);
-        cardSlideIndexes[cardId - 1] = (cardSlideIndexes[cardId - 1] - 1 + slides.length) % slides.length;
-        showCardSlide(cardId, cardSlideIndexes[cardId - 1]);
-    }
-    function currentCardSlide(cardId, index) {
-        showCardSlide(cardId, index - 1);
-    }
-    function showCardImages(cardId) {
-        document.getElementById(`cardImageSlider${cardId}`).style.display = 'block';
-        document.getElementById(`cardVideoContainer${cardId}`).style.display = 'none';
-        document.getElementById(`cardSliderDots${cardId}`).style.display = 'flex';
-        
-        const buttons = document.querySelectorAll(`#cardImageSlider${cardId}`).parentNode.querySelectorAll('.testimonio-card-media-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-    }
-    function showCardVideo(cardId) {
-        document.getElementById(`cardImageSlider${cardId}`).style.display = 'none';
-        document.getElementById(`cardVideoContainer${cardId}`).style.display = 'block';
-        document.getElementById(`cardSliderDots${cardId}`).style.display = 'none';
-        
-        const buttons = event.target.parentNode.querySelectorAll('.testimonio-card-media-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-    }
-    
-    
-    // Auto-slide functionality for main slider
-    setInterval(nextMainSlide, 5000);
-    // Initialize
-    showMainSlide(0);
-    for (let i = 1; i <= 4; i++) {
-        showCardSlide(i, 0);
-    }
+(function(){
+  const cardState = {};
+  let lbImages = [], lbIdx = 0;
+
+  document.querySelectorAll('.nc-card').forEach(card => {
+    const id = parseInt(card.dataset.card);
+    const imgs = card.querySelectorAll('.nc-slide img');
+    cardState[id] = { idx:0, images: Array.from(imgs).map(i=>i.src) };
+  });
+
+  function render(id){
+    const s = cardState[id];
+    const sl = document.getElementById('ncSlider'+id);
+    if(sl) sl.style.transform = `translateX(-${s.idx*100}%)`;
+    document.querySelectorAll('#ncDots'+id+' .nc-dot')
+            .forEach((d,i) => d.classList.toggle('active', i===s.idx));
+  }
+
+  window.ncNext = id => { const s=cardState[id]; s.idx=(s.idx+1)%s.images.length; render(id); };
+  window.ncPrev = id => { const s=cardState[id]; s.idx=(s.idx-1+s.images.length)%s.images.length; render(id); };
+  window.ncGoto = (id,idx) => { cardState[id].idx=idx; render(id); };
+
+  window.ncShowImages = (id,btn) => {
+    const w=document.getElementById('ncWrap'+id), v=document.getElementById('ncVideo'+id);
+    if(w) w.style.display=''; if(v) v.style.display='none';
+    btn.closest('.nc-tabs').querySelectorAll('.nc-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  };
+  window.ncShowVideo = (id,btn) => {
+    const w=document.getElementById('ncWrap'+id), v=document.getElementById('ncVideo'+id);
+    if(w) w.style.display='none'; if(v) v.style.display='block';
+    btn.closest('.nc-tabs').querySelectorAll('.nc-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  };
+
+  window.ncOpenLightbox = (cardId, imgIdx) => {
+    const s = cardState[cardId];
+    lbImages = s.images;
+    lbIdx = (imgIdx!==null && imgIdx!==undefined) ? imgIdx : s.idx;
+    updateLb();
+    document.getElementById('ncLightbox').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.ncCloseLightbox = () => {
+    document.getElementById('ncLightbox').classList.remove('open');
+    document.body.style.overflow='';
+  };
+  window.ncCloseLightboxOutside = e => {
+    if(e.target===document.getElementById('ncLightbox')) ncCloseLightbox();
+  };
+  window.ncLbStep = dir => { lbIdx=(lbIdx+dir+lbImages.length)%lbImages.length; updateLb(); };
+
+  function updateLb(){
+    document.getElementById('ncLbImg').src = lbImages[lbIdx];
+    document.getElementById('ncLbCounter').textContent = `${lbIdx+1} / ${lbImages.length}`;
+  }
+
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('ncLightbox');
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape')     ncCloseLightbox();
+    if(e.key==='ArrowRight') ncLbStep(+1);
+    if(e.key==='ArrowLeft')  ncLbStep(-1);
+  });
+})();
 </script>
-</div>
+
 {% endblock %}

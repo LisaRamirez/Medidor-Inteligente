@@ -128,4 +128,50 @@
     </div>
 </div>
 
+<Script>
+    /* recurso_scroll.js — Pegar antes de </body> */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    /* meter-item: CSS propio con clase visible */
+    document.querySelectorAll('.meter-item').forEach(function (el) {
+        observer.observe(el);
+    });
+
+    /* cards al scroll con stagger */
+    document.querySelectorAll('.cards-grid .card').forEach(function (el, i) {
+        el.style.cssText += 'opacity:0;transform:translateY(30px);transition:opacity 0.6s ease ' + (i*0.15) + 's,transform 0.6s ease ' + (i*0.15) + 's;';
+        observer.observe(el);
+    });
+
+    /* step cards al scroll con stagger */
+    document.querySelectorAll('.step-cardrecurso').forEach(function (el, i) {
+        el.style.cssText += 'opacity:0;transform:translateY(30px);transition:opacity 0.55s ease ' + (i*0.15) + 's,transform 0.55s ease ' + (i*0.15) + 's;';
+        observer.observe(el);
+    });
+
+    /* separadores uso-header */
+    document.querySelectorAll('.uso-header').forEach(function (el) {
+        el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;';
+        observer.observe(el);
+    });
+
+    /* cuando entra en pantalla → visible */
+    document.addEventListener('animationReveal', function(){});
+    const s = document.createElement('style');
+    s.textContent = '.visible[style]{opacity:1!important;transform:translateY(0)!important;}';
+    document.head.appendChild(s);
+
+});
+</Script>
+
 {% endblock %}
