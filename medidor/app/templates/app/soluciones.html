@@ -2,16 +2,412 @@
 {%block contenido%}
 {% load static %}
 
+<style>
+    /* ============================================
+       CSS ORIGINAL — SIN MODIFICAR
+    ============================================= */
+    .product-image-container,
+    .product-info {
+        position: relative;
+        z-index: 2;
+    }
+    .product-title,
+    .product-name,
+    .product-description,
+    .feature-item {
+        color: #ffffff;
+    }
+    .product-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        overflow: hidden;
+        min-height: 420px;
+    }
+    .product-info {
+        flex: 1;
+        padding: 40px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+    }
+    .product-name {
+        color: #ffffff;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+    .product-description {
+        color: rgba(255,255,255,0.93);
+        line-height: 1.6;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+    }
+    .features-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255,255,255,0.95);
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+    }
+    .check-icon {
+        width: clamp(16px, 2vw, 20px);
+        height: clamp(16px, 2vw, 20px);
+        color: #ffffff;
+        flex-shrink: 0;
+    }
+    .buttons-container {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+    .btn {
+        padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
+        border-radius: 4px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+        min-width: 150px;
+    }
+    .btn-outline {
+        border: 2px solid #ffffff;
+        color: #ffffff;
+        background: transparent;
+    }
+    .btn-primary {
+        background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+        color: white;
+        border: none;
+    }
+    .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
 
-<div class="product-section background-image" style="background-image: url('{% static 'app/img/slidersoluciones.jpg' %}');" >
-    <div class="product-image-container">
-        
+    @media (min-width: 768px) {
+        .product-section { flex-direction: row; }
+        .product-info     { width: 50%; }
+    }
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .buttons-container { justify-content: flex-start; }
+    }
+    @media (max-width: 480px) {
+        .buttons-container { flex-direction: column; }
+        .btn { width: 100%; }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .product-description, .feature-item { font-size: clamp(0.85rem, 1.2vw, 1rem); }
+    }
+
+    /* ============================================
+       FONDO HERO — gradiente INVERTIDO
+       verde izq-abajo → azul der-arriba
+    ============================================= */
+    .product-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top right,
+            #00cbac 0%,
+            #2a85ff 55%,
+            #006fff 100%
+        );
+        z-index: 0;
+    }
+
+    /* Manchas de luz globales */
+    .product-section::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 20% 85%,  rgba(0,203,172,0.25)   0%, transparent 35%),
+            radial-gradient(circle at 85% 15%,  rgba(0,111,255,0.20)   0%, transparent 35%),
+            radial-gradient(circle at 50% 50%,  rgba(255,255,255,0.04) 0%, transparent 55%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Círculos SVG animados — todo el hero */
+    .hero-bg-circles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+    .hero-bg-circles circle {
+        fill: none;
+        stroke: rgba(255,255,255,0.10);
+        stroke-width: 1.5;
+    }
+    .hero-bg-circles .hc1 { animation: hcFloat1 11s ease-in-out infinite; }
+    .hero-bg-circles .hc2 { animation: hcFloat2 14s ease-in-out infinite; }
+    .hero-bg-circles .hc3 { animation: hcFloat1  8s ease-in-out infinite reverse; }
+    .hero-bg-circles .hc4 { animation: hcFloat2 17s ease-in-out infinite; }
+    .hero-bg-circles .hc5 { animation: hcFloat1 13s ease-in-out infinite 2s; }
+
+    @keyframes hcFloat1 {
+        0%, 100% { transform: translate(0, 0);        }
+        50%       { transform: translate(12px, -14px); }
+    }
+    @keyframes hcFloat2 {
+        0%, 100% { transform: translate(0, 0);         }
+        50%       { transform: translate(-14px, 10px); }
+    }
+
+    /* ============================================
+       BLOQUE IZQUIERDO — transparente, hereda el fondo
+    ============================================= */
+    .product-image-container {
+        position: relative;
+        width: 50%;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 32px 20px;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: none;
+        border-radius: 0;
+        border-right: 1px solid rgba(255,255,255,0.15);
+        z-index: 3;
+    }
+
+    /* Círculos extra bloque izquierdo */
+    .left-circles {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+    .left-circles circle {
+        fill: none;
+        stroke: rgba(255,255,255,0.13);
+        stroke-width: 1.5;
+    }
+    .left-circles .lc1 { animation: hcFloat1  9s ease-in-out infinite; }
+    .left-circles .lc2 { animation: hcFloat2 12s ease-in-out infinite; }
+
+    .product-title {
+        position: relative;
+        z-index: 4;
+        font-size: clamp(1.5rem, 2vw, 2.5rem);
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 12px;
+        color: #ffffff;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* ============================================
+       BLOQUE DERECHO — overlay oscuro para legibilidad
+    ============================================= */
+    .product-info {
+        position: relative;
+        z-index: 3;
+    }
+    /* Overlay oscuro semitransparente sobre el bloque derecho */
+    .product-info::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 20, 60, 0.28);
+        z-index: 0;
+        pointer-events: none;
+    }
+    /* Todo el contenido del bloque derecho por encima del overlay */
+    .product-info > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ——— MINI SLIDER ——— */
+    .product-slider {
+        position: relative;
+        z-index: 4;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .slider-viewport {
+        width: 100%;
+        overflow: hidden;
+    }
+    .slider-track {
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .slider-slide {
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    .slider-slide img {
+        height: 260px;
+        max-width: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 28px rgba(0,0,0,0.25));
+        transition: transform 0.4s ease;
+    }
+    .slider-slide img:hover { transform: scale(1.04); }
+
+    .slider-dots {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+    .slider-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.35);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.3s ease, width 0.3s ease;
+    }
+    .slider-dot.active {
+        background: #ffffff;
+        width: 24px;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+        .product-image-container {
+            width: 100%;
+            min-height: 300px;
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .slider-slide img { height: 200px; }
+        .product-info { padding: 28px 20px; }
+    }
+
+    /* ============================================
+       ANIMACIONES SCROLL REVEAL
+    ============================================= */
+    .reveal {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.reveal-left  { transform: translateX(-40px); }
+    .reveal.reveal-right { transform: translateX(40px);  }
+    .reveal.reveal-scale { transform: scale(0.88);       }
+    .reveal.visible {
+        opacity: 1;
+        transform: translate(0) scale(1);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s;  }
+    .reveal-delay-2 { transition-delay: 0.22s; }
+    .reveal-delay-3 { transition-delay: 0.34s; }
+
+    .feature-item {
+        opacity: 0;
+        transform: translateX(-16px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .feature-item.visible { opacity: 1; transform: translateX(0); }
+    .feature-item:nth-child(1) { transition-delay: 0.05s; }
+    .feature-item:nth-child(2) { transition-delay: 0.18s; }
+    .feature-item:nth-child(3) { transition-delay: 0.31s; }
+
+    .steps-connector {
+        display: flex;
+        justify-content: center;
+        color: #10b981;
+        opacity: 0.6;
+    }
+    .steps-connector svg { animation: bounce-down 1.4s ease-in-out infinite; }
+    @keyframes bounce-down {
+        0%, 100% { transform: translateY(0);   }
+        50%       { transform: translateY(5px); }
+    }
+    @media (min-width: 1024px) { .steps-connector { display: none; } }
+</style>
+
+
+<!-- HERO -->
+<div class="product-section">
+
+    <!-- Círculos SVG en todo el fondo del hero -->
+    <svg class="hero-bg-circles" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
+        <circle class="hc1" cx="100"  cy="80"  r="130"/>
+        <circle class="hc2" cx="1100" cy="420" r="160"/>
+        <circle class="hc3" cx="950"  cy="60"  r="90"/>
+        <circle class="hc4" cx="80"   cy="420" r="110"/>
+        <circle class="hc5" cx="600"  cy="260" r="200"/>
+    </svg>
+
+    <!-- BLOQUE IZQUIERDO: slider -->
+    <div class="product-image-container reveal reveal-left">
+
+        <svg class="left-circles" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice">
+            <circle class="lc1" cx="50"  cy="50"  r="80"/>
+            <circle class="lc2" cx="350" cy="370" r="100"/>
+        </svg>
+
         <h2 class="product-title">MEDIDOR<br>INTELIGENTE</h2>
-        <img src="{% static 'app/img/medidor3d.png'%}" alt="Medidor Inteligente" class="product-image">
+
+        <div class="product-slider">
+            <div class="slider-viewport">
+                <div class="slider-track" id="sliderTrack">
+
+                    <div class="slider-slide">
+                        <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente">
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="{% static 'app/img/handheld.png' %}" alt="Receptor Handheld">
+                    </div>
+
+                    <!--
+                    Para agregar más productos:
+                    <div class="slider-slide">
+                        <img src="{% static 'app/img/TUIMAGEN.png' %}" alt="Nombre">
+                    </div>
+                    Y agrega abajo: <button class="slider-dot" data-index="2"></button>
+                    -->
+
+                </div>
+            </div>
+
+            <div class="slider-dots">
+                <button class="slider-dot active" data-index="0"></button>
+                <button class="slider-dot"        data-index="1"></button>
+            </div>
+        </div>
+
     </div>
 
-    <div class="product-info">
-        
+    <!-- BLOQUE DERECHO: info + overlay oscuro -->
+    <div class="product-info reveal reveal-right">
         <h1 class="product-name">NUESTRO NUEVO MODELO</h1>
         <p class="product-description">
             Conoce nuestro nuevo medidor inteligente, ahora 3 veces más potente, diseñado para ofrecer un 
@@ -61,191 +457,231 @@
 <!-- Sección Cómo Funciona -->
 <section class="how-it-works">
     <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2>¿CÓMO FUNCIONA?</h2>
             <p>En 3 sencillos pasos</p>
         </div>
 
         <div class="steps">
-            <div class="step">
+
+            <div class="step reveal reveal-delay-1">
                 <div class="step-number">1</div>
                 <div class="step-content">
                     <div class="gotas">
-                        <img src="{% static 'app/img/icono6.png'%}"  alt="Medidor">
+                        <img src="{% static 'app/img/icono6.png'%}" alt="Medidor">
                     </div>
                     <p>Toma los datos y envía al receptor manual</p>
                     <p class="highlight">A 100 (+) METROS</p>
                 </div>
             </div>
 
-            <div class="step">
+            <div class="steps-connector">
+                <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
+                    <path d="M12 0 L12 24 M4 16 L12 24 L20 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <div class="step reveal reveal-delay-2">
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <div class="gotas">
-                        <img src="{% static 'app/img/icono7.png'%}"  alt="Receptor">
+                        <img src="{% static 'app/img/icono7.png'%}" alt="Receptor">
                     </div>
                     <p>Recepciona los datos</p>
                     <p class="highlight">PERMITE CORTAR EL SERVICIO A DISTANCIA</p>
                 </div>
             </div>
 
-            <div class="step">
+            <div class="steps-connector">
+                <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
+                    <path d="M12 0 L12 24 M4 16 L12 24 L20 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <div class="step reveal reveal-delay-3">
                 <div class="step-number">3</div>
                 <div class="step-content">
                     <div class="gotas">
-                        <img src="{% static 'app/img/icono8.png'%}"  alt="Software">
+                        <img src="{% static 'app/img/icono8.png'%}" alt="Software">
                     </div>
                     <p>Pasa en directo los datos al software o plantilla excel</p>
                     <p class="highlight">PERMITE EMITIR BOLETAS</p>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
- <section class="promedi-products-section">
-        <div class="promedi-container">
-            <h2 class="promedi-section-title">Descubre nuestros Servicios</h2>
-            
-            <div class="promedi-products-grid">
-                <!-- Producto 1: Páginas Web -->
-                <div class="promedi-product-card">
-                    <div class="promedi-product-icon promedi-web-icon">
-                        <img src="{% static 'app/img/visual.png' %}" alt="Páginas Web" class="promedi-icon-image">  
+<section class="promedi-products-section">
+    <div class="promedi-container">
+        <h2 class="promedi-section-title reveal">Descubre nuestros Servicios</h2>
+        
+        <div class="promedi-products-grid">
 
-                    </div>
-                    <h3 class="promedi-product-title">Páginas Web para APR y SSR</h3>
-                    <p class="promedi-product-description">
-                        Modernizamos la gestión de APR y SSR con sitios web profesionales, funcionales y adaptados a sus necesidades
-                    </p>
-                    <a href="{% url 'contacto'%}" class="promedi-product-button">
-                        Conoce más
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-
+            <div class="promedi-product-card reveal reveal-scale reveal-delay-1">
+                <div class="promedi-product-icon promedi-web-icon">
+                    <img src="{% static 'app/img/visual.png' %}" alt="Páginas Web" class="promedi-icon-image">
                 </div>
-
-                <!-- Producto 2: Medidor Inteligente -->
-                <div class="promedi-product-card">
-                    <div class="promedi-product-icon promedi-meter-icon">
-                        <img src="{% static 'app/img/softwareApr.png' %}"  alt="SoftwareApr" class="promedi-icon-image">
-                         
-                    </div>
-                    <h3 class="promedi-product-title">Nuestra plataforma de gestión de APR</h3>
-                    <p class="promedi-product-description">
-                        Incluye Boleta Electrónica y Pago de APR en línea
-                    </p>
-                    <a href="https://software-apr.cl/"  class="promedi-product-button">
-                        Conoce más
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Producto 3: Punto Blue -->
-                <div class="promedi-product-card">
-                    <div class="promedi-product-icon promedi-payment-icon">
-                        <img src="{% static 'app/img/puntob.png' %}"  alt="Punto Blue" class="promedi-icon-image">
-                    </div>
-                    <h3 class="promedi-product-title">Paga tus cuentas de agua potable rural en línea</h3>
-                    <p class="promedi-product-description">
-                        Además conoce los puntos de pago en almacenes locales. Sistema de pagos integrado para mayor comodidad de los usuarios
-                    </p>
-                    <a href="https://www.punto-blue.cl" class="promedi-product-button">
-                        Conoce más
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-
-                </div>
+                <h3 class="promedi-product-title">Páginas Web para APR y SSR</h3>
+                <p class="promedi-product-description">
+                    Modernizamos la gestión de APR y SSR con sitios web profesionales, funcionales y adaptados a sus necesidades
+                </p>
+                <a href="{% url 'contacto'%}" class="promedi-product-button">
+                    Conoce más
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </div>
-        </div>
-    </section>
-    <!-- Background Decorations -->
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100 rounded-full opacity-20 blur-3xl"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-100 rounded-full opacity-20 blur-3xl"></div>
-    </div>
 
-    <script>
-        class ImageSlider {
-            constructor(trackId, interval = 3000) {
-                this.track = document.getElementById(trackId);
-                this.items = this.track.querySelectorAll('.slider-item');
-                this.currentIndex = 0;
-                this.interval = interval;
-                this.isTransitioning = false;
-                
-                // Clone first item and append to end for seamless loop
-                const firstClone = this.items[0].cloneNode(true);
-                this.track.appendChild(firstClone);
-                
-                this.startSlider();
-            }
-            
-            startSlider() {
-                // Start with 60Hz smooth transitions
-                setInterval(() => {
-                    this.nextSlide();
-                }, this.interval);
-            }
-            
-            nextSlide() {
-                if (this.isTransitioning) return;
-                
-                this.isTransitioning = true;
-                this.currentIndex++;
-                
-                // Smooth transition at 60Hz
-                const translateX = -this.currentIndex * 100;
-                this.track.style.transform = `translateX(${translateX}%)`;
-                
-                // Reset to beginning when reaching the end (seamless loop)
-                if (this.currentIndex >= this.items.length) {
-                    setTimeout(() => {
-                        this.track.style.transition = 'none';
-                        this.currentIndex = 0;
-                        this.track.style.transform = 'translateX(0%)';
-                        
-                        // Re-enable transition after reset
-                        setTimeout(() => {
-                            this.track.style.transition = 'transform 0.5s ease-in-out';
-                            this.isTransitioning = false;
-                        }, 50);
-                    }, 500);
-                } else {
-                    setTimeout(() => {
-                        this.isTransitioning = false;
-                    }, 500);
+            <div class="promedi-product-card reveal reveal-scale reveal-delay-2">
+                <div class="promedi-product-icon promedi-meter-icon">
+                    <img src="{% static 'app/img/softwareApr.png' %}" alt="SoftwareApr" class="promedi-icon-image">
+                </div>
+                <h3 class="promedi-product-title">Nuestra plataforma de gestión de APR</h3>
+                <p class="promedi-product-description">
+                    Incluye Boleta Electrónica y Pago de APR en línea
+                </p>
+                <a href="https://software-apr.cl/" class="promedi-product-button">
+                    Conoce más
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="promedi-product-card reveal reveal-scale reveal-delay-3">
+                <div class="promedi-product-icon promedi-payment-icon">
+                    <img src="{% static 'app/img/puntob.png' %}" alt="Punto Blue" class="promedi-icon-image">
+                </div>
+                <h3 class="promedi-product-title">Paga tus cuentas de agua potable rural en línea</h3>
+                <p class="promedi-product-description">
+                    Además conoce los puntos de pago en almacenes locales. Sistema de pagos integrado para mayor comodidad de los usuarios
+                </p>
+                <a href="https://www.punto-blue.cl" class="promedi-product-button">
+                    Conoce más
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100 rounded-full opacity-20 blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-100 rounded-full opacity-20 blur-3xl"></div>
+</div>
+
+<script>
+    /* --- SCROLL REVEAL --- */
+    (function () {
+        const revealEls  = document.querySelectorAll('.reveal');
+        const featureEls = document.querySelectorAll('.feature-item');
+        const opts = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+
+        const onReveal = (entries, obs) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    obs.unobserve(e.target);
                 }
+            });
+        };
+
+        const revObs     = new IntersectionObserver(onReveal, opts);
+        const featureObs = new IntersectionObserver(onReveal, { threshold: 0.1 });
+
+        revealEls.forEach(el  => revObs.observe(el));
+        featureEls.forEach(el => featureObs.observe(el));
+
+        setTimeout(() => {
+            [...revealEls, ...featureEls].forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight)
+                    el.classList.add('visible');
+            });
+        }, 150);
+    })();
+
+
+    /* --- MINI SLIDER --- */
+    (function () {
+        const track   = document.getElementById('sliderTrack');
+        const dots    = document.querySelectorAll('.slider-dot');
+        const total   = dots.length;
+        let current   = 0;
+        let autoTimer = null;
+
+        function goTo(index) {
+            current = (index + total) % total;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+
+        function startAuto() {
+            autoTimer = setInterval(() => goTo(current + 1), 3500);
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(autoTimer);
+                goTo(parseInt(dot.dataset.index));
+                startAuto();
+            });
+        });
+
+        startAuto();
+    })();
+
+
+    /* --- IMAGE SLIDER BASE --- */
+    class ImageSlider {
+        constructor(trackId, interval = 3000) {
+            this.track = document.getElementById(trackId);
+            if (!this.track) return;
+            this.items = this.track.querySelectorAll('.slider-item');
+            this.currentIndex = 0;
+            this.interval = interval;
+            this.isTransitioning = false;
+            this.track.appendChild(this.items[0].cloneNode(true));
+            this.startSlider();
+        }
+        startSlider() { setInterval(() => this.nextSlide(), this.interval); }
+        nextSlide() {
+            if (this.isTransitioning) return;
+            this.isTransitioning = true;
+            this.currentIndex++;
+            this.track.style.transform = `translateX(${-this.currentIndex * 100}%)`;
+            if (this.currentIndex >= this.items.length) {
+                setTimeout(() => {
+                    this.track.style.transition = 'none';
+                    this.currentIndex = 0;
+                    this.track.style.transform = 'translateX(0%)';
+                    setTimeout(() => {
+                        this.track.style.transition = 'transform 0.5s ease-in-out';
+                        this.isTransitioning = false;
+                    }, 50);
+                }, 500);
+            } else {
+                setTimeout(() => { this.isTransitioning = false; }, 500);
             }
         }
-        
-        // Initialize sliders when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Desktop sliders
-            new ImageSlider('leftTrack', 2500);   // Left slider changes every 2.5s
-            new ImageSlider('rightTrack', 3500);  // Right slider changes every 3.5s (offset)
-            
-            // Mobile sliders
-            new ImageSlider('mobileLeftTrack', 2800);
-            new ImageSlider('mobileRightTrack', 3200);
-        });
-        
-        // Add smooth 60Hz animation frame updates
-        function smoothUpdate() {
-            // Any additional 60Hz updates can go here
-            requestAnimationFrame(smoothUpdate);
-        }
-        
-        // Start the 60Hz update loop
-        requestAnimationFrame(smoothUpdate);
-    </script>
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        new ImageSlider('leftTrack',        2500);
+        new ImageSlider('rightTrack',       3500);
+        new ImageSlider('mobileLeftTrack',  2800);
+        new ImageSlider('mobileRightTrack', 3200);
+    });
+
+    function smoothUpdate() { requestAnimationFrame(smoothUpdate); }
+    requestAnimationFrame(smoothUpdate);
+</script>
 {% endblock %}
