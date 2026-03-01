@@ -2,517 +2,1002 @@
 {%block contenido%}
 {%block css %}
 
-
 {% endblock %}
 {% load static %}
 
-<!-- Hero Section -->
-<section class="herocliente" style="background-image: url('{% static 'app/img/Fonclientes.png' %}');">
-    <div class="hero-content">
-        <h1>Nuestros clientes, nuestros aliados</h1>
-        <p>Conoce a todas las comunidades que hemos atendido</p>
-        
-    </div>
+<section class="slider-cliente">
+    <img src="{% static 'app/img/webcliente.webp' %}" alt="Cliente" loading="eager" decoding="async">
+    <div class="slider-cliente__fade"></div>
 </section>
 
-<!-- Community Section -->
+<style>
+.slider-cliente {
+    width: 100%;
+    line-height: 0;
+    position: relative;
+    overflow: hidden;
+}
 
-        <div class="community-grid">
-            <div class="community-image">
-                <img src="{% static 'app/img/somos.png'%}" alt="Miembros de la comunidad">
-            </div>
-            <div class="community-content">
-                <h2>Comprometidos con nuestra comunidad</h2>
-                <div class="content-text">
-                    <p>Somos una empresa chilena comprometida con revolucionar la gestión del agua potable en comunidades rurales. Nos especializamos en brindar soluciones tecnológicas avanzadas para las APR, ayudándoles a optimizar la distribución, consumo y monitoreo del agua con la precisión y accesibilidad que necesitan.</p>
-                    <p>Con una visión centrada en la sostenibilidad y el desarrollo comunitario, diseñamos productos que no solo facilitan el manejo eficiente del recurso hídrico, sino que también garantizan durabilidad, bajo costo operativo y soporte continuo. Nuestro medidor inteligente está pensado para satisfacer las necesidades reales de las comunidades, apoyando su crecimiento con innovación y tecnología confiable.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+.slider-cliente img {
+    width: 100%;
+    height: 69vh;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    animation: sliderClienteFadeIn 1.4s ease forwards;
+}
 
+/* Difuminado mínimo solo abajo */
+.slider-cliente__fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(3, 59, 112, 0.95));
+    pointer-events: none;
+}
 
-<section class="regions" style="background-image: url('{% static 'app/img/chile.png'%}');">   
-    <div class="cliente">
-        <h2 class="regions-title">REGIONES</h2>
-        <p class="regions-subtitle">Impacto que se transmite alrededor de todo Chile</p>
-        
-        <nav class="regions-nav">
-            <ul>
-                <li><button class="butte btn_active" data-region="all">Todas</button></li>
-                <li><button class="butte" data-region="Coquimbo">Coquimbo</button></li>
-                <li><button class="butte" data-region="Valparaíso">Valparaíso</button></li>
-                <li><button class="butte" data-region="Metropolitana">Metropolitana</button></li>
-                <li><button class="butte" data-region="O'higgins">O'Higgins</button></li>
-                <li><button class="butte" data-region="Maule">Maule</button></li>
-                <li><button class="butte" data-region="Biobio">BioBío</button></li>
-                <li><button class="butte" data-region="Araucania">Araucanía</button></li>
-                <li><button class="butte" data-region="Los Rios">Los Ríos</button></li>
-                <li><button class="butte" data-region="Los Lagos">Los Lagos</button></li>
-                <li><button class="butte" data-region="Aysen">Aysén</button></li>
-            </ul>
-        </nav>
+@keyframes sliderClienteFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
-        <!-- Contenedor con scroll -->
-        <div class="scroll-container">
-            <div class="map-grid">
-                {% for ap in apr %}
-                    <div class="committees-grid" data-region="{{ap.region}}">
-                        <article class="committee-card">
-                            <div class="imagg">
-                                {% if ap.imagen %}
-                                   <img class="imagensota" src="{{ap.imagen.url}}"  alt="imagen {{ap.comuna}}" loading="lazy">
-                                {% endif %}
-                                <h3 class="chiq">{{ap.nameapr}}</h3>
-                            </div>
-                            <div class="card-footers">
-                                <div class="locations">
-                                    <div class="dettt">
-                                        <h4 class="chiq">{{ap.comuna}}</h4>
-                                        <p>Región {{ap.region}}</p>
-                                    </div>
-                                
-                                    <div class="dettt">
-                                        <a href="{% url 'apr' ap.id %}" class="details-btn">Detalles →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>  
-                {% endfor %}         
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Regions Section -->
+@media (max-width: 768px) {
+    .slider-cliente img { height: 55vw; }
+    .slider-cliente__fade { height: 50px; }
+}
 
+@media (max-width: 480px) {
+    .slider-cliente img { height: auto; }
+    .slider-cliente__fade { height: 40px; }
+}
 
+@media (prefers-reduced-motion: reduce) {
+    .slider-cliente img { animation: none; }
+}
+</style>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll("button[data-region]");
-        const committees = document.querySelectorAll(".committees-grid");
-    
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const selectedRegion = this.getAttribute("data-region");
-                
-                buttons.forEach(btn => btn.classList.remove("active"));
-                this.classList.add("active");
-                committees.forEach(comm => {
-                    if (selectedRegion === "all" || comm.getAttribute("data-region") === selectedRegion) {
-                        comm.style.display = "block"; // Muestra los elementos que coincidan
-                    } else {
-                        comm.style.display = "none"; // Oculta los elementos que no coincidan
-                    }
-                });
-            });
-        });
-    });
-</script>
-<section class="testimoniocliente-seccion">
-    <div class="testimoniocliente-encabezado">
-        <h2>TESTIMONIOS</h2>
-        <p>Experiencias de nuestros clientes</p>
-    </div>
-    
-    <div class="testimoniocliente-contenedor">
-        <button class="testimoniocliente-boton testimoniocliente-boton-prev">&#8249;</button>
-        <button class="testimoniocliente-boton testimoniocliente-boton-next">&#8250;</button>
-        
-        <div class="testimoniocliente-slider">
-            <!-- Testimonio 1 -->
-            <div class="testimoniocliente-tarjeta">
-                <div class="testimoniocliente-video-container">
-                    <iframe src="https://www.youtube.com/embed/1_bwMkz3pqM" title="Miriam Galvez APR La Puntilla de Lonquén" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="testimoniocliente-info">
-                    <div class="testimoniocliente-nombre">Miriam Galvez</div>
-                    <div class="testimoniocliente-ubicacion">APR "La Puntilla de Lonquén" - Isla de Maipo</div>
-                    <p class="testimoniocliente-descripcion">Testimonio sobre la experiencia con nuestros servicios y soluciones para la gestión del agua.</p>
-                </div>
-            </div>
+<!-- ============================================================
+     SECCIÓN REGIONES
+     Desktop: 4 columnas, paginación
+     Móvil:   1 columna, scroll continuo (9 en 9 con botón cargar más)
+     ============================================================ -->
+<!-- Google Font igual que Noticias -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-            <!-- Testimonio 2 -->
-            <div class="testimoniocliente-tarjeta">
-                <div class="testimoniocliente-video-container">
-                    <iframe src="https://www.youtube.com/embed/ZKso4E9MkfY" title="Experiencia con el medidor inteligente de don Manuel Mundaca" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="testimoniocliente-info">
-                    <div class="testimoniocliente-nombre">Manuel Mundaca</div>
-                    <div class="testimoniocliente-ubicacion">Presidente APR Sonora Los Acacios</div>
-                    <p class="testimoniocliente-descripcion">Experiencia con el medidor inteligente y cómo ha mejorado la gestión del agua en su comunidad.</p>
-                </div>
-            </div>
+<!-- HERO ──────────────────────────────────────────────────── -->
+<div class="rg-hero">
+    <div class="rg-hero__glow"></div>
+    <span class="rg-hero__pill">Cobertura Nacional</span>
+    <h2 class="rg-hero__title">Nuestras <em>Regiones</em></h2>
+    <p class="rg-hero__sub">Impacto que se transmite alrededor de todo Chile</p>
 
-            <!-- Testimonio 3 -->
-            <div class="testimoniocliente-tarjeta">
-                <div class="testimoniocliente-video-container">
-                    <iframe src="https://www.youtube.com/embed/5rehLhCMSG8" title="Testimonio Administrativa, Comité APR San Antonio de Naltagua" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="testimoniocliente-info">
-                    <div class="testimoniocliente-nombre">Administrativa</div>
-                    <div class="testimoniocliente-ubicacion">Comité APR "San Antonio de Naltagua" - Isla de Maipo</div>
-                    <p class="testimoniocliente-descripcion">Testimonio sobre la implementación y beneficios de nuestras soluciones para la gestión del agua.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="testimoniocliente-dots"></div>
-</section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const slider = document.querySelector('.testimoniocliente-slider');
-        const slides = document.querySelectorAll('.testimoniocliente-tarjeta');
-        const prevButton = document.querySelector('.testimoniocliente-boton-prev');
-        const nextButton = document.querySelector('.testimoniocliente-boton-next');
-        const dotsContainer = document.querySelector('.testimoniocliente-dots');
-        
-        let currentSlide = 0;
-        let autoplayInterval;
-        const autoplayDelay = 8000; // Más tiempo para ver los videos
-        
-        // Crear indicadores (dots)
-        slides.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('testimoniocliente-dot');
-            if (index === 0) dot.classList.add('activo');
-            dot.addEventListener('click', () => goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
-
-        const dots = document.querySelectorAll('.testimoniocliente-dot');
-        slides[0].classList.add('activo');
-
-        // Pausar todos los videos cuando cambia el slide
-        function pauseAllVideos() {
-            const iframes = document.querySelectorAll('iframe');
-            iframes.forEach(iframe => {
-                const src = iframe.src;
-                iframe.src = src;
-            });
-        }
-
-        function updateDots() {
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('activo', index === currentSlide);
-            });
-        }
-
-        function updateActiveSlide() {
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('activo', index === currentSlide);
-            });
-        }
-
-        function goToSlide(index) {
-            pauseAllVideos();
-            currentSlide = index;
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-            updateDots();
-            updateActiveSlide();
-            resetAutoplay();
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            goToSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            goToSlide(currentSlide);
-        }
-
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, autoplayDelay);
-        }
-
-        function resetAutoplay() {
-            clearInterval(autoplayInterval);
-            startAutoplay();
-        }
-
-        prevButton.addEventListener('click', prevSlide);
-        nextButton.addEventListener('click', nextSlide);
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        slider.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoplayInterval); // Pausar autoplay al tocar
-        }, { passive: true });
-
-        slider.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) {
-                nextSlide();
-            } else if (touchEndX - touchStartX > 50) {
-                prevSlide();
-            }
-            startAutoplay(); // Reiniciar autoplay después del toque
-        }, { passive: true });
-
-        // Iniciar autoplay
-        startAutoplay();
-
-        // Pausar autoplay cuando el mouse está sobre el slider
-        slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-        slider.addEventListener('mouseleave', startAutoplay);
-    });
-</script>
-
-
-<br><br>
-  
-  <div class="videocliente-container">
-    <!-- Video 1 -->
-    <div class="videocliente">
-        <iframe src="https://www.youtube.com/embed/crhAwARwYKw" referrerpolicy="strict-origin" allowfullscreen></iframe>
-        <div class="videocliente-info">
-            <h2>Experiencia con Medidor Inteligente: Roberto</h2>
-            <p>Operador de Asociación de Vecinos La Parva</p>
-        </div>
-    </div>
-
-    <!-- Video 2 -->
-    <div class="videocliente">
-        <iframe src="https://www.youtube.com/embed/ZsXCr20WgWY" referrerpolicy="strict-origin" allowfullscreen></iframe>
-        <div class="videocliente-info">
-            <h2>Experiencia con Medidor Inteligente: Guillermo - Gerente Operaciones</h2>
-            <p>Asociación Vecinos La Parva</p>
-        </div>
-    </div>
-
-    <!-- Video 3 -->
-    <div class="videocliente">
-        <iframe src="https://www.youtube.com/embed/X_d1ceK9G-I" referrerpolicy="strict-origin" allowfullscreen></iframe>
-        <div class="videocliente-info">
-            <h2>Experiencia Punto de Pago APR con "Punto Blue" - Loreto Orellana</h2>
-            <p>Supermercado "Cajuva" - Peñuelas</p>
-        </div>
-    </div>
+    <nav class="rg-hero__nav" aria-label="Filtro por región">
+        <button class="rg-filter rg-filter--on" data-region="all">Todas</button>
+        <button class="rg-filter" data-region="Coquimbo">Coquimbo</button>
+        <button class="rg-filter" data-region="Valparaíso">Valparaíso</button>
+        <button class="rg-filter" data-region="Metropolitana">Metropolitana</button>
+        <button class="rg-filter" data-region="O'higgins">O'Higgins</button>
+        <button class="rg-filter" data-region="Maule">Maule</button>
+        <button class="rg-filter" data-region="Biobio">BioBío</button>
+        <button class="rg-filter" data-region="Araucania">Araucanía</button>
+        <button class="rg-filter" data-region="Los Rios">Los Ríos</button>
+        <button class="rg-filter" data-region="Los Lagos">Los Lagos</button>
+        <button class="rg-filter" data-region="Aysen">Aysén</button>
+    </nav>
 </div>
-<br><br>
-<section>
-    <div class="videocliente-container">
+
+<!-- GRID ──────────────────────────────────────────────────── -->
+<section class="rg-section" style="background-image:url('{% static 'app/img/chile.png'%}');">
+
+    <div class="rg-meta" id="rgCount"></div>
+
+    <div class="rg-grid" id="rgGrid">
+        {% for ap in apr %}
+        <article class="rg-card" data-region="{{ ap.region }}" style="display:none;">
+            <div class="rg-card__img">
+                {% if ap.imagen %}
+                <img src="{{ ap.imagen.url }}" alt="{{ ap.nameapr }}" loading="lazy" decoding="async">
+                {% else %}
+                <div class="rg-card__ph">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" width="32" height="32">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </div>
+                {% endif %}
+                <div class="rg-card__ov"><h3>{{ ap.nameapr }}</h3></div>
+                <span class="rg-card__tag">{{ ap.region }}</span>
+            </div>
+            <div class="rg-card__foot">
+                <div class="rg-card__loc">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>{{ ap.comuna }}</span>
+                </div>
+                <a href="{% url 'apr' ap.id %}" class="rg-card__btn">Ver más →</a>
+            </div>
+        </article>
+        {% empty %}
+        <p class="rg-empty">No hay comunidades registradas aún.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Desktop: paginación numérica -->
+    <div class="rg-pages" id="rgPages"></div>
+
+    <!-- Móvil: botón cargar más -->
+    <div class="rg-loadmore" id="rgLoadMore" style="display:none;">
+        <button id="rgLoadBtn">Cargar más comunidades</button>
+    </div>
+
+    <p class="rg-nores" id="rgNores" style="display:none;">No hay comunidades en esta región.</p>
+
+</section>
+
+<style>
+/* ── Google fonts ─────────────────────────────────────────── */
+.rg-hero__title, .rg-card__ov h3 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+}
+.rg-hero, .rg-section, .rg-filter, .rg-card__foot, .rg-meta {
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.rg-hero {
+    background: #002366;
+    padding: 70px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.rg-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse 55% 70% at 15% 50%, rgba(0,111,255,.35) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 55% at 85% 55%, rgba(0,203,172,.28) 0%, transparent 65%);
+    pointer-events: none;
+}
+.rg-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -100%; width: 300%; height: 2px;
+    background: linear-gradient(90deg, transparent, #006fff, #00cbac, transparent);
+    animation: rgShimmer 4s linear infinite;
+}
+@keyframes rgShimmer {
+    from { transform: translateX(0); }
+    to   { transform: translateX(33.33%); }
+}
+.rg-hero__glow { display: none; }
+
+.rg-hero__pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(0,203,172,.12);
+    border: 1px solid rgba(0,203,172,.35);
+    color: #00cbac;
+    font-size: 10.5px; font-weight: 600; letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 6px 16px; border-radius: 99px; margin-bottom: 20px;
+    position: relative; z-index: 1;
+    animation: rgPillIn 0.9s cubic-bezier(0.22,1,0.36,1) both;
+}
+.rg-hero__pill::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #00cbac; flex-shrink: 0;
+    animation: rgBlink 2s ease-in-out infinite;
+}
+@keyframes rgBlink {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:.4; transform:scale(.65); }
+}
+@keyframes rgPillIn {
+    from { opacity: 0; transform: translateY(-14px) scale(0.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.rg-hero__title { animation: rgTitleIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s both; }
+.rg-hero__sub   { animation: rgTitleIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.28s both; }
+.rg-hero__nav   { animation: rgTitleIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.4s both; }
+@keyframes rgTitleIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.rg-hero__title {
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 800; color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.12; margin: 0 0 0.65rem;
+}
+.rg-hero__title em {
+    font-style: normal;
+    background: linear-gradient(90deg, #2a85ff 0%, #00cbac 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.rg-hero__sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 1.05rem; margin-bottom: 2.2rem;
+}
+
+/* ── Filtros — una sola línea, scroll horizontal en tablet/móvil ── */
+.rg-hero__nav {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start; /* siempre desde la izquierda */
+    gap: 0.55rem;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.3rem 1.5rem 0.8rem;
+    scrollbar-width: none;
+    box-sizing: border-box;
+}
+.rg-hero__nav::-webkit-scrollbar { display: none; }
+
+/* En pantallas grandes centramos */
+@media (min-width: 1100px) {
+    .rg-hero__nav {
+        justify-content: center;
+        overflow-x: visible;
+        padding: 0.3rem 2rem 0.8rem;
+    }
+}
+
+.rg-filter {
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 0.62rem 1.5rem;
+    border-radius: 2rem; cursor: pointer;
+    font-size: 0.97rem; font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+.rg-filter:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff; border-color: rgba(255,255,255,0.45);
+}
+.rg-filter--on {
+    background: linear-gradient(135deg, #006fff, #2a85ff 60%, #00cbac);
+    color: #fff !important; border-color: transparent;
+    box-shadow: 0 4px 18px rgba(0,111,255,0.45);
+    font-size: 1rem;
+}
+
+/* ── Sección ──────────────────────────────────────────────── */
+.rg-section {
+    background-color: #edf2fb;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-blend-mode: normal;
+    padding: 2.5rem 2rem 5rem;
+    width: 100%; box-sizing: border-box;
+}
+
+.rg-meta {
+    text-align: right; font-size: 0.78rem;
+    color: #889; font-weight: 600;
+    margin-bottom: 1.2rem; min-height: 1.2em;
+}
+
+/* ── Grid 4 columnas ──────────────────────────────────────── */
+.rg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.rg-empty, .rg-nores {
+    grid-column: 1/-1; text-align: center;
+    padding: 3rem; color: #99a;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.rg-card {
+    border-radius: 0.85rem; overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(4,14,50,0.09);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.36s ease, transform 0.36s ease, box-shadow 0.24s ease;
+    will-change: transform, opacity;
+}
+.rg-card.rg-in { opacity: 1; transform: translateY(0); }
+.rg-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,111,255,0.14); }
+
+.rg-card__img {
+    position: relative; height: 190px;
+    overflow: hidden; background: #d8e6f8;
+}
+.rg-card__img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+}
+.rg-card:hover .rg-card__img img { transform: scale(1.06); }
+
+.rg-card__ph {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #ddeeff, #d8f5ef);
+    color: #9ab8d8;
+}
+
+.rg-card__ov {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem 0.85rem 0.65rem;
+    background: linear-gradient(transparent, rgba(2,8,32,0.78));
+}
+.rg-card__ov h3 {
+    color: #fff; font-size: 0.85rem;
+    font-weight: 700; line-height: 1.3; margin: 0;
+}
+
+.rg-card__tag {
+    position: absolute; top: 0.55rem; right: 0.55rem;
+    background: rgba(0,0,0,0.45); backdrop-filter: blur(5px);
+    color: rgba(255,255,255,0.9); font-size: 0.6rem;
+    font-weight: 700; letter-spacing: 0.04em;
+    padding: 0.15rem 0.5rem; border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.rg-card__foot {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.68rem 0.85rem;
+    background: linear-gradient(135deg, #006fff 0%, #2a85ff 50%, #00cbac 100%);
+}
+
+.rg-card__loc {
+    display: flex; align-items: center; gap: 0.3rem;
+    color: rgba(255,255,255,0.88); font-size: 0.78rem;
+    font-weight: 500; min-width: 0;
+}
+.rg-card__loc svg { flex-shrink: 0; opacity: 0.75; }
+.rg-card__loc span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.rg-card__btn {
+    flex-shrink: 0; color: #fff;
+    font-size: 0.73rem; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    padding: 0.26rem 0.72rem;
+    border: 1.5px solid rgba(255,255,255,0.38); border-radius: 2rem;
+    transition: background 0.2s, border-color 0.2s;
+}
+.rg-card__btn:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.75); }
+
+/* ── Paginación (desktop) ─────────────────────────────────── */
+.rg-pages {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.4rem; margin-top: 2.5rem; flex-wrap: wrap;
+}
+.rg-pg {
+    min-width: 38px; height: 38px; padding: 0 0.5rem;
+    border-radius: 0.6rem; border: 1.5px solid #dde6f5;
+    background: #fff; color: #445; font-size: 0.85rem;
+    font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s; font-family: 'Inter', sans-serif;
+}
+.rg-pg:hover { border-color: #2a85ff; color: #2a85ff; }
+.rg-pg--on {
+    background: linear-gradient(135deg, #006fff, #2a85ff 60%, #00cbac);
+    color: #fff !important; border-color: transparent;
+    box-shadow: 0 4px 12px rgba(0,111,255,0.3);
+}
+.rg-pg--off { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+.rg-pg-dot { color: #99a; font-size: 0.9rem; padding: 0 0.1rem; }
+
+/* ── Cargar más (móvil) ───────────────────────────────────── */
+.rg-loadmore {
+    text-align: center; margin-top: 2rem;
+}
+.rg-loadmore button {
+    background: linear-gradient(135deg, #006fff, #2a85ff 60%, #00cbac);
+    color: #fff; border: none; border-radius: 2rem;
+    padding: 0.72rem 2rem; font-size: 0.9rem; font-weight: 700;
+    cursor: pointer; box-shadow: 0 4px 16px rgba(0,111,255,0.3);
+    font-family: 'Inter', sans-serif;
+    transition: opacity 0.2s;
+}
+.rg-loadmore button:hover { opacity: 0.88; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1280px) {
+    .rg-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+    .rg-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    /* Móvil: 1 columna, scroll continuo */
+    .rg-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .rg-card__img { height: 210px; }
+    .rg-section {
+        background-image: none !important;
+        padding: 2rem 1rem 3rem;
+    }
+    .rg-hero { padding: 3rem 1rem 2.5rem; }
+    /* Ocultar paginación en móvil */
+    .rg-pages { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rg-card { opacity: 1 !important; transform: none !important; transition: none; }
+}
+</style>
+
+<script>
+(function () {
+    'use strict';
+
+    var PER_DESK = 12;   /* 4×3 filas en desktop */
+    var PER_MOB  = 9;    /* 9 en móvil, luego cargar más */
+    var isMobile = window.innerWidth <= 600;
+
+    var filters  = document.querySelectorAll('.rg-filter');
+    var allCards = Array.from(document.querySelectorAll('.rg-card'));
+    var pagesEl  = document.getElementById('rgPages');
+    var loadMore = document.getElementById('rgLoadMore');
+    var loadBtn  = document.getElementById('rgLoadBtn');
+    var countEl  = document.getElementById('rgCount');
+    var noresEl  = document.getElementById('rgNores');
+
+    var filtered = [];
+    var curPage  = 1;
+    var mobShown = 0;
+
+    window.addEventListener('resize', function () {
+        var was = isMobile;
+        isMobile = window.innerWidth <= 600;
+        if (was !== isMobile) applyFilter(document.querySelector('.rg-filter--on').dataset.region);
+    });
+
+    /* ── Filtrar ── */
+    function getFiltered(r) {
+        return r === 'all' ? allCards.slice() : allCards.filter(function (c) {
+            return c.dataset.region === r;
+        });
+    }
+
+    function applyFilter(r) {
+        curPage = 1; mobShown = 0;
+        filtered = getFiltered(r);
+        isMobile ? renderMobile(true) : renderDesktop(1);
+    }
+
+    /* ── Desktop: paginación ── */
+    function renderDesktop(p) {
+        allCards.forEach(function (c) {
+            c.style.display = 'none';
+            c.classList.remove('rg-in');
+            c.style.transitionDelay = '0ms';
+        });
+        loadMore.style.display = 'none';
+
+        var start = (p - 1) * PER_DESK;
+        var slice = filtered.slice(start, start + PER_DESK);
+
+        if (!slice.length) {
+            noresEl.style.display = 'block';
+            pagesEl.innerHTML = ''; countEl.textContent = '';
+            return;
+        }
+        noresEl.style.display = 'none';
+
+        slice.forEach(function (c, i) {
+            c.style.display = '';
+            c.style.transitionDelay = (i % 4 * 60) + 'ms';
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () { c.classList.add('rg-in'); });
+            });
+        });
+
+        countEl.textContent = 'Mostrando ' + (start + 1) + '–' + Math.min(start + PER_DESK, filtered.length) + ' de ' + filtered.length + ' comunidades';
+        buildPager(p, Math.ceil(filtered.length / PER_DESK));
+    }
+
+    function buildPager(p, tot) {
+        if (tot <= 1) { pagesEl.innerHTML = ''; return; }
+        var h = pgBtn(p - 1, '&#8249;', p === 1, true, false);
+        for (var i = 1; i <= tot; i++) {
+            if (i === 1 || i === tot || (i >= p - 1 && i <= p + 1)) {
+                h += pgBtn(i, i, false, false, i === p);
+            } else if (i === p - 2 || i === p + 2) {
+                h += '<span class="rg-pg-dot">…</span>';
+            }
+        }
+        h += pgBtn(p + 1, '&#8250;', p === tot, true, false);
+        pagesEl.innerHTML = h;
+        pagesEl.querySelectorAll('.rg-pg:not(.rg-pg--off)').forEach(function (b) {
+            b.addEventListener('click', function () {
+                curPage = parseInt(b.dataset.p);
+                renderDesktop(curPage);
+                /* No scroll — el usuario se queda donde está */
+            });
+        });
+    }
+
+    function pgBtn(p, lbl, off, arr, on) {
+        var c = 'rg-pg' + (arr ? ' rg-pg--arr' : '') + (off ? ' rg-pg--off' : '') + (on ? ' rg-pg--on' : '');
+        return '<button class="' + c + '" data-p="' + p + '">' + lbl + '</button>';
+    }
+
+    /* ── Móvil: cargar más ── */
+    function renderMobile(reset) {
+        pagesEl.innerHTML = '';
+        if (reset) {
+            allCards.forEach(function (c) {
+                c.style.display = 'none';
+                c.classList.remove('rg-in');
+                c.style.transitionDelay = '0ms';
+            });
+            mobShown = 0;
+        }
+
+        var slice = filtered.slice(mobShown, mobShown + PER_MOB);
+        if (!slice.length && mobShown === 0) {
+            noresEl.style.display = 'block';
+            loadMore.style.display = 'none';
+            countEl.textContent = '';
+            return;
+        }
+        noresEl.style.display = 'none';
+
+        slice.forEach(function (c, i) {
+            c.style.display = '';
+            c.style.transitionDelay = (i * 55) + 'ms';
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () { c.classList.add('rg-in'); });
+            });
+        });
+        mobShown += slice.length;
+
+        countEl.textContent = 'Mostrando ' + mobShown + ' de ' + filtered.length + ' comunidades';
+        loadMore.style.display = mobShown < filtered.length ? 'block' : 'none';
+    }
+
+    loadBtn && loadBtn.addEventListener('click', function () { renderMobile(false); });
+
+    /* ── Botones de región ── */
+    filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            filters.forEach(function (b) { b.classList.remove('rg-filter--on'); });
+            btn.classList.add('rg-filter--on');
+            applyFilter(btn.dataset.region);
+        });
+    });
+
+    /* ── Inicio ── */
+    applyFilter('all');
+}());
+</script>
+
+<!-- ============================================================
+     SECCIÓN TESTIMONIOS — 9 videos, tema claro, sin cambiar src
+     Reemplaza las secciones de testimonios y videocliente
+     ============================================================ -->
+
+<section class="tv">
+
+    <!-- Header claro -->
+    <div class="tv__hero">
+        <span class="tv__pill"><i></i> Comunidades que nos respaldan</span>
+        <h2 class="tv__title">Experiencias <em>reales</em></h2>
+        <p class="tv__sub">Descubre lo que dicen quienes ya confían en Medidor Inteligente</p>
+    </div>
+
+    <!-- Grid 3 columnas -->
+    <div class="tv__grid">
+
         <!-- Video 1 -->
-        <div class="videocliente">
-            <iframe src="https://www.youtube.com/embed/MwuYC75PbNs" referrerpolicy="strict-origin" allowfullscreen></iframe>
-            <div class="videocliente-info">
-                <h2>Testimonio Medidor Inteligente: Luis Parada</h2>
-                <p>Presidente APR «Batuco – Santa Sara», Lampa R. M.</p>
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/1_bwMkz3pqM"
+                    title="Miriam Galvez APR La Puntilla de Lonquén"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">MG</div>
+                <div>
+                    <div class="tv__name">Miriam Galvez</div>
+                    <div class="tv__role">APR "La Puntilla de Lonquén" · Isla de Maipo</div>
+                </div>
             </div>
         </div>
 
         <!-- Video 2 -->
-        <div class="videocliente">
-            <iframe src="https://www.youtube.com/embed/lQpcUDDLqRA" referrerpolicy="strict-origin" allowfullscreen></iframe>
-            <div class="videocliente-info">
-                <h2>Experiencia con Medidor Inteligente: Rodrigo Torres</h2>
-                <p>Subgerente Relaciones con Comunidad, Agrosuper</p>
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/ZKso4E9MkfY"
+                    title="Manuel Mundaca Medidor Inteligente"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">MM</div>
+                <div>
+                    <div class="tv__name">Manuel Mundaca</div>
+                    <div class="tv__role">Presidente APR Sonora Los Acacios</div>
+                </div>
             </div>
         </div>
 
         <!-- Video 3 -->
-        <div class="videocliente">
-            <iframe src="https://www.youtube.com/embed/vpby-GBccvs" referrerpolicy="strict-origin" allowfullscreen></iframe>
-            <div class="videocliente-info">
-                <h2>Experiencia con Medidor Inteligente - Joaquín Vicuña</h2>
-                <p>Presidente APR "El Romeral" - Codegua</p>
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/5rehLhCMSG8"
+                    title="Administrativa Comité APR San Antonio de Naltagua"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">CA</div>
+                <div>
+                    <div class="tv__name">Administrativa</div>
+                    <div class="tv__role">Comité APR "San Antonio de Naltagua" · Isla de Maipo</div>
+                </div>
             </div>
         </div>
+
+        <!-- Video 4 -->
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/crhAwARwYKw"
+                    title="Roberto Asociación de Vecinos La Parva"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">RO</div>
+                <div>
+                    <div class="tv__name">Roberto</div>
+                    <div class="tv__role">Operador · Asociación de Vecinos La Parva</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video 5 -->
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/ZsXCr20WgWY"
+                    title="Guillermo Gerente Operaciones La Parva"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">GU</div>
+                <div>
+                    <div class="tv__name">Guillermo</div>
+                    <div class="tv__role">Gerente Operaciones · Asociación Vecinos La Parva</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video 6 -->
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/X_d1ceK9G-I"
+                    title="Loreto Orellana Punto Blue Peñuelas"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">LO</div>
+                <div>
+                    <div class="tv__name">Loreto Orellana</div>
+                    <div class="tv__role">Supermercado "Cajuva" · Peñuelas</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video 7 -->
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/MwuYC75PbNs"
+                    title="Luis Parada APR Batuco Santa Sara"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">LP</div>
+                <div>
+                    <div class="tv__name">Luis Parada</div>
+                    <div class="tv__role">Presidente APR "Batuco – Santa Sara" · Lampa</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video 8 -->
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/lQpcUDDLqRA"
+                    title="Rodrigo Torres Agrosuper"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">RT</div>
+                <div>
+                    <div class="tv__name">Rodrigo Torres</div>
+                    <div class="tv__role">Subgerente Relaciones con Comunidad · Agrosuper</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video 9 -->
+        <div class="tv__card">
+            <div class="tv__frame">
+                <iframe src="https://www.youtube.com/embed/vpby-GBccvs"
+                    title="Joaquín Vicuña APR El Romeral Codegua"
+                    referrerpolicy="strict-origin"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <div class="tv__info">
+                <div class="tv__avatar">JV</div>
+                <div>
+                    <div class="tv__name">Joaquín Vicuña</div>
+                    <div class="tv__role">Presidente APR "El Romeral" · Codegua</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /grid -->
+
+    <!-- CTA YouTube -->
+    <div class="tv__cta">
+        <a href="https://www.youtube.com/@MedidorInteligenteAPR" target="_blank" rel="noopener" class="tv__yt-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/>
+            </svg>
+            Conoce nuestro canal de YouTube
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+        </a>
     </div>
 
-    <a href="https://www.youtube.com/@MedidorInteligenteAPR" class="youtube-button">Conoce nuestro canal de Youtube ↗</a>
-   
 </section>
-    <script>
-        // El JavaScript se mantiene igual que en la versión anterior
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.testimonials-slider');
-            const slides = document.querySelectorAll('.testimonial-card');
-            const prevButton = document.querySelector('.prev-button');
-            const nextButton = document.querySelector('.next-button');
-            const dotsContainer = document.querySelector('.slider-dots');
-            
-            let currentSlide = 0;
-            let autoplayInterval;
-            const autoplayDelay = 5000;
 
-            slides.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
+<style>
+/* ── Sección — tema CLARO ────────────────────────────────── */
+.tv {
+    background: linear-gradient(
+  135deg,
+  #f5f7fc 0%,
+  #e8eefc 50%,
+  #dff6f2 100%
+);
+    padding: 5rem 2rem 4rem;
+    font-family: 'Sora', 'Inter', system-ui, sans-serif;
+    position: relative;
+}
 
-            const dots = document.querySelectorAll('.dot');
-            slides[0].classList.add('active');
+/* Línea decorativa arriba */
+.tv::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #006fff, #2a85ff, #00cbac);
+}
 
-            function updateDots() {
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
-                });
+/* ── Header ──────────────────────────────────────────────── */
+.tv__hero {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.tv__pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(0,111,255,0.07);
+    border: 1px solid rgba(0,111,255,0.2);
+    color: #006fff;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 6px 16px; border-radius: 99px; margin-bottom: 1rem;
+}
+.tv__pill i {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #00cbac; display: inline-block;
+    animation: tvBlink 2s ease-in-out infinite;
+}
+@keyframes tvBlink {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:.35; transform:scale(.6); }
+}
+
+.tv__title {
+    font-family: 'Playfair Display', 'Lora', 'Georgia', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700; color: #06102b;
+    letter-spacing: -0.02em; line-height: 1.15;
+    margin: 0 0 0.6rem;
+}
+.tv__title em {
+    font-style: normal;
+    background: linear-gradient(90deg, #006fff, #00cbac);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.tv__sub {
+    color: #778; font-size: 1rem; font-weight: 300;
+}
+
+/* ── Grid 3 columnas ─────────────────────────────────────── */
+.tv__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.tv__card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(6,16,43,0.07);
+    border: 1px solid rgba(6,16,43,0.05);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.25s ease;
+    will-change: transform, opacity;
+}
+.tv__card.tv--in { opacity: 1; transform: translateY(0); }
+.tv__card:hover {
+    box-shadow: 0 12px 32px rgba(0,111,255,0.12);
+    transform: translateY(-4px);
+}
+
+/* Frame video proporción 16:9 */
+.tv__frame {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #0a1628;
+}
+.tv__frame iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none; display: block;
+}
+
+/* Info debajo del video */
+.tv__info {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.1rem;
+    border-top: 1px solid #f0f3f9;
+}
+
+.tv__avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #006fff, #00cbac);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 0.68rem; font-weight: 800;
+    flex-shrink: 0; letter-spacing: 0.03em;
+}
+
+.tv__name {
+    color: #06102b;
+    font-size: 0.88rem; font-weight: 700;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tv__role {
+    color: #889;
+    font-size: 0.72rem; font-weight: 400;
+    margin-top: 0.1rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ── CTA YouTube ─────────────────────────────────────────── */
+.tv__cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+.tv__yt-btn {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: #ff0000;
+    color: #fff; text-decoration: none;
+    padding: 0.78rem 1.8rem;
+    border-radius: 2rem;
+    font-size: 0.92rem; font-weight: 700;
+    box-shadow: 0 4px 18px rgba(255,0,0,0.28);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.tv__yt-btn:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,0,0,0.36);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .tv__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .tv__grid { grid-template-columns: 1fr; gap: 1.1rem; }
+    .tv { padding: 3.5rem 1rem 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tv__card { opacity: 1 !important; transform: none !important; transition: none; }
+    .tv__pill i { animation: none; }
+}
+</style>
+
+<script>
+(function () {
+    /* Animación de entrada con IntersectionObserver */
+    var cards = document.querySelectorAll('.tv__card');
+    if (!('IntersectionObserver' in window)) {
+        cards.forEach(function(c){ c.classList.add('tv--in'); });
+        return;
+    }
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) {
+                var card = e.target;
+                var idx  = parseInt(card.dataset.idx || 0);
+                setTimeout(function(){ card.classList.add('tv--in'); }, idx % 3 * 80);
+                obs.unobserve(card);
             }
-
-            function updateActiveSlide() {
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentSlide);
-                });
-            }
-
-            function goToSlide(index) {
-                currentSlide = index;
-                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                updateDots();
-                updateActiveSlide();
-                resetAutoplay();
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                goToSlide(currentSlide);
-            }
-
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                goToSlide(currentSlide);
-            }
-
-            function startAutoplay() {
-                autoplayInterval = setInterval(nextSlide, autoplayDelay);
-            }
-
-            function resetAutoplay() {
-                clearInterval(autoplayInterval);
-                startAutoplay();
-            }
-
-            prevButton.addEventListener('click', prevSlide);
-            nextButton.addEventListener('click', nextSlide);
-
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            slider.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
-            slider.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchStartX - touchEndX > 50) {
-                    nextSlide();
-                } else if (touchEndX - touchStartX > 50) {
-                    prevSlide();
-                }
-            }, { passive: true });
-
-            startAutoplay();
-
-            slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-            slider.addEventListener('mouseleave', startAutoplay);
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.testimonials-slider');
-            const slides = document.querySelectorAll('.testimonial-card');
-            const prevButton = document.querySelector('.prev-button');
-            const nextButton = document.querySelector('.next-button');
-            const dotsContainer = document.querySelector('.slider-dots');
-            
-            let currentSlide = 0;
-            let autoplayInterval;
-            const autoplayDelay = 5000;
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-            // Crear indicadores
-            slides.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
+    cards.forEach(function(c, i) {
+        c.dataset.idx = i;
+        obs.observe(c);
+    });
+}());
+</script>
 
-            const dots = document.querySelectorAll('.dot');
 
-            // Establecer slide activo inicial
-            slides[0].classList.add('active');
-
-            function updateDots() {
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
-                });
-            }
-
-            function updateActiveSlide() {
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentSlide);
-                });
-            }
-
-            function goToSlide(index) {
-                currentSlide = index;
-                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                updateDots();
-                updateActiveSlide();
-                resetAutoplay();
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                goToSlide(currentSlide);
-            }
-
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                goToSlide(currentSlide);
-            }
-
-            function startAutoplay() {
-                autoplayInterval = setInterval(nextSlide, autoplayDelay);
-            }
-
-            function resetAutoplay() {
-                clearInterval(autoplayInterval);
-                startAutoplay();
-            }
-
-            // Event Listeners
-            prevButton.addEventListener('click', prevSlide);
-            nextButton.addEventListener('click', nextSlide);
-
-            // Touch events
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            slider.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
-            slider.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchStartX - touchEndX > 50) {
-                    nextSlide();
-                } else if (touchEndX - touchStartX > 50) {
-                    prevSlide();
-                }
-            }, { passive: true });
-
-            // Iniciar autoplay
-            startAutoplay();
-
-            // Pausar autoplay en hover
-            slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-            slider.addEventListener('mouseleave', startAutoplay);
-        });
-    </script>
 {% endblock %}
 
 

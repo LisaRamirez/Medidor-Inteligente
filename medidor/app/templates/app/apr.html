@@ -1,74 +1,343 @@
-{%extends 'app/base.html'%}.pres
+{%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
 
-<div class="apra">
-    <div class="titlle">
-        <h1 class="titlle">{{appr.nameapr}}</h1>
-        <h3 class="titlle">Región de {{appr.region}}</h3>   
-    
-    </div>
-</div>
-<br>
-<br>
-<div class="ñeee">
-    <br>
-    <div>
-        <div class="ñapa"> 
-            {% if appr.imagen %}
-                <img class="imagenn" src="{{appr.imagen.url}}" alt="imagen {{appr.comuna}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="ap-hero">
+    {% if appr.imagen %}
+    <div class="ap-hero__bg" style="background-image:url('{{appr.imagen.url}}');"></div>
+    {% else %}
+    <div class="ap-hero__bg ap-hero__bg--fallback"></div>
+    {% endif %}
+    <div class="ap-hero__overlay"></div>
+    <div class="ap-hero__shimmer"></div>
+    <div class="ap-hero__content">
+        <span class="ap-pill"><i></i> APR - Agua Potable Rural</span>
+        <h1 class="ap-hero__name">{{appr.nameapr}}</h1>
+        <div class="ap-hero__tags">
+            <span class="ap-tag">Region de {{appr.region}}</span>
+            {% if appr.comuna %}
+            <span class="ap-tag">{{appr.comuna}}</span>
+            {% endif %}
+            {% if appr.socios %}
+            <span class="ap-tag ap-tag--accent">{{appr.socios}} socios</span>
             {% endif %}
         </div>
-
+        {% if appr.imagen %}
+        <button class="ap-hero__zoom" id="apZoomBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+            Ver imagen completa
+        </button>
+        {% endif %}
     </div>
-    <br>
-    <br>
-    <div class="conta">
-        
-        <div class="infore">
-                <h1 class="tittlle">Directorio:</h1>
-                <p class="pres">Presidente: {{appr.presidente}}</p>
-                <p class="pres">Secretario: {{appr.secretario}}</p>
-                <p class="pres">Tesorera/o: {{appr.tesorero}}</p>
-                <h1 Class="tittlle">Redes Sociales:</h1>
-                <div class="social-icons">
-                    
-                    <a class="pres" href="{{appr.facebook}}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                    </svg> Facebook</a>
-                    <br>
-                    
-                    <a class="pres" href="{{appr.twitter}}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15"/>
-                        </svg> Twitter</a>
-                    <br>
-                    
-                    <a class="pres" href="{{appr.instagram}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                    </svg> Instagram</a>
-                        
-                    <br>
-                    
-                </div>
-        </div>
-        
+</div>
 
-        
-        <div class="infore">
-                <h1 class="tittlle">Información de Contacto:</h1>
-                <p class="pres">📍 Dirección: {{appr.direccion}}, Región de {{appr.region}}.</p>
-                <p class="pres">📞 Teléfono: {{appr.phone}}</p>
-                <p class="pres">📧 Correo: <a class = "pres" href="https://mail.google.com/mail/?view=cm&fs=1&to={{appr.correo}}&su=Consulta&body=.">{{appr.correo}}</a></p>
-                <p class="pres">👥 Cantidad de Socios: {{appr.socios}} Socios.</p>
-                <h1 class="tittlle">Horarios de Atención:</h1>
-                <p class="pres">🕒 {{appr.horario}}</p>
+<div class="ap-body">
+    <div class="ap-body__shimmer"></div>
+    <div class="ap-particles" aria-hidden="true">
+        <span class="ap-p ap-p--1"></span>
+        <span class="ap-p ap-p--2"></span>
+        <span class="ap-p ap-p--3"></span>
+        <span class="ap-p ap-p--4"></span>
+        <span class="ap-p ap-p--5"></span>
+    </div>
+
+    <div class="ap-grid">
+
+        <div class="ap-card ap-card--blue">
+            <div class="ap-card__top">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#5aafff" stroke-width="2" width="22" height="22">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+                <h2>Directorio</h2>
+            </div>
+            <div class="ap-card__body">
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Presidente</span>
+                    <span class="ap-row__val">{{appr.presidente}}</span>
+                </div>
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Secretario/a</span>
+                    <span class="ap-row__val">{{appr.secretario}}</span>
+                </div>
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Tesorero/a</span>
+                    <span class="ap-row__val">{{appr.tesorero}}</span>
+                </div>
+            </div>
+            <div class="ap-card__top" style="margin-top:0.5rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#b794f4" stroke-width="2" width="22" height="22">
+                    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+                <h2>Redes Sociales</h2>
+            </div>
+            <div class="ap-card__body ap-card__body--social">
+                <a class="ap-social ap-social--fb" href="{{appr.facebook}}" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Facebook
+                </a>
+                <a class="ap-social ap-social--tw" href="{{appr.twitter}}" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Twitter / X
+                </a>
+                <a class="ap-social ap-social--ig" href="{{appr.instagram}}" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                    Instagram
+                </a>
+            </div>
+        </div>
+
+        <div class="ap-card ap-card--teal">
+            <div class="ap-card__top">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00cbac" stroke-width="2" width="22" height="22">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+                </svg>
+                <h2>Informacion de Contacto</h2>
+            </div>
+            <div class="ap-card__body">
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Direccion</span>
+                    <span class="ap-row__val">{{appr.direccion}}, Region de {{appr.region}}</span>
+                </div>
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Telefono</span>
+                    <span class="ap-row__val">{{appr.phone}}</span>
+                </div>
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Correo</span>
+                    <a class="ap-row__val ap-link" href="https://mail.google.com/mail/?view=cm&fs=1&to={{appr.correo}}&su=Consulta&body=.">{{appr.correo}}</a>
+                </div>
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Socios</span>
+                    <span class="ap-row__val">{{appr.socios}} Socios</span>
+                </div>
+                <div class="ap-row">
+                    <span class="ap-row__lbl">Horario</span>
+                    <span class="ap-row__val">{{appr.horario}}</span>
+                </div>
             </div>
         </div>
 
     </div>
-    <br>
-    <br>
 </div>
 
+{% if appr.imagen %}
+<div class="ap-lb" id="apLightbox">
+    <div class="ap-lb__bd" id="apLbBd"></div>
+    <button class="ap-lb__close" id="apLbClose">X</button>
+    <div class="ap-lb__box">
+        <img src="{{appr.imagen.url}}" alt="{{appr.nameapr}}" class="ap-lb__img">
+        <p class="ap-lb__cap">{{appr.nameapr}} - Region de {{appr.region}}</p>
+    </div>
+</div>
+{% endif %}
+
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+.ap-hero, .ap-body, .ap-card, .ap-pill, .ap-social, .ap-row { font-family: 'Sora', system-ui, sans-serif; }
+.ap-hero__name { font-family: 'Playfair Display', Georgia, serif; }
+
+.ap-hero {
+    position: relative; width: 100%;
+    height: 75vh; min-height: 440px; max-height: 700px;
+    overflow: hidden; display: flex; align-items: flex-end;
+}
+.ap-hero__bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 8s ease;
+}
+.ap-hero:hover .ap-hero__bg { transform: scale(1.03); }
+.ap-hero__bg--fallback { background: linear-gradient(135deg, #002366 0%, #0a4fa6 60%, #00cbac 100%); }
+.ap-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,10,40,0.1) 0%, rgba(0,10,40,0.5) 50%, rgba(0,10,40,0.92) 100%);
+}
+.ap-hero__shimmer {
+    position: absolute; bottom: 0; left: -100%; width: 300%; height: 2px;
+    background: linear-gradient(90deg, transparent, #006fff, #00cbac, transparent);
+    animation: apShimmer 4s linear infinite;
+}
+@keyframes apShimmer { from { transform: translateX(0); } to { transform: translateX(33.33%); } }
+.ap-hero__content {
+    position: relative; z-index: 2; width: 100%;
+    padding: 0 3rem 3.5rem;
+    display: flex; flex-direction: column; align-items: flex-start;
+    animation: apFadeUp 0.8s ease both;
+}
+@keyframes apFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.ap-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(0,203,172,.15); border: 1px solid rgba(0,203,172,.4);
+    color: #00cbac; font-size: 10px; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 99px; margin-bottom: 1rem;
+}
+.ap-pill i {
+    width: 6px; height: 6px; border-radius: 50%; background: #00cbac; display: inline-block;
+    animation: apBlink 2s ease-in-out infinite;
+}
+@keyframes apBlink { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+.ap-hero__name {
+    font-size: clamp(1.8rem, 5vw, 3.8rem); font-weight: 800; color: #fff;
+    letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 1rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.ap-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
+.ap-tag {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.9); font-size: 0.82rem; font-weight: 500;
+    padding: 0.32rem 0.9rem; border-radius: 99px;
+}
+.ap-tag--accent { background: rgba(0,203,172,0.2); border-color: rgba(0,203,172,0.45); color: #00cbac; }
+.ap-hero__zoom {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600;
+    padding: 0.4rem 1rem; border-radius: 99px; cursor: pointer;
+    font-family: 'Sora', system-ui, sans-serif; transition: background 0.2s;
+}
+.ap-hero__zoom:hover { background: rgba(255,255,255,0.2); color: #fff; }
+
+.ap-body {
+    background: linear-gradient(160deg, #0b1d5e 0%, #083080 35%, #064d7d 65%, #024d54 100%);
+    padding: 3.5rem 2rem 5.5rem; position: relative; overflow: hidden;
+}
+.ap-body::before {
+    content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+    width: 500px; height: 500px; top: -150px; left: -100px;
+    background: radial-gradient(circle, rgba(0,111,255,0.2) 0%, transparent 70%);
+    animation: apOrb 8s ease-in-out infinite alternate;
+}
+.ap-body::after {
+    content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+    width: 420px; height: 420px; bottom: -100px; right: -80px;
+    background: radial-gradient(circle, rgba(0,203,172,0.16) 0%, transparent 70%);
+    animation: apOrb 8s ease-in-out infinite alternate; animation-delay: -4s;
+}
+@keyframes apOrb { from { transform: scale(1); } to { transform: scale(1.2) translate(20px,15px); } }
+.ap-body__shimmer {
+    position: absolute; top: 0; left: -100%; width: 300%; height: 2px;
+    background: linear-gradient(90deg, transparent, #006fff, #00cbac, transparent);
+    animation: apShimmer 4s linear infinite;
+}
+.ap-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.ap-p { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.05); animation: apFloat linear infinite; }
+.ap-p--1 { width:180px;height:180px;top:10%;left:5%;animation-duration:14s; }
+.ap-p--2 { width:100px;height:100px;top:55%;left:20%;animation-duration:18s;animation-delay:-5s;background:rgba(0,203,172,0.07); }
+.ap-p--3 { width:240px;height:240px;top:20%;right:8%;animation-duration:20s;animation-delay:-8s; }
+.ap-p--4 { width:70px;height:70px;top:75%;right:15%;animation-duration:12s;animation-delay:-3s; }
+.ap-p--5 { width:130px;height:130px;top:45%;left:50%;animation-duration:16s;animation-delay:-10s; }
+@keyframes apFloat { 0%,100% { transform:translateY(0); opacity:.6; } 50% { transform:translateY(-35px); opacity:1; } }
+
+.ap-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+}
+.ap-card {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-radius: 1rem; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: apFadeUp 0.5s ease both;
+}
+.ap-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+.ap-card--blue { border-left: 4px solid #5aafff; }
+.ap-card--teal { border-left: 4px solid #00cbac; animation-delay: 0.1s; }
+.ap-card__top {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1.1rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.ap-card__top h2 { font-size: 1rem; font-weight: 700; color: #fff; margin: 0; }
+.ap-card__body { padding: 0.3rem 0; }
+.ap-row {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    padding: 0.7rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.15s;
+}
+.ap-row:last-child { border-bottom: none; }
+.ap-row:hover { background: rgba(255,255,255,0.05); }
+.ap-row__lbl {
+    min-width: 110px; flex-shrink: 0; font-size: 0.72rem; font-weight: 700;
+    color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.04em; padding-top: 0.1rem;
+}
+.ap-row__val { font-size: 0.92rem; color: rgba(255,255,255,0.88); font-weight: 500; line-height: 1.5; }
+.ap-link { color: #5aafff; text-decoration: none; }
+.ap-link:hover { color: #00cbac; text-decoration: underline; }
+.ap-card__body--social { display: flex; flex-direction: column; }
+.ap-social {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.8rem 1.4rem; text-decoration: none;
+    color: rgba(255,255,255,0.82); font-size: 0.88rem; font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.15s, transform 0.2s;
+}
+.ap-social:last-child { border-bottom: none; }
+.ap-social:hover { background: rgba(255,255,255,0.07); transform: translateX(4px); color: #fff; }
+.ap-social--fb svg { color: #4e9fff; }
+.ap-social--tw svg { color: #ccc; }
+.ap-social--ig svg { color: #f06292; }
+
+.ap-lb {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.ap-lb.ap-lb--open { opacity: 1; pointer-events: all; }
+.ap-lb__bd { position: absolute; inset: 0; background: rgba(0,5,20,0.92); backdrop-filter: blur(8px); cursor: zoom-out; }
+.ap-lb__box { position: relative; z-index: 1; max-width: min(92vw,1000px); text-align: center; transform: scale(0.92); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+.ap-lb.ap-lb--open .ap-lb__box { transform: scale(1); }
+.ap-lb__img { max-width: 100%; max-height: 82vh; border-radius: 0.8rem; display: block; box-shadow: 0 24px 80px rgba(0,0,0,0.7); margin: 0 auto; }
+.ap-lb__cap { color: rgba(255,255,255,0.45); font-size: 0.8rem; margin-top: 0.8rem; }
+.ap-lb__close {
+    position: fixed; top: 1rem; right: 1rem; z-index: 2;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.ap-lb__close:hover { background: rgba(255,255,255,0.22); }
+
+@media (max-width: 768px) {
+    .ap-grid { grid-template-columns: 1fr; }
+    .ap-hero { height: 60vh; min-height: 360px; }
+    .ap-hero__content { padding: 0 1.2rem 2rem; }
+    .ap-body { padding: 2rem 1rem 3rem; }
+}
+@media (max-width: 480px) {
+    .ap-hero__name { font-size: 1.7rem; }
+    .ap-row { flex-direction: column; gap: 0.1rem; }
+    .ap-row__lbl { min-width: unset; }
+}
+</style>
+
+<script>
+(function () {
+    var lb   = document.getElementById('apLightbox');
+    var zBtn = document.getElementById('apZoomBtn');
+    var cls  = document.getElementById('apLbClose');
+    var bd   = document.getElementById('apLbBd');
+    function open() { if(lb){ lb.classList.add('ap-lb--open'); document.body.style.overflow='hidden'; } }
+    function shut() { if(lb){ lb.classList.remove('ap-lb--open'); document.body.style.overflow=''; } }
+    if(zBtn) zBtn.addEventListener('click', open);
+    if(cls)  cls.addEventListener('click', shut);
+    if(bd)   bd.addEventListener('click', shut);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') shut(); });
+}());
+</script>
 
 {% endblock %}

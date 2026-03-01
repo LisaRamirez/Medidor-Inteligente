@@ -119,56 +119,48 @@ logger = logging.getLogger('django')
 
 def clientes(request):
     try:
-        # Validación de parámetros inesperados en la URL
         if request.GET or request.POST:
             messages.error(request, 'Parámetros no permitidos en la solicitud.')
-            return redirect('app/error_404')  # Redirige a la página de error
-        
-        # Obtener todos los objetos de Apr
+            return redirect('home')  # ✅ usa el name de la URL
+
         appr = Apr.objects.all()
         data = {'apr': appr}
-        
         return render(request, 'app/clientes.html', data)
 
     except Exception as e:
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema con tu solicitud.')
-        return redirect('app/error_404')  # Redirige a la página de error
+        return redirect('home')  # ✅
+
 
 def filtrar_apr(request):
     try:
-        # Verificar si hay parámetros GET inesperados
         if not request.GET.get('region'):
             messages.error(request, 'Parámetros no permitidos o faltantes en la solicitud.')
-            return redirect('app/error_404')  # Redirige a la página de error
+            return redirect('home')  # ✅
 
-        # Obtener la región del parámetro GET
         region = request.GET.get('region')
-        
-        # Filtrar los registros por región (ignorando mayúsculas/minúsculas)
         aprs = Apr.objects.filter(region__iexact=region).values(
             'id', 'nameapr', 'comuna', 'region', 'imagen'
         )
-        
-        # Retornar JSON con los datos filtrados
         return JsonResponse(list(aprs), safe=False)
 
     except Exception as e:
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema con tu solicitud.')
-        return redirect('app/error_404')  # Redirige a la página de error
+        return redirect('home')  # ✅
+
 
 def apr(request, apr_id):
     try:
-        apppr = get_object_or_404(Apr, id=apr_id)  # get_object_or_404 ya maneja errores
+        apppr = get_object_or_404(Apr, id=apr_id)
         data = {'appr': apppr}
         return render(request, 'app/apr.html', data)
-        
+
     except Exception as e:
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema al cargar la información.')
-        return redirect('app/error_404')  # Redirige a una página de error
-
+        return redirect('home')  # ✅
 def home(request):
     if request.method == 'POST':
         try:
