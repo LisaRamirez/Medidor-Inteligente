@@ -2,317 +2,1418 @@
 {%block contenido%}
 {% load static %}
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-<section class="herosomos" style="background-image: url('{% static 'app/img/slider3.jpg' %}');">
-    <h1>Quienes somos</h1>
-    <h2>Conoce más de nuestra empresa</h2>
+  /* HERO */
+  .nosotros-hero {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    max-height: 75vh;
+    min-height: 320px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end; /* texto abajo */
+  }
+
+  .nosotros-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    /* Zoom muy sutil y lento - profesional */
+    animation: nosotrosZoom 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes nosotrosZoom {
+    from { transform: scale(1.0); }
+    to   { transform: scale(1.04); }
+  }
+
+  /* Difuminado de abajo hacia arriba - no tapa rostros */
+  .nosotros-hero-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 28, 80, 0.88) 0%,
+      rgba(10, 28, 80, 0.55) 35%,
+      rgba(10, 28, 80, 0.0) 65%
+    );
+  }
+
+  /* Contenido pegado abajo */
+  .nosotros-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nosotros-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 180, 160, 0.18);
+    border: 1px solid rgba(0, 212, 184, 0.45);
+    border-radius: 50px;
+    padding: 6px 16px;
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+    animation: nosotrosFadeUp 0.8s ease 0.1s both;
+  }
+
+  .nosotros-hero-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #00d4b8;
+    animation: nosotrosPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes nosotrosPulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.35; transform:scale(0.6); }
+  }
+
+  .nosotros-hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+    animation: nosotrosFadeUp 0.9s ease 0.25s both;
+  }
+
+  .nosotros-hero-content h1 span { color: #00d4b8; }
+
+  .nosotros-hero-line {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, #00b4a0, #00d4b8);
+    border-radius: 2px;
+    margin-bottom: 0.8rem;
+    animation: nosotrosLine 1s ease 0.5s both;
+  }
+
+  @keyframes nosotrosLine {
+    from { width: 0; opacity: 0; }
+    to   { width: 48px; opacity: 1; }
+  }
+
+  .nosotros-hero-content h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.78);
+    animation: nosotrosFadeUp 0.9s ease 0.4s both;
+  }
+
+  @keyframes nosotrosFadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .nosotros-hero-wave {
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 100%; overflow: hidden; line-height: 0;
+    z-index: 3;
+  }
+  .nosotros-hero-wave svg {
+    display: block; width: 100%; height: 55px;
+  }
+
+  @media (max-width: 768px) {
+    .nosotros-hero {
+      height: 100vw;
+      max-height: 100vw;
+      min-height: 320px;
+      align-items: flex-end;
+    }
+    .nosotros-hero-bg {
+      background-size: cover;
+      background-position: center 30%;
+      animation: none;
+    }
+    .nosotros-hero-fade {
+      background: linear-gradient(
+        to top,
+        rgba(10, 28, 80, 0.96) 0%,
+        rgba(10, 28, 80, 0.65) 45%,
+        rgba(10, 28, 80, 0.0)  70%
+      );
+    }
+    .nosotros-hero-content {
+      padding: 0 1.2rem 1.8rem;
+      width: 100%;
+    }
+    .nosotros-hero-content h1 {
+      font-size: clamp(1.6rem, 7vw, 2.2rem);
+    }
+    .nosotros-hero-content h2 {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* QUIENES SOMOS HITO */
+  .nosotros-quienes {
+    background: #ffffff;
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Circulos decorativos sutiles en fondo blanco */
+  .nosotros-quienes::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,160,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .nosotros-quienes::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16,84,180,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .nosotros-quienes-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .nosotros-quienes-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nosotros-quienes-image img {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    display: block;
+    object-fit: cover;
+    max-height: 380px;
+    box-shadow: 0 10px 40px rgba(10,31,68,0.13);
+  }
+
+  .nosotros-hito-bajo {
+    background: linear-gradient(135deg, #0d1f5c 0%, #1565c0 60%, #00b4a0 100%);
+    border-radius: 0 0 20px 20px;
+    padding: 1.8rem 2rem;
+  }
+
+  .nosotros-hito-etiqueta {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #00d4b8;
+    margin-bottom: 0.6rem;
+  }
+
+  .nosotros-hito-bajo h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+  }
+
+  .nosotros-hito-bajo p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+
+  .nosotros-hito-cita {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: #00d4b8;
+    border-left: 3px solid #00d4b8;
+    padding-left: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .nosotros-quienes-text {
+    padding-top: 0.5rem;
+  }
+
+  .nosotros-qs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: linear-gradient(90deg, #0d1f5c, #1565c0);
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 1.2rem;
+  }
+
+  .nosotros-quienes-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    color: #0d1f5c;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .nosotros-quienes-text h3 span { color: #1a7fd4; }
+
+  .nosotros-qs-linea {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, #0d1f5c, #00b4a0);
+    border-radius: 2px;
+    margin-bottom: 1.4rem;
+  }
+
+  .nosotros-quienes-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #5a7a9a;
+    line-height: 1.85;
+    margin-bottom: 1.1rem;
+  }
+
+  @media (max-width: 900px) {
+    .nosotros-quienes-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .nosotros-quienes-image img { max-height: 260px; }
+  }
+
+    /* STATS */
+  .nosotros-stats {
+    position: relative;
+    padding: 4rem 2rem 6rem;
+    overflow: hidden;
+    background: #071a4a;
+  }
+
+  /* Brillo azul izquierda */
+  .nosotros-stats::before {
+    content: '';
+    position: absolute;
+    top: -30%; left: -5%;
+    width: 45%; height: 160%;
+    background: radial-gradient(ellipse, rgba(30,80,200,0.40) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Brillo verde agua derecha */
+  .nosotros-stats::after {
+    content: '';
+    position: absolute;
+    top: -30%; right: -5%;
+    width: 45%; height: 160%;
+    background: radial-gradient(ellipse, rgba(0,200,180,0.30) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .nosotros-stats-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .nosotros-stat-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 2.5rem 1.5rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+    cursor: default;
+  }
+
+  .nosotros-stat-item:hover {
+    transform: translateY(-8px);
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(0,212,184,0.3);
+  }
+
+  /* Iconos vibrantes */
+  .nosotros-stat-icon {
+    width: 78px; height: 78px;
+    margin: 0 auto 1.4rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.35s ease;
+  }
+
+  .nosotros-stat-item:nth-child(1) .nosotros-stat-icon {
+    background: linear-gradient(135deg, #1054b4 0%, #4da6ff 100%);
+    box-shadow: 0 0 30px rgba(77,166,255,0.55), 0 0 0 8px rgba(77,166,255,0.10);
+  }
+
+  .nosotros-stat-item:nth-child(2) .nosotros-stat-icon {
+    background: linear-gradient(135deg, #007a99 0%, #00d4b8 100%);
+    box-shadow: 0 0 30px rgba(0,212,184,0.55), 0 0 0 8px rgba(0,212,184,0.10);
+  }
+
+  .nosotros-stat-item:nth-child(3) .nosotros-stat-icon {
+    background: linear-gradient(135deg, #0d5eaf 0%, #38bdf8 100%);
+    box-shadow: 0 0 30px rgba(56,189,248,0.55), 0 0 0 8px rgba(56,189,248,0.10);
+  }
+
+  .nosotros-stat-item:hover .nosotros-stat-icon {
+    transform: scale(1.12) translateY(-4px);
+  }
+
+  /* Numeros: azul celeste como en el banner */
+  .nosotros-stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 900;
+    background: linear-gradient(90deg, #4da6ff 0%, #00d4b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Labels: blanco suave */
+  .nosotros-stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.80);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 700px) {
+    .nosotros-stats-wrapper {
+      grid-template-columns: 1fr;
+      max-width: 320px;
+    }
+  }
+
+  /* VIDEOS */
+  .nosotros-videos-section {
+    background: #ffffff;
+    padding: 4rem 0 5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Brillos laterales sutiles azul izq, verde der */
+  .nosotros-videos-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 0% 50%, rgba(16,84,180,0.07) 0%, transparent 45%),
+      radial-gradient(ellipse at 100% 50%, rgba(0,180,160,0.07) 0%, transparent 45%);
+    pointer-events: none;
+  }
+
+  .nosotros-videos-header {
+    text-align: center;
+    padding: 0 1.5rem 3rem;
+  }
+
+  .nosotros-videos-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,150,180,0.08);
+    border: 1px solid rgba(0,180,160,0.30);
+    border-radius: 50px;
+    padding: 6px 16px;
+    color: #007a99;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .nosotros-videos-badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #006fff;
+    animation: nosotrosPulse 1.8s ease-in-out infinite;
+  }
+
+  .nosotros-videos-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: #0a1f44;
+    margin-bottom: 0.5rem;
+  }
+
+  .nosotros-videos-header h2 span { color: #1a7fd4; }
+
+  .nosotros-videos-header p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #5a7a9a;
+  }
+
+  .nosotros-videos-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #006fff;
+    text-align: center;
+    margin: 0 0 1.2rem;
+  }
+
+  /* Carousel */
+  .nosotros-carousel-outer {
+    position: relative;
+    padding: 0 52px;
+    margin-bottom: 3rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nosotros-carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0.3rem 1rem;
+    min-width: 0;
+  }
+
+  /* Video card */
+  .nosotros-vcard {
+    flex: 0 0 420px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(10,31,68,0.10);
+    border: 1px solid rgba(0,150,180,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .nosotros-vcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 36px rgba(10,31,68,0.15);
+  }
+
+  .nosotros-vcard-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #001030;
+  }
+
+  .nosotros-vcard-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  /* Accent line */
+  .nosotros-vcard-accent {
+    height: 3px;
+    background: linear-gradient(90deg, #1054b4, #00b4a0);
+  }
+
+  /* Card footer */
+  .nosotros-vcard-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .nosotros-vcard-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .nosotros-vcard-avatar.av-blue  { background: linear-gradient(135deg, #1054b4, #4da6ff); }
+  .nosotros-vcard-avatar.av-teal  { background: linear-gradient(135deg, #007a99, #00d4b8); }
+  .nosotros-vcard-avatar.av-green { background: linear-gradient(135deg, #059669, #34d399); }
+
+  .nosotros-vcard-info { flex: 1; min-width: 0; }
+
+  .nosotros-vcard-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0a1f44;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nosotros-vcard-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    color: #5a7a9a;
+    margin-top: 1px;
+  }
+
+  /* Carousel buttons */
+  .nosotros-carousel-btn {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px;
+    border-radius: 50%; border: none;
+    background: #0a1f44;
+    color: white; font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  }
+
+  .nosotros-carousel-btn:hover {
+    background: #00b4a0;
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .nosotros-carousel-btn.prev { left: 4px; }
+  .nosotros-carousel-btn.next { right: 4px; }
+
+  @media (max-width: 1100px) {
+    .nosotros-vcard { flex: 0 0 320px; }
+  }
+
+  @media (max-width: 768px) {
+    .nosotros-vcard {
+      flex: 0 0 calc(100vw - 80px);
+      max-width: 420px;
+    }
+    .nosotros-carousel-outer { padding: 0 36px; }
+    .nosotros-videos-header h2 { font-size: 1.8rem; }
+    .nosotros-vcard-video { border-radius: 10px 10px 0 0; }
+  }
+
+  @media (max-width: 480px) {
+    .nosotros-vcard {
+      flex: 0 0 calc(100vw - 60px);
+    }
+    .nosotros-carousel-outer { padding: 0 24px; }
+  }
+
+
+  /* -- ANIMACIONES DE ENTRADA -- */
+  @keyframes nosotrosFadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nosotrosFadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes nosotrosFadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes nosotrosScaleIn {
+    from { opacity: 0; transform: scale(0.88); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes nosotrosFloatA {
+    0%,100% { transform: translateY(0px) scale(1); }
+    50%      { transform: translateY(-18px) scale(1.04); }
+  }
+  @keyframes nosotrosFloatB {
+    0%,100% { transform: translateY(0px) scale(1); }
+    50%      { transform: translateY(14px) scale(0.97); }
+  }
+  @keyframes nosotrosFloatC {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%      { transform: translate(10px,-10px) scale(1.03); }
+  }
+
+  .nosotros-anim-up    { opacity:0; }
+  .nosotros-anim-left  { opacity:0; }
+  .nosotros-anim-right { opacity:0; }
+  .nosotros-anim-scale { opacity:0; }
+
+  .nosotros-anim-up.visible    { animation: nosotrosFadeInUp   0.7s cubic-bezier(.22,.68,0,1.2) forwards; }
+  .nosotros-anim-left.visible  { animation: nosotrosFadeInLeft  0.7s cubic-bezier(.22,.68,0,1.2) forwards; }
+  .nosotros-anim-right.visible { animation: nosotrosFadeInRight 0.7s cubic-bezier(.22,.68,0,1.2) forwards; }
+  .nosotros-anim-scale.visible { animation: nosotrosScaleIn     0.6s cubic-bezier(.22,.68,0,1.2) forwards; }
+
+  .nosotros-delay-1 { animation-delay: 0.1s !important; }
+  .nosotros-delay-2 { animation-delay: 0.22s !important; }
+  .nosotros-delay-3 { animation-delay: 0.34s !important; }
+  .nosotros-delay-4 { animation-delay: 0.46s !important; }
+
+  /* -- CIRCULOS / BURBUJAS QUIENES SOMOS -- */
+  .nosotros-quienes {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nosotros-quienes-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  /* Barra difuminada al fondo - transicion hacia stats */
+  .nosotros-quienes-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 180px;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(13, 45, 122, 0.06) 40%,
+      rgba(7, 26, 74, 0.14) 100%
+    );
+    pointer-events: none;
+  }
+
+  .nosotros-quienes-wrapper { position: relative; z-index: 1; }
+
+  .nosotros-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+  }
+  .nosotros-circle.show { opacity: 1; }
+
+  /* Burbuja 1 - movida a centro-derecha, dentro de la seccion */
+  .nc-1 {
+    width: 300px; height: 300px;
+    top: 30%; right: 4%;
+    background: radial-gradient(circle at 40% 40%,
+      rgba(0,111,255,0.08) 0%,
+      rgba(0,111,255,0.03) 50%,
+      transparent 70%
+    );
+    border: 1.5px solid rgba(0,111,255,0.10);
+    box-shadow: inset 0 0 30px rgba(0,111,255,0.04);
+    animation: nosotrosFloatA 10s ease-in-out infinite;
+  }
+
+  /* Burbuja 2 - mediana, izquierda centro, verde agua */
+  .nc-2 {
+    width: 280px; height: 280px;
+    top: 35%; left: -60px;
+    background: radial-gradient(circle at 40% 35%,
+      rgba(0,203,172,0.12) 0%,
+      rgba(0,203,172,0.05) 50%,
+      transparent 70%
+    );
+    border: 1.5px solid rgba(0,203,172,0.14);
+    box-shadow: inset 0 0 30px rgba(0,203,172,0.06);
+    animation: nosotrosFloatB 12s ease-in-out infinite;
+  }
+
+  /* Burbuja 3 - pequena, centro inferior */
+  .nc-3 {
+    width: 160px; height: 160px;
+    bottom: 60px; left: 42%;
+    background: radial-gradient(circle at 38% 35%,
+      rgba(0,111,255,0.09) 0%,
+      rgba(0,111,255,0.03) 55%,
+      transparent 70%
+    );
+    border: 1px solid rgba(0,111,255,0.10);
+    animation: nosotrosFloatC 8s ease-in-out infinite;
+  }
+
+  /* Burbuja 4 - anillo derecha inferior */
+  .nc-4 {
+    width: 300px; height: 300px;
+    bottom: -80px; right: 8%;
+    background: radial-gradient(circle at 40% 35%,
+      rgba(0,180,160,0.07) 0%,
+      transparent 60%
+    );
+    border: 2px solid rgba(0,203,172,0.12);
+    animation: nosotrosFloatA 14s ease-in-out infinite reverse;
+  }
+
+  /* Burbuja 5 - pequena, izquierda superior */
+  .nc-5 {
+    width: 110px; height: 110px;
+    top: 18%; left: 18%;
+    background: radial-gradient(circle at 38% 35%,
+      rgba(0,180,160,0.10) 0%,
+      transparent 65%
+    );
+    border: 1.5px solid rgba(0,180,160,0.13);
+    animation: nosotrosFloatB 9s ease-in-out infinite;
+  }
+
+  /* Burbuja 6 extra - centro derecha */
+  .nc-6 {
+    width: 80px; height: 80px;
+    top: 55%; right: 22%;
+    background: radial-gradient(circle at 38% 35%,
+      rgba(0,111,255,0.08) 0%,
+      transparent 65%
+    );
+    border: 1px solid rgba(0,111,255,0.10);
+    animation: nosotrosFloatC 7s ease-in-out infinite reverse;
+  }
+
+  /* -- CIRCULOS DECORATIVOS VIDEOS -- */
+  .nosotros-videos-section { position: relative; overflow: hidden; }
+
+  .nosotros-videos-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .nosotros-videos-header,
+  .nosotros-videos-subtitle,
+  .nosotros-carousel-outer { position: relative; z-index: 1; }
+
+  /* Burbuja izquierda arriba - azul */
+  .nvc-1 {
+    width: 320px; height: 320px;
+    top: 5%; left: 1%;
+    background: radial-gradient(circle at 35% 35%,
+      rgba(0,111,255,0.081) 0%,
+      rgba(0,111,255,0.032) 45%,
+      transparent 70%
+    );
+    border: 2px solid rgba(0,111,255,0.09);
+    box-shadow: inset 0 0 50px rgba(0,111,255,0.036);
+    animation: nosotrosFloatB 13s ease-in-out infinite;
+  }
+  /* Burbuja derecha abajo - verde agua */
+  .nvc-2 {
+    width: 260px; height: 260px;
+    bottom: 5%; right: 2%;
+    background: radial-gradient(circle at 35% 35%,
+      rgba(0,203,172,0.081) 0%,
+      rgba(0,203,172,0.032) 45%,
+      transparent 70%
+    );
+    border: 2px solid rgba(0,203,172,0.099);
+    box-shadow: inset 0 0 40px rgba(0,203,172,0.036);
+    animation: nosotrosFloatA 11s ease-in-out infinite;
+  }
+  /* Anillo centro derecha */
+  .nvc-3 {
+    width: 190px; height: 190px;
+    top: 22%; right: 10%;
+    background: radial-gradient(circle at 35% 35%,
+      rgba(0,111,255,0.045) 0%,
+      transparent 60%
+    );
+    border: 2px solid rgba(0,111,255,0.072);
+    animation: nosotrosFloatC 9s ease-in-out infinite;
+  }
+  /* Burbuja pequena centro top */
+  .nvc-4 {
+    width: 110px; height: 110px;
+    top: 6%; left: 38%;
+    background: radial-gradient(circle at 35% 35%,
+      rgba(0,180,160,0.063) 0%,
+      transparent 65%
+    );
+    border: 2px solid rgba(0,180,160,0.081);
+    animation: nosotrosFloatB 8s ease-in-out infinite reverse;
+  }
+  /* Burbuja izquierda baja */
+  .nvc-5 {
+    width: 150px; height: 150px;
+    bottom: 18%; left: 12%;
+    background: radial-gradient(circle at 35% 35%,
+      rgba(0,111,255,0.059) 0%,
+      transparent 65%
+    );
+    border: 2px solid rgba(0,111,255,0.072);
+    animation: nosotrosFloatA 10s ease-in-out infinite reverse;
+  }
+
+</style>
+
+<!-- =========================================
+     BANNER ANIVERSARIO
+     FOTO: cambia solo el nombre del archivo
+     ========================================= -->
+<section class="nosotros-hero">
+  <div class="nosotros-hero-bg" id="nosotros-bg" data-img="{% static 'app/img/webnosotros.png' %}"></div>
+  <script>
+    var bg = document.getElementById('nosotros-bg');
+    bg.style.backgroundImage = "url('" + bg.dataset.img + "')";
+  </script>
+  <div class="nosotros-hero-fade"></div>
+  <div class="nosotros-hero-content">
+    <div class="nosotros-hero-badge">
+      <span class="nosotros-hero-dot"></span>
+      10 Años de Historia
+    </div>
+    <h1>Un <span>Decada</span> Transformando<br>Comunidades</h1>
+    <div class="nosotros-hero-line"></div>
+    <h2>Hace 10 años instalamos el primer medidor inteligente en APR Los Maquis.<br>Hoy, mas de 200 comunidades en Chile confian en nosotros.</h2>
+  </div>
+  <div class="nosotros-hero-wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</section>
+
+<!-- =========================================
+     QUIENES SOMOS
+     ========================================= -->
+<section class="nosotros-quienes">
+  <div class="nosotros-quienes-bg">
+    <div class="nosotros-circle nc-1"></div>
+    <div class="nosotros-circle nc-2"></div>
+    <div class="nosotros-circle nc-3"></div>
+    <div class="nosotros-circle nc-4"></div>
+    <div class="nosotros-circle nc-5"></div>
+    <div class="nosotros-circle nc-6"></div>
+  </div>
+  <div class="nosotros-quienes-wrapper">
+
+    <div class="nosotros-quienes-text">
+      <div class="nosotros-qs-badge nosotros-anim-up nosotros-delay-1">Empresa chilena</div>
+      <h3 class="nosotros-anim-up nosotros-delay-2">¿Quiénes <span>Somos?</span></h3>
+      <div class="nosotros-qs-linea nosotros-anim-up nosotros-delay-2"></div>
+      <p>Somos una empresa chilena comprometida con revolucionar la gestion del agua potable en comunidades rurales. Nos especializamos en brindar soluciones tecnologicas avanzadas para las APR, ayudandoles a optimizar la distribucion, consumo y monitoreo del agua con la precision y accesibilidad que necesitan.</p>
+      <p>Con una vision centrada en la sostenibilidad y el desarrollo comunitario, disenamos productos que no solo facilitan el manejo eficiente del recurso hidrico, sino que tambien garantizan durabilidad, bajo costo operativo y soporte continuo.</p>
+      <p>Hoy, mas de <strong>200 comunidades</strong> en Chile confian en nuestra experiencia para modernizar sus sistemas y asegurar un futuro sostenible para su recurso mas esencial.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================
+     INDICADORES
+     ========================================= -->
+
+
+
+<section class="nosotros-stats">
+  <div class="nosotros-stats-wrapper">
+
+    <div class="nosotros-stat-item nosotros-anim-scale nosotros-delay-1">
+      <div class="nosotros-stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="nosotros-stat-number" id="nosotros-num-1">0</div>
+      <div class="nosotros-stat-label">Comunidades atendidas</div>
+    </div>
+
+    <div class="nosotros-stat-item">
+      <div class="nosotros-stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+          <polyline points="7 10 10 7 13 10 16 7"/>
+        </svg>
+      </div>
+      <div class="nosotros-stat-number" id="nosotros-num-2">0</div>
+      <div class="nosotros-stat-label">Medidores vendidos</div>
+    </div>
+
+    <div class="nosotros-stat-item">
+      <div class="nosotros-stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="6"/>
+          <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+        </svg>
+      </div>
+      <div class="nosotros-stat-number" id="nosotros-num-3">0</div>
+      <div class="nosotros-stat-label">Años en el mercado</div>
+    </div>
+
+  </div>
+
 </section>
 
 
-<!-- Community Section -->
+<!-- VIDEOS -->
+<section class="nosotros-videos-section">
+  <div class="nosotros-videos-bg">
+    <div class="nosotros-circle nvc-1"></div>
+    <div class="nosotros-circle nvc-2"></div>
+    <div class="nosotros-circle nvc-3"></div>
+    <div class="nosotros-circle nvc-4"></div>
+    <div class="nosotros-circle nvc-5"></div>
+  </div>
 
-        <div class="community-grid">
-            <div class="community-image">
-                <img src="{% static 'app/img/somos.png'%}" alt="Miembros de la comunidad">
-            </div>
-            <div class="community-content">
-                <h2>Comprometidos con nuestra comunidad</h2>
-                <div class="content-text">
-                    <p>Somos una empresa chilena comprometida con revolucionar la gestión del agua potable en comunidades rurales. Nos especializamos en brindar soluciones tecnológicas avanzadas para las APR, ayudándoles a optimizar la distribución, consumo y monitoreo del agua con la precisión y accesibilidad que necesitan.</p>
-                    <p>Con una visión centrada en la sostenibilidad y el desarrollo comunitario, diseñamos productos que no solo facilitan el manejo eficiente del recurso hídrico, sino que también garantizan durabilidad, bajo costo operativo y soporte continuo. Nuestro medidor inteligente está pensado para satisfacer las necesidades reales de las comunidades, apoyando su crecimiento con innovación y tecnología confiable.</p>
-                </div>
-            </div>
-        </div>
+  <div class="nosotros-videos-header">
+    <div class="nosotros-videos-badge nosotros-anim-up nosotros-delay-1">
+      <span class="nosotros-videos-badge-dot"></span>
+      Comunidades que nos respaldan
     </div>
-</section>
-<div class="content-wrapper">
-    <div class="text-content" >
-        <br><h3>¿Quiénes somos?</h3>
-        <br><p>Somos una empresa chilena comprometida con revolucionar la gestión del agua potable en comunidades rurales. Nos especializamos en brindar soluciones tecnológicas avanzadas para las APR, ayudándoles a optimizar la distribución, consumo y monitoreo del agua con la precisión y accesibilidad que necesitan.</p>
-        <br><p>Con una visión centrada en la sostenibilidad y el desarrollo comunitario, diseñamos productos que no solo facilitan el manejo eficiente del recurso hídrico, sino que también garantizan durabilidad, bajo costo operativo y soporte continuo.</p>
-        <br><p>Hoy, más de 150 comunidades en Chile confían en nuestra experiencia para modernizar sus sistemas y asegurar un futuro sostenible para su recurso más esencial.</p>
-    </div>
-    <div class="image-grid">
-        <img src="{% static 'app/img/Mask group.png' %}" alt="Imagen empresa 1">
-    </div>
-</div>
-<br>
-<section class="stats" style="background-image: url('{% static 'app/img/chilehorizontal.png' %}');">
-    <div class="stats-wrapper">
-        <div class="stat-item">
-            <div class="stat-icon">
-                <img src="{% static 'app/img/Frame1.png'%}" alt="Comunidades Atenidads">
-            </div>
-            <div class="stat-number">150</div>
-            <div>Comunidades atendidas</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-icon"><img src="{% static 'app/img/Frame2.png'%}" alt="Vendidos">
+    <h2 class="nosotros-anim-up nosotros-delay-2">Reconocidos en <span>los medios</span></h2>
+    <p>Descubre como hemos impactado comunidades rurales a lo largo de Chile</p>
+  </div>
 
+  <!-- Entrevistas TV -->
+  <p class="nosotros-videos-subtitle">Entrevistas y Testimonios</p>
+  <div class="nosotros-carousel-outer">
+    <button class="nosotros-carousel-btn prev" onclick="nosotrosSlide('nosotros-tv',-1)">&#10094;</button>
+    <button class="nosotros-carousel-btn next" onclick="nosotrosSlide('nosotros-tv', 1)">&#10095;</button>
+    <div class="nosotros-carousel-track" id="nosotros-tv">
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/gzA8ojJgk4w?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="stat-number">+40,000</div>
-            <div>Medidores vendidos</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-icon">
-                <img src="{% static 'app/img/Frame3.png'%}" alt="Regiones contentas en Chile">
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-blue">MI</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
             </div>
-            <div class="stat-number">9</div>
-            <div>Regiones contentas en Chile</div>
-        </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/MW74-sBSkiQ?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">AP</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/Htj-PIXVRrA?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-green">TV</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/MKcPRVp4I7k?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-blue">CH</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/k_AjSOfj2Hk?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">CO</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/Ett9Fh4SVUQ?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-green">EN</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/LvshQZRZOcw?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-blue">RE</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/M5Cug9siA6Q?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">ME</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/1_bwMkz3pqM?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-green">AG</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/1u9x0isMnjg?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-blue">VI</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/I7BJNUEhu98?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">PR</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Entrevista en Television</div>
+              </div>
+            </div>
+          </div>
     </div>
-</section>
-<br>
-<br>
+  </div>
 
-<section class="entrevista-section">
-    <h1 class="entrevista--titlea">Impactando comunidades</h1>
-    <h1 class="entrevista--title">Reconocidos en los medios</h1>
-    <h2 class="entrevista-section-title">Entrevistas en televisión</h2>
-    
-    <div class="entrevista-slider-container">
-        <button class="entrevista-slider-button prev" onclick="slideEntrevistas('tvSlider', -1)">&#10094;</button>
-        <button class="entrevista-slider-button next" onclick="slideEntrevistas('tvSlider', 1)">&#10095;</button>
-        <div class="entrevista-slider" id="tvSlider">
-            <!-- Videos de entrevistas en televisión -->
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/gzA8ojJgk4w" 
-                        referrerpolicy="strict-origin"
-                        title="Interview 6" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+  <!-- Diarios Digitales -->
+  <p class="nosotros-videos-subtitle">Entrevistas en Television</p>
+  <div class="nosotros-carousel-outer">
+    <button class="nosotros-carousel-btn prev" onclick="nosotrosSlide('nosotros-digital',-1)">&#10094;</button>
+    <button class="nosotros-carousel-btn next" onclick="nosotrosSlide('nosotros-digital', 1)">&#10095;</button>
+    <div class="nosotros-carousel-track" id="nosotros-digital">
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/Z8kojxrK8fQ?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/MW74-sBSkiQ" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 6" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-blue">DG</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Diario Digital</div>
+              </div>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/Htj-PIXVRrA"
-                        referrerpolicy="strict-origin" 
-                        title="TV Interview 6" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/zPBtnvu9QdA?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/MKcPRVp4I7k" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 6" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">NE</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Diario Digital</div>
+              </div>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/k_AjSOfj2Hk" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 6" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/mSEJlKinapg?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/Ett9Fh4SVUQ" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 1" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-green">CO</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Diario Digital</div>
+              </div>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/LvshQZRZOcw" 
-                        referrerpolicy="strict-origin"
-                        title="Interview 1" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/YX13Quhfzy4?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            <!-- Nuevos videos -->
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/M5Cug9siA6Q" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 4" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-blue">RE</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Diario Digital</div>
+              </div>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/1_bwMkz3pqM" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 5" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/_aCG2GEV64I?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/1u9x0isMnjg" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 2" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">AP</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Diario Digital</div>
+              </div>
             </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/I7BJNUEhu98" 
-                        referrerpolicy="strict-origin"
-                        title="TV Interview 3" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/Iy06IV55Pi0?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-        </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-green">VI</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Medidor Inteligente</div>
+                <div class="nosotros-vcard-role">Diario Digital</div>
+              </div>
+            </div>
+          </div>
     </div>
-</section>
+  </div>
 
-<section class="entrevista-section">
-    
-    <h2 class="entrevista-section-title">Diarios Digitales</h2>
-    <div class="entrevista-slider-container">
-        <button class="entrevista-slider-button prev" onclick="slideEntrevistas('interviewSlider', -1)">&#10094;</button>
-        <button class="entrevista-slider-button next" onclick="slideEntrevistas('interviewSlider', 1)">&#10095;</button>
-        <div class="entrevista-slider" id="interviewSlider">
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/Z8kojxrK8fQ" 
-                        referrerpolicy="strict-origin"
-                        title="Interview 6" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/zPBtnvu9QdA" 
-                        referrerpolicy="strict-origin"
-                        title="Interview 1" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-            
-            
-            
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/mSEJlKinapg" 
-                        
-                        referrerpolicy="strict-origin"
-                        title="Interview 2" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/YX13Quhfzy4" 
-                        referrerpolicy="strict-origin"
-                        title="Interview 3" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/_aCG2GEV64I" 
-                        referrerpolicy="strict-origin"
-                        title="Interview 4" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-            <div class="entrevista-video-wrapper">
-                <div class="entrevista-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/Iy06IV55Pi0" 
-                        referrerpolicy="strict-origin"
-                        title="Interview 5" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
-<br><br>
 
 <script>
-    function slideEntrevistas(sliderId, direction) {
-        const slider = document.getElementById(sliderId);
-        const videoWidth = slider.querySelector('.entrevista-video-wrapper').offsetWidth;
-        const gap = 20;
-        const scrollAmount = videoWidth + gap;
-        
-        slider.scrollBy({
-            left: direction * scrollAmount,
-            behavior: 'smooth'
-        });
-    }
-</script>
-{%endblock%}
+  var nosotrosVideoPlaying = false;
+  var nosotrosTouchStartX = 0;
+  var nosotrosTouchStartY = 0;
+  var nosotrosTouchStartTime = 0;
 
+  // -- SLIDE MANUAL --
+  function nosotrosSlide(sliderId, direction) {
+    var slider = document.getElementById(sliderId);
+    var card = slider.querySelector('.nosotros-vcard');
+    nosotrosVideoPlaying = false;
+    slider.scrollBy({ left: direction * (card.offsetWidth + 20), behavior: 'smooth' });
+  }
+
+  // -- SHUFFLE --
+  function nosotrosShuffle(sliderId) {
+    var slider = document.getElementById(sliderId);
+    if (!slider) return;
+    var items = Array.from(slider.querySelectorAll('.nosotros-vcard'));
+    for (var i = items.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+    }
+    var frag = document.createDocumentFragment();
+    items.forEach(function(item) { frag.appendChild(item); });
+    slider.appendChild(frag);
+  }
+
+  // -- AUTO SCROLL --
+  function nosotrosAutoScroll(sliderId, ms) {
+    var slider = document.getElementById(sliderId);
+    if (!slider) return;
+
+    // Touch start: record position and time
+    slider.addEventListener('touchstart', function(e) {
+      nosotrosTouchStartX = e.touches[0].clientX;
+      nosotrosTouchStartY = e.touches[0].clientY;
+      nosotrosTouchStartTime = Date.now();
+    }, { passive: true });
+
+    // Touch end: decide if it was a tap or swipe
+    slider.addEventListener('touchend', function(e) {
+      var dx = Math.abs((e.changedTouches[0].clientX) - nosotrosTouchStartX);
+      var dy = Math.abs((e.changedTouches[0].clientY) - nosotrosTouchStartY);
+      var dt = Date.now() - nosotrosTouchStartTime;
+      var isTap = dx < 10 && dy < 10 && dt < 300;
+
+      if (isTap) {
+        // Check if tap was on a video card
+        var el = e.target;
+        var card = null;
+        while (el && el !== slider) {
+          if (el.classList && el.classList.contains('nosotros-vcard')) { card = el; break; }
+          el = el.parentElement;
+        }
+        if (card) {
+          // Pause scroll - user wants to watch video
+          nosotrosVideoPlaying = true;
+          // Force the iframe to be tappable by sending it focus
+          var iframe = card.querySelector('iframe');
+          if (iframe) {
+            // Add a transparent overlay that when tapped removes itself and lets through
+            // Actually just flag as playing - YouTube will auto-open
+            setTimeout(function() {
+              // If after 500ms YouTube API hasn't responded, keep paused anyway
+            }, 500);
+          }
+        }
+      }
+      // Swipe: don't change nosotrosVideoPlaying
+    }, { passive: true });
+
+    // Resume on next/prev buttons
+    var btns = slider.parentElement ? slider.parentElement.querySelectorAll('.nosotros-carousel-btn') : [];
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() { nosotrosVideoPlaying = false; });
+      btn.addEventListener('touchend', function() {
+        nosotrosVideoPlaying = false;
+      }, { passive: true });
+    });
+
+    setInterval(function() {
+      if (nosotrosVideoPlaying) return;
+      var card = slider.querySelector('.nosotros-vcard');
+      if (!card) return;
+      if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 20) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        slider.scrollBy({ left: card.offsetWidth + 20, behavior: 'smooth' });
+      }
+    }, ms);
+  }
+
+  // -- YOUTUBE API: state changes via postMessage --
+  window.addEventListener('message', function(e) {
+    if (!e.data) return;
+    try {
+      var data = JSON.parse(e.data);
+      if (data.event === 'onStateChange') {
+        if (data.info === 1) {
+          // Video playing
+          nosotrosVideoPlaying = true;
+        } else if (data.info === 2 || data.info === 0) {
+          // Paused or ended
+          nosotrosVideoPlaying = false;
+        }
+      }
+    } catch(err) {}
+  });
+
+  // -- Desktop click on iframe --
+  document.addEventListener('click', function(e) {
+    var el = e.target;
+    while (el) {
+      if (el.tagName === 'IFRAME') { nosotrosVideoPlaying = true; break; }
+      if (el.classList && el.classList.contains('nosotros-vcard')) { nosotrosVideoPlaying = true; break; }
+      el = el.parentElement;
+    }
+  });
+
+  // -- COUNTER --
+  function nosotrosCounter(id, target, prefix) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting || el.dataset.done) return;
+        el.dataset.done = '1';
+        var steps = 1800 / 16, step = target / steps, cur = 0;
+        var t = setInterval(function() {
+          cur += step;
+          if (cur >= target) { cur = target; clearInterval(t); }
+          el.textContent = prefix ? '+' + Math.floor(cur).toLocaleString('es-CL') : Math.floor(cur);
+        }, 16);
+      });
+    }, { threshold: 0.6 });
+    obs.observe(el);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    nosotrosShuffle('nosotros-tv');
+    nosotrosShuffle('nosotros-digital');
+    nosotrosAutoScroll('nosotros-tv', 4000);
+    nosotrosAutoScroll('nosotros-digital', 5500);
+    nosotrosCounter('nosotros-num-1', 200,   false);
+    nosotrosCounter('nosotros-num-2', 50000, true);
+    nosotrosCounter('nosotros-num-3', 10,    false);
+
+    // Entrance animations via IntersectionObserver
+    var animEls = document.querySelectorAll(
+      '.nosotros-anim-up, .nosotros-anim-left, .nosotros-anim-right, .nosotros-anim-scale'
+    );
+    var animObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          animObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    animEls.forEach(function(el) { animObs.observe(el); });
+
+    // Reveal decorative circles when section enters viewport
+    var circles = document.querySelectorAll('.nosotros-circle');
+    var circleObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          circleObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    circles.forEach(function(c) { circleObs.observe(c); });
+  });
+</script>
+
+{%endblock%}
