@@ -104,9 +104,130 @@
 {% block contenido %}
 {% endblock %}
 
-<a class="logoinicio" href="{% url 'home'%}">
-    <img class="stoc" src="{% static 'app/img/logmedidor.ico'%}" alt="Ir a inicio">
+{# Pega esto en base.html justo antes de </body> #}
+{# Cambia href="{% url 'preguntas' %}" por tu URL real #}
+
+<style>
+.faq-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  height: 52px;
+  background: linear-gradient(135deg, #0042b8 0%, #10a890 100%);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,66,184,.45);
+  overflow: hidden;
+  width: 52px;
+  transition: width .55s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .3s ease;
+  will-change: width;
+}
+.faq-fab:hover {
+  box-shadow: 0 8px 28px rgba(0,66,184,.6);
+}
+.faq-fab__icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.faq-fab__icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform .3s ease;
+}
+.faq-fab:hover .faq-fab__icon svg {
+  transform: scale(1.12);
+}
+.faq-fab__text {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding-right: 0;
+  transition: max-width .5s cubic-bezier(.34,1.56,.64,1),
+              opacity .35s ease,
+              padding-right .5s ease;
+  will-change: max-width, opacity;
+}
+.faq-fab.fab--open {
+  width: 224px;
+}
+.faq-fab.fab--open .faq-fab__text {
+  max-width: 160px;
+  opacity: 1;
+  padding-right: 20px;
+}
+</style>
+
+<a href="{% url 'preguntas' %}" class="faq-fab" id="faqFab" title="Preguntas Frecuentes">
+  <span class="faq-fab__icon">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+      <circle cx="12" cy="17" r=".5" fill="#fff" stroke="none"/>
+    </svg>
+  </span>
+  <span class="faq-fab__text">Preguntas Frecuentes</span>
 </a>
+
+<script>
+(function () {
+  var fab = document.getElementById('faqFab');
+  var t = null;
+  var open = false;
+  var hover = false;
+
+  function doOpen()  { open = true;  fab.classList.add('fab--open'); }
+  function doClose() { open = false; fab.classList.remove('fab--open'); }
+
+  function scheduleOpen() {
+    t = setTimeout(function () {
+      if (!hover) { doOpen(); scheduleClose(); }
+    }, 4500);
+  }
+
+  function scheduleClose() {
+    t = setTimeout(function () {
+      if (!hover) { doClose(); scheduleOpen(); }
+    }, 3000);
+  }
+
+  fab.addEventListener('mouseenter', function () {
+    hover = true;
+    clearTimeout(t);
+    doOpen();
+  });
+
+  fab.addEventListener('mouseleave', function () {
+    hover = false;
+    t = setTimeout(function () {
+      doClose();
+      scheduleOpen();
+    }, 1800);
+  });
+
+  t = setTimeout(function () {
+    doOpen();
+    scheduleClose();
+  }, 2000);
+})();
+</script>
 
 
 <footer class="footer">

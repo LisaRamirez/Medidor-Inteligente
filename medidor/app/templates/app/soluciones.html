@@ -4,133 +4,150 @@
 
 <style>
     /* ============================================
-       CSS ORIGINAL — SIN MODIFICAR
+       HERO — prefijo sw- para evitar conflictos
     ============================================= */
-    .product-image-container,
-    .product-info {
+    .sw-image-container,
+    .sw-info {
         position: relative;
         z-index: 2;
     }
-    .product-title,
-    .product-name,
-    .product-description,
-    .feature-item {
+    .sw-title,
+    .sw-name,
+    .sw-description,
+    .sw-feature-item {
         color: #ffffff;
     }
-    .product-section {
+    .sw-section {
         display: flex;
         flex-direction: column;
         gap: 0;
         position: relative;
         overflow: hidden;
         min-height: 420px;
+        width: 100%;
+        box-sizing: border-box;
     }
-    .product-info {
+    .sw-info {
         flex: 1;
         padding: 40px 36px;
         display: flex;
         flex-direction: column;
         gap: 15px;
         justify-content: center;
+        text-align: left;
+        box-sizing: border-box;
     }
-    .product-name {
+    .sw-name {
         color: #ffffff;
         font-size: clamp(1.5rem, 2.5vw, 2rem);
         font-weight: bold;
         margin-bottom: 4px;
+        text-align: left;
     }
-    .product-description {
+    .sw-description {
         color: rgba(255,255,255,0.93);
         line-height: 1.6;
         font-size: clamp(0.9rem, 1.5vw, 1rem);
+        text-align: left;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
-    .features-list {
+    .sw-features-list {
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: 10px;
         padding: 0;
+        margin: 0;
+        text-align: left;
+        align-items: flex-start;
     }
-    .feature-item {
+    .sw-feature-item {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         gap: 10px;
         color: rgba(255,255,255,0.95);
         font-size: clamp(0.9rem, 1.5vw, 1rem);
+        text-align: left;
+        width: 100%;
+        opacity: 0;
+        transform: translateX(-16px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .check-icon {
+    .sw-feature-item.visible { opacity: 1; transform: translateX(0); }
+    .sw-feature-item:nth-child(1) { transition-delay: 0.05s; }
+    .sw-feature-item:nth-child(2) { transition-delay: 0.18s; }
+    .sw-feature-item:nth-child(3) { transition-delay: 0.31s; }
+    .sw-feature-item:nth-child(4) { transition-delay: 0.44s; }
+
+    .sw-check-icon {
         width: clamp(16px, 2vw, 20px);
         height: clamp(16px, 2vw, 20px);
         color: #ffffff;
         flex-shrink: 0;
     }
-    .buttons-container {
+    .sw-buttons {
         display: flex;
         gap: 15px;
         flex-wrap: wrap;
         margin-top: 10px;
+        justify-content: flex-start;
+        align-items: center;
     }
-    .btn {
-        padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
-        border-radius: 4px;
-        font-weight: bold;
+    .sw-btn {
+        padding: clamp(10px, 2vw, 13px) clamp(18px, 3vw, 28px);
+        border-radius: 8px;
+        font-weight: 700;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 10px;
         transition: all 0.3s ease;
         font-size: clamp(0.9rem, 1.5vw, 1rem);
         min-width: 150px;
+        letter-spacing: 0.3px;
+        box-sizing: border-box;
     }
-    .btn-outline {
-        border: 2px solid #ffffff;
+    .sw-btn-outline {
+        border: 2px solid rgba(255,255,255,0.9);
         color: #ffffff;
-        background: transparent;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
     }
-    .btn-primary {
-        background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
-        color: white;
-        border: none;
-    }
-    .btn:hover {
-        opacity: 0.9;
+    .sw-btn-outline:hover {
+        background: rgba(255,255,255,0.22);
         transform: translateY(-2px);
+        color: #ffffff;
+        text-decoration: none;
+    }
+    .sw-btn-primary {
+        border: 1.5px solid rgba(255,255,255,0.6);
+        color: #0050c8;
+        background: rgba(255,255,255,0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 24px rgba(255,255,255,0.25), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+    .sw-btn-primary:hover {
+        background: rgba(255,255,255,0.95);
+        transform: translateY(-2px);
+        color: #0050c8;
+        text-decoration: none;
+        box-shadow: 0 8px 32px rgba(255,255,255,0.35), inset 0 1px 0 rgba(255,255,255,1);
     }
 
-    @media (min-width: 768px) {
-        .product-section { flex-direction: row; }
-        .product-info     { width: 50%; }
-    }
-    @media (min-width: 768px) and (max-width: 1024px) {
-        .buttons-container { justify-content: flex-start; }
-    }
-    @media (max-width: 480px) {
-        .buttons-container { flex-direction: column; }
-        .btn { width: 100%; }
-    }
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        .product-description, .feature-item { font-size: clamp(0.85rem, 1.2vw, 1rem); }
-    }
-
-    /* ============================================
-       FONDO HERO — gradiente INVERTIDO
-       verde izq-abajo → azul der-arriba
-    ============================================= */
-    .product-section::before {
+    /* Fondo hero */
+    .sw-section::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-            to top right,
-            #00cbac 0%,
-            #2a85ff 55%,
-            #006fff 100%
-        );
+        background: linear-gradient(to top right, #00cbac 0%, #2a85ff 55%, #006fff 100%);
         z-index: 0;
     }
-
-    /* Manchas de luz globales */
-    .product-section::after {
+    .sw-section::after {
         content: '';
         position: absolute;
         inset: 0;
@@ -142,8 +159,8 @@
         pointer-events: none;
     }
 
-    /* Círculos SVG animados — todo el hero */
-    .hero-bg-circles {
+    /* Círculos SVG hero */
+    .sw-hero-circles {
         position: absolute;
         inset: 0;
         z-index: 2;
@@ -152,30 +169,28 @@
         width: 100%;
         height: 100%;
     }
-    .hero-bg-circles circle {
+    .sw-hero-circles circle {
         fill: none;
-        stroke: rgba(255,255,255,0.10);
-        stroke-width: 1.5;
+        stroke: rgba(255,255,255,0.08);
+        stroke-width: 0.4;
     }
-    .hero-bg-circles .hc1 { animation: hcFloat1 11s ease-in-out infinite; }
-    .hero-bg-circles .hc2 { animation: hcFloat2 14s ease-in-out infinite; }
-    .hero-bg-circles .hc3 { animation: hcFloat1  8s ease-in-out infinite reverse; }
-    .hero-bg-circles .hc4 { animation: hcFloat2 17s ease-in-out infinite; }
-    .hero-bg-circles .hc5 { animation: hcFloat1 13s ease-in-out infinite 2s; }
+    .sw-hero-circles .hc1 { animation: swHcFloat1 11s ease-in-out infinite; }
+    .sw-hero-circles .hc2 { animation: swHcFloat2 14s ease-in-out infinite; }
+    .sw-hero-circles .hc3 { animation: swHcFloat1  8s ease-in-out infinite reverse; }
+    .sw-hero-circles .hc4 { animation: swHcFloat2 17s ease-in-out infinite; }
+    .sw-hero-circles .hc5 { animation: swHcFloat1 13s ease-in-out infinite 2s; }
 
-    @keyframes hcFloat1 {
+    @keyframes swHcFloat1 {
         0%, 100% { transform: translate(0, 0);        }
         50%       { transform: translate(12px, -14px); }
     }
-    @keyframes hcFloat2 {
+    @keyframes swHcFloat2 {
         0%, 100% { transform: translate(0, 0);         }
         50%       { transform: translate(-14px, 10px); }
     }
 
-    /* ============================================
-       BLOQUE IZQUIERDO — transparente, hereda el fondo
-    ============================================= */
-    .product-image-container {
+    /* Bloque izquierdo */
+    .sw-image-container {
         position: relative;
         width: 50%;
         min-height: 420px;
@@ -191,25 +206,24 @@
         border-radius: 0;
         border-right: 1px solid rgba(255,255,255,0.15);
         z-index: 3;
+        box-sizing: border-box;
     }
-
-    /* Círculos extra bloque izquierdo */
-    .left-circles {
+    .sw-left-circles {
         position: absolute;
         inset: 0;
         z-index: 0;
         pointer-events: none;
         overflow: hidden;
     }
-    .left-circles circle {
+    .sw-left-circles circle {
         fill: none;
-        stroke: rgba(255,255,255,0.13);
-        stroke-width: 1.5;
+        stroke: rgba(255,255,255,0.07);
+        stroke-width: 0.4;
     }
-    .left-circles .lc1 { animation: hcFloat1  9s ease-in-out infinite; }
-    .left-circles .lc2 { animation: hcFloat2 12s ease-in-out infinite; }
+    .sw-left-circles .lc1 { animation: swHcFloat1  9s ease-in-out infinite; }
+    .sw-left-circles .lc2 { animation: swHcFloat2 12s ease-in-out infinite; }
 
-    .product-title {
+    .sw-title {
         position: relative;
         z-index: 4;
         font-size: clamp(1.5rem, 2vw, 2.5rem);
@@ -221,30 +235,29 @@
         text-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
-    /* ============================================
-       BLOQUE DERECHO — overlay oscuro para legibilidad
-    ============================================= */
-    .product-info {
+    /* Bloque derecho overlay */
+    .sw-info {
         position: relative;
         z-index: 3;
     }
-    /* Overlay oscuro semitransparente sobre el bloque derecho */
-    .product-info::before {
+    .sw-info::before {
         content: '';
         position: absolute;
         inset: 0;
         background: rgba(0, 20, 60, 0.28);
         z-index: 0;
         pointer-events: none;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
     }
-    /* Todo el contenido del bloque derecho por encima del overlay */
-    .product-info > * {
+    .sw-info > * {
         position: relative;
         z-index: 1;
     }
 
-    /* ——— MINI SLIDER ——— */
-    .product-slider {
+    /* Mini slider */
+    .sw-slider {
         position: relative;
         z-index: 4;
         width: 100%;
@@ -253,36 +266,36 @@
         align-items: center;
         gap: 16px;
     }
-    .slider-viewport {
+    .sw-slider-viewport {
         width: 100%;
         overflow: hidden;
     }
-    .slider-track {
+    .sw-slider-track {
         display: flex;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .slider-slide {
+    .sw-slider-slide {
         min-width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 10px;
     }
-    .slider-slide img {
+    .sw-slider-slide img {
         height: 260px;
         max-width: 100%;
         object-fit: contain;
         filter: drop-shadow(0 10px 28px rgba(0,0,0,0.25));
         transition: transform 0.4s ease;
     }
-    .slider-slide img:hover { transform: scale(1.04); }
+    .sw-slider-slide img:hover { transform: scale(1.04); }
 
-    .slider-dots {
+    .sw-slider-dots {
         display: flex;
         gap: 8px;
         justify-content: center;
     }
-    .slider-dot {
+    .sw-slider-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
@@ -292,160 +305,348 @@
         padding: 0;
         transition: background 0.3s ease, width 0.3s ease;
     }
-    .slider-dot.active {
+    .sw-slider-dot.active {
         background: #ffffff;
         width: 24px;
         border-radius: 4px;
     }
 
-    @media (max-width: 768px) {
-        .product-image-container {
+    /* Desktop */
+    @media (min-width: 768px) {
+        .sw-section { flex-direction: row; min-height: 420px; }
+        .sw-image-container { width: 50%; flex-shrink: 0; }
+        .sw-info { width: 50%; flex-shrink: 0; overflow: hidden; }
+    }
+    @media (min-width: 1024px) {
+        .sw-section { max-height: 520px; }
+    }
+
+    /* Móvil */
+    @media (max-width: 767px) {
+        .sw-section { flex-direction: column; max-height: none; overflow: visible; }
+        .sw-image-container {
             width: 100%;
             min-height: 300px;
             border-right: none;
             border-bottom: 1px solid rgba(255,255,255,0.15);
+            overflow: visible;
         }
-        .slider-slide img { height: 200px; }
-        .product-info { padding: 28px 20px; }
+        .sw-slider-slide img { height: 200px; }
+        .sw-info { width: 100%; padding: 28px 20px; overflow: visible; }
+        .sw-name { font-size: 1.4rem; }
+        .sw-description { font-size: 0.9rem; }
+        .sw-feature-item { font-size: 0.9rem; }
+        .sw-buttons { flex-direction: column; }
+        .sw-btn { width: 100%; min-width: unset; }
     }
 
     /* ============================================
-       ANIMACIONES SCROLL REVEAL
+       SCROLL REVEAL
     ============================================= */
-    .reveal {
+    .sw-reveal {
         opacity: 0;
         transform: translateY(35px);
         transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .reveal.reveal-left  { transform: translateX(-40px); }
-    .reveal.reveal-right { transform: translateX(40px);  }
-    .reveal.reveal-scale { transform: scale(0.88);       }
-    .reveal.visible {
-        opacity: 1;
-        transform: translate(0) scale(1);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s;  }
-    .reveal-delay-2 { transition-delay: 0.22s; }
-    .reveal-delay-3 { transition-delay: 0.34s; }
+    .sw-reveal.sw-reveal-left  { transform: translateX(-40px); }
+    .sw-reveal.sw-reveal-right { transform: translateX(40px);  }
+    .sw-reveal.sw-reveal-scale { transform: scale(0.88);       }
+    .sw-reveal.visible { opacity: 1; transform: translate(0) scale(1); }
+    .sw-reveal-delay-1 { transition-delay: 0.1s;  }
+    .sw-reveal-delay-2 { transition-delay: 0.22s; }
+    .sw-reveal-delay-3 { transition-delay: 0.34s; }
 
-    .feature-item {
-        opacity: 0;
-        transform: translateX(-16px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
+    /* ============================================
+       CÓMO FUNCIONA
+    ============================================= */
+    .sw-how-it-works {
+        background-color: #F3F4F6;
+        padding: 80px 0;
     }
-    .feature-item.visible { opacity: 1; transform: translateX(0); }
-    .feature-item:nth-child(1) { transition-delay: 0.05s; }
-    .feature-item:nth-child(2) { transition-delay: 0.18s; }
-    .feature-item:nth-child(3) { transition-delay: 0.31s; }
-
-    .steps-connector {
-        display: flex;
+    .sw-section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .sw-section-header h2 { font-size: 32px; color: #1F2937; }
+    .sw-section-header p  { color: #6B7280; margin-top: 10px; }
+    .sw-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .sw-step {
+        text-align: center;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+    .sw-step:hover { transform: translateY(-5px); }
+    .sw-step-number {
+        font-size: 100px;
+        font-weight: bold;
+        color: #a5b5d4;
+        position: absolute;
+        top: -40px;
+        left: 30%;
+        transform: translateX(-50%);
+        z-index: 1;
+    }
+    .sw-step-content { position: relative; z-index: 2; }
+    .sw-step p { color: #4B5563; font-size: 14px; }
+    .sw-highlight { font-weight: bold; color: #1F2937; margin-top: 8px; }
+    .sw-steps-connector {
+        display: none;
         justify-content: center;
         color: #10b981;
         opacity: 0.6;
     }
-    .steps-connector svg { animation: bounce-down 1.4s ease-in-out infinite; }
-    @keyframes bounce-down {
+    .sw-steps-connector svg { animation: swBounceDown 1.4s ease-in-out infinite; }
+    @keyframes swBounceDown {
         0%, 100% { transform: translateY(0);   }
         50%       { transform: translateY(5px); }
     }
-    @media (min-width: 1024px) { .steps-connector { display: none; } }
+    @media (max-width: 480px) {
+        .sw-steps-connector { display: flex; }
+        .sw-steps { grid-template-columns: 1fr; gap: 60px; }
+    }
+
+    /* ============================================
+       SERVICIOS
+    ============================================= */
+    .sw-services-section {
+        background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
+        min-height: 60vh;
+        padding: 80px 0;
+        display: flex;
+        align-items: center;
+    }
+    .sw-services-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .sw-services-title {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 60px;
+        letter-spacing: 0.5px;
+    }
+    .sw-services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .sw-service-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .sw-service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
+    .sw-service-icon-img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+    }
+    .sw-service-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        position: relative;
+        top: -60px;
+        margin-bottom: -20px;
+        flex-shrink: 0;
+    }
+    .sw-service-title {
+        color: #1f2937;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        line-height: 1.4;
+        flex-shrink: 0;
+    }
+    .sw-service-desc {
+        color: #6b7280;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        flex-grow: 1;
+    }
+    .sw-service-btn {
+        background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-shrink: 0;
+        align-self: center;
+        text-decoration: none;
+    }
+    .sw-service-btn:hover {
+        background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+        box-shadow: 0 10px 20px rgba(22,55,204,0.3);
+    }
+    .sw-service-btn svg { transition: transform 0.3s ease; }
+    .sw-service-btn:hover svg { transform: translateX(3px); }
+
+    /* Servicios responsive */
+    @media (max-width: 1200px) {
+        .sw-services-container { max-width: 1100px; }
+        .sw-service-card { padding: 35px 20px; }
+        .sw-service-title { font-size: 1.2rem; }
+        .sw-service-desc { font-size: 0.9rem; }
+    }
+    @media (max-width: 992px) {
+        .sw-services-grid { grid-template-columns: repeat(2, 1fr); }
+        .sw-service-card:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            max-width: calc(50% - 12px);
+            margin: 0 auto;
+            width: 100%;
+        }
+    }
+    @media (max-width: 600px) {
+        .sw-services-section { padding: 60px 0; }
+        .sw-services-title { font-size: 2rem; margin-bottom: 40px; }
+        .sw-services-grid {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 50px;
+        }
+        .sw-service-card { width: 100%; max-width: 100%; padding-top: 50px; }
+        .sw-service-card:last-child:nth-child(odd) { grid-column: auto; max-width: 100%; }
+        .sw-service-icon { width: 70px; height: 70px; top: -45px; }
+    }
+    @media (max-width: 480px) {
+        .sw-services-container { padding: 0 15px; }
+        .sw-services-title { font-size: 1.8rem; }
+        .sw-service-card { padding: 25px 15px; }
+    }
 </style>
 
 
 <!-- HERO -->
-<div class="product-section">
+<div class="sw-section">
 
-    <!-- Círculos SVG en todo el fondo del hero -->
-    <svg class="hero-bg-circles" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
-        <circle class="hc1" cx="100"  cy="80"  r="130"/>
-        <circle class="hc2" cx="1100" cy="420" r="160"/>
-        <circle class="hc3" cx="950"  cy="60"  r="90"/>
-        <circle class="hc4" cx="80"   cy="420" r="110"/>
-        <circle class="hc5" cx="600"  cy="260" r="200"/>
+    <svg class="sw-hero-circles" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+        <circle class="hc1" cx="10"  cy="15"  r="22"/>
+        <circle class="hc2" cx="90"  cy="85"  r="28"/>
+        <circle class="hc3" cx="80"  cy="10"  r="16"/>
+        <circle class="hc4" cx="8"   cy="82"  r="20"/>
+        <circle class="hc5" cx="50"  cy="50"  r="35"/>
     </svg>
 
-    <!-- BLOQUE IZQUIERDO: slider -->
-    <div class="product-image-container reveal reveal-left">
+    <!-- Bloque izquierdo: slider -->
+    <div class="sw-image-container sw-reveal sw-reveal-left">
 
-        <svg class="left-circles" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice">
+        <svg class="sw-left-circles" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice">
             <circle class="lc1" cx="50"  cy="50"  r="80"/>
             <circle class="lc2" cx="350" cy="370" r="100"/>
         </svg>
 
-        <h2 class="product-title">MEDIDOR<br>INTELIGENTE</h2>
+        <h2 class="sw-title">MEDIDOR<br>INTELIGENTE</h2>
 
-        <div class="product-slider">
-            <div class="slider-viewport">
-                <div class="slider-track" id="sliderTrack">
-
-                    <div class="slider-slide">
+        <div class="sw-slider">
+            <div class="sw-slider-viewport">
+                <div class="sw-slider-track" id="swSliderTrack">
+                    <div class="sw-slider-slide">
                         <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente">
                     </div>
-
-                    <div class="slider-slide">
+                    <div class="sw-slider-slide">
                         <img src="{% static 'app/img/handheld.png' %}" alt="Receptor Handheld">
                     </div>
-
-                    <!--
-                    Para agregar más productos:
-                    <div class="slider-slide">
-                        <img src="{% static 'app/img/TUIMAGEN.png' %}" alt="Nombre">
-                    </div>
-                    Y agrega abajo: <button class="slider-dot" data-index="2"></button>
-                    -->
-
                 </div>
             </div>
-
-            <div class="slider-dots">
-                <button class="slider-dot active" data-index="0"></button>
-                <button class="slider-dot"        data-index="1"></button>
+            <div class="sw-slider-dots">
+                <button class="sw-slider-dot active" data-index="0"></button>
+                <button class="sw-slider-dot"        data-index="1"></button>
             </div>
         </div>
 
     </div>
 
-    <!-- BLOQUE DERECHO: info + overlay oscuro -->
-    <div class="product-info reveal reveal-right">
-        <h1 class="product-name">NUESTRO NUEVO MODELO</h1>
-        <p class="product-description">
-            Conoce nuestro nuevo medidor inteligente, ahora 3 veces más potente, diseñado para ofrecer un 
-            monitoreo aún más preciso del consumo de agua. Optimiza la gestión de tu comunidad con mayor 
-            cobertura, mejor rendimiento y la misma eficiencia y sostenibilidad que nos caracteriza.
+    <!-- Bloque derecho: info -->
+    <div class="sw-info sw-reveal sw-reveal-right">
+        <h1 class="sw-name">NUESTRO NUEVO MODELO</h1>
+        <p class="sw-description">
+            Conoce nuestro nuevo Medidor Inteligente, desarrollado en Chile y optimizado para ofrecer una
+            medición más precisa y confiable del consumo de agua. Diseñado para mejorar la gestión de
+            sistemas SSR/APR, permite un control más eficiente en terreno.
         </p>
 
-        <ul class="features-list">
-            <li class="feature-item">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+        <ul class="sw-features-list">
+            <li class="sw-feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="14" viewBox="0 0 20 14" style="flex-shrink:0; border-radius:2px;">
+                    <rect width="20" height="7" fill="#ffffff"/>
+                    <rect y="7" width="20" height="7" fill="#D52B1E"/>
+                    <rect width="7" height="7" fill="#0039A6"/>
+                    <polygon points="3.5,1.2 4.2,3.3 6.4,3.3 4.7,4.6 5.3,6.7 3.5,5.4 1.7,6.7 2.3,4.6 0.6,3.3 2.8,3.3" fill="#ffffff"/>
                 </svg>
-                Batería 3 veces más potente
+                Tecnología desarrollada en Chile
             </li>
-            <li class="feature-item">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+            <li class="sw-feature-item">
+                <svg class="sw-check-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                Monitoreo en tiempo real
+                Monitoreo preciso del consumo
             </li>
-            <li class="feature-item">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+            <li class="sw-feature-item">
+                <svg class="sw-check-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                Diseño totalmente moderno
+                Lectura remota eficiente
+            </li>
+            <li class="sw-feature-item">
+                <svg class="sw-check-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Diseño robusto para condiciones reales
             </li>
         </ul>
 
-        <div class="buttons-container">
-            <a href="{% url 'contacto'%}" class="btn btn-outline">
+        <div class="sw-buttons">
+            <a href="{% url 'contacto'%}" class="sw-btn sw-btn-outline">
                 Cómpralo ahora
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="margin-left: 8px;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="margin-left:8px;">
                     <path d="M4 4v12h12V4H4zm11 11H5V5h10v10z"/>
                 </svg>
             </a>
-            <a href="{% url 'recursos'%}" class="btn btn-primary">
+            <a href="{% url 'recursos'%}" class="sw-btn sw-btn-primary">
                 Ver recursos
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="margin-left: 8px;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="margin-left:8px;">
                     <path d="M7 10l5-5v3h4v4h-4v3l-5-5z"/>
                 </svg>
             </a>
@@ -454,58 +655,58 @@
 </div>
 
 
-<!-- Sección Cómo Funciona -->
-<section class="how-it-works">
+<!-- Cómo Funciona -->
+<section class="sw-how-it-works">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="sw-section-header sw-reveal">
             <h2>¿CÓMO FUNCIONA?</h2>
             <p>En 3 sencillos pasos</p>
         </div>
 
-        <div class="steps">
+        <div class="sw-steps">
 
-            <div class="step reveal reveal-delay-1">
-                <div class="step-number">1</div>
-                <div class="step-content">
+            <div class="sw-step sw-reveal sw-reveal-delay-1">
+                <div class="sw-step-number">1</div>
+                <div class="sw-step-content">
                     <div class="gotas">
                         <img src="{% static 'app/img/icono6.png'%}" alt="Medidor">
                     </div>
                     <p>Toma los datos y envía al receptor manual</p>
-                    <p class="highlight">A 100 (+) METROS</p>
+                    <p class="sw-highlight">A 100 (+) METROS</p>
                 </div>
             </div>
 
-            <div class="steps-connector">
+            <div class="sw-steps-connector">
                 <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
                     <path d="M12 0 L12 24 M4 16 L12 24 L20 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
 
-            <div class="step reveal reveal-delay-2">
-                <div class="step-number">2</div>
-                <div class="step-content">
+            <div class="sw-step sw-reveal sw-reveal-delay-2">
+                <div class="sw-step-number">2</div>
+                <div class="sw-step-content">
                     <div class="gotas">
                         <img src="{% static 'app/img/icono7.png'%}" alt="Receptor">
                     </div>
                     <p>Recepciona los datos</p>
-                    <p class="highlight">PERMITE CORTAR EL SERVICIO A DISTANCIA</p>
+                    <p class="sw-highlight">PERMITE CORTAR EL SERVICIO A DISTANCIA</p>
                 </div>
             </div>
 
-            <div class="steps-connector">
+            <div class="sw-steps-connector">
                 <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
                     <path d="M12 0 L12 24 M4 16 L12 24 L20 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
 
-            <div class="step reveal reveal-delay-3">
-                <div class="step-number">3</div>
-                <div class="step-content">
+            <div class="sw-step sw-reveal sw-reveal-delay-3">
+                <div class="sw-step-number">3</div>
+                <div class="sw-step-content">
                     <div class="gotas">
                         <img src="{% static 'app/img/icono8.png'%}" alt="Software">
                     </div>
                     <p>Pasa en directo los datos al software o plantilla excel</p>
-                    <p class="highlight">PERMITE EMITIR BOLETAS</p>
+                    <p class="sw-highlight">PERMITE EMITIR BOLETAS</p>
                 </div>
             </div>
 
@@ -513,21 +714,23 @@
     </div>
 </section>
 
-<section class="promedi-products-section">
-    <div class="promedi-container">
-        <h2 class="promedi-section-title reveal">Descubre nuestros Servicios</h2>
-        
-        <div class="promedi-products-grid">
 
-            <div class="promedi-product-card reveal reveal-scale reveal-delay-1">
-                <div class="promedi-product-icon promedi-web-icon">
-                    <img src="{% static 'app/img/visual.png' %}" alt="Páginas Web" class="promedi-icon-image">
+<!-- Servicios -->
+<section class="sw-services-section">
+    <div class="sw-services-container">
+        <h2 class="sw-services-title sw-reveal">Descubre nuestros Servicios</h2>
+
+        <div class="sw-services-grid">
+
+            <div class="sw-service-card sw-reveal sw-reveal-scale sw-reveal-delay-1">
+                <div class="sw-service-icon">
+                    <img src="{% static 'app/img/visual.png' %}" alt="Páginas Web" class="sw-service-icon-img">
                 </div>
-                <h3 class="promedi-product-title">Páginas Web para APR y SSR</h3>
-                <p class="promedi-product-description">
+                <h3 class="sw-service-title">Páginas Web para APR y SSR</h3>
+                <p class="sw-service-desc">
                     Modernizamos la gestión de APR y SSR con sitios web profesionales, funcionales y adaptados a sus necesidades
                 </p>
-                <a href="{% url 'contacto'%}" class="promedi-product-button">
+                <a href="{% url 'contacto'%}" class="sw-service-btn">
                     Conoce más
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -536,15 +739,15 @@
                 </a>
             </div>
 
-            <div class="promedi-product-card reveal reveal-scale reveal-delay-2">
-                <div class="promedi-product-icon promedi-meter-icon">
-                    <img src="{% static 'app/img/softwareApr.png' %}" alt="SoftwareApr" class="promedi-icon-image">
+            <div class="sw-service-card sw-reveal sw-reveal-scale sw-reveal-delay-2">
+                <div class="sw-service-icon">
+                    <img src="{% static 'app/img/softwareApr.png' %}" alt="SoftwareApr" class="sw-service-icon-img">
                 </div>
-                <h3 class="promedi-product-title">Nuestra plataforma de gestión de APR</h3>
-                <p class="promedi-product-description">
+                <h3 class="sw-service-title">Nuestra plataforma de gestión de APR</h3>
+                <p class="sw-service-desc">
                     Incluye Boleta Electrónica y Pago de APR en línea
                 </p>
-                <a href="https://software-apr.cl/" class="promedi-product-button">
+                <a href="https://software-apr.cl/" class="sw-service-btn">
                     Conoce más
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -553,15 +756,15 @@
                 </a>
             </div>
 
-            <div class="promedi-product-card reveal reveal-scale reveal-delay-3">
-                <div class="promedi-product-icon promedi-payment-icon">
-                    <img src="{% static 'app/img/puntob.png' %}" alt="Punto Blue" class="promedi-icon-image">
+            <div class="sw-service-card sw-reveal sw-reveal-scale sw-reveal-delay-3">
+                <div class="sw-service-icon">
+                    <img src="{% static 'app/img/puntob.png' %}" alt="Punto Blue" class="sw-service-icon-img">
                 </div>
-                <h3 class="promedi-product-title">Paga tus cuentas de agua potable rural en línea</h3>
-                <p class="promedi-product-description">
+                <h3 class="sw-service-title">Paga tus cuentas de agua potable rural en línea</h3>
+                <p class="sw-service-desc">
                     Además conoce los puntos de pago en almacenes locales. Sistema de pagos integrado para mayor comodidad de los usuarios
                 </p>
-                <a href="https://www.punto-blue.cl" class="promedi-product-button">
+                <a href="https://www.punto-blue.cl" class="sw-service-btn">
                     Conoce más
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -580,10 +783,10 @@
 </div>
 
 <script>
-    /* --- SCROLL REVEAL --- */
+    /* --- SCROLL REVEAL sw- --- */
     (function () {
-        const revealEls  = document.querySelectorAll('.reveal');
-        const featureEls = document.querySelectorAll('.feature-item');
+        const revealEls  = document.querySelectorAll('.sw-reveal');
+        const featureEls = document.querySelectorAll('.sw-feature-item');
         const opts = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
 
         const onReveal = (entries, obs) => {
@@ -609,11 +812,10 @@
         }, 150);
     })();
 
-
-    /* --- MINI SLIDER --- */
+    /* --- MINI SLIDER sw- --- */
     (function () {
-        const track   = document.getElementById('sliderTrack');
-        const dots    = document.querySelectorAll('.slider-dot');
+        const track   = document.getElementById('swSliderTrack');
+        const dots    = document.querySelectorAll('.sw-slider-dot');
         const total   = dots.length;
         let current   = 0;
         let autoTimer = null;
@@ -638,50 +840,5 @@
 
         startAuto();
     })();
-
-
-    /* --- IMAGE SLIDER BASE --- */
-    class ImageSlider {
-        constructor(trackId, interval = 3000) {
-            this.track = document.getElementById(trackId);
-            if (!this.track) return;
-            this.items = this.track.querySelectorAll('.slider-item');
-            this.currentIndex = 0;
-            this.interval = interval;
-            this.isTransitioning = false;
-            this.track.appendChild(this.items[0].cloneNode(true));
-            this.startSlider();
-        }
-        startSlider() { setInterval(() => this.nextSlide(), this.interval); }
-        nextSlide() {
-            if (this.isTransitioning) return;
-            this.isTransitioning = true;
-            this.currentIndex++;
-            this.track.style.transform = `translateX(${-this.currentIndex * 100}%)`;
-            if (this.currentIndex >= this.items.length) {
-                setTimeout(() => {
-                    this.track.style.transition = 'none';
-                    this.currentIndex = 0;
-                    this.track.style.transform = 'translateX(0%)';
-                    setTimeout(() => {
-                        this.track.style.transition = 'transform 0.5s ease-in-out';
-                        this.isTransitioning = false;
-                    }, 50);
-                }, 500);
-            } else {
-                setTimeout(() => { this.isTransitioning = false; }, 500);
-            }
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        new ImageSlider('leftTrack',        2500);
-        new ImageSlider('rightTrack',       3500);
-        new ImageSlider('mobileLeftTrack',  2800);
-        new ImageSlider('mobileRightTrack', 3200);
-    });
-
-    function smoothUpdate() { requestAnimationFrame(smoothUpdate); }
-    requestAnimationFrame(smoothUpdate);
 </script>
 {% endblock %}
