@@ -1,0 +1,934 @@
+{% extends 'app/base.html' %}
+{% block contenido %}
+{% load static %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Fix global desbordamiento ── */
+.tu-hero,
+.tu-main,
+.tu-manuals-section {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.tu-grid,
+.tu-meters-grid {
+  box-sizing: border-box;
+  width: 100%;
+}
+/* Evita que las cards rompan el ancho en móvil */
+.tu-card,
+.tu-meter-card {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ── Animaciones ── */
+@keyframes tu-shimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position:  300% center; }
+}
+@keyframes tu-fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes tu-pulseBar {
+  0%, 100% { opacity: .6; transform: scaleX(1); }
+  50%       { opacity: 1;  transform: scaleX(1.07); }
+}
+@keyframes tu-badgePop {
+  0%  { transform: scale(.5); opacity: 0; }
+  70% { transform: scale(1.12); }
+  100%{ transform: scale(1);  opacity: 1; }
+}
+@keyframes tu-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes tu-spin-rev {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes tu-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes tu-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(45,212,191,0), 0 16px 48px rgba(13,31,92,.28); }
+  50%       { box-shadow: 0 0 0 6px rgba(45,212,191,.18), 0 16px 48px rgba(13,31,92,.28); }
+}
+
+/* ══════════════════════════════════════════
+   HERO  — modelo referencia: texto izquierda, título enorme
+══════════════════════════════════════════ */
+.tu-hero {
+  background: linear-gradient(130deg, #060e2e 0%, #0d1f5c 40%, #0a3564 70%, #0b4878 100%);
+  padding: clamp(40px, 6vw, 64px) clamp(18px, 5vw, 72px) clamp(36px, 5vw, 60px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  /* Degradado base: azul marino izquierda → teal verdoso derecha */
+  background: linear-gradient(110deg, #0a1540 0%, #0d2260 30%, #0a5068 65%, #0a7a72 100%);
+}
+/* Textura de puntos/partículas igual a la referencia */
+.tu-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  opacity: .45;
+}
+/* Halos de luz encima de la textura */
+.tu-hero-lights {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 90% at 8% 50%,  rgba(14,89,200,.4) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 80% at 92% 50%, rgba(11, 189, 162, 0.45) 0%, transparent 55%);
+  pointer-events: none;
+}
+/* Barra inferior teal verde agua igual a la referencia */
+.tu-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #2dd4bf 20%, #5eead4 50%, #2dd4bf 80%, transparent);
+  background-size: 200% auto;
+  animation: tu-shimmer 8s linear infinite;
+}
+/* Ocultar divider-bar que ya no va aquí */
+.tu-divider-bar { display: none; }
+
+/* Badge centrado encima */
+.tu-hero-badge {
+  display: block;
+  text-align: center;
+  margin-bottom: 28px;
+  animation: tu-fadeUp .45s ease both;
+  position: relative;
+  z-index: 1;
+}
+.tu-hero-badge span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(45,212,191,.18);
+  border: 1px solid rgba(21, 228, 200, 0.5);
+  color: #2dd4bf;
+  font-family: 'Sora', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 7px 20px;
+  border-radius: 50px;
+}
+.tu-hero-badge span::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #2dd4bf;
+  box-shadow: 0 0 10px #2dd4bf, 0 0 20px rgba(17, 214, 188, 0.5);
+}
+
+/* Título */
+.tu-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  margin: 0 0 20px;
+  animation: tu-fadeUp .45s .08s ease both;
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Degradado azul claro → teal exacto al de la referencia */
+.tu-highlight {
+  font-style: normal;
+  background: linear-gradient(90deg, #5ab4ff 0%, #2dd4bf 55%, #14e8d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtítulo */
+.tu-hero-sub {
+  font-size: clamp(.95rem, 1.6vw, 1.05rem);
+  color: rgba(255,255,255,.55);
+  max-width: 520px;
+  line-height: 1.7;
+  animation: tu-fadeUp .45s .16s ease both;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════
+   CONTENEDOR PRINCIPAL
+══════════════════════════════════════════ */
+.tu-main {
+  background: #e8eef7;
+  padding: 68px 36px 88px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ══════════════════════════════════════════
+   TÍTULO DE SECCIÓN
+══════════════════════════════════════════ */
+.tu-section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(.8rem, 1.5vw, .95rem);
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #0d1f5c;
+  text-align: center;
+  margin: 0 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.tu-section-title::before,
+.tu-section-title::after {
+  content: '';
+  flex: 1;
+  max-width: 240px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #2dd4bf, transparent);
+  animation: tu-pulseBar 3.2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════
+   GRID DE CARDS
+══════════════════════════════════════════ */
+.tu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+  gap: 28px;
+  max-width: 1400px;
+  margin: 0 auto 80px;
+}
+
+/* ══════════════════════════════════════════
+   CARD DE VIDEO
+══════════════════════════════════════════ */
+.tu-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(45,212,191,.22);
+  box-shadow: 0 4px 22px rgba(13,31,92,.10);
+  transition:
+    transform .42s cubic-bezier(.22,1,.36,1),
+    box-shadow .42s ease,
+    border-color .3s;
+  position: relative;
+}
+.tu-card:hover {
+  transform: translateY(-10px) scale(1.013);
+  box-shadow: 0 22px 52px rgba(13,31,92,.18);
+  border-color: rgba(45,212,191,.6);
+  animation: tu-glow-pulse 1.8s ease-in-out 1;
+}
+/* Barra shimmer superior */
+.tu-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg,
+    #0d1f5c 0%, #1e52d4 25%, #2dd4bf 50%, #0d9488 75%, #0d1f5c 100%);
+  background-size: 300% auto;
+  animation: tu-shimmer 10s linear infinite;
+}
+
+/* ── Video 16:9 ── */
+.tu-video-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #060e2e;
+  overflow: hidden;
+}
+.tu-video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+/* Gradiente inferior en el video */
+.tu-video-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(to top, rgba(6,14,46,.45), transparent);
+  pointer-events: none;
+}
+
+/* ── Footer de card ── */
+.tu-card-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 22px 24px;
+  border-top: 1px solid rgba(30,82,212,.07);
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+}
+.tu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d1f5c, #1e52d4);
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: .85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+  box-shadow: 0 4px 14px rgba(13,31,92,.3);
+  animation: tu-badgePop .5s cubic-bezier(.22,1,.36,1) both;
+}
+.tu-card-text { flex: 1; }
+.tu-paso-pill {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #0d9488;
+  background: #ccfbf1;
+  border: 1px solid rgba(13,148,136,.25);
+  padding: 3px 12px;
+  border-radius: 50px;
+  margin-bottom: 8px;
+}
+.tu-card-title {
+  font-family: 'Sora', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #0d1f5c;
+  margin: 0 0 5px;
+  line-height: 1.35;
+}
+.tu-card-desc {
+  font-size: .83rem;
+  line-height: 1.5;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Barra iluminada al fondo del hero ── */
+.tu-divider-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #1e52d4 20%, #2dd4bf 50%, #1e52d4 80%, transparent);
+  background-size: 200% auto;
+  animation: tu-shimmer 8s linear infinite;
+}
+.tu-spacer { margin-top: 16px; }
+
+/* ══════════════════════════════════════════
+   SECCIÓN MANUALES — fondo claro separado
+══════════════════════════════════════════ */
+.tu-manuals-section {
+  background: #f0f5fb;
+  padding: 80px 36px 88px;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  /* Separador superior con línea teal */
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #2dd4bf, #1e52d4, #2dd4bf, transparent) 1;
+}
+/* Halo decorativo de fondo */
+.tu-manuals-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 300px;
+  background: radial-gradient(ellipse, rgba(30,82,212,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tu-manuals-header {
+  text-align: center;
+  margin-bottom: 52px;
+  position: relative;
+}
+.tu-manuals-header h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  font-weight: 800;
+  color: #0d1f5c;
+  margin: 0 0 12px;
+}
+.tu-manuals-header h2 em {
+  font-style: normal;
+  color: #1e52d4;
+}
+.tu-manuals-header > p {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0 0 24px;
+}
+.tu-manuals-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Sora', sans-serif;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .2em;
+  color: #0d9488;
+  text-transform: uppercase;
+}
+.tu-manuals-label::before,
+.tu-manuals-label::after {
+  content: '';
+  width: 40px; height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #2dd4bf);
+}
+.tu-manuals-label::after {
+  background: linear-gradient(90deg, #2dd4bf, transparent);
+}
+
+.tu-meters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 28px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ── Meter card — fondo blanco, imagen grande ── */
+.tu-meter-card {
+  background: #ffffff;
+  border: 1px solid rgba(30,82,212,.14);
+  border-radius: 22px;
+  padding: 0 0 28px;
+  text-align: center;
+  box-shadow: 0 6px 28px rgba(13,31,92,.09);
+  transition: transform .38s cubic-bezier(.22,1,.36,1), box-shadow .38s ease, border-color .3s;
+  opacity: 0;
+  transform: translateY(28px);
+  overflow: hidden;
+  position: relative;
+}
+/* Barra shimmer superior */
+.tu-meter-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #0d1f5c, #1e52d4, #2dd4bf, #0d9488, #1e52d4, #0d1f5c);
+  background-size: 300% auto;
+  animation: tu-shimmer 10s linear infinite;
+}
+.tu-meter-card.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.tu-meter-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 52px rgba(13,31,92,.16);
+  border-color: rgba(45,212,191,.5);
+}
+
+/* Zona de imagen con círculos decorativos — GRANDE */
+.tu-meter-img-zone {
+  position: relative;
+  height: 240px;
+  background: linear-gradient(145deg, #dce8fb 0%, #e8f0fd 50%, #d4e4f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+/* Círculo grande exterior — gira lento, punteado azul */
+.tu-meter-img-zone::before {
+  content: '';
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  border: 2px dashed rgba(30,82,212,.18);
+  animation: tu-spin-slow 22s linear infinite;
+}
+/* Círculo medio — gira al revés, teal */
+.tu-meter-img-zone::after {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(45,212,191,.3);
+  animation: tu-spin-rev 14s linear infinite;
+}
+/* Círculo interior — relleno suave */
+.tu-meter-inner-circle {
+  position: absolute;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,82,212,.08) 0%, rgba(45,212,191,.05) 100%);
+  border: 1.5px solid rgba(30,82,212,.2);
+}
+/* Punto de brillo */
+.tu-meter-img-zone .tu-glow-dot {
+  position: absolute;
+  top: 28px; right: 36px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #2dd4bf;
+  box-shadow: 0 0 14px #2dd4bf, 0 0 28px rgba(45,212,191,.45);
+}
+/* Punto secundario */
+.tu-meter-img-zone .tu-glow-dot2 {
+  position: absolute;
+  bottom: 32px; left: 32px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #1e52d4;
+  box-shadow: 0 0 10px #1e52d4, 0 0 20px rgba(30,82,212,.4);
+}
+.tu-meter-img-zone img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 8px 24px rgba(30,82,212,.25)) drop-shadow(0 2px 8px rgba(0,0,0,.12));
+  animation: tu-float 4s ease-in-out infinite;
+  transition: transform .3s ease;
+}
+.tu-meter-card:hover .tu-meter-img-zone img {
+  transform: scale(1.07);
+}
+
+.tu-meter-card-body {
+  padding: 0 24px;
+}
+.tu-meter-card p {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: #64748b;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+.tu-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0d1f5c 0%, #1e52d4 100%);
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 26px;
+  border-radius: 50px;
+  box-shadow: 0 4px 18px rgba(13,31,92,.3);
+  transition: transform .22s, box-shadow .25s, background .2s;
+  position: relative;
+  overflow: hidden;
+}
+.tu-dl-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transform: translateX(-100%);
+  transition: transform .4s ease;
+}
+.tu-dl-btn:hover::before { transform: translateX(100%); }
+.tu-dl-btn::after { content: '↓'; font-size: .9rem; }
+.tu-dl-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(13,31,92,.42);
+  background: linear-gradient(135deg, #1e52d4 0%, #2563eb 100%);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   RESPONSIVE — móvil, tablet, notebook, desktop
+══════════════════════════════════════════ */
+
+/* ── Móvil pequeño (hasta 480px) ── */
+@media (max-width: 480px) {
+  .tu-hero {
+    padding: 48px 18px 44px;
+  }
+  .tu-hero h1 {
+    font-size: clamp(1.45rem, 7vw, 1.8rem);
+    line-height: 1.2;
+  }
+  .tu-hero-sub {
+    font-size: .88rem;
+  }
+  .tu-hero-badge span {
+    font-size: .62rem;
+    padding: 5px 14px;
+  }
+  .tu-main {
+    padding: 36px 14px 56px;
+  }
+  .tu-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .tu-section-title {
+    font-size: .75rem;
+    gap: 10px;
+  }
+  .tu-section-title::before,
+  .tu-section-title::after { max-width: 30px; }
+  .tu-card-footer { padding: 12px 14px 16px; gap: 10px; }
+  .tu-badge { min-width: 28px; height: 28px; font-size: .72rem; }
+  .tu-card-desc { font-size: .83rem; }
+  .tu-meters-grid { grid-template-columns: 1fr; gap: 16px; }
+  .tu-meter-img-zone { height: 200px; }
+  .tu-meter-img-zone img { width: 120px; height: 120px; }
+  .tu-manuals-section { padding: 44px 14px 52px; }
+  .tu-manuals-header h2 { font-size: 1.5rem; }
+  .tu-manuals-header > p { font-size: .88rem; }
+  .tu-spacer { margin-top: 8px; }
+}
+
+/* ── Móvil estándar (481px – 767px) ── */
+@media (min-width: 481px) and (max-width: 767px) {
+  .tu-hero {
+    padding: 56px 24px 52px;
+  }
+  .tu-hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+  }
+  .tu-main {
+    padding: 44px 20px 64px;
+  }
+  .tu-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .tu-section-title::before,
+  .tu-section-title::after { max-width: 50px; }
+  .tu-meters-grid { grid-template-columns: 1fr; gap: 18px; }
+  .tu-meter-img-zone { height: 210px; }
+  .tu-manuals-section { padding: 52px 20px 60px; }
+  .tu-manuals-header h2 { font-size: 1.65rem; }
+}
+
+/* ── Tablet (768px – 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tu-hero {
+    padding: 60px 40px 56px;
+  }
+  .tu-hero h1 {
+    font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+  }
+  .tu-main {
+    padding: 56px 28px 72px;
+  }
+  .tu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  /* Tercera card centrada sola en tablet */
+  .tu-grid .tu-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .tu-section-title::before,
+  .tu-section-title::after { max-width: 120px; }
+  .tu-meters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .tu-meters-grid .tu-meter-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .tu-manuals-section { padding: 60px 28px 72px; }
+  .tu-manuals-header h2 { font-size: 2rem; }
+  .tu-meter-img-zone { height: 220px; }
+  .tu-meter-img-zone img { width: 130px; height: 130px; }
+}
+
+/* ── Notebook (1024px – 1279px) ── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .tu-hero {
+    padding: 64px 56px 60px;
+  }
+  .tu-main {
+    padding: 64px 32px 80px;
+  }
+  .tu-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    max-width: 1400px;
+  }
+  .tu-meters-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .tu-manuals-section { padding: 72px 32px 80px; }
+}
+
+/* ── Desktop (1280px+) ── */
+@media (min-width: 1280px) {
+  .tu-hero {
+    padding: 80px 80px 72px;
+  }
+  .tu-main {
+    padding: 72px 48px 96px;
+  }
+  .tu-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1500px;
+  }
+  .tu-meters-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .tu-manuals-section { padding: 88px 48px 96px; }
+}
+</style>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="tu-hero">
+  <div class="tu-hero-lights"></div>
+  <div class="tu-hero-badge"><span>Medidor Inteligente</span></div>
+  <h1>Tutoriales del <span class="tu-highlight">Software del<br>Medidor Inteligente</span></h1>
+  <p class="tu-hero-sub">Crea sectores, toma lecturas con el Hand-Held y gestiona válvulas paso a paso.</p>
+  <div class="tu-divider-bar"></div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONTENIDO PRINCIPAL
+══════════════════════════════════════ -->
+<div class="tu-main">
+
+  <!-- USO DEL SOFTWARE -->
+  <h3 class="tu-section-title">Uso del Software</h3>
+  <div class="tu-grid">
+
+    <div class="tu-card">
+      <div class="tu-video-wrap">
+        <iframe src="https://www.youtube.com/embed/vlFjJpvJs0s" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="tu-card-footer">
+        <span class="tu-badge">1</span>
+        <div class="tu-card-text">
+          <span class="tu-paso-pill">Primer paso</span>
+          <p class="tu-card-title">Crear Archivos de Sectores</p>
+          <p class="tu-card-desc">Enviar sectores configurados al Hand-Held o Mando Manual</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tu-card">
+      <div class="tu-video-wrap">
+        <iframe src="https://www.youtube.com/embed/gKM3jvDH3lc" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="tu-card-footer">
+        <span class="tu-badge">2</span>
+        <div class="tu-card-text">
+          <span class="tu-paso-pill">Segundo paso</span>
+          <p class="tu-card-title">Toma de Lecturas con Hand-Held</p>
+          <p class="tu-card-desc">Captura lecturas de medidores inteligentes en terreno</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tu-card">
+      <div class="tu-video-wrap">
+        <iframe src="https://www.youtube.com/embed/6HOs6geiCyg" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="tu-card-footer">
+        <span class="tu-badge">3</span>
+        <div class="tu-card-text">
+          <span class="tu-paso-pill">Tercer paso</span>
+          <p class="tu-card-title">Enviar Lecturas al Computador</p>
+          <p class="tu-card-desc">Importa los archivos con lecturas tomadas de vuelta al software</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODOS DE USO -->
+  <div class="tu-spacer">
+    <h3 class="tu-section-title">Modos de Uso</h3>
+  </div>
+  <div class="tu-grid">
+
+    <div class="tu-card">
+      <div class="tu-video-wrap">
+        <iframe src="https://www.youtube.com/embed/Wc9_LH2DaSc" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="tu-card-footer">
+        <span class="tu-badge">1</span>
+        <div class="tu-card-text">
+          <span class="tu-paso-pill">Primer modo</span>
+          <p class="tu-card-title">Restablecer Lecturas Análoga y Digital</p>
+          <p class="tu-card-desc">Sincroniza la coincidencia entre ambas lecturas del medidor</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tu-card">
+      <div class="tu-video-wrap">
+        <iframe src="https://www.youtube.com/embed/bYpqIhpIfBo" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="tu-card-footer">
+        <span class="tu-badge">2</span>
+        <div class="tu-card-text">
+          <span class="tu-paso-pill">Segundo modo</span>
+          <p class="tu-card-title">Lectura Individual y Manual</p>
+          <p class="tu-card-desc">Toma lecturas de un medidor específico de forma directa</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tu-card">
+      <div class="tu-video-wrap">
+        <iframe src="https://www.youtube.com/embed/RbW0Gr0tEcI" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="tu-card-footer">
+        <span class="tu-badge">3</span>
+        <div class="tu-card-text">
+          <span class="tu-paso-pill">Tercer modo</span>
+          <p class="tu-card-title">Abrir y Cerrar Válvula</p>
+          <p class="tu-card-desc">Controla remotamente la válvula de corte del medidor inteligente</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div><!-- /tu-main -->
+
+<!-- MANUALES — sección separada fondo claro -->
+<section class="tu-manuals-section">
+  <div class="tu-manuals-header">
+    <h2>Manuales del <em>Medidor Inteligente</em></h2>
+    <p>Descarga y descubre el funcionamiento adecuado del medidor</p>
+    <span class="tu-manuals-label">Uso del Medidor Inteligente</span>
+  </div>
+
+  <div class="tu-meters-grid">
+
+    <div class="tu-meter-card">
+      <div class="tu-meter-img-zone">
+        <div class="tu-meter-inner-circle"></div>
+        <span class="tu-glow-dot"></span>
+        <span class="tu-glow-dot2"></span>
+        <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 1">
+      </div>
+      <div class="tu-meter-card-body">
+        <p>Software Medidor — PDF N°1</p>
+        <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-1.pdf" class="tu-dl-btn" download>Descargar manual</a>
+      </div>
+    </div>
+
+    <div class="tu-meter-card">
+      <div class="tu-meter-img-zone">
+        <div class="tu-meter-inner-circle"></div>
+        <span class="tu-glow-dot"></span>
+        <span class="tu-glow-dot2"></span>
+        <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 2">
+      </div>
+      <div class="tu-meter-card-body">
+        <p>Software Medidor — PDF N°2</p>
+        <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-2.pdf" class="tu-dl-btn" download>Descargar manual</a>
+      </div>
+    </div>
+
+    <div class="tu-meter-card">
+      <div class="tu-meter-img-zone">
+        <div class="tu-meter-inner-circle"></div>
+        <span class="tu-glow-dot"></span>
+        <span class="tu-glow-dot2"></span>
+        <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 3">
+      </div>
+      <div class="tu-meter-card-body">
+        <p>Software Medidor — PDF N°3</p>
+        <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-3.pdf" class="tu-dl-btn" download>Descargar manual</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  /* Meter cards */
+  document.querySelectorAll('.tu-meter-card').forEach(function (el) {
+    observer.observe(el);
+  });
+
+  /* Video cards con stagger */
+  document.querySelectorAll('.tu-card').forEach(function (el, i) {
+    el.style.cssText += 'opacity:0;transform:translateY(34px);transition:opacity .45s ease '+(i*.1)+'s,transform .45s ease '+(i*.1)+'s;';
+    observer.observe(el);
+  });
+
+  /* Títulos de sección */
+  document.querySelectorAll('.tu-section-title').forEach(function (el) {
+    el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;';
+    observer.observe(el);
+  });
+
+  /* Manuals wrap */
+  document.querySelectorAll('.tu-manuals-wrap').forEach(function (el) {
+    el.style.cssText += 'opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;';
+    observer.observe(el);
+  });
+
+  var s = document.createElement('style');
+  s.textContent = '.visible[style]{opacity:1!important;transform:translateY(0)!important;}';
+  document.head.appendChild(s);
+
+});
+</script>
+
+{% endblock %}

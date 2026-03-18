@@ -1,0 +1,512 @@
+{%extends 'app/base.html'%}
+{%load static%}
+{%block contenido%}
+
+<style>
+    .preguntasres {
+      --pr-deep:      #001240;
+      --pr-navy:      #00216e;
+      --pr-blue:      #0042b8;
+      --pr-mid:       #0065d4;
+      --pr-teal-dk:   #0a7060;
+      --pr-teal:      #10a890;
+      --pr-cyan:      #00d4f0;
+      --pr-cyan-lt:   #70e8f8;
+      --pr-white:     #ffffff;
+      --pr-bg:        #e6eef8;
+      --pr-card:      #ffffff;
+      --pr-text:      #0d1e34;
+      --pr-border:    #b4cfea;
+      --pr-shadow:    0 6px 30px rgba(0,25,100,.14);
+      --pr-radius:    16px;
+      --pr-font-h:    'Merriweather', Georgia, serif;
+      --pr-font-b:    'Source Sans 3', sans-serif;
+
+      font-family: var(--pr-font-b);
+      background: var(--pr-bg);
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .preguntasres *, .preguntasres *::before, .preguntasres *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes pr-down {
+      from { opacity:0; transform:translateY(-26px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes pr-up {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes pr-blink {
+      0%,100%{opacity:1} 50%{opacity:.25}
+    }
+    @keyframes pr-card {
+      from { opacity:0; transform:translateY(22px) scale(.975); }
+      to   { opacity:1; transform:translateY(0)    scale(1); }
+    }
+
+    .preguntasres__hero {
+      background:
+        radial-gradient(ellipse 75% 90% at 88% 55%, rgba(0,155,175,.50) 0%, transparent 62%),
+        radial-gradient(ellipse 50% 65% at  8% 55%, rgba(0,50,155,.65) 0%, transparent 58%),
+        linear-gradient(125deg, #000f38 0%, #001a60 35%, #003580 65%, #004d70 100%);
+      padding: 72px 48px 66px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .preguntasres__hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+
+    .preguntasres__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(10,112,96,.72);
+      border: 1px solid rgba(0,212,240,.4);
+      color: var(--pr-cyan);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 999px;
+      margin-bottom: 26px;
+      position: relative; z-index: 1;
+      animation: pr-down .65s ease both;
+    }
+    .preguntasres__badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--pr-cyan);
+      animation: pr-blink 1.4s infinite;
+    }
+
+    .preguntasres__title {
+      font-family: var(--pr-font-h);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--pr-white);
+      line-height: 1.2;
+      position: relative; z-index: 1;
+      animation: pr-down .8s .1s ease both;
+    }
+    .preguntasres__title span {
+      background: linear-gradient(90deg, var(--pr-cyan) 0%, var(--pr-cyan-lt) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .preguntasres__subtitle {
+      margin-top: 14px;
+      color: rgba(255,255,255,.6);
+      font-size: 1.05rem;
+      position: relative; z-index: 1;
+      animation: pr-down .95s .2s ease both;
+    }
+
+    .preguntasres__label-wrap {
+      padding: 0 48px;
+      animation: pr-up .8s .28s ease both;
+    }
+    .preguntasres__section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--pr-teal);
+      color: var(--pr-white);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 7px 20px;
+      border-radius: 999px;
+      margin: 52px 0 38px;
+    }
+
+    .preguntasres__grid {
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+    }
+    @media (max-width: 1280px) {
+      .preguntasres__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .preguntasres__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .preguntasres__grid,
+      .preguntasres__label-wrap { padding: 0 20px; }
+      .preguntasres__grid { grid-template-columns: 1fr; }
+      .preguntasres__hero { padding: 52px 20px 48px; }
+    }
+
+    .preguntasres__card {
+      background: var(--pr-card);
+      border-radius: var(--pr-radius);
+      box-shadow: var(--pr-shadow);
+      border: 1px solid var(--pr-border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      animation: pr-card .55s ease forwards;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .preguntasres__card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 44px rgba(0,35,120,.22);
+    }
+    .preguntasres__card:nth-child(1)  { animation-delay: .38s; }
+    .preguntasres__card:nth-child(2)  { animation-delay: .44s; }
+    .preguntasres__card:nth-child(3)  { animation-delay: .50s; }
+    .preguntasres__card:nth-child(4)  { animation-delay: .56s; }
+    .preguntasres__card:nth-child(5)  { animation-delay: .62s; }
+    .preguntasres__card:nth-child(6)  { animation-delay: .68s; }
+    .preguntasres__card:nth-child(7)  { animation-delay: .74s; }
+    .preguntasres__card:nth-child(8)  { animation-delay: .80s; }
+    .preguntasres__card:nth-child(9)  { animation-delay: .86s; }
+    .preguntasres__card:nth-child(10) { animation-delay: .92s; }
+    .preguntasres__card:nth-child(11) { animation-delay: .98s; }
+    .preguntasres__card:nth-child(12) { animation-delay:1.04s; }
+
+    .preguntasres__card-header {
+      background: linear-gradient(135deg, var(--pr-deep) 0%, var(--pr-navy) 50%, var(--pr-blue) 100%);
+      padding: 22px 22px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+    .preguntasres__num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      border: 2px solid var(--pr-cyan);
+      color: var(--pr-cyan);
+      font-family: var(--pr-font-h);
+      font-weight: 700;
+      font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .preguntasres__question {
+      font-family: var(--pr-font-h);
+      font-size: .87rem;
+      font-weight: 700;
+      color: var(--pr-white);
+      line-height: 1.5;
+    }
+    .preguntasres__question em {
+      font-style: normal;
+      color: var(--pr-cyan-lt);
+    }
+
+    .preguntasres__card-body {
+      padding: 20px 22px 24px;
+      flex: 1;
+    }
+    .preguntasres__answer-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--pr-teal-dk);
+      margin-bottom: 12px;
+    }
+    .preguntasres__answer-label::before {
+      content: '';
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--pr-cyan);
+      border-radius: 2px;
+    }
+
+    .preguntasres__answer {
+      font-size: .89rem;
+      color: var(--pr-text);
+      line-height: 1.75;
+    }
+    .preguntasres__answer p { margin-bottom: 10px; }
+    .preguntasres__answer p:last-child { margin-bottom: 0; }
+
+    .preguntasres__answer ul {
+      list-style: none;
+      padding: 0; margin: 8px 0;
+    }
+    .preguntasres__answer ul li {
+      padding: 8px 12px 8px 33px;
+      border-radius: 8px;
+      background: #daeef8;
+      font-size: .86rem;
+      margin-bottom: 7px;
+      position: relative;
+      border-left: 3px solid var(--pr-cyan);
+    }
+    .preguntasres__answer ul li::before {
+      content: '\203A';
+      position: absolute;
+      left: 11px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--pr-blue);
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .preguntasres__tip {
+      margin-top: 12px;
+      background: linear-gradient(135deg, #d0eeec, #d2e8f8);
+      border: 1px solid rgba(0,180,200,.22);
+      border-left: 4px solid var(--pr-teal);
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: .84rem;
+      color: #0a2530;
+      line-height: 1.65;
+    }
+    .preguntasres__tip strong:first-child {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--pr-teal-dk);
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+</style>
+
+<section class="preguntasres">
+
+  <div class="preguntasres__hero">
+    <div class="preguntasres__badge">Preguntas y respuestas</div>
+    <h1 class="preguntasres__title">Preguntas <span>Frecuentes</span></h1>
+    <p class="preguntasres__subtitle">Encuentra respuestas, testimonios y novedades sobre nuestro servicio</p>
+  </div>
+
+  <div class="preguntasres__label-wrap">
+    <div class="preguntasres__section-label">Publicaciones Recientes</div>
+  </div>
+
+  <div class="preguntasres__grid">
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">1</div>
+        <p class="preguntasres__question">Por que las lecturas digital y analoga no coinciden?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <p>El <strong>medidor fue instalado de forma invertida</strong>. Se debe revisar y corregir su posicion.</p>
+          <div class="preguntasres__tip">
+            <strong>Facturacion</strong>
+            Cuando la lectura digital es menor que la analoga, para efectos de facturacion <strong>prevalece la lectura del medidor analogo</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">2</div>
+        <p class="preguntasres__question">Si los medidores estuvieron guardados 2 anos, pueden presentar fallas?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <p>En general <strong>no deberian presentar fallas</strong>. El unico componente que podria verse afectado es el <strong>reloj digital</strong> por el estado de la bateria.</p>
+          <div class="preguntasres__tip">
+            <strong>Solucion</strong>
+            Retire la bateria y vuelva a instalarla. Si el problema persiste, reemplazela.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">3</div>
+        <p class="preguntasres__question">Que se puede hacer con los medidores que se dan de baja?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <p>Primero <strong>evalue la razon</strong> de la baja:</p>
+          <ul>
+            <li>Si es <strong>solo la bateria</strong>, puede reemplazarse y reutilizarse.</li>
+            <li>Si hay <strong>dano irreversible</strong>, retirero definitivamente.</li>
+          </ul>
+          <div class="preguntasres__tip">
+            <strong>Soporte tecnico</strong>
+            Contacte al soporte para orientacion personalizada.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">4</div>
+        <p class="preguntasres__question">El medidor se cerro y muestra E-8 en pantalla, como lo soluciono?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <div class="preguntasres__tip">
+            <strong>Procedimiento</strong>
+            Abra y cierre nuevamente la valvula del medidor para restablecer su funcionamiento normal.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">5</div>
+        <p class="preguntasres__question">El medidor se cierra solo, que debo hacer?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <div class="preguntasres__tip">
+            <strong>Recomendacion</strong>
+            Traslade el medidor a otro sector. Un <strong>factor externo</strong> puede estar provocando el cierre automatico.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">6</div>
+        <p class="preguntasres__question">El medidor muestra E-6 en pantalla digital, que significa?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <p>El codigo <strong>E-6</strong> indica que el medidor fue <strong>intervenido con un iman</strong>.</p>
+          <div class="preguntasres__tip">
+            <strong>Advertencia</strong>
+            Segun la potencia del iman puede haber <strong>dano mayor al sistema</strong>. El costo de reparacion lo asume el cliente.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">7</div>
+        <p class="preguntasres__question">Como borro el codigo E-6 de la pantalla digital?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <div class="preguntasres__tip">
+            <strong>Procedimiento</strong>
+            Reinicie el medidor desconectando y volviendo a conectar la bateria. Si el dano fue mayor, puede requerirse reemplazo asumido por el cliente.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">8</div>
+        <p class="preguntasres__question">Instale un medidor nuevo y el display digital no avanza, que hago?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <div class="preguntasres__tip">
+            <strong>Solucion</strong>
+            Reinicie el equipo desconectando y volviendo a conectar la bateria.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">9</div>
+        <p class="preguntasres__question">Instale un medidor nuevo y el consumo del cliente subio, a que se debe?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <p>Esto se debe a la <strong>mayor precision del medidor inteligente</strong> en el registro de caudal, capturando consumos que antes no se registraban correctamente.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">10</div>
+        <p class="preguntasres__question">Se rompio la antena del hand-held, que debo hacer?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <div class="preguntasres__tip">
+            <strong>Soporte</strong>
+            Contacte al soporte tecnico. El equipo cuenta con <strong>garantia ilimitada</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">11</div>
+        <p class="preguntasres__question">El hand-held tiene poca recepcion de senal, que hago?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <div class="preguntasres__tip">
+            <strong>Soporte</strong>
+            Contacte al soporte tecnico para evaluar y solucionar el problema de senal.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preguntasres__card">
+      <div class="preguntasres__card-header">
+        <div class="preguntasres__num">12</div>
+        <p class="preguntasres__question">Tengo un medidor con manchas en la esfera, a que se debe y debo retirarlo?</p>
+      </div>
+      <div class="preguntasres__card-body">
+        <div class="preguntasres__answer-label">Respuesta</div>
+        <div class="preguntasres__answer">
+          <p>El medidor tiene <strong>esfera humeda</strong> que se mancha segun:</p>
+          <ul>
+            <li>Los <strong>minerales presentes en el agua</strong>.</li>
+            <li>El <strong>paso de agua sucia</strong> por el sistema.</li>
+          </ul>
+          <div class="preguntasres__tip">
+            <strong>Sin preocupaciones</strong>
+            Las manchas son normales y <strong>no afectan el funcionamiento</strong>. No es necesario retirar el medidor.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+{%endblock%}

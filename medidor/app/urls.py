@@ -2,7 +2,7 @@ from django.urls import path
 from . import views  # Aquí importas todo el módulo views
 from .views import (
     home, clientes, contacto, nosotros, recursos, soluciones, apr,
-    filtrar_apr, prueba, testimonio, cargar_mas_testimonios, asistente_virtual
+    filtrar_apr, prueba, testimonio, cargar_mas_testimonios, asistente_virtual, preguntas, tutoriales
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -21,6 +21,10 @@ urlpatterns = [
     path('api/cargar-mas/', cargar_mas_testimonios, name='cargar_mas'),
     path('filtrar_apr/', filtrar_apr, name='filtrar_apr'),
     path('prueba/', prueba, name='prueba'),
+    path('preguntas/', preguntas, name='preguntas'),
+    path('tutoriales/', tutoriales, name='tutoriales'),
+    
+
 
 
      path("asistente/", asistente_virtual, name="asistente_virtual"),

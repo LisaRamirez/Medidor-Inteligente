@@ -121,16 +121,17 @@ def clientes(request):
     try:
         if request.GET or request.POST:
             messages.error(request, 'Parámetros no permitidos en la solicitud.')
-            return redirect('home')  # ✅ usa el name de la URL
+            return redirect('home')
 
-        appr = Apr.objects.all()
+        appr = Apr.objects.all().order_by('id')
         data = {'apr': appr}
+
         return render(request, 'app/clientes.html', data)
 
     except Exception as e:
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema con tu solicitud.')
-        return redirect('home')  # ✅
+        return redirect('home')
 
 
 def filtrar_apr(request):
@@ -341,3 +342,17 @@ def test_logging():
     logger.warning("Advertencia: Algo podría estar mal.")
     logger.error("Error: Algo falló.")
     logger.critical("¡Error crítico!")
+
+def preguntas(request):
+    try:
+        return render(request, 'app/preguntas.html')
+    except Exception as e:
+        logger.error(f"Error al renderizar la página: {e}", exc_info=True)
+        return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
+
+def tutoriales(request):
+    try:
+        return render(request, 'app/tutoriales.html')
+    except Exception as e:
+        logger.error(f"Error al renderizar la página: {e}", exc_info=True)
+        return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
