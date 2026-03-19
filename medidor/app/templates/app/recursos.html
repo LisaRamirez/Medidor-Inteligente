@@ -2,176 +2,552 @@
 {%block contenido%}
 {% load static %}
 
-<div class="recurso">
-    <!-- Cards Section -->
-    <div class="cards-grid">
-        <!-- Card Principal (Izquierda) -->
-        <div class="card">
-            <img src="{% static 'app/img/image1.png'%}" alt="Certificación">
-            <div class="card-content">
-                <h3>Nuestro medidor inteligente está certificado por el dictuc</h3>
-               
-                <a href="{% get_media_prefix %}CERTIFICADO-DITUC.pdf" class="card-button">Ver Certificado</a> 
-            </div>
-        </div>
-        <!-- Cards Secundarios (Derecha) -->
-        <div class="card">
-            <img src="{% static 'app/img/info2.jpg'%}" alt="Informe">
-            <div class="card-content">
-                <h3>Informe de ensayos dictuc</h3>
-                <a href="{% get_media_prefix %}Informe-de-ensayos.pdf" class="card-button">Ver informe</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="{% static 'app/img/info1.jpg'%}" alt="Estudios">
-            <div class="card-content">
-                <h3>Informe Estudios "Interagua" Ecuador</h3>
-                <a href="{% get_media_prefix %}INFORME-SANITARIA-INTERAGUA-ECUADOR.pdf" class="card-button">Ver informe</a>
-            </div>
-        </div>
-    </div>
-   
-    <!-- Product Section -->
-</div>
-<div class="handheld">
-    <div class="header-content">
-        <div class="left-content">
-            <p class="discover">DESCUBRE MÁS</p>
-            <h1 class="title">Ficha técnica Medidor</h1>
-            <p class="subtitle">Hand Held</p>
-        </div>
-        <div class="center-content">
-            <div class="image-circle"></div>
-            <img src="{% static 'app/img/handheld.png'%}" alt="Medidor Hand Held" class="device-image">
-        </div>
-        <div class="right-content">
-            <a href="{% get_media_prefix %}FICHA-TECNICA.pdf" class="card-buttons">Ver informe</a>
-           
-        </div>
-    </div>
-</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
 
-<section class="recurso">
-    <!-- Manuals Section -->
-    <div class="manuals-section">
-        <h2>MANUALES</h2>
-        <p>Descubre el funcionamiento adecuado del medidor</p>
-        <br>
-        <h4>USO DEL MEDIDOR INTELIGENTE</h4>
-        <div class="meters-grid">
-            <div class="meter-item">
-                <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 1">
-                <p>SOFTWARE MEDIDOR - PDF N°1</p>
-                <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-1.pdf" class="manual-link" download>Descargar manual</a>
+/* ── BASE ── */
+.recurso-page, .recurso-page * { box-sizing: border-box; }
+.recurso-page,
+.recurso-page .r-handheld,
+.recurso-page .r-manuals-section { font-family: 'DM Sans', sans-serif; }
+.recurso-page h1, .recurso-page h2,
+.recurso-page h3, .recurso-page h4,
+.recurso-page .r-title { font-family: 'Sora', sans-serif; }
+
+.r-container { max-width: 1250px; margin: 0 auto; padding: 48px 24px; }
+
+/* ── KEYFRAMES ── */
+@keyframes r-fadeUp {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes r-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+@keyframes r-float-sm {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%       { transform: translateY(-6px) scale(1.02); }
+}
+@keyframes r-pulse-glow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%       { opacity: 0.7; transform: scale(1.08); }
+}
+@keyframes r-dot-blink {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,160,0); }
+    50%       { box-shadow: 0 0 0 4px rgba(0,212,160,0.2); }
+}
+@keyframes r-border-glow {
+    0%, 100% { border-color: rgba(0,194,255,0.10); }
+    50%       { border-color: rgba(0,212,160,0.28); }
+}
+@keyframes r-orbit {
+    from { transform: rotate(0deg) translateX(90px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(90px) rotate(-360deg); }
+}
+@keyframes r-orbit2 {
+    from { transform: rotate(180deg) translateX(70px) rotate(-180deg); }
+    to   { transform: rotate(540deg) translateX(70px) rotate(-540deg); }
+}
+@keyframes r-spin-ring {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   CARDS — Certificados e informes
+   ============================================================ */
+.r-cards-grid {
+    display: grid; gap: 18px; margin-bottom: 52px;
+    grid-template-columns: 1fr;
+    animation: r-fadeUp 0.65s ease both;
+}
+@media (min-width: 768px) {
+    .r-cards-grid { grid-template-columns: 1.55fr 1fr; grid-template-rows: repeat(2, 1fr); }
+    .r-cards-grid .r-card:first-child { grid-row: 1 / 3; grid-column: 1 / 2; height: 100%; }
+    .r-cards-grid .r-card:not(:first-child) { height: 248px; }
+}
+.r-card {
+    position: relative; border-radius: 16px; overflow: hidden;
+    height: 300px; background: #001540;
+    border: 1px solid rgba(0,194,255,0.10);
+    box-shadow: 0 4px 24px rgba(0,35,102,0.12);
+    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s, border-color 0.4s;
+    animation: r-border-glow 4s ease-in-out infinite;
+}
+.r-card:hover { transform: translateY(-8px); box-shadow: 0 20px 52px rgba(0,35,102,0.22); border-color: rgba(0,212,160,0.35); animation: none; }
+.r-card img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.6s ease, filter 0.6s ease; }
+.r-card:hover img { transform: scale(1.06); filter: brightness(0.65) saturate(1.1); }
+.r-card::after {
+    content: ''; position: absolute; bottom: -30%; right: -20%;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(0,212,160,0.16) 0%, transparent 65%);
+    border-radius: 50%; opacity: 0; transition: opacity 0.5s ease;
+    pointer-events: none; z-index: 1;
+}
+.r-card:hover::after { opacity: 1; }
+.r-card-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 32px 24px 24px;
+    background: linear-gradient(to top, rgba(0,12,45,0.97) 0%, rgba(0,20,60,0.72) 55%, transparent 100%);
+    color: white; z-index: 2;
+}
+.r-card-content h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; line-height: 1.45; }
+.r-card-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 0.4rem 1.1rem;
+    border: 1.5px solid rgba(0,212,160,0.50); border-radius: 50px;
+    color: #00d4a0; text-decoration: none;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
+    margin-top: 4px; transition: all 0.3s ease;
+    backdrop-filter: blur(8px); background: rgba(0,212,160,0.07);
+}
+.r-card-btn::after { content: '→'; transition: transform 0.25s ease; }
+.r-card-btn:hover { background: #00d4a0; border-color: #00d4a0; color: #001540; box-shadow: 0 6px 24px rgba(0,212,160,0.35); }
+.r-card-btn:hover::after { transform: translateX(3px); }
+@media (max-width: 767px) {
+    .r-card { height: 250px; }
+    .r-cards-grid .r-card:first-child { height: 300px; }
+    .r-card-content h3 { font-size: 0.98rem; }
+}
+
+/* ============================================================
+   BANNER HANDHELD
+   ============================================================ */
+.r-handheld {
+    width: 100%; min-height: 370px;
+    background: linear-gradient(120deg, #001540 0%, #002878 35%, #00557a 65%, #006b5e 85%, #007a54 100%);
+    position: relative; overflow: hidden;
+}
+.r-handheld .r-glow-left { position: absolute; top: -30%; left: -8%; width: 550px; height: 550px; background: radial-gradient(circle, rgba(0,80,200,0.30) 0%, transparent 65%); pointer-events: none; z-index: 0; }
+.r-handheld .r-glow-right { position: absolute; top: -20%; right: -6%; width: 480px; height: 480px; background: radial-gradient(circle, rgba(0,212,160,0.20) 0%, transparent 65%); pointer-events: none; z-index: 0; animation: r-pulse-glow 5s ease-in-out infinite; }
+.r-handheld .r-dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
+.r-handheld .r-top-line { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #002366 0%, #00c2ff 50%, #00d4a0 100%); z-index: 2; }
+.r-header-content { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 2.5rem 3.5rem; max-width: 1050px; margin: auto; min-height: 370px; position: relative; z-index: 1; }
+@media (max-width: 860px) {
+    .r-handheld { min-height: auto; }
+    .r-header-content { flex-direction: column; text-align: center; padding: 3rem 1.5rem; gap: 1.5rem; }
+    .r-right-content { justify-content: center; }
+    .r-device-img { height: 190px; }
+}
+.r-left-content { flex: 1; }
+.r-discover { display: inline-flex; align-items: center; gap: 7px; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #00d4a0; margin-bottom: 1.1rem; padding: 0.32rem 1rem; border: 1px solid rgba(0,212,160,0.35); border-radius: 50px; background: rgba(0,212,160,0.08); animation: r-dot-blink 3s ease-in-out infinite; }
+.r-discover-dot { width: 6px; height: 6px; background: #00d4a0; border-radius: 50%; box-shadow: 0 0 6px rgba(0,212,160,0.8); animation: r-pulse-glow 2s ease-in-out infinite; flex-shrink: 0; }
+.r-title { font-size: 2.15rem; font-weight: 800; margin-bottom: 0.35rem; color: #ffffff; line-height: 1.12; letter-spacing: -0.025em; }
+.r-subtitle { font-size: 1.05rem; color: rgba(255,255,255,0.50); font-weight: 500; }
+.r-center-content { flex: 1; position: relative; display: flex; justify-content: center; align-items: center; }
+.r-img-circle { position: absolute; width: 310px; height: 310px; background: radial-gradient(circle, rgba(0,212,160,0.15) 0%, rgba(0,194,255,0.10) 50%, transparent 100%); border-radius: 50%; z-index: 0; animation: r-pulse-glow 4.5s ease-in-out infinite; }
+.r-device-img { position: relative; z-index: 5; height: 300px; object-fit: contain; animation: r-float 4s ease-in-out infinite; filter: drop-shadow(0 12px 28px rgba(0,212,160,0.30)) drop-shadow(0 4px 12px rgba(0,194,255,0.25)); }
+.r-right-content { flex: 1; display: flex; justify-content: flex-end; align-items: center; z-index: 5; }
+.r-btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.9rem; border: 1.5px solid rgba(0,212,160,0.45); border-radius: 50px; color: #00d4a0; text-decoration: none; font-size: 0.84rem; font-weight: 700; letter-spacing: 0.05em; transition: all 0.32s ease; backdrop-filter: blur(10px); background: rgba(0,212,160,0.07); }
+.r-btn-outline::after { content: '↗'; font-size: 0.88em; transition: transform 0.25s ease; }
+.r-btn-outline:hover { background: #00d4a0; border-color: #00d4a0; color: #001540; box-shadow: 0 8px 28px rgba(0,212,160,0.38); }
+.r-btn-outline:hover::after { transform: translate(2px,-2px); }
+
+/* ============================================================
+   SECCIÓN MANUALES — Estilo igual a la imagen enviada
+   Fondo degradado claro azul-verdoso, cards blancas con imagen
+   ============================================================ */
+.r-manuals-section {
+    background: linear-gradient(160deg, #eaf3fc 0%, #e8f5f2 50%, #edf6fb 100%);
+    position: relative; overflow: hidden;
+    padding: 80px 24px 90px;
+}
+
+/* Línea top tricolor */
+.r-manuals-section .r-section-top-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #002366 0%, #00c2ff 50%, #00d4a0 100%);
+}
+
+/* Glow sutil fondo */
+.r-manuals-section .r-section-glow-l {
+    position: absolute; top: -15%; left: -8%; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,194,255,0.07) 0%, transparent 65%);
+    pointer-events: none;
+}
+.r-manuals-section .r-section-glow-r {
+    position: absolute; bottom: -15%; right: -6%; width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(0,212,160,0.07) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.r-manuals-inner {
+    max-width: 1150px; margin: 0 auto;
+    text-align: center; position: relative; z-index: 1;
+}
+
+/* Título igual a la imagen — parte en azul navy, parte en teal */
+.r-manuals-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.1rem; font-weight: 800;
+    color: #0d1f4e; letter-spacing: -0.025em;
+    margin-bottom: 0.5rem; line-height: 1.2;
+}
+.r-manuals-title span { color: #00b4d8; }
+
+.r-manuals-desc {
+    font-size: 0.95rem; color: #5a6a8a;
+    margin-bottom: 0.6rem; font-weight: 400;
+}
+
+/* Separador con texto — igual al de la imagen */
+.r-manuals-divider {
+    display: flex; align-items: center; gap: 12px;
+    justify-content: center; margin-bottom: 3rem;
+}
+.r-manuals-divider .r-div-line {
+    flex: 0 0 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, #00c2aa);
+    border-radius: 2px;
+}
+.r-manuals-divider .r-div-line.right {
+    background: linear-gradient(90deg, #00c2aa, transparent);
+}
+.r-manuals-divider span {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #00a090;
+}
+
+/* ── GRID ── */
+.r-meters-grid {
+    display: flex; gap: 24px;
+    justify-content: center; align-items: stretch;
+    flex-wrap: wrap; padding: 0 8px;
+}
+
+/* Card — blanca con sombra suave, borde top tricolor */
+.r-meter-item {
+    border-radius: 20px; text-align: center;
+    background: #ffffff;
+    border: 1px solid rgba(0,35,102,0.08);
+    flex: 0 0 calc(33.333% - 24px);
+    max-width: 330px; min-width: 255px;
+    display: flex; flex-direction: column; align-items: center;
+    overflow: hidden; position: relative;
+    opacity: 0; transform: translateY(34px);
+    transition: opacity 0.65s ease, transform 0.65s ease,
+                box-shadow 0.4s ease, border-color 0.4s ease;
+    box-shadow: 0 6px 28px rgba(0,35,102,0.09);
+}
+.r-meter-item.r-visible { opacity: 1; transform: translateY(0); }
+.r-meter-item:nth-child(2) { transition-delay: 0.13s; }
+.r-meter-item:nth-child(3) { transition-delay: 0.26s; }
+.r-meter-item:hover {
+    box-shadow: 0 18px 52px rgba(0,35,102,0.16);
+    border-color: rgba(0,194,255,0.30);
+    transform: translateY(-8px) !important;
+}
+
+/* Franja top tricolor */
+.r-meter-item::before {
+    content: ''; display: block; width: 100%; height: 4px;
+    background: linear-gradient(90deg, #002366, #00c2ff, #00d4a0);
+    flex-shrink: 0;
+}
+
+/* ── Zona imagen con círculos decorativos (igual a la imagen) ── */
+.r-meter-visual {
+    width: 100%; padding: 28px 24px 16px;
+    position: relative; display: flex;
+    justify-content: center; align-items: center;
+    min-height: 200px;
+    background: linear-gradient(160deg, #f0f7ff 0%, #e8f5f2 100%);
+}
+
+/* Anillo exterior punteado */
+.r-meter-visual .r-ring {
+    position: absolute;
+    width: 160px; height: 160px; border-radius: 50%;
+    border: 1.5px dashed rgba(0,180,200,0.25);
+    animation: r-spin-ring 18s linear infinite;
+}
+.r-meter-visual .r-ring-2 {
+    position: absolute;
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 1.5px dashed rgba(0,180,200,0.18);
+    animation: r-spin-ring 12s linear infinite reverse;
+}
+
+/* Punto orbital verde */
+.r-meter-visual .r-orbit-dot {
+    position: absolute;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #00d4a0;
+    box-shadow: 0 0 8px rgba(0,212,160,0.7);
+    top: 50%; left: 50%;
+    margin: -3.5px 0 0 -3.5px;
+    animation: r-orbit 6s linear infinite;
+}
+.r-meter-item:nth-child(2) .r-orbit-dot { animation-duration: 7s; background: #00b4d8; box-shadow: 0 0 8px rgba(0,180,216,0.7); }
+.r-meter-item:nth-child(3) .r-orbit-dot { animation-duration: 8s; }
+
+/* Punto orbital secundario azul */
+.r-meter-visual .r-orbit-dot-2 {
+    position: absolute;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #002878;
+    top: 50%; left: 50%;
+    margin: -2.5px 0 0 -2.5px;
+    animation: r-orbit2 9s linear infinite;
+    opacity: 0.5;
+}
+
+/* Imagen del medidor — encima de los círculos */
+.r-meter-visual img {
+    position: relative; z-index: 5;
+    width: 110px; height: 130px;
+    object-fit: contain; object-position: center;
+    transition: transform 0.45s ease;
+    filter: drop-shadow(0 8px 20px rgba(0,35,102,0.18));
+    animation: r-float-sm 4s ease-in-out infinite;
+}
+.r-meter-item:nth-child(2) .r-meter-visual img { animation-delay: 0.6s; }
+.r-meter-item:nth-child(3) .r-meter-visual img { animation-delay: 1.2s; }
+.r-meter-item:hover .r-meter-visual img { transform: scale(1.08); }
+
+/* ── Zona contenido ── */
+.r-meter-body {
+    padding: 16px 22px 28px; width: 100%;
+    display: flex; flex-direction: column; align-items: center; flex: 1;
+    border-top: 1px solid rgba(0,35,102,0.06);
+}
+
+/* Número de paso */
+.r-step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, #002060, #004d80);
+    color: #ffffff; font-family: 'Sora', sans-serif;
+    font-size: 0.72rem; font-weight: 800;
+    margin-bottom: 8px;
+    box-shadow: 0 3px 10px rgba(0,35,102,0.25);
+}
+
+.r-step-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #00a090; margin-bottom: 6px;
+}
+
+.r-step-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.92rem; font-weight: 700;
+    color: #0d1f4e; margin-bottom: 4px; line-height: 1.35;
+}
+
+.r-step-desc {
+    font-size: 0.78rem; color: #6a7a9a;
+    line-height: 1.5; margin-bottom: 0;
+}
+
+/* Separador bicolor */
+.r-meter-sep {
+    width: 36px; height: 2px;
+    background: linear-gradient(90deg, #002878, #00d4a0);
+    border-radius: 2px; margin: 10px auto 12px;
+}
+
+.r-manual-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 14px; padding: 0.62rem 1.5rem;
+    background: linear-gradient(135deg, #002060 0%, #004d80 100%);
+    color: #fff; text-decoration: none; border-radius: 50px;
+    font-weight: 700; font-size: 0.76rem; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.32s ease;
+    box-shadow: 0 4px 16px rgba(0,35,102,0.22);
+    border: 1px solid rgba(0,194,255,0.15);
+}
+.r-manual-link .r-link-icon { font-size: 0.85em; transition: transform 0.25s ease; }
+.r-manual-link:hover {
+    background: linear-gradient(90deg, #009977, #00d4a0);
+    border-color: #00d4a0;
+    box-shadow: 0 8px 28px rgba(0,212,160,0.30);
+    transform: translateY(-2px); color: #001540;
+}
+.r-manual-link:hover .r-link-icon { transform: translateY(2px); }
+
+@media (max-width: 768px) {
+    .r-meters-grid { flex-direction: column; align-items: center; }
+    .r-meter-item { width: 92%; max-width: 92%; flex: none; }
+    .r-manuals-title { font-size: 1.6rem; }
+}
+
+/* ── Reveal ── */
+.r-visible[style] { opacity: 1 !important; transform: translateY(0) !important; }
+</style>
+
+<!-- ====================================================
+     HTML
+     ==================================================== -->
+<div class="recurso-page">
+
+    <!-- CARDS CERTIFICADOS E INFORMES -->
+    <div class="r-container">
+        <div class="r-cards-grid">
+            <div class="r-card">
+                <img src="{% static 'app/img/image1.png'%}" alt="Certificación">
+                <div class="r-card-content">
+                    <h3>Nuestro medidor inteligente está certificado por el DICTUC</h3>
+                    <a href="{% get_media_prefix %}CERTIFICADO-DITUC.pdf" class="r-card-btn">Ver Certificado</a>
+                </div>
             </div>
-            <div class="meter-item">
-                <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 2">
-                <p>SOFTWARE MEDIDOR - PDF N°2</p>
-                <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-2.pdf" class="manual-link" download>Descargar manual</a>
+            <div class="r-card">
+                <img src="{% static 'app/img/info2.jpg'%}" alt="Informe">
+                <div class="r-card-content">
+                    <h3>Informe de ensayos DICTUC</h3>
+                    <a href="{% get_media_prefix %}Informe-de-ensayos.pdf" class="r-card-btn">Ver informe</a>
+                </div>
             </div>
-            <div class="meter-item">
-                <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 3">
-                <p>SOFTWARE MEDIDOR - PDF N°3</p>
-                <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-3.pdf" class="manual-link" download>Descargar manual</a>
+            <div class="r-card">
+                <img src="{% static 'app/img/info1.jpg'%}" alt="Estudios">
+                <div class="r-card-content">
+                    <h3>Informe Estudios "Interagua" Ecuador</h3>
+                    <a href="{% get_media_prefix %}INFORME-SANITARIA-INTERAGUA-ECUADOR.pdf" class="r-card-btn">Ver informe</a>
+                </div>
             </div>
         </div>
     </div>
-</section>   
 
-<h3 class= "uso">USO DEL SOFTWARE</h3>
-<div class="steps-gridrecurso">
-    <div class="step-cardrecurso">
-        <div class="video-containerrecurso">
-            <iframe src="https://www.youtube.com/embed/vlFjJpvJs0s" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+    <!-- BANNER FICHA TÉCNICA HANDHELD -->
+    <div class="r-handheld">
+        <div class="r-glow-left"></div>
+        <div class="r-glow-right"></div>
+        <div class="r-dots"></div>
+        <div class="r-top-line"></div>
+        <div class="r-header-content">
+            <div class="r-left-content">
+                <p class="r-discover">
+                    <span class="r-discover-dot"></span>DESCUBRE MÁS
+                </p>
+                <h1 class="r-title">Ficha técnica Medidor</h1>
+                <p class="r-subtitle">Hand Held</p>
+            </div>
+            <div class="r-center-content">
+                <div class="r-img-circle"></div>
+                <img src="{% static 'app/img/handheld.png'%}" alt="Medidor Hand Held" class="r-device-img">
+            </div>
+            <div class="r-right-content">
+                <a href="{% get_media_prefix %}FICHA-TECNICA.pdf" class="r-btn-outline">Ver ficha técnica</a>
+            </div>
         </div>
-        <h4>PRIMER PASO:</h4>
-        <p class="blanco">Crear Archivos de Sectores y Enviar al Hand-Held o Mando Manual</p>
     </div>
-    <div class="step-cardrecurso">
-        <div class="video-containerrecurso">
-            <iframe src="https://www.youtube.com/embed/gKM3jvDH3lc" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <h4>SEGUNDO PASO:</h4>
-        <p class="blanco">Toma de Lecturas a Medidores Inteligentes con Hand-Held o Mando Manual</p>
-    </div>
-    <div class="step-cardrecurso">
-        <div class="video-containerrecurso">
-            <iframe src="https://www.youtube.com/embed/6HOs6geiCyg" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <h4>TERCER PASO:</h4>
-        <p class="blanco">Enviar Archivos de Sectores con Lecturas ya Tomadas al Computador</p>
-    </div>
-</div>
-<h3 class= "uso">MODOS DE USO</h3>
 
-<div class="steps-gridrecurso">
-    <div class="step-cardrecurso">
-        <div class="video-containerrecurso">
-            <iframe src="https://www.youtube.com/embed/Wc9_LH2DaSc" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <h4>PRIMER PASO:</h4>
-        <p class="blanco">Uso de medidor inteligente – Restablecer coincidencia en lecturas análoga y digital</p>
-    </div>
-    <div class="step-cardrecurso">
-        <div class="video-containerrecurso">
-            <iframe src="https://www.youtube.com/embed/bYpqIhpIfBo" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <h4>SEGUNDO PASO:</h4>
-        <p class="blanco">Uso de medidor inteligente – Toma de lectura individual/manual</p>
-    </div>
-    <div class="step-cardrecurso">
-        <div class="video-containerrecurso">
-            <iframe src="https://www.youtube.com/embed/RbW0Gr0tEcI" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <h4>TERCER PASO:</h4>
-        <p class="blanco">Uso de medidor inteligente – Abrir y cerrar válvula</p>
-    </div>
-</div>
+    <!-- ===== MANUALES — 3 PASOS DEL SOFTWARE ===== -->
+    <div class="r-manuals-section">
+        <div class="r-section-top-line"></div>
+        <div class="r-section-glow-l"></div>
+        <div class="r-section-glow-r"></div>
 
-<Script>
-    /* recurso_scroll.js — Pegar antes de </body> */
+        <div class="r-manuals-inner">
+            <h2 class="r-manuals-title">
+                Manuales del Software <span>Medidor Inteligente</span>
+            </h2>
+            <p class="r-manuals-desc">Accede a guías prácticas para el uso y gestión del sistema.</p>
 
+            <div class="r-manuals-divider">
+                <div class="r-div-line"></div>
+                <span>USO DEL SOFTWARE CON EL MEDIDOR INTELIGENTE</span>
+                <div class="r-div-line right"></div>
+            </div>
+
+            <div class="r-meters-grid">
+
+                <!-- PASO 1 -->
+                <div class="r-meter-item">
+                    <div class="r-meter-visual">
+                        <div class="r-ring"></div>
+                        <div class="r-ring-2"></div>
+                        <div class="r-orbit-dot"></div>
+                        <div class="r-orbit-dot-2"></div>
+                        <img src="{% static 'app/img/medidorr.png' %}" alt="Paso 1">
+                    </div>
+                    <div class="r-meter-body">
+                        <span class="r-step-num">1</span>
+                        <p class="r-step-label">Primer paso</p>
+                        <p class="r-step-title">Crear Archivos de Sectores</p>
+                        <div class="r-meter-sep"></div>
+                        <p class="r-step-desc">Enviar sectores configurados al Hand-Held o Mando Manual</p>
+                        <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-1.pdf"
+                           class="r-manual-link" download>
+                            Descargar manual <span class="r-link-icon">↓</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PASO 2 -->
+                <div class="r-meter-item">
+                    <div class="r-meter-visual">
+                        <div class="r-ring"></div>
+                        <div class="r-ring-2"></div>
+                        <div class="r-orbit-dot"></div>
+                        <div class="r-orbit-dot-2"></div>
+                        <img src="{% static 'app/img/medidorr.png' %}" alt="Paso 2">
+                    </div>
+                    <div class="r-meter-body">
+                        <span class="r-step-num">2</span>
+                        <p class="r-step-label">Segundo paso</p>
+                        <p class="r-step-title">Toma de Lecturas con Hand-Held</p>
+                        <div class="r-meter-sep"></div>
+                        <p class="r-step-desc">Captura lecturas de medidores inteligentes en terreno</p>
+                        <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-2.pdf"
+                           class="r-manual-link" download>
+                            Descargar manual <span class="r-link-icon">↓</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PASO 3 -->
+                <div class="r-meter-item">
+                    <div class="r-meter-visual">
+                        <div class="r-ring"></div>
+                        <div class="r-ring-2"></div>
+                        <div class="r-orbit-dot"></div>
+                        <div class="r-orbit-dot-2"></div>
+                        <img src="{% static 'app/img/medidorr.png' %}" alt="Paso 3">
+                    </div>
+                    <div class="r-meter-body">
+                        <span class="r-step-num">3</span>
+                        <p class="r-step-label">Tercer paso</p>
+                        <p class="r-step-title">Enviar Lecturas al Computador</p>
+                        <div class="r-meter-sep"></div>
+                        <p class="r-step-desc">Importa los archivos con lecturas tomadas de vuelta al software</p>
+                        <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-3.pdf"
+                           class="r-manual-link" download>
+                            Descargar manual <span class="r-link-icon">↓</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div><!-- /recurso-page -->
+
+<script>
 document.addEventListener('DOMContentLoaded', function () {
-
-    const observer = new IntersectionObserver(function (entries) {
+    var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.classList.add('r-visible');
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
 
-    /* meter-item: CSS propio con clase visible */
-    document.querySelectorAll('.meter-item').forEach(function (el) {
+    document.querySelectorAll('.r-meter-item').forEach(function (el) {
+        observer.observe(el);
+    });
+    document.querySelectorAll('.r-cards-grid .r-card').forEach(function (el, i) {
+        el.style.cssText += 'opacity:0;transform:translateY(26px);transition:opacity 0.65s ease ' + (i * 0.12) + 's,transform 0.65s ease ' + (i * 0.12) + 's;';
         observer.observe(el);
     });
 
-    /* cards al scroll con stagger */
-    document.querySelectorAll('.cards-grid .card').forEach(function (el, i) {
-        el.style.cssText += 'opacity:0;transform:translateY(30px);transition:opacity 0.6s ease ' + (i*0.15) + 's,transform 0.6s ease ' + (i*0.15) + 's;';
-        observer.observe(el);
-    });
-
-    /* step cards al scroll con stagger */
-    document.querySelectorAll('.step-cardrecurso').forEach(function (el, i) {
-        el.style.cssText += 'opacity:0;transform:translateY(30px);transition:opacity 0.55s ease ' + (i*0.15) + 's,transform 0.55s ease ' + (i*0.15) + 's;';
-        observer.observe(el);
-    });
-
-    /* separadores uso-header */
-    document.querySelectorAll('.uso-header').forEach(function (el) {
-        el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;';
-        observer.observe(el);
-    });
-
-    /* cuando entra en pantalla → visible */
-    document.addEventListener('animationReveal', function(){});
-    const s = document.createElement('style');
-    s.textContent = '.visible[style]{opacity:1!important;transform:translateY(0)!important;}';
+    var s = document.createElement('style');
+    s.textContent = '.r-visible[style]{opacity:1!important;transform:translateY(0)!important;}';
     document.head.appendChild(s);
-
 });
-</Script>
+</script>
 
 {% endblock %}
