@@ -77,12 +77,10 @@
             <a href="{% url 'clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>
             <a href="{% url 'testimonio' %}" class="nav-link {% if 'testimonio' in request.path %}active{% endif %}">Noticias</a>
             
-            <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Certificaciones</a>
+            <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Recursos</a>
             <!--<a href="{% url 'asistente_virtual' %}" class="nav-link {% if 'asistente' in request.path %}active{% endif %}">Asistente</a>-->
             <a href="{% url 'preguntas' %}" class="nav-link {% if 'preguntas' in request.path %}active{% endif %}">Preguntas</a>
             <a href="{% url 'contacto' %}" class="contact-btn {% if 'contacto' in request.path %}active{% endif %}">Contáctanos</a>
-            
-            
         </div>
     </nav>
 

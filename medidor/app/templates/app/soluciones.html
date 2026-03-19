@@ -4,6 +4,46 @@
 
 <style>
     /* ============================================
+       RESET AISLAMIENTO — neutraliza CSS externos
+    ============================================= */
+    .sw-section, .sw-section * {
+        box-sizing: border-box !important;
+    }
+    .sw-section {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .sw-image-container {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .sw-info {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        position: relative !important;
+    }
+    @media (max-width: 767px) {
+        .sw-info {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: visible !important;
+        }
+        .sw-name, .sw-description, .sw-feature-item {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+        }
+    }
+
+    /* ============================================
        HERO — prefijo sw- para evitar conflictos
     ============================================= */
     .sw-image-container,
@@ -25,6 +65,7 @@
         overflow: hidden;
         min-height: 420px;
         width: 100%;
+        max-width: 100%;
         box-sizing: border-box;
     }
     .sw-info {
@@ -332,9 +373,23 @@
             overflow: visible;
         }
         .sw-slider-slide img { height: 200px; }
-        .sw-info { width: 100%; padding: 28px 20px; overflow: visible; }
-        .sw-name { font-size: 1.4rem; }
-        .sw-description { font-size: 0.9rem; }
+        .sw-info {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 28px 24px !important;
+            overflow: visible !important;
+            box-sizing: border-box !important;
+        }
+        .sw-name {
+            font-size: 1.4rem;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+        .sw-description {
+            font-size: 0.9rem;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
         .sw-feature-item { font-size: 0.9rem; }
         .sw-buttons { flex-direction: column; }
         .sw-btn { width: 100%; min-width: unset; }
