@@ -90,7 +90,7 @@
   inset: 0;
   background:
     radial-gradient(ellipse 55% 90% at 8% 50%,  rgba(14,89,200,.4) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 80% at 92% 50%, rgba(11, 189, 162, 0.45) 0%, transparent 55%);
+    radial-gradient(ellipse 50% 80% at 92% 50%, rgba(10,150,130,.45) 0%, transparent 55%);
   pointer-events: none;
 }
 /* Barra inferior teal verde agua igual a la referencia */
@@ -120,7 +120,7 @@
   align-items: center;
   gap: 8px;
   background: rgba(45,212,191,.18);
-  border: 1px solid rgba(21, 228, 200, 0.5);
+  border: 1px solid rgba(45,212,191,.5);
   color: #2dd4bf;
   font-family: 'Sora', sans-serif;
   font-size: .7rem;
@@ -135,7 +135,7 @@
   width: 7px; height: 7px;
   border-radius: 50%;
   background: #2dd4bf;
-  box-shadow: 0 0 10px #2dd4bf, 0 0 20px rgba(17, 214, 188, 0.5);
+  box-shadow: 0 0 10px #2dd4bf, 0 0 20px rgba(45,212,191,.5);
 }
 
 /* Título */
@@ -347,6 +347,107 @@
 }
 .tu-spacer { margin-top: 16px; }
 
+/* ── Pasos del proceso en manuales ── */
+.tu-steps-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  max-width: 960px;
+  margin: 0 auto 52px;
+  flex-wrap: wrap;
+}
+.tu-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 300px;
+  background: #ffffff;
+  border: 1px solid rgba(30,82,212,.12);
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: 0 3px 16px rgba(13,31,92,.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.tu-step-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 32px rgba(13,31,92,.14);
+}
+.tu-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d1f5c, #1e52d4);
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: .88rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(13,31,92,.28);
+}
+.tu-step-content { flex: 1; }
+.tu-step-pill {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #0d9488;
+  background: #ccfbf1;
+  border: 1px solid rgba(13,148,136,.22);
+  padding: 2px 10px;
+  border-radius: 50px;
+  margin-bottom: 7px;
+}
+.tu-step-title {
+  font-family: 'Sora', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  color: #0d1f5c;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+.tu-step-desc {
+  font-size: .8rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+/* Conector entre pasos */
+.tu-step-connector {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin-top: 38px;
+}
+.tu-step-line {
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, #1e52d4, #2dd4bf);
+  border-radius: 2px;
+  position: relative;
+}
+.tu-step-line::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: 50%;
+  transform: translateY(-50%);
+  border-left: 7px solid #2dd4bf;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+@media (max-width: 767px) {
+  .tu-steps-row { flex-direction: column; align-items: center; gap: 12px; }
+  .tu-step-connector { transform: rotate(90deg); margin: 0; padding: 0; }
+  .tu-step-item { max-width: 100%; width: 100%; }
+}
+
 /* ══════════════════════════════════════════
    SECCIÓN MANUALES — fondo claro separado
 ══════════════════════════════════════════ */
@@ -424,18 +525,18 @@
 /* ── Meter card — fondo blanco, imagen grande ── */
 .tu-meter-card {
   background: #ffffff;
-  border: 1px solid rgba(30,82,212,.14);
-  border-radius: 22px;
-  padding: 0 0 28px;
-  text-align: center;
-  box-shadow: 0 6px 28px rgba(13,31,92,.09);
-  transition: transform .38s cubic-bezier(.22,1,.36,1), box-shadow .38s ease, border-color .3s;
+  border: 1px solid rgba(30,82,212,.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(13,31,92,.08);
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
   opacity: 0;
   transform: translateY(28px);
+  min-width: 0;
+  box-sizing: border-box;
   overflow: hidden;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
-/* Barra shimmer superior */
 .tu-meter-card::before {
   content: '';
   display: block;
@@ -449,73 +550,65 @@
   transform: translateY(0) !important;
 }
 .tu-meter-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 52px rgba(13,31,92,.16);
-  border-color: rgba(45,212,191,.5);
+  transform: translateY(-8px);
+  box-shadow: 0 18px 48px rgba(13,31,92,.14);
 }
 
-/* Zona de imagen con círculos decorativos — GRANDE */
+/* Zona imagen con círculos */
 .tu-meter-img-zone {
   position: relative;
-  height: 240px;
+  height: 200px;
   background: linear-gradient(145deg, #dce8fb 0%, #e8f0fd 50%, #d4e4f7 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-bottom: 24px;
 }
-/* Círculo grande exterior — gira lento, punteado azul */
 .tu-meter-img-zone::before {
   content: '';
   position: absolute;
-  width: 280px; height: 280px;
+  width: 240px; height: 240px;
   border-radius: 50%;
   border: 2px dashed rgba(30,82,212,.18);
   animation: tu-spin-slow 22s linear infinite;
 }
-/* Círculo medio — gira al revés, teal */
 .tu-meter-img-zone::after {
   content: '';
   position: absolute;
-  width: 200px; height: 200px;
+  width: 170px; height: 170px;
   border-radius: 50%;
   border: 1.5px solid rgba(45,212,191,.3);
   animation: tu-spin-rev 14s linear infinite;
 }
-/* Círculo interior — relleno suave */
 .tu-meter-inner-circle {
   position: absolute;
-  width: 130px; height: 130px;
+  width: 110px; height: 110px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(30,82,212,.08) 0%, rgba(45,212,191,.05) 100%);
   border: 1.5px solid rgba(30,82,212,.2);
 }
-/* Punto de brillo */
 .tu-meter-img-zone .tu-glow-dot {
   position: absolute;
-  top: 28px; right: 36px;
-  width: 8px; height: 8px;
+  top: 22px; right: 28px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: #2dd4bf;
-  box-shadow: 0 0 14px #2dd4bf, 0 0 28px rgba(45,212,191,.45);
+  box-shadow: 0 0 12px #2dd4bf, 0 0 24px rgba(45,212,191,.4);
 }
-/* Punto secundario */
 .tu-meter-img-zone .tu-glow-dot2 {
   position: absolute;
-  bottom: 32px; left: 32px;
+  bottom: 24px; left: 28px;
   width: 5px; height: 5px;
   border-radius: 50%;
   background: #1e52d4;
-  box-shadow: 0 0 10px #1e52d4, 0 0 20px rgba(30,82,212,.4);
+  box-shadow: 0 0 10px #1e52d4, 0 0 18px rgba(30,82,212,.35);
 }
 .tu-meter-img-zone img {
-  width: 150px;
-  height: 150px;
+  width: 120px; height: 120px;
   object-fit: contain;
   position: relative;
   z-index: 2;
-  filter: drop-shadow(0 8px 24px rgba(30,82,212,.25)) drop-shadow(0 2px 8px rgba(0,0,0,.12));
+  filter: drop-shadow(0 6px 18px rgba(30,82,212,.22)) drop-shadow(0 2px 6px rgba(0,0,0,.1));
   animation: tu-float 4s ease-in-out infinite;
   transition: transform .3s ease;
 }
@@ -523,50 +616,98 @@
   transform: scale(1.07);
 }
 
+/* Cuerpo de card — centrado y ordenado */
 .tu-meter-card-body {
-  padding: 0 24px;
+  padding: 22px 24px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
 }
-.tu-meter-card p {
-  font-size: .8rem;
-  font-weight: 600;
-  letter-spacing: .1em;
-  color: #64748b;
+.tu-meter-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d1f5c, #1e52d4);
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: .95rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 14px rgba(13,31,92,.28);
+}
+.tu-meter-pill {
+  font-family: 'Sora', sans-serif;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  margin: 0 0 18px;
+  color: #0d9488;
+  display: block;
+  margin-bottom: 8px;
+}
+.tu-meter-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0d1f5c;
+  margin: 0;
+  line-height: 1.3;
+}
+.tu-meter-divider {
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, #1e52d4, #2dd4bf);
+  border-radius: 2px;
+  margin: 12px auto;
+}
+.tu-meter-desc {
+  font-size: .84rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 20px;
+  max-width: 220px;
+  flex: 1;
 }
 .tu-dl-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  background: linear-gradient(135deg, #0d1f5c 0%, #1e52d4 100%);
+  width: 100%;
+  background: #0d1f5c;
   color: #ffffff;
   font-family: 'Sora', sans-serif;
-  font-size: .75rem;
+  font-size: .74rem;
   font-weight: 700;
-  letter-spacing: .07em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 12px 26px;
-  border-radius: 50px;
-  box-shadow: 0 4px 18px rgba(13,31,92,.3);
+  padding: 13px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(13,31,92,.25);
   transition: transform .22s, box-shadow .25s, background .2s;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 .tu-dl-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
   transform: translateX(-100%);
   transition: transform .4s ease;
 }
 .tu-dl-btn:hover::before { transform: translateX(100%); }
-.tu-dl-btn::after { content: '↓'; font-size: .9rem; }
+.tu-dl-btn::after { content: '↓'; font-size: .88rem; }
 .tu-dl-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(13,31,92,.42);
-  background: linear-gradient(135deg, #1e52d4 0%, #2563eb 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(13,31,92,.38);
+  background: #1e3a8a;
 }
 
 /* ══════════════════════════════════════════
@@ -725,9 +866,9 @@
 ══════════════════════════════════════ -->
 <section class="tu-hero">
   <div class="tu-hero-lights"></div>
-  <div class="tu-hero-badge"><span>Tutoriales de Software</span></div>
-  <h1>Tutoriales del <span class="tu-highlight">Software <br>Medidor Inteligente</span></h1>
-  <p class="tu-hero-sub">Optimiza tu gestión: crea sectores, toma lecturas en terreno y controla válvulas paso a paso.</p>
+  <div class="tu-hero-badge"><span>Medidor Inteligente</span></div>
+  <h1>Tutoriales del <span class="tu-highlight">Software del<br>Medidor Inteligente</span></h1>
+  <p class="tu-hero-sub">Crea sectores, toma lecturas con el Hand-Held y gestiona válvulas paso a paso.</p>
   <div class="tu-divider-bar"></div>
 </section>
 
@@ -840,11 +981,12 @@
 <!-- MANUALES — sección separada fondo claro -->
 <section class="tu-manuals-section">
   <div class="tu-manuals-header">
-    <h2>Manuales del Software <em>Medidor Inteligente</em></h2>
-    <p>Accede a guías prácticas para el uso y gestión del sistema.</p>
-    <span class="tu-manuals-label">Uso del Software con el Medidor Inteligente</span>
+    <h2>Manuales del <em>Medidor Inteligente</em></h2>
+    <p>Descarga y descubre el funcionamiento adecuado del medidor</p>
+    <span class="tu-manuals-label">Uso del Medidor Inteligente</span>
   </div>
 
+  <!-- Pasos integrados en cada manual -->
   <div class="tu-meters-grid">
 
     <div class="tu-meter-card">
@@ -855,7 +997,11 @@
         <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 1">
       </div>
       <div class="tu-meter-card-body">
-        <p>Software Medidor — PDF N°1</p>
+        <div class="tu-meter-num">1</div>
+        <span class="tu-meter-pill">Primer paso</span>
+        <p class="tu-meter-title">Crear Archivos de Sectores</p>
+        <div class="tu-meter-divider"></div>
+        <p class="tu-meter-desc">Enviar sectores configurados al Hand-Held o Mando Manual</p>
         <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-1.pdf" class="tu-dl-btn" download>Descargar manual</a>
       </div>
     </div>
@@ -868,7 +1014,11 @@
         <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 2">
       </div>
       <div class="tu-meter-card-body">
-        <p>Software Medidor — PDF N°2</p>
+        <div class="tu-meter-num">2</div>
+        <span class="tu-meter-pill">Segundo paso</span>
+        <p class="tu-meter-title">Toma de Lecturas con Hand-Held</p>
+        <div class="tu-meter-divider"></div>
+        <p class="tu-meter-desc">Captura lecturas de medidores inteligentes en terreno</p>
         <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-2.pdf" class="tu-dl-btn" download>Descargar manual</a>
       </div>
     </div>
@@ -881,7 +1031,11 @@
         <img src="{% static 'app/img/medidorr.png' %}" alt="Medidor 3">
       </div>
       <div class="tu-meter-card-body">
-        <p>Software Medidor — PDF N°3</p>
+        <div class="tu-meter-num">3</div>
+        <span class="tu-meter-pill">Tercer paso</span>
+        <p class="tu-meter-title">Enviar Lecturas al Computador</p>
+        <div class="tu-meter-divider"></div>
+        <p class="tu-meter-desc">Importa los archivos con lecturas tomadas de vuelta al software</p>
         <a href="{% get_media_prefix %}Manual-de-Uso-Software-HandHeld-Parte-3.pdf" class="tu-dl-btn" download>Descargar manual</a>
       </div>
     </div>

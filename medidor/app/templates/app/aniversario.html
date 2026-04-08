@@ -1,0 +1,1065 @@
+{% extends 'app/base.html' %}
+{% block contenido %}
+{% load static %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* ═══════════════════════════════════════════
+   VARIABLES + RESET
+════════════════════════════════════════════ */
+:root{
+  --white:#ffffff;--off:#f4f9fc;--cloud:#e6f2fb;--sky:#c5dff5;
+  --celeste:#5aaee6;--blue:#1a73c8;--blue-d:#0d4d8c;
+  --teal:#0eb8a0;--teal-l:#6ddccc;--teal-p:#d4f5f1;
+  --ink:#0d1e30;--ink-m:#3a5068;--ink-l:#7a9ab5;
+  --border:rgba(26,115,200,.1);--r:16px;--gap:clamp(70px,9vw,120px);
+  --shadow-sm:0 2px 12px rgba(13,30,48,.08);
+  --shadow-md:0 6px 28px rgba(13,30,48,.12);
+  --shadow-lg:0 14px 48px rgba(13,30,48,.16);
+  --shadow-blue:0 8px 32px rgba(26,115,200,.2);
+  --shadow-teal:0 8px 32px rgba(14,184,160,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;line-height:1.6}
+.aniv-wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 5vw}
+.aniv-kicker{display:inline-flex;align-items:center;gap:.55rem;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.9rem}
+.aniv-kicker::before{content:'';width:22px;height:2px;background:linear-gradient(90deg,var(--teal),var(--celeste));border-radius:2px}
+.aniv-kicker.light{color:var(--teal-l)}
+.aniv-kicker.light::before{background:linear-gradient(90deg,var(--teal-l),rgba(255,255,255,.5))}
+.aniv-h2{font-family:'Fraunces',serif;font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+.aniv-h2.light{color:#fff}
+.aniv-sub{font-size:1rem;color:var(--ink-m);font-weight:300;line-height:1.75;max-width:540px;margin-top:.8rem}
+.aniv-sub.light{color:rgba(255,255,255,.75)}
+.rev{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.rev.in{opacity:1;transform:translateY(0)}
+
+/* Separador visual */
+.aniv-sep{width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--celeste),var(--teal),transparent);opacity:.35;margin:0}
+
+/* ═══════════════════════════════════════════
+   HERO SLIDER — 6 slides (1 aniv + 5 imagen)
+════════════════════════════════════════════ */
+.hero-slider{position:relative;width:100%;height:88vh;min-height:520px;overflow:hidden}
+.hero-track{display:flex;height:100%;width:100%;transition:transform .8s cubic-bezier(.4,0,.2,1);will-change:transform}
+.hero-slide{min-width:100%;max-width:100%;width:100%;height:100%;flex-shrink:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+
+/* SLIDE 0 — Aniversario */
+.hs-aniv{flex-direction:column;justify-content:space-between;align-items:stretch;background:#071628}
+.hs-aniv-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:0;filter:blur(3px);transform:scale(1.05)}
+.hs-aniv-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(0,8,25,.45) 0%,rgba(0,10,30,.50) 30%,rgba(0,12,35,.60) 60%,rgba(0,15,45,.78) 80%,rgba(0,18,50,.92) 100%)}
+.hs-aniv-inner{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:clamp(1rem,2.5vw,2.5rem);align-items:center;width:100%;max-width:1440px;margin:0 auto;padding:clamp(1.2rem,2.5vw,2rem) clamp(1.5rem,4vw,4rem) 0}
+.hs-aniv-left{display:flex;flex-direction:column}
+.hs-aniv-top-row{display:flex;align-items:flex-end;gap:clamp(.5rem,1.5vw,1.2rem);line-height:1}
+.hs-aniv-number{font-size:clamp(7rem,18vw,14rem);font-weight:900;line-height:.82;letter-spacing:-.04em;background:linear-gradient(160deg,#4db8ff 0%,#80d4ff 30%,#ffffff 65%,#e8f6ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:1px rgba(100,180,255,.4);filter:drop-shadow(0 0 25px rgba(77,184,255,.7)) drop-shadow(0 0 50px rgba(0,120,255,.4)) drop-shadow(3px 5px 18px rgba(0,0,0,.7))}
+.hs-aniv-mascot{width:clamp(70px,10vw,130px);mix-blend-mode:screen;align-self:flex-end;margin-bottom:.5rem;animation:hsProdFloat 5s ease-in-out infinite}
+.hs-aniv-anos{font-size:clamp(2.4rem,6vw,5.8rem);font-weight:700;font-style:italic;color:#fff;line-height:1;margin-top:-.12em;margin-bottom:.7rem;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.hs-aniv-tagline{font-size:clamp(.82rem,1.25vw,1rem);color:rgba(255,255,255,.88);line-height:1.65;margin-bottom:.6rem}
+.hs-aniv-highlight{background:#006fff;color:#fff;padding:.06em .42em;border-radius:5px;font-weight:700}
+.hs-chile-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(14,184,160,.18);border:1px solid rgba(14,184,160,.4);color:#6ddccc;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.32rem .85rem;border-radius:100px;margin-bottom:.7rem;width:fit-content}
+.hs-aniv-fecha{display:flex;align-items:center;gap:.55rem;font-size:clamp(.7rem,.95vw,.86rem);font-weight:700;letter-spacing:.15em;color:rgba(255,255,255,.5)}
+.hs-aniv-dot{width:7px;height:7px;border-radius:50%;background:#00cbac;display:inline-block}
+.hs-aniv-center{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:clamp(1rem,2.5vw,2rem);gap:.25rem}
+.hs-aniv-meter{width:clamp(120px,19vw,240px);filter:drop-shadow(0 20px 45px rgba(0,111,255,.38));animation:hsProdFloat 7s ease-in-out infinite .6s}
+.hs-aniv-meter-label{font-size:clamp(.56rem,.82vw,.76rem);font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.42);text-transform:uppercase;margin-top:.2rem}
+.hs-aniv-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:.9rem}
+.hs-aniv-polaroid{background:#fff;padding:clamp(.4rem,.85vw,.8rem) clamp(.4rem,.85vw,.8rem) clamp(.65rem,1.3vw,1.2rem);border-radius:3px;box-shadow:0 14px 45px rgba(0,0,0,.5),0 3px 10px rgba(0,0,0,.3);transform:rotate(2.8deg);max-width:clamp(130px,20vw,265px);transition:transform .35s}
+.hs-aniv-polaroid:hover{transform:rotate(0deg) scale(1.04)}
+.hs-aniv-polaroid img{width:100%;display:block;border-radius:2px;aspect-ratio:4/3;object-fit:cover}
+.hs-aniv-polaroid-caption{font-family:Georgia,serif;font-size:clamp(.58rem,.8vw,.76rem);color:#2a2a2a;text-align:center;margin-top:.5rem;line-height:1.35;font-style:italic}
+.hs-aniv-domain{font-size:clamp(.56rem,.76vw,.7rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.hs-aniv-stats{position:relative;z-index:2;width:100%;display:flex;align-items:center;justify-content:center;padding:.85rem 2rem calc(.85rem + 58px);overflow:hidden}
+.hs-aniv-stats::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,50,120,.70) 0%,rgba(0,110,200,.65) 45%,rgba(0,180,155,.60) 75%,rgba(0,203,172,.55) 100%);backdrop-filter:blur(6px);pointer-events:none}
+.hs-aniv-stat{display:flex;align-items:center;gap:.6rem;padding:0 clamp(.7rem,2.5vw,2.5rem);position:relative;z-index:1}
+.hs-aniv-stat strong{font-size:clamp(.9rem,1.9vw,1.45rem);font-weight:800;color:#fff;display:inline-block;transition:transform .3s}
+.hs-aniv-stat:hover strong{transform:scale(1.12)}
+.hs-aniv-stat span{font-size:clamp(.5rem,.72vw,.68rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.hs-aniv-stat-sep{width:1px;height:26px;background:rgba(255,255,255,.25);flex-shrink:0}
+
+/* SLIDES 1–5 — Imagen de impacto con caption */
+.hs-img-slide{background:#071628;align-items:flex-end}
+.hs-img-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;z-index:1;transition:transform 8s ease}
+.hero-slide.active .hs-img-bg{transform:scale(1.06)}
+.hs-img-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(5,14,36,.88) 0%,rgba(5,14,36,.45) 40%,rgba(5,14,36,.12) 70%,transparent 100%)}
+.hs-img-caption{position:relative;z-index:3;width:100%;padding:clamp(2rem,5vw,4rem) clamp(1.5rem,5vw,4rem) clamp(4rem,7vw,6rem);display:flex;flex-direction:column;gap:.5rem}
+.hs-img-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-l);margin-bottom:.2rem}
+.hs-img-tag::before{content:'';width:18px;height:1.5px;background:var(--teal-l);display:inline-block;border-radius:2px}
+.hs-img-h2{font-family:'Fraunces',serif;font-size:clamp(1.4rem,3.5vw,3rem);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-.02em;text-shadow:0 2px 20px rgba(0,0,0,.5);max-width:700px}
+.hs-img-sub{font-size:clamp(.82rem,1.4vw,1rem);color:rgba(255,255,255,.72);font-weight:300;max-width:520px}
+/* Entry animation captions */
+.hero-slide.active .hs-img-tag{animation:hsFadeUp .7s ease .1s both}
+.hero-slide.active .hs-img-h2{animation:hsFadeUp .8s ease .22s both}
+.hero-slide.active .hs-img-sub{animation:hsFadeUp .8s ease .38s both}
+
+/* Controls */
+.hs-controls{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+.hs-dots{display:flex;gap:8px;align-items:center}
+.hs-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);border:none;padding:0;cursor:pointer;transition:all .4s}
+.hs-dot.active{background:#fff;width:28px;border-radius:5px}
+.hs-arrows{display:flex;gap:.7rem}
+.hs-arrow{width:44px;height:44px;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:1.35rem;transition:all .3s}
+.hs-arrow:hover{background:rgba(255,255,255,.32);transform:scale(1.07)}
+
+/* Animations */
+@keyframes hsProdFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes hsFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hsFadeR{from{opacity:0;transform:translateX(42px)}to{opacity:1;transform:translateX(0)}}
+@keyframes hsAnivNum{from{opacity:0;transform:scale(.65) translateY(28px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.hero-slide.active .hs-aniv-number{animation:hsAnivNum 1s cubic-bezier(.15,.85,.3,1.05) .05s both}
+.hero-slide.active .hs-aniv-anos{animation:hsFadeUp .75s ease .35s both}
+.hero-slide.active .hs-aniv-tagline{animation:hsFadeUp .7s ease .5s both}
+.hero-slide.active .hs-aniv-fecha,.hero-slide.active .hs-chile-badge{animation:hsFadeUp .65s ease .65s both}
+.hero-slide.active .hs-aniv-center{animation:hsFadeUp .9s ease .15s both}
+.hero-slide.active .hs-aniv-right{animation:hsFadeR .9s ease .3s both}
+.hero-slide.active .hs-aniv-stats{animation:hsFadeUp .7s ease .5s both}
+
+/* ═══════════════════════════════════════════
+   S2 · PROBLEMA → SOLUCIÓN
+   Fondo: claro · celeste · verde agua · blanco
+════════════════════════════════════════════ */
+.aniv-problema{
+  padding:var(--gap) 5vw;
+  background:linear-gradient(145deg,#f0fbf9 0%,#e4f6fd 35%,#eaf7ff 65%,#f5fffe 100%);
+  position:relative;overflow:hidden;
+}
+/* Glow radial suave */
+.aniv-problema::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 55% 70% at 8% 60%,rgba(14,184,160,.10) 0%,transparent 55%),
+    radial-gradient(ellipse 45% 55% at 92% 25%,rgba(90,174,230,.12) 0%,transparent 50%),
+    radial-gradient(ellipse 40% 50% at 50% 100%,rgba(14,184,160,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+/* Dot grid sutil claro */
+.aniv-problema::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(26,115,200,.06) 1px,transparent 1px);
+  background-size:30px 30px;pointer-events:none;
+}
+
+/* Círculos flotantes animados */
+.prob-circles{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.prob-circle{
+  position:absolute;border-radius:50%;
+  background:transparent;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+}
+/* Círculo 1 — grande teal top-left */
+.prob-circle:nth-child(1){
+  width:340px;height:340px;top:-80px;left:-60px;
+  border:2px solid rgba(14,184,160,.18);
+  animation:probCircleFloat1 9s ease-in-out infinite alternate;
+}
+/* Círculo 2 — relleno suave celeste mid-right */
+.prob-circle:nth-child(2){
+  width:220px;height:220px;top:30%;right:-50px;
+  background:radial-gradient(circle,rgba(90,174,230,.10) 0%,transparent 70%);
+  border:1.5px solid rgba(90,174,230,.15);
+  animation:probCircleFloat2 7s ease-in-out infinite alternate;
+}
+/* Círculo 3 — pequeño teal bottom-left */
+.prob-circle:nth-child(3){
+  width:140px;height:140px;bottom:10%;left:12%;
+  background:radial-gradient(circle,rgba(14,184,160,.08) 0%,transparent 70%);
+  border:1.5px solid rgba(14,184,160,.20);
+  animation:probCircleFloat3 11s ease-in-out infinite alternate;
+}
+/* Círculo 4 — mediano azul top-center */
+.prob-circle:nth-child(4){
+  width:180px;height:180px;top:-20px;left:42%;
+  border:1px solid rgba(26,115,200,.10);
+  animation:probCircleFloat1 13s ease-in-out infinite alternate .5s;
+}
+/* Círculo 5 — pequeño celeste bottom-right */
+.prob-circle:nth-child(5){
+  width:90px;height:90px;bottom:8%;right:18%;
+  background:radial-gradient(circle,rgba(90,174,230,.10) 0%,transparent 70%);
+  border:1.5px solid rgba(90,174,230,.20);
+  animation:probCircleFloat2 8s ease-in-out infinite alternate 1s;
+}
+@keyframes probCircleFloat1{
+  0%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(18px,-22px) scale(1.05)}
+  100%{transform:translate(-10px,14px) scale(.97)}
+}
+@keyframes probCircleFloat2{
+  0%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-20px,16px) scale(1.07)}
+  100%{transform:translate(12px,-18px) scale(.95)}
+}
+@keyframes probCircleFloat3{
+  0%{transform:translate(0,0) scale(1)}
+  40%{transform:translate(22px,8px) scale(1.04)}
+  100%{transform:translate(-8px,-20px) scale(.98)}
+}
+
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;position:relative;z-index:1}
+
+/* Card problema — borde naranja/amber suave */
+.prob-block{
+  background:#ffffff;
+  border:1.5px solid rgba(26,115,200,.12);
+  border-radius:var(--r);
+  padding:2rem 2rem 2.2rem;
+  box-shadow:0 4px 24px rgba(90,174,230,.12),0 1px 4px rgba(26,115,200,.06);
+  transition:transform .3s,box-shadow .3s;
+}
+.prob-block:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 40px rgba(90,174,230,.18),0 2px 8px rgba(26,115,200,.08);
+}
+/* Línea superior de color: problema = ámbar, solución = teal */
+.prob-block::before{
+  content:'';display:block;height:3px;
+  background:linear-gradient(90deg,#f59e0b,#fbbf24);
+  border-radius:3px 3px 0 0;margin:-2rem -2rem 1.4rem;
+}
+.prob-block.sol::before{
+  background:linear-gradient(90deg,var(--teal),var(--teal-l));
+}
+
+.prob-block .aniv-kicker{color:#d97706}
+.prob-block .aniv-kicker::before{background:#d97706}
+.prob-block.sol .aniv-kicker{color:var(--teal)}
+.prob-block.sol .aniv-kicker::before{background:var(--teal)}
+
+.prob-h3{
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:900;
+  color:var(--ink);
+  line-height:1.15;margin-bottom:1.1rem;letter-spacing:-.02em;
+}
+.prob-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.prob-list li{
+  font-size:.93rem;color:var(--ink-m);font-weight:400;
+  line-height:1.6;display:flex;align-items:flex-start;gap:.7rem;
+  padding:.5rem .7rem;border-radius:8px;
+  background:rgba(26,115,200,.03);
+  border:1px solid rgba(26,115,200,.06);
+  transition:background .2s,border-color .2s;
+}
+.prob-list li:hover{background:rgba(14,184,160,.06);border-color:rgba(14,184,160,.15)}
+.prob-block.sol .prob-list li:hover{background:rgba(14,184,160,.07);border-color:rgba(14,184,160,.18)}
+.prob-icon{font-size:1.05rem;flex-shrink:0;margin-top:.1em}
+
+/* ═══════════════════════════════════════════
+   VIDEO CHILEVISION
+   Fondo: blanco puro — descanso visual
+════════════════════════════════════════════ */
+.aniv-chv-wrap{
+  padding:var(--gap) 5vw;
+  background:var(--white);
+  position:relative;
+}
+.aniv-chv-wrap::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--celeste) 30%,var(--teal) 70%,transparent);
+}
+.vid-chv{background:var(--white);border-radius:var(--r);overflow:hidden;border:1.5px solid rgba(26,115,200,.15);box-shadow:var(--shadow-blue);margin-top:2rem}
+.vid-chv-inner{display:grid;grid-template-columns:1.5fr 1fr;align-items:stretch}
+.vid-chv-frame{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#0a1628}
+.vid-chv-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
+.vid-chv-meta{padding:2rem 1.8rem;display:flex;flex-direction:column;justify-content:center;gap:1rem;background:linear-gradient(135deg,var(--off),#eaf4fc)}
+.vid-chv-badge{display:inline-flex;align-items:center;gap:.45rem;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;width:fit-content;box-shadow:0 3px 12px rgba(14,184,160,.3)}
+.vid-chv-meta h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--ink);line-height:1.3}
+.vid-chv-meta p{font-size:.87rem;color:var(--ink-m);font-weight:300;line-height:1.7}
+.vid-chv-tag{font-size:.75rem;color:var(--ink-l);font-weight:500;display:flex;align-items:center;gap:.4rem}
+.vid-chv-tag::before{content:'📺'}
+
+/* ═══════════════════════════════════════════
+   S3 · HISTORIA
+   Fondo: celeste muy suave con glow
+════════════════════════════════════════════ */
+.aniv-historia{
+  padding:var(--gap) 5vw;
+  background:linear-gradient(160deg,#f0f8ff 0%,#e4f4fd 50%,#d8f0f8 100%);
+  position:relative;overflow:hidden;
+}
+.aniv-historia::before{
+  content:'';position:absolute;
+  top:-30%;right:-10%;width:600px;height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(14,184,160,.08) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hist-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+.hist-chile-tag{display:inline-flex;align-items:center;gap:.45rem;background:rgba(14,184,160,.12);border:1px solid rgba(14,184,160,.25);color:var(--teal);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;margin-bottom:1rem}
+.hist-pull{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-.01em;border-left:3px solid var(--teal);padding-left:1.3rem;margin-bottom:1.5rem}
+.hist-pull em{font-style:italic;color:var(--blue)}
+.hist-body{font-size:.96rem;color:var(--ink-m);font-weight:300;line-height:1.8}
+.hist-body strong{color:var(--ink);font-weight:600}
+.hist-nums{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.hist-num{background:linear-gradient(135deg,var(--blue-d),var(--blue),var(--teal));border-radius:var(--r);padding:1.6rem 1.4rem;color:#fff;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default;box-shadow:var(--shadow-blue)}
+.hist-num:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(26,115,200,.32)}
+.hist-num::after{content:'';position:absolute;top:-40%;right:-20%;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hist-num-val{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:900;line-height:1;margin-bottom:.3rem}
+.hist-num-lbl{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);line-height:1.35}
+.hist-num.big{grid-column:span 2;background:linear-gradient(135deg,var(--teal),#00d4b8,var(--celeste));box-shadow:var(--shadow-teal)}
+.hist-num.big .hist-num-val{font-size:clamp(3rem,5.5vw,4.5rem)}
+
+/* ═══════════════════════════════════════════
+   S4 · EVOLUCIÓN DEL MEDIDOR
+   Fondo: blanco con sutil ruido/glow
+════════════════════════════════════════════ */
+.aniv-evolucion{
+  padding:var(--gap) 5vw;
+  background:var(--white);
+  position:relative;overflow:hidden;
+}
+.aniv-evolucion::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 55% 50% at 95% 40%,rgba(14,184,160,.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 60% at 5% 80%,rgba(26,115,200,.05) 0%,transparent 50%);
+  pointer-events:none;
+}
+.evo-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.8rem;gap:2rem;flex-wrap:wrap}
+.evo-track{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;position:relative;margin-bottom:2.5rem}
+.evo-track::before{content:'';position:absolute;top:68px;left:calc(16.67% + 20px);right:calc(16.67% + 20px);height:2px;background:linear-gradient(90deg,var(--celeste),var(--teal));z-index:0}
+.evo-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:relative;z-index:1;transition:transform .3s,box-shadow .3s;box-shadow:var(--shadow-sm)}
+.evo-card:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(26,115,200,.16)}
+.evo-top{padding:2rem 1.6rem 1.4rem;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:195px;justify-content:center;position:relative}
+.evo-card:nth-child(1) .evo-top{background:linear-gradient(135deg,var(--cloud),#d8ecf8)}
+.evo-card:nth-child(2) .evo-top{background:linear-gradient(135deg,#d0e8f8,#a5d4f5)}
+.evo-card:nth-child(3) .evo-top{background:linear-gradient(135deg,var(--teal-p),#b0f0e8)}
+.evo-n{position:absolute;top:.8rem;left:1rem;font-family:'Fraunces',serif;font-size:3.5rem;font-weight:900;color:rgba(26,115,200,.08);line-height:1}
+.evo-card:nth-child(3) .evo-n{color:rgba(14,184,160,.1)}
+.evo-img{width:105px;height:105px;margin:0 auto .8rem;border-radius:14px;background:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;border:1px solid rgba(26,115,200,.1);box-shadow:var(--shadow-sm)}
+.evo-img svg,.evo-img img{width:70px;height:70px;object-fit:contain}
+.evo-tag{font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .72rem;border-radius:100px;background:var(--blue);color:#fff;margin-bottom:.5rem}
+.evo-card:nth-child(3) .evo-tag{background:linear-gradient(135deg,var(--blue),var(--teal))}
+.evo-period{font-size:.75rem;color:var(--ink-l);font-weight:500}
+.evo-body{padding:1.4rem 1.5rem 1.7rem}
+.evo-body h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.evo-body p{font-size:.87rem;color:var(--ink-m);line-height:1.7;font-weight:300;margin-bottom:.9rem}
+.evo-feats{list-style:none;display:flex;flex-direction:column;gap:.38rem}
+.evo-feats li{font-size:.82rem;color:var(--ink-m);display:flex;align-items:flex-start;gap:.45rem}
+.evo-feats li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+.evo-card:nth-child(3) .evo-feats li::before{color:var(--blue)}
+.evo-battery{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;font-size:.78rem;font-weight:700;padding:.42rem 1rem;border-radius:100px;margin-bottom:.85rem;box-shadow:0 3px 12px rgba(14,184,160,.25)}
+.benef-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.benef-cell{background:var(--white);padding:1.5rem 1rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.55rem;transition:background .25s,transform .25s,box-shadow .25s}
+.benef-cell:hover{background:var(--teal-p);transform:translateY(-2px);box-shadow:0 4px 16px rgba(14,184,160,.15)}
+.benef-emoji{font-size:1.5rem;line-height:1}
+.benef-lbl{font-size:.74rem;font-weight:600;color:var(--ink-m);line-height:1.35}
+
+/* ═══════════════════════════════════════════
+   S5 · IMPACTO EN CHILE
+   Fondo: degradado azul→teal (oscuro, impacto)
+════════════════════════════════════════════ */
+.aniv-chile{
+  padding:var(--gap) 5vw;
+  background:linear-gradient(150deg,var(--blue-d) 0%,var(--blue) 45%,#0a8a7a 80%,var(--teal) 100%);
+  position:relative;overflow:hidden;
+}
+.aniv-chile::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;
+}
+.aniv-chile::after{
+  content:'';position:absolute;
+  bottom:-20%;right:-5%;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(14,184,160,.15) 0%,transparent 65%);
+  pointer-events:none;
+}
+.chile-layout{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;position:relative;z-index:1}
+.chile-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.cn-card{border-radius:var(--r);padding:1.6rem 1.2rem;text-align:center;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.1);backdrop-filter:blur(8px);transition:transform .3s,box-shadow .3s,background .3s}
+.cn-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.25);background:rgba(255,255,255,.18)}
+.cn-val{font-family:'Fraunces',serif;font-size:clamp(2.2rem,3.5vw,3rem);font-weight:900;line-height:1;color:#fff;margin-bottom:.3rem;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.cn-lbl{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);line-height:1.4}
+.chile-map-col{width:200px;flex-shrink:0}
+.chile-map-svg{width:100%;filter:drop-shadow(0 4px 20px rgba(0,0,0,.2))}
+
+/* ═══════════════════════════════════════════
+   S6 · TESTIMONIOS — GRID ALEATORIO
+   Fondo: off-white con separador superior
+════════════════════════════════════════════ */
+.aniv-videos{
+  padding:var(--gap) 5vw;
+  background:linear-gradient(180deg,#f0f8ff 0%,var(--white) 100%);
+  position:relative;
+}
+.aniv-videos::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--teal) 30%,var(--celeste) 70%,transparent);
+}
+.vids-head{margin-bottom:2.5rem}
+
+/* Grid testimonios — tamaño uniforme en filas de 3 */
+.vids-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+}
+/* Todas las cards exactamente del mismo alto */
+.tv__card{
+  background:var(--white);border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  opacity:0;transform:translateY(18px);
+  transition:opacity .45s ease,transform .45s ease,box-shadow .25s;
+  display:flex;flex-direction:column;
+}
+.tv__card.tv--in{opacity:1;transform:translateY(0)}
+.tv__card:hover{box-shadow:0 12px 36px rgba(26,115,200,.15);transform:translateY(-4px)}
+/* Frame con ratio fijo igual para todos */
+.tv__frame{
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;overflow:hidden;
+  background:linear-gradient(135deg,#071628,#0d3268);
+  flex-shrink:0;
+}
+.tv__frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
+/* Sin info debajo — solo video */
+.tv__info{display:none}
+
+/* Pill header */
+.tv__pill{display:inline-flex;align-items:center;gap:7px;background:rgba(0,111,255,.07);border:1px solid rgba(0,111,255,.18);color:var(--blue);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:5px 15px;border-radius:99px;margin-bottom:.9rem}
+.tv__pill i{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;animation:tvBlink 2s ease-in-out infinite}
+@keyframes tvBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+
+/* CTA YouTube */
+.tv__cta{text-align:center;margin-top:2.5rem}
+.tv__yt-btn{display:inline-flex;align-items:center;gap:.55rem;background:#ff0000;color:#fff;text-decoration:none;padding:.75rem 1.8rem;border-radius:2rem;font-size:.9rem;font-weight:700;box-shadow:0 4px 18px rgba(255,0,0,.25);transition:transform .2s,box-shadow .2s,background .2s}
+.tv__yt-btn:hover{background:#cc0000;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,0,0,.35)}
+
+/* ═══════════════════════════════════════════
+   FAB
+════════════════════════════════════════════ */
+#aniv-fab{position:fixed;bottom:2rem;right:2rem;z-index:9999;display:flex;align-items:center;gap:.65rem;background:linear-gradient(135deg,var(--blue-d),var(--blue),var(--teal));background-size:200% 200%;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.03em;padding:.82rem 1.4rem .82rem 1.1rem;border-radius:100px;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(14,184,160,.3);animation:fabIn .7s .5s cubic-bezier(.34,1.56,.64,1) both,fabGlow 3s 1.2s ease-in-out infinite,fabBg 6s linear infinite;white-space:nowrap;user-select:none}
+@keyframes fabIn{from{opacity:0;transform:translateY(16px) scale(.85)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fabGlow{0%,100%{box-shadow:0 4px 20px rgba(14,184,160,.3),0 0 0 0 rgba(14,184,160,.15)}50%{box-shadow:0 6px 32px rgba(14,184,160,.5),0 0 0 8px rgba(14,184,160,0)}}
+@keyframes fabBg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.fab-ico{font-size:1.1rem;display:inline-block}
+.fab-ico.rocket-anim{animation:rocketGo .8s cubic-bezier(.25,.46,.45,.94) forwards!important}
+@keyframes rocketGo{0%{transform:translateY(0) rotate(0deg)}35%{transform:translateY(-10px) rotate(-15deg)}65%{transform:translateY(-5px) rotate(8deg)}100%{transform:translateY(0) rotate(0deg)}}
+.fab-ico.float-anim{animation:icoFloat 3s ease-in-out infinite!important}
+@keyframes icoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+#fab-sparks{position:fixed;bottom:3rem;right:4rem;width:0;height:0;pointer-events:none;z-index:9998}
+.spark{position:absolute;border-radius:50%;opacity:0;animation:sparkOut var(--d) var(--delay) cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes sparkOut{0%{opacity:1;transform:translate(0,0) scale(1)}70%{opacity:.7}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+@media(max-width:1100px){
+  .evo-track{grid-template-columns:1fr 1fr}
+  .evo-track::before{display:none}
+  .evo-card:nth-child(3){grid-column:span 2}
+  .benef-strip{grid-template-columns:repeat(3,1fr)}
+  .vid-chv-inner{grid-template-columns:1fr}
+  .vids-grid{grid-template-columns:repeat(2,1fr)}
+  .hist-grid{grid-template-columns:1fr;gap:2.5rem}
+  .chile-layout{grid-template-columns:1fr}
+  .chile-map-col{display:none}
+  .hs-aniv-inner{grid-template-columns:1fr 1.1fr}
+  .hs-aniv-right{display:none}
+  .prob-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  :root{--gap:65px}
+  .hero-slider{height:calc(100svh - var(--navbar-h,70px));min-height:0}
+  .hero-slide{padding-bottom:56px}
+  .hs-controls{padding:.6rem .8rem;justify-content:center;gap:.65rem;background:linear-gradient(to top,rgba(0,0,0,.5),transparent)}
+  .hs-aniv-inner{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:.45rem;padding:1rem 1.2rem 0}
+  .hs-aniv-left{align-items:center;text-align:center;width:100%}
+  .hs-aniv-top-row{justify-content:center}
+  .hs-aniv-number{font-size:clamp(3.8rem,20vw,7rem)}
+  .hs-aniv-mascot{width:clamp(52px,15vw,80px)}
+  .hs-aniv-anos{font-size:clamp(1.7rem,9.5vw,3.2rem);text-align:center}
+  .hs-aniv-tagline{text-align:center}
+  .hs-aniv-right{display:none!important}
+  .hs-aniv-center{width:100%;padding-bottom:.2rem}
+  .hs-aniv-meter{width:clamp(110px,30vw,170px)}
+  .hs-aniv-stats{display:grid!important;grid-template-columns:1fr 1fr;gap:.3rem;padding:.5rem .8rem 3.5rem;background:transparent;flex-shrink:0;width:100%}
+  .hs-aniv-stat-sep{display:none!important}
+  .hs-aniv-stat{flex-direction:column;align-items:center;text-align:center;padding:.22rem .4rem}
+  .hs-aniv-stat strong{font-size:clamp(.88rem,4vw,1.1rem)}
+  .hs-aniv-stat span{font-size:clamp(.44rem,1.9vw,.58rem)}
+  .evo-track{grid-template-columns:1fr}
+  .evo-card:nth-child(n){grid-column:span 1}
+  .benef-strip{grid-template-columns:repeat(2,1fr)}
+  .chile-nums{grid-template-columns:repeat(3,1fr)}
+  .vids-grid{grid-template-columns:1fr}
+  .hist-nums{grid-template-columns:1fr}
+  .hist-num.big{grid-column:span 1}
+  .hs-img-h2{font-size:clamp(1.2rem,5.5vw,1.8rem)}
+}
+@media(max-width:480px){
+  .chile-nums{grid-template-columns:1fr}
+  .benef-strip{grid-template-columns:1fr 1fr}
+  #aniv-fab{font-size:.78rem;padding:.75rem 1.1rem .75rem 1rem}
+  .vids-grid{grid-template-columns:1fr}
+}
+</style>
+
+
+<!-- ═══════════════════════════════════════════
+     S1 · HERO SLIDER — 6 slides
+════════════════════════════════════════════ -->
+<section class="hero-slider" id="inicio">
+  <div class="hero-track" id="heroTrack">
+
+    <!-- SLIDE 0 · ANIVERSARIO -->
+    <div class="hero-slide hs-aniv active">
+      <img src="{% static 'app/img/webnosotros.png' %}" alt="" class="hs-aniv-bg">
+      <div class="hs-aniv-overlay"></div>
+      <div class="hs-aniv-inner">
+        <div class="hs-aniv-left">
+          <div class="hs-aniv-top-row">
+            <div class="hs-aniv-number">10</div>
+            <img src="{% static 'app/img/medi.png' %}" alt="Mascota" class="hs-aniv-mascot">
+          </div>
+          <div class="hs-aniv-anos">años</div>
+          <p class="hs-aniv-tagline">Transformando la <span class="hs-aniv-highlight">gestión del agua</span><br>con tecnología inteligente</p>
+          <div class="hs-chile-badge">🇨🇱 Desarrollado y fabricado en Chile</div>
+          <div class="hs-aniv-fecha"><span class="hs-aniv-dot"></span>2015 — 2025</div>
+        </div>
+        <div class="hs-aniv-center">
+          <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente" class="hs-aniv-meter">
+          <p class="hs-aniv-meter-label">MEDIDOR INTELIGENTE</p>
+        </div>
+        <div class="hs-aniv-right">
+          <div class="hs-aniv-polaroid">
+            <img src="{% static 'app/img/webnosotros.png' %}" alt="Primera instalación APR Los Maquis">
+            <p class="hs-aniv-polaroid-caption">Primera instalación · APR Los Maquis · 2015</p>
+          </div>
+          <p class="hs-aniv-domain">medidorinteligente.cl</p>
+        </div>
+      </div>
+      <div class="hs-aniv-stats">
+        <div class="hs-aniv-stat"><strong data-count="200" data-suffix="">200</strong><span>COMUNIDADES APR</span></div>
+        <div class="hs-aniv-stat-sep"></div>
+        <div class="hs-aniv-stat"><strong data-count="10" data-suffix="">10</strong><span>AÑOS DE INNOVACIÓN</span></div>
+        <div class="hs-aniv-stat-sep"></div>
+        <div class="hs-aniv-stat"><strong data-count="0" data-text="Chile">Chile</strong><span>COBERTURA NACIONAL</span></div>
+        <div class="hs-aniv-stat-sep"></div>
+        <div class="hs-aniv-stat"><strong data-count="0" data-text="24/7">24/7</strong><span>MONITOREO CONTINUO</span></div>
+      </div>
+    </div>
+
+    <!-- SLIDE 1 · APR LOS MAQUIS — primer instalación -->
+    <div class="hero-slide hs-img-slide">
+      <img src="{% static 'app/img/maquis.png' %}" alt="APR Los Maquis" class="hs-img-bg">
+      <div class="hs-img-overlay"></div>
+      <div class="hs-img-caption">
+        <span class="hs-img-tag">APR Los Maquis · 2015</span>
+        <h2 class="hs-img-h2">Donde todo comenzó.<br>La primera instalación.</h2>
+        <p class="hs-img-sub">Hace 10 años instalamos el primer medidor inteligente en esta comunidad. Fue el inicio de una revolución en la gestión del agua en Chile.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 · ENTREGA COMUNIDAD -->
+    <div class="hero-slide hs-img-slide">
+      <img src="{% static 'app/img/webcliente2.jpeg' %}" alt="Entrega de medidores" class="hs-img-bg">
+      <div class="hs-img-overlay"></div>
+      <div class="hs-img-caption">
+        <span class="hs-img-tag">Comunidades APR · Chile</span>
+        <h2 class="hs-img-h2">200 comunidades que<br>confían en nuestra tecnología</h2>
+        <p class="hs-img-sub">Cada entrega es un compromiso. Cada medidor instalado es una comunidad que da un paso hacia la gestión inteligente del agua.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 · TRABAJO EN TERRENO -->
+    <div class="hero-slide hs-img-slide">
+      <img src="{% static 'app/img/webcliente3.jpeg' %}" alt="Instalación en terreno" class="hs-img-bg">
+      <div class="hs-img-overlay"></div>
+      <div class="hs-img-caption">
+        <span class="hs-img-tag">Instalación · Soporte técnico</span>
+        <h2 class="hs-img-h2">En terreno, con cada<br>comunidad de Chile</h2>
+        <p class="hs-img-sub">Nuestro equipo técnico acompaña cada instalación, desde la configuración inicial hasta el soporte continuo a los operadores.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 · MEDIDOR 3D PRODUCTO -->
+    <div class="hero-slide hs-img-slide" style="background:linear-gradient(135deg,#071a3a 0%,#0d3268 50%,#0a4a6e 100%)">
+      <div class="hs-img-overlay" style="background:linear-gradient(to top,rgba(5,15,40,.7) 0%,rgba(5,15,40,.2) 50%,transparent 100%)"></div>
+      <div class="hs-img-caption" style="align-items:center;text-align:center;justify-content:flex-end">
+        <span class="hs-img-tag">Tecnología chilena · Modelo 3</span>
+        <h2 class="hs-img-h2" style="max-width:100%">Diseñado y fabricado<br>100% en Chile</h2>
+        <p class="hs-img-sub" style="max-width:480px;margin:0 auto">Batería de larga duración, lectura remota y diseño robusto para cualquier condición de terreno.</p>
+      </div>
+      <!-- Producto centrado -->
+      <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);width:clamp(160px,22vw,320px);filter:drop-shadow(0 20px 60px rgba(0,111,255,.5));animation:hsProdFloat 6s ease-in-out infinite;z-index:3">
+    </div>
+
+    <!-- SLIDE 5 · NOSOTROS / EQUIPO -->
+    <div class="hero-slide hs-img-slide">
+      <img src="{% static 'app/img/webnosotros.png' %}" alt="Nuestro equipo" class="hs-img-bg">
+      <div class="hs-img-overlay"></div>
+      <div class="hs-img-caption">
+        <span class="hs-img-tag">10 años · 2015 – 2025</span>
+        <h2 class="hs-img-h2">Una década de impacto<br>en el agua de Chile</h2>
+        <p class="hs-img-sub">50.000+ medidores instalados. 200+ comunidades APR transformadas. Un equipo comprometido con el futuro hídrico del país.</p>
+      </div>
+    </div>
+
+  </div><!-- /hero-track -->
+
+  <div class="hs-controls">
+    <div class="hs-dots">
+      <button class="hs-dot active" onclick="sliderGoTo(0)" aria-label="Slide 1"></button>
+      <button class="hs-dot" onclick="sliderGoTo(1)" aria-label="Slide 2"></button>
+      <button class="hs-dot" onclick="sliderGoTo(2)" aria-label="Slide 3"></button>
+      <button class="hs-dot" onclick="sliderGoTo(3)" aria-label="Slide 4"></button>
+      <button class="hs-dot" onclick="sliderGoTo(4)" aria-label="Slide 5"></button>
+      <button class="hs-dot" onclick="sliderGoTo(5)" aria-label="Slide 6"></button>
+    </div>
+    <div class="hs-arrows">
+      <button class="hs-arrow" onclick="sliderPrev()" aria-label="Anterior">&#8249;</button>
+      <button class="hs-arrow" onclick="sliderNext()" aria-label="Siguiente">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  function setNH(){var nav=document.querySelector('nav,.nav,.navbar,header,.header');var h=nav?nav.offsetHeight:70;var s=document.querySelector('.hero-slider');if(s)s.style.setProperty('--navbar-h',h+'px')}
+  setNH();window.addEventListener('resize',setNH);
+})();
+(function(){
+  var track=document.getElementById('heroTrack');
+  var slider=track?track.closest('.hero-slider'):null;
+  if(!track||!slider)return;
+  var slides=track.querySelectorAll('.hero-slide');
+  var dots=slider.querySelectorAll('.hs-dot');
+  var total=slides.length,cur=0,timer=null;
+  function goTo(n){slides[cur].classList.remove('active');if(dots[cur])dots[cur].classList.remove('active');cur=(n%total+total)%total;track.style.transform='translateX(-'+(cur*100)+'%)';slides[cur].classList.add('active');if(dots[cur])dots[cur].classList.add('active')}
+  window.sliderGoTo=function(n){goTo(n);reset()};
+  window.sliderNext=function(){goTo(cur+1);reset()};
+  window.sliderPrev=function(){goTo(cur-1);reset()};
+  function start(){timer=setInterval(function(){goTo(cur+1)},7000)}
+  function stop(){clearInterval(timer)}
+  function reset(){stop();start()}
+  slider.addEventListener('mouseenter',stop);slider.addEventListener('mouseleave',start);
+  var tx=0;
+  slider.addEventListener('touchstart',function(e){tx=e.changedTouches[0].clientX;stop()},{passive:true});
+  slider.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>45){dx<0?goTo(cur+1):goTo(cur-1)}reset()},{passive:true});
+  window.addEventListener('resize',function(){track.style.transition='none';track.style.transform='translateX(-'+(cur*100)+'%)';setTimeout(function(){track.style.transition=''},50)});
+  goTo(0);start();
+})();
+(function(){
+  function run(){
+    document.querySelectorAll('.hs-aniv-stats strong[data-count]').forEach(function(el,i){
+      var target=parseInt(el.getAttribute('data-count'),10);
+      var suffix=el.getAttribute('data-suffix')||'';
+      var text=el.getAttribute('data-text')||'';
+      if(text&&!target){el.textContent=text;return}
+      var dur=1400,s=null;
+      setTimeout(function(){
+        (function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*target)+suffix;p<1?requestAnimationFrame(step):el.textContent=target+suffix})(performance.now());
+      },i*200);
+    });
+  }
+  var aniv=document.querySelector('.hero-slide.hs-aniv');
+  if(!aniv)return;
+  new MutationObserver(function(ms){ms.forEach(function(m){if(m.attributeName==='class'&&aniv.classList.contains('active'))setTimeout(run,600)})}).observe(aniv,{attributes:true});
+  if(aniv.classList.contains('active'))setTimeout(run,900);
+})();
+</script>
+
+<div class="aniv-sep"></div>
+
+<!-- ═══════════════════════════════════════════
+     S2 · PROBLEMA → SOLUCIÓN
+     Fondo: claro celeste/verde agua/blanco
+════════════════════════════════════════════ -->
+<section class="aniv-problema" id="problema">
+  <!-- Círculos decorativos animados -->
+  <div class="prob-circles" aria-hidden="true">
+    <div class="prob-circle"></div>
+    <div class="prob-circle"></div>
+    <div class="prob-circle"></div>
+    <div class="prob-circle"></div>
+    <div class="prob-circle"></div>
+  </div>
+  <div class="aniv-wrap">
+    <div class="prob-grid">
+
+      <div class="prob-block rev">
+        <p class="aniv-kicker">El desafío</p>
+        <h2 class="prob-h3">Problemas en<br>sistemas APR</h2>
+        <ul class="prob-list">
+          <li><span class="prob-icon">⚠️</span>Lectura manual de medidores casa por casa</li>
+          <li><span class="prob-icon">📋</span>Errores de digitación en los registros de consumo</li>
+          <li><span class="prob-icon">🚗</span>Desplazamientos costosos en terreno para cada lectura</li>
+          <li><span class="prob-icon">❌</span>Falta de control en tiempo real del suministro</li>
+          <li><span class="prob-icon">💦</span>Fugas no detectadas que generan pérdidas millonarias</li>
+        </ul>
+      </div>
+
+      <div class="prob-block sol rev" style="transition-delay:.15s">
+        <p class="aniv-kicker">La solución</p>
+        <h2 class="prob-h3">Automatización<br>inteligente</h2>
+        <ul class="prob-list">
+          <li><span class="prob-icon">📡</span>Lectura remota automática sin ir al terreno</li>
+          <li><span class="prob-icon">✅</span>Datos precisos y confiables, sin errores humanos</li>
+          <li><span class="prob-icon">🔒</span>Corte y apertura del suministro desde cualquier lugar</li>
+          <li><span class="prob-icon">🔔</span>Alertas en tiempo real ante fugas o anomalías</li>
+          <li><span class="prob-icon">⏱️</span>Ahorro real de tiempo, dinero y esfuerzo operativo</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="aniv-sep"></div>
+
+<!-- ═══════════════════════════════════════════
+     VIDEO CHILEVISION — fondo blanco, destacado
+════════════════════════════════════════════ -->
+<section class="aniv-chv-wrap" id="chilevision">
+  <div class="aniv-wrap">
+    <div class="rev">
+      <span class="tv__pill"><i></i>Primera aparición en medios nacionales</span>
+      <p class="aniv-kicker">Reconocimiento nacional</p>
+      <h2 class="aniv-h2">Así nos conoció Chile</h2>
+      <p class="aniv-sub">La primera vez que nuestro sistema llegó a las pantallas del país. Un hito que marcó el reconocimiento de la tecnología chilena aplicada al agua.</p>
+    </div>
+    <div class="vid-chv rev" style="transition-delay:.12s">
+      <div class="vid-chv-inner">
+        <div class="vid-chv-frame">
+          <iframe src="https://www.youtube.com/embed/mSEJlKinapg"
+            title="Medidor Inteligente en Chilevisión"
+            referrerpolicy="strict-origin" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="vid-chv-meta">
+          <div class="vid-chv-badge">★ Chilevisión · Primera aparición</div>
+          <h3>Medidor Inteligente en la televisión nacional</h3>
+          <p>Chilevisión cubrió el impacto de nuestra tecnología en las comunidades rurales, destacando cómo un desarrollo 100% chileno está transformando la gestión del agua potable en todo el país.</p>
+          <div class="vid-chv-tag">Cobertura en Chilevisión · Primer medio nacional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="aniv-sep"></div>
+
+<!-- ═══════════════════════════════════════════
+     S3 · HISTORIA — fondo celeste suave
+════════════════════════════════════════════ -->
+<section class="aniv-historia" id="historia">
+  <div class="aniv-wrap">
+    <div class="hist-grid">
+      <div class="rev">
+        <div class="hist-chile-tag">🇨🇱 Desarrollado y fabricado en Chile</div>
+        <p class="aniv-kicker">Nuestra historia</p>
+        <blockquote class="hist-pull">
+          En 2015 instalamos el primer medidor en<br><em>APR Los Maquis</em>. Diez años después,<br>somos parte de 200 comunidades.
+        </blockquote>
+        <p class="hist-body">
+          Lo que empezó como un prototipo en una pequeña comunidad rural se convirtió en la tecnología de gestión de agua más adoptada por APR en Chile. <strong>Cada año mejoramos</strong>, escuchamos a los operadores y evolucionamos nuestro medidor sin perder lo esencial: que funcione de verdad, en terreno real.
+        </p>
+      </div>
+      <div class="rev" style="transition-delay:.12s">
+        <div class="hist-nums">
+          <div class="hist-num big">
+            <div class="hist-num-val" data-target="200" data-suffix="+">0+</div>
+            <div class="hist-num-lbl">Comunidades APR con medidor inteligente instalado</div>
+          </div>
+          <div class="hist-num">
+            <div class="hist-num-val" data-target="10" data-suffix="">0</div>
+            <div class="hist-num-lbl">Años de<br>trayectoria</div>
+          </div>
+          <div class="hist-num">
+            <div class="hist-num-val" data-target="50" data-suffix="k+">0k+</div>
+            <div class="hist-num-lbl">Medidores<br>instalados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="aniv-sep"></div>
+
+<!-- ═══════════════════════════════════════════
+     S4 · EVOLUCIÓN DEL MEDIDOR — fondo blanco
+════════════════════════════════════════════ -->
+<section class="aniv-evolucion" id="evolucion">
+  <div class="aniv-wrap">
+    <div class="evo-head rev">
+      <div>
+        <p class="aniv-kicker">La evolución del producto</p>
+        <h2 class="aniv-h2">Tres generaciones,<br>un mismo propósito</h2>
+      </div>
+      <p class="aniv-sub" style="margin-top:0">De la primera instalación en APR Los Maquis al medidor más avanzado del mercado. Una década de mejora continua.</p>
+    </div>
+
+    <div class="evo-track">
+      <div class="evo-card rev">
+        <div class="evo-top">
+          <span class="evo-n">1</span>
+          <div class="evo-img">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="10" width="48" height="60" rx="9" fill="#c5dff5" stroke="#5aaee6" stroke-width="2"/><rect x="23" y="18" width="34" height="22" rx="4" fill="white" stroke="#5aaee6" stroke-width="1.5"/><circle cx="40" cy="54" r="7" fill="#5aaee6" opacity=".35"/><rect x="29" y="23" width="22" height="3" rx="1.5" fill="#5aaee6" opacity=".5"/><rect x="29" y="30" width="14" height="3" rx="1.5" fill="#5aaee6" opacity=".3"/></svg>
+          </div>
+          <span class="evo-tag">Modelo 1</span>
+          <span class="evo-period">2015 — 2018 · APR Los Maquis</span>
+        </div>
+        <div class="evo-body">
+          <h3>El primer paso</h3>
+          <p>Prototipo instalado en APR Los Maquis. Validamos el concepto y aprendimos directamente del terreno.</p>
+          <ul class="evo-feats">
+            <li>Fácil de implementar</li>
+            <li>Reduce pérdidas de agua</li>
+            <li>Diseño inicial funcional</li>
+            <li>Sostenible a largo plazo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evo-card rev" style="transition-delay:.12s">
+        <div class="evo-top">
+          <span class="evo-n">2</span>
+          <div class="evo-img">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="13" y="8" width="54" height="64" rx="11" fill="#a5d4f5" stroke="#1a73c8" stroke-width="2"/><rect x="20" y="16" width="40" height="28" rx="5" fill="white" stroke="#1a73c8" stroke-width="1.5"/><circle cx="40" cy="58" r="8" fill="#1a73c8" opacity=".3"/><rect x="27" y="22" width="26" height="3.5" rx="1.75" fill="#1a73c8" opacity=".6"/><rect x="27" y="29" width="18" height="3" rx="1.5" fill="#1a73c8" opacity=".35"/><rect x="27" y="35" width="22" height="3" rx="1.5" fill="#1a73c8" opacity=".2"/></svg>
+          </div>
+          <span class="evo-tag">Modelo 2</span>
+          <span class="evo-period">2018 — 2022 · Expansión</span>
+        </div>
+        <div class="evo-body">
+          <h3>Diseño mejorado</h3>
+          <p>Mayor precisión y robustez. Ampliamos la cobertura con mejor conectividad y diseño moderno.</p>
+          <ul class="evo-feats">
+            <li>Diseño moderno mejorado</li>
+            <li>Mayor precisión de lectura</li>
+            <li>Sostenible a largo plazo</li>
+            <li>Conectividad expandida</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evo-card rev" style="transition-delay:.24s">
+        <div class="evo-top">
+          <span class="evo-n">3</span>
+          <div class="evo-img">
+            <img src="{% static 'app/img/medidor3d.png' %}" alt="Modelo 3 Actual" style="width:78px;height:78px;object-fit:contain">
+          </div>
+          <span class="evo-tag" style="background:linear-gradient(135deg,#1a73c8,#0eb8a0)">Modelo 3 · Actual</span>
+          <span class="evo-period">2022 — hoy · Tecnología chilena</span>
+        </div>
+        <div class="evo-body">
+          <h3>La generación más avanzada</h3>
+          <ul class="evo-feats">
+            <li>Fácil de implementar</li>
+            <li>Reduce pérdidas de agua</li>
+            <li>Sostenible a largo plazo</li>
+            <li>Diseño totalmente moderno</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="benef-strip rev">
+      <div class="benef-cell"><span class="benef-emoji">💧</span><span class="benef-lbl">Detecta fugas automáticamente</span></div>
+      <div class="benef-cell"><span class="benef-emoji">🔒</span><span class="benef-lbl">Cierra el paso de agua remotamente</span></div>
+      <div class="benef-cell"><span class="benef-emoji">📡</span><span class="benef-lbl">Lectura remota en tiempo real</span></div>
+      <div class="benef-cell"><span class="benef-emoji">📊</span><span class="benef-lbl">Traspaso automático de datos</span></div>
+      <div class="benef-cell"><span class="benef-emoji">⏱️</span><span class="benef-lbl">Ahorro de tiempo para operadores</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="aniv-sep"></div>
+
+<!-- ═══════════════════════════════════════════
+     S5 · IMPACTO EN CHILE — fondo azul oscuro
+════════════════════════════════════════════ -->
+<section class="aniv-chile" id="presencia">
+  <div class="aniv-wrap">
+    <div class="chile-layout">
+      <div class="rev">
+        <p class="aniv-kicker light">Impacto en Chile</p>
+        <h2 class="aniv-h2 light">Medidor Inteligente<br>en todo Chile</h2>
+        <p class="aniv-sub light">Implementado en comunidades de norte a sur del país. Más de 200 APR han adoptado nuestra tecnología, alcanzando a miles de familias con gestión hídrica moderna y eficiente.</p>
+        <div class="chile-nums">
+          <div class="cn-card">
+            <div class="cn-val" data-target="200" data-suffix="+">0+</div>
+            <div class="cn-lbl">Comunidades</div>
+          </div>
+          <div class="cn-card">
+            <div class="cn-val" data-target="50" data-suffix="k+">0k+</div>
+            <div class="cn-lbl">Medidores</div>
+          </div>
+          <div class="cn-card">
+            <div class="cn-val" data-target="10" data-suffix="">0</div>
+            <div class="cn-lbl">Años</div>
+          </div>
+        </div>
+      </div>
+      <div class="chile-map-col rev" style="transition-delay:.15s">
+        <svg class="chile-map-svg" viewBox="0 0 200 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M102 18 C118 22 132 32 135 50 C139 70 132 88 126 108 C120 128 118 148 116 168 C114 188 112 208 108 228 C104 248 98 265 96 285 C94 305 96 325 92 345 C88 365 80 382 76 402 C72 422 70 442 68 462 C66 482 62 500 58 518 L55 526 L50 524 C53 508 58 490 60 472 C62 454 64 436 66 418 C68 400 70 382 72 364 C74 346 72 328 74 310 C76 292 82 275 84 257 C86 239 86 221 88 203 C90 185 94 167 96 149 C98 131 98 113 96 95 C94 77 96 55 102 18Z" fill="url(#cg)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,.15)"/><stop offset="100%" stop-color="rgba(14,184,160,.2)"/></linearGradient></defs>
+          <circle cx="118" cy="85" r="12" fill="rgba(14,184,160,.15)"><animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".2;0;.2" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="118" cy="85" r="5" fill="#6ddccc" opacity=".95"/>
+          <circle cx="110" cy="148" r="4" fill="rgba(255,255,255,.7)" opacity=".75"/>
+          <circle cx="106" cy="220" r="14" fill="rgba(14,184,160,.15)"><animate attributeName="r" values="10;20;10" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".15;0;.15" dur="2.8s" repeatCount="indefinite"/></circle>
+          <circle cx="106" cy="220" r="6" fill="#6ddccc" opacity=".95"/>
+          <circle cx="94" cy="290" r="5" fill="rgba(255,255,255,.75)" opacity=".8"/>
+          <circle cx="80" cy="355" r="4" fill="#6ddccc" opacity=".7"/>
+          <circle cx="72" cy="420" r="4" fill="rgba(255,255,255,.75)" opacity=".6"/>
+          <circle cx="62" cy="490" r="3.5" fill="#6ddccc" opacity=".5"/>
+          <text x="128" y="88" fill="rgba(255,255,255,.6)" font-size="9" font-family="sans-serif" font-weight="600">Norte</text>
+          <text x="116" y="223" fill="rgba(255,255,255,.6)" font-size="9" font-family="sans-serif" font-weight="600">Centro</text>
+          <text x="84" y="293" fill="rgba(255,255,255,.6)" font-size="9" font-family="sans-serif" font-weight="600">Sur</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="aniv-sep"></div>
+
+<!-- ═══════════════════════════════════════════
+     S6 · TESTIMONIOS — grid uniforme aleatorio
+     Sin descripciones, solo videos iguales
+════════════════════════════════════════════ -->
+<section class="aniv-videos" id="videos">
+  <div class="aniv-wrap">
+    <div class="vids-head rev">
+      <span class="tv__pill"><i></i>Comunidades que nos respaldan</span>
+      <p class="aniv-kicker">Testimonios reales</p>
+      <h2 class="aniv-h2">La voz de las comunidades</h2>
+      <p class="aniv-sub">Operadores y dirigentes de APR de todo Chile comparten su experiencia con el Medidor Inteligente.</p>
+    </div>
+
+    <!-- Grid: todos del mismo tamaño, orden aleatorio por JS -->
+    <div class="vids-grid" id="vidsGrid">
+      <!-- Las cards se insertan por JS en orden aleatorio -->
+    </div>
+
+    <div class="tv__cta">
+      <a href="https://www.youtube.com/@MedidorInteligenteAPR" target="_blank" rel="noopener" class="tv__yt-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/></svg>
+        Conoce nuestro canal de YouTube
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAB -->
+<button id="aniv-fab" aria-label="Celebrando 10 años">
+  <span class="fab-ico" id="fab-ico">🎖️</span>
+  Celebrando 10 años
+</button>
+<div id="fab-sparks"></div>
+
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── Scroll reveal ── */
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}})},{threshold:.1});
+  document.querySelectorAll('.rev').forEach(function(el){obs.observe(el)});
+
+  /* ── Contadores ── */
+  function animCount(el){
+    var t=parseInt(el.dataset.target),suf=el.dataset.suffix||'',dur=1800,s=null;
+    var fmt=function(n){return n>=1000?Math.round(n/1000)+'k':n};
+    (function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3),v=Math.round(e*t);
+    el.textContent=fmt(v)+suf;if(p<1)requestAnimationFrame(step)})(performance.now());
+  }
+  var cObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){animCount(x.target);cObs.unobserve(x.target)}})},{threshold:.4});
+  document.querySelectorAll('[data-target]').forEach(function(el){cObs.observe(el)});
+
+  /* ══════════════════════════════════════════════════════
+     VIDEOS ALEATORIOS — todos del mismo tamaño, sin info
+     Se renderizan en orden aleatorio diferente cada carga
+  ════════════════════════════════════════════════════════ */
+  var VIDEO_IDS = [
+    'RjTlcUPfCVA',  // Paulino González
+    'TCAa7qUEVYs',  // Nury Orellana
+    'A_rxG90YzS8',  // José Flores
+    '1_bwMkz3pqM',  // Miriam Galvez
+    'ZKso4E9MkfY',  // Manuel Mundaca
+    '5rehLhCMSG8',  // Administrativa Naltagua
+    'crhAwARwYKw',  // Roberto La Parva
+    'ZsXCr20WgWY',  // Guillermo La Parva
+    'X_d1ceK9G-I',  // Loreto Orellana
+    'MwuYC75PbNs',  // Luis Parada
+    'lQpcUDDLqRA',  // Rodrigo Torres
+    'vpby-GBccvs'   // Joaquín Vicuña
+  ];
+
+  /* Fisher-Yates shuffle */
+  function shuffle(arr){
+    var a=arr.slice();
+    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp}
+    return a;
+  }
+
+  var grid=document.getElementById('vidsGrid');
+  if(grid){
+    var shuffled=shuffle(VIDEO_IDS);
+    var html='';
+    shuffled.forEach(function(id){
+      html+='<div class="tv__card">'+
+        '<div class="tv__frame">'+
+        '<iframe src="https://www.youtube.com/embed/'+id+'" '+
+        'referrerpolicy="strict-origin" frameborder="0" '+
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
+        'allowfullscreen loading="lazy"></iframe>'+
+        '</div>'+
+        '</div>';
+    });
+    grid.innerHTML=html;
+
+    /* Stagger reveal después de insertar */
+    var vObs=new IntersectionObserver(function(e){
+      e.forEach(function(x){
+        if(x.isIntersecting){
+          var i=parseInt(x.target.dataset.idx||0);
+          setTimeout(function(){x.target.classList.add('tv--in')},i%3*80);
+          vObs.unobserve(x.target);
+        }
+      });
+    },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+    grid.querySelectorAll('.tv__card').forEach(function(c,i){c.dataset.idx=i;vObs.observe(c)});
+  }
+
+  /* ── FAB ── */
+  var fab=document.getElementById('aniv-fab');
+  var fabIco=document.getElementById('fab-ico');
+  var sparks=document.getElementById('fab-sparks');
+  var exploded=false;
+  var COLORS=['#1a73c8','#0eb8a0','#5aaee6','#6ddccc','#a5d2ee','#fff','#c9a84c'];
+  function burst(){
+    if(exploded)return;exploded=true;
+    fabIco.classList.add('rocket-anim');
+    setTimeout(function(){
+      for(var i=0;i<30;i++){(function(){
+        var sp=document.createElement('div');sp.className='spark';
+        var ang=Math.random()*360*Math.PI/180,dist=50+Math.random()*90;
+        var tx=Math.cos(ang)*dist,ty=-(Math.sin(ang)*dist+15);
+        var sz=3+Math.random()*4.5,dur=.55+Math.random()*.65,del=Math.random()*.18;
+        var col=COLORS[Math.floor(Math.random()*COLORS.length)];
+        sp.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+col+';box-shadow:0 0 '+(sz*2)+'px '+col+';--tx:'+tx+'px;--ty:'+ty+'px;--d:'+dur+'s;--delay:'+del+'s;bottom:0;left:0;';
+        sparks.appendChild(sp);
+        setTimeout(function(){sp.remove()},(dur+del)*1000+120);
+      })()}
+    },300);
+    setTimeout(function(){fabIco.classList.remove('rocket-anim');fabIco.classList.add('float-anim')},900);
+  }
+  setTimeout(burst,2000);
+  fab.addEventListener('click',function(){if(!exploded){burst();return}fab.style.transform='scale(.94)';setTimeout(function(){fab.style.transform=''},160)});
+
+})();
+</script>
+
+{% endblock contenido %}

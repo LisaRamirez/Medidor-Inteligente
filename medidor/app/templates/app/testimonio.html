@@ -176,7 +176,10 @@
   .nc-slide img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease; }
   .nc-card:hover .nc-slide img { transform:scale(1.04); }
 
-  .nc-video-wrap { display:none; position:absolute; inset:0; z-index:5; background:#001a5e; }
+  .nc-video-wrap {
+    display:none;
+    position:absolute; inset:0; z-index:5; background:#001a5e;
+  }
   .nc-video-wrap iframe { width:100%; height:100%; border:none; }
 
   .nc-arrow {
@@ -341,9 +344,13 @@
 
           {% if t.id_yt %}
           <div class="nc-video-wrap" id="ncVideo{{ forloop.counter }}">
-            <iframe src="https://www.youtube.com/embed/{{ t.id_yt }}"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen loading="lazy"></iframe>
+            <iframe
+              src="https://www.youtube.com/embed/{{ t.id_yt }}"
+              referrerpolicy="strict-origin"
+              frameborder="0"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
           </div>
           {% endif %}
 
@@ -432,6 +439,7 @@
     btn.closest('.nc-tabs').querySelectorAll('.nc-tab').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
   };
+
   window.ncShowVideo = (id,btn) => {
     const w=document.getElementById('ncWrap'+id), v=document.getElementById('ncVideo'+id);
     if(w) w.style.display='none'; if(v) v.style.display='block';

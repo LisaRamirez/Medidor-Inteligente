@@ -50,17 +50,16 @@ def otra_vista(request):
 
 def testimonio(request):
     try:
-        tes = Testimonio.objects.filter(activo=True).order_by('-fecha')
-        imag = ImagenTestimonio.objects.all()
-        data = {
-            'testi' : tes,
-            'imagenes': imag
-        }
-        return render(request, 'app/testimonio.html',data)
+        tes = (Testimonio.objects
+               .filter(activo=True)
+               .prefetch_related('imagenes')  # ← evita una query por cada card
+               .order_by('-fecha'))
+        return render(request, 'app/testimonio.html', {'testi': tes})
     except Exception as e:
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
-        return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
-
+        return HttpResponseServerError(
+            "Hubo un error al cargar la página. Inténtalo nuevamente más tarde."
+        )
 def cargar_mas_testimonios(request):
     """API para cargar más testimonios"""
     try:
@@ -353,6 +352,13 @@ def preguntas(request):
 def tutoriales(request):
     try:
         return render(request, 'app/tutoriales.html')
+    except Exception as e:
+        logger.error(f"Error al renderizar la página: {e}", exc_info=True)
+        return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
+
+def aniversario(request):
+    try:
+        return render(request, 'app/aniversario.html')
     except Exception as e:
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")

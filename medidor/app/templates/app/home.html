@@ -1,401 +1,658 @@
 {%extends 'app/base.html'%}
 {%block contenido%}
 {% load static %}
-{% load static %}
 
 <style>
-/* ════════════════════════════════════════════════════════════
-   HERO SLIDER · 7 slides separados, JS simple y robusto
-   0 · Aniversario 10 años
-   1 · Gestiona el agua
-   2 · APR Los Maquis
-   3 · Entrega webcliente2
-   4 · Entrega webcliente3
-   5 · Medidor con Respaldo Real
-   6 · Características
-════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════════
+   HOME — CSS COMPLETO
+   Prefijo "hm-" en secciones nuevas para evitar colisión con base.css
+   El hero slider mantiene sus clases originales (hs-, hero-)
+   ya que el JS depende de ellas.
+══════════════════════════════════════════════════════════════════ */
 
-.hero-slider {
+/* ══ HERO SLIDER ══════════════════════════════════════════════════ */
+.hero-slider{position:relative;width:100%;height:88vh;min-height:560px;overflow:hidden}
+.hero-track{display:flex;height:100%;width:100%;transition:transform .8s cubic-bezier(.4,0,.2,1);will-change:transform}
+.hero-slide{min-width:100%;max-width:100%;width:100%;height:100%;flex-shrink:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+
+.hs-circles{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hs-circles span{position:absolute;border-radius:50%}
+.hs-circles .hc-a{width:460px;height:460px;top:-130px;right:-100px}
+.hs-circles .hc-b{width:260px;height:260px;bottom:-70px;left:4%}
+.hs-circles .hc-c{width:190px;height:190px;top:38%;right:22%}
+.hs-circles .hc-d{width:110px;height:110px;top:12%;left:30%}
+.hs-circles .hc-e{width:140px;height:140px;bottom:12%;right:38%}
+
+.hs-inner{position:relative;z-index:2;width:100%;max-width:1400px;padding:0 3rem}
+.hs-tag{display:inline-block;font-size:clamp(.68rem,.95vw,.82rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .85rem;border-radius:20px;margin-bottom:1rem;background:rgba(255,255,255,.22);color:#fff}
+.hs-h1{font-size:clamp(1.7rem,3.4vw,3.3rem);font-weight:800;line-height:1.13;letter-spacing:-.02em;margin-bottom:1rem;color:#fff}
+.hs-h2{font-size:clamp(1.5rem,2.7vw,2.6rem);font-weight:800;line-height:1.17;letter-spacing:-.01em;margin-bottom:1rem;color:#fff}
+.hs-p{font-size:clamp(.9rem,1.35vw,1.1rem);line-height:1.75;margin-bottom:1.8rem;color:rgba(255,255,255,.92)}
+.hs-btns{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.hs-btn-wh{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#00274d;padding:clamp(.78rem,1.3vw,.95rem) clamp(1.5rem,2.5vw,2.5rem);border:2px solid #fff;border-radius:8px;font-size:clamp(.85rem,1.1vw,1rem);font-weight:700;text-decoration:none;white-space:nowrap;transition:transform .28s,box-shadow .28s}
+.hs-btn-wh:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.2);color:#00274d}
+.hs-btn-wo{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.15);color:#fff;padding:clamp(.78rem,1.3vw,.95rem) clamp(1.5rem,2.5vw,2.5rem);border:2px solid rgba(255,255,255,.7);border-radius:8px;font-size:clamp(.85rem,1.1vw,1rem);font-weight:700;text-decoration:none;white-space:nowrap;transition:transform .28s,background .28s}
+.hs-btn-wo:hover{background:rgba(255,255,255,.25);border-color:#fff;transform:translateY(-3px);color:#fff}
+
+.hs-controls{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+.hs-dots{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hs-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);border:none;padding:0;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.hs-dot:hover{background:rgba(255,255,255,.7)}
+.hs-dot.active{background:#fff;width:28px;border-radius:5px}
+.hs-arrows{display:flex;gap:.7rem}
+.hs-arrow{width:44px;height:44px;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:1.35rem;transition:all .3s}
+.hs-arrow:hover{background:rgba(255,255,255,.32);transform:scale(1.07)}
+
+/* Slide 0 Aniversario */
+.hs-aniv{flex-direction:column;justify-content:space-between;align-items:stretch;background:#071628}
+.hs-aniv-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:0;filter:blur(3px);transform:scale(1.05)}
+.hs-aniv-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(0,8,25,.45) 0%,rgba(0,10,30,.5) 30%,rgba(0,12,35,.6) 60%,rgba(0,15,45,.78) 80%,rgba(0,18,50,.92) 100%)}
+.hs-aniv-inner{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:clamp(1rem,2.5vw,2.5rem);align-items:center;width:100%;max-width:1440px;margin:0 auto;padding:clamp(1.2rem,2.5vw,2rem) clamp(1.5rem,4vw,4rem) 0}
+.hs-aniv-left{display:flex;flex-direction:column}
+.hs-aniv-top-row{display:flex;align-items:flex-end;gap:clamp(.5rem,1.5vw,1.2rem);line-height:1}
+.hs-aniv-number{font-size:clamp(7rem,18vw,14rem);font-weight:900;line-height:.82;letter-spacing:-.04em;background:linear-gradient(160deg,#4db8ff 0%,#80d4ff 30%,#ffffff 65%,#e8f6ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 25px rgba(77,184,255,.7)) drop-shadow(3px 5px 18px rgba(0,0,0,.7))}
+.hs-aniv-mascot{width:clamp(70px,10vw,130px);mix-blend-mode:screen;align-self:flex-end;margin-bottom:.5rem;animation:hsProdFloat 5s ease-in-out infinite}
+.hs-aniv-anos{font-size:clamp(2.4rem,6vw,5.8rem);font-weight:700;font-style:italic;color:#fff;line-height:1;margin-top:-.12em;margin-bottom:.7rem;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.hs-aniv-tagline{font-size:clamp(.82rem,1.25vw,1rem);color:rgba(255,255,255,.88);line-height:1.65;margin-bottom:.9rem}
+.hs-aniv-highlight{display:inline;background:#006fff;color:#fff;padding:.06em .42em;border-radius:5px;font-weight:700}
+.hs-aniv-fecha{display:flex;align-items:center;gap:.55rem;font-size:clamp(.7rem,.95vw,.86rem);font-weight:700;letter-spacing:.15em;color:rgba(255,255,255,.55)}
+.hs-aniv-dot{width:7px;height:7px;border-radius:50%;background:#00cbac;flex-shrink:0;display:inline-block}
+.hs-aniv-center{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:clamp(1rem,2.5vw,2rem);gap:.25rem}
+.hs-aniv-meter{width:clamp(120px,19vw,240px);filter:drop-shadow(0 20px 45px rgba(0,111,255,.38));animation:hsProdFloat 7s ease-in-out infinite .6s}
+.hs-aniv-meter-label{font-size:clamp(.56rem,.82vw,.76rem);font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.42);text-transform:uppercase;margin-top:.2rem}
+.hs-aniv-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:.9rem}
+.hs-aniv-polaroid{background:#fff;padding:clamp(.4rem,.85vw,.8rem) clamp(.4rem,.85vw,.8rem) clamp(.65rem,1.3vw,1.2rem);border-radius:3px;box-shadow:0 14px 45px rgba(0,0,0,.5);transform:rotate(2.8deg);max-width:clamp(130px,20vw,265px);transition:transform .35s}
+.hs-aniv-polaroid:hover{transform:rotate(0deg) scale(1.04)}
+.hs-aniv-polaroid img{width:100%;display:block;border-radius:2px;aspect-ratio:4/3;object-fit:cover}
+.hs-aniv-polaroid-caption{font-family:Georgia,serif;font-size:clamp(.58rem,.8vw,.76rem);color:#2a2a2a;text-align:center;margin-top:.5rem;line-height:1.35;font-style:italic}
+.hs-aniv-domain{font-size:clamp(.56rem,.76vw,.7rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.hs-aniv-stats{position:relative;z-index:2;width:100%;display:flex;align-items:center;justify-content:center;padding:.85rem 2rem calc(.85rem + 58px);overflow:hidden}
+.hs-aniv-stats::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,50,120,.7) 0%,rgba(0,110,200,.65) 45%,rgba(0,180,155,.6) 75%,rgba(0,203,172,.55) 100%);backdrop-filter:blur(6px);pointer-events:none}
+.hs-aniv-stat{display:flex;align-items:center;gap:.6rem;padding:0 clamp(.7rem,2.5vw,2.5rem);position:relative;z-index:1}
+.hs-aniv-stat strong{font-size:clamp(.9rem,1.9vw,1.45rem);font-weight:800;color:#fff;display:inline-block;transition:transform .3s}
+.hs-aniv-stat:hover strong{transform:scale(1.12)}
+.hs-aniv-stat span{font-size:clamp(.5rem,.72vw,.68rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.hs-aniv-stat-sep{width:1px;height:26px;background:rgba(255,255,255,.25);flex-shrink:0}
+.hs-aniv-stat strong.hs-counting{animation:hsCountPulse .5s cubic-bezier(.2,.8,.3,1.1) both}
+
+/* Slide 1 */
+.hs-s1{background:linear-gradient(135deg,#006fff 0%,#2a85ff 40%,#00cbac 100%)}
+.hs-s1 .hs-circles .hc-a{background:rgba(255,255,255,.18);animation:hsCircleFloat1 12s ease-in-out infinite}
+.hs-s1 .hs-circles .hc-b{background:rgba(0,203,172,.3);animation:hsCircleFloat2 9s ease-in-out infinite}
+.hs-s1 .hs-circles .hc-c{background:rgba(255,255,255,.13);animation:hsCircleFloat3 11s ease-in-out infinite}
+.hs-s1 .hs-circles .hc-d{background:rgba(0,203,172,.22);animation:hsCircleFloat1 8s ease-in-out infinite .5s}
+.hs-s1 .hs-circles .hc-e{background:rgba(255,255,255,.1);animation:hsCircleFloat2 14s ease-in-out infinite 1s}
+.hs-s1 .hs-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.hs-s1-img img{width:100%;max-width:380px;border-radius:18px;display:block;margin:0 auto}
+
+/* Slides 2-4 imagen completa */
+.hs-s6{position:relative;overflow:hidden;background:#000}
+.hs-s6-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1}
+.hs-s6-caption{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:clamp(2.5rem,6vw,5rem) clamp(1.5rem,5vw,4rem) clamp(4rem,7vw,6.5rem);background:linear-gradient(to top,rgba(0,18,50,.85) 0%,rgba(0,18,50,.55) 42%,rgba(0,18,50,.12) 72%,transparent 100%);display:flex;flex-direction:column;gap:.55rem}
+.hs-s6-tag{display:inline-block;font-size:clamp(.63rem,.9vw,.78rem);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00cbac;margin-bottom:.15rem}
+.hs-s6-h2{font-size:clamp(1.25rem,3vw,2.6rem);font-weight:800;line-height:1.15;color:#fff;margin:0;max-width:680px;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+
+/* Slide 5 Respaldo */
+.hs-s4{background:linear-gradient(135deg,#5ab0ff 0%,#006fff 40%,#0090d0 70%,#00cbac 100%)}
+.hs-s4 .hs-circles .hc-a{background:rgba(255,255,255,.18);top:-110px;left:-70px;right:auto;animation:hsCircleFloat1 13s ease-in-out infinite}
+.hs-s4 .hs-circles .hc-b{background:rgba(0,203,172,.28);bottom:-60px;right:4%;animation:hsCircleFloat3 10s ease-in-out infinite}
+.hs-s4 .hs-circles .hc-c{background:rgba(255,255,255,.13);top:50%;right:8%;animation:hsCircleFloat2 8s ease-in-out infinite 1s}
+.hs-s4 .hs-circles .hc-d{background:rgba(0,203,172,.2);top:6%;left:42%;animation:hsCircleFloat1 11s ease-in-out infinite .3s}
+.hs-s4 .hs-circles .hc-e{background:rgba(255,255,255,.1);bottom:15%;left:15%;right:auto;animation:hsCircleFloat3 9s ease-in-out infinite .8s}
+.hs-s4 .hs-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hs-prod-wrap{display:flex;justify-content:center;align-items:center}
+.hs-prod-frame{position:relative;animation:hsProdFloat 6s ease-in-out infinite}
+.hs-prod-frame img{width:100%;max-width:400px;filter:drop-shadow(0 26px 54px rgba(0,0,0,.3));position:relative;z-index:2;display:block;margin:0 auto}
+.hs-prod-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.3) 0%,rgba(0,203,172,.2) 42%,transparent 70%);filter:blur(40px);animation:hsPulse 4s ease-in-out infinite;z-index:1}
+
+/* Slide 6 Características */
+.hs-s5{background:linear-gradient(135deg,#00cbac 0%,#00d4b8 25%,#00aaee 60%,#006fff 100%);overflow:hidden}
+.hs-s5 .hs-circles .hc-a{background:rgba(255,255,255,.18);top:-110px;right:-80px;animation:hsCircleFloat2 14s ease-in-out infinite}
+.hs-s5 .hs-circles .hc-b{background:rgba(0,111,255,.22);bottom:-60px;left:3%;animation:hsCircleFloat1 10s ease-in-out infinite .4s}
+.hs-s5 .hs-circles .hc-c{background:rgba(255,255,255,.13);top:40%;left:16%;animation:hsCircleFloat3 12s ease-in-out infinite}
+.hs-s5 .hs-circles .hc-d{background:rgba(255,255,255,.15);top:10%;right:28%;animation:hsCircleFloat2 9s ease-in-out infinite .7s}
+.hs-s5 .hs-circles .hc-e{background:rgba(0,111,255,.22);bottom:14%;right:10%;animation:hsCircleFloat1 11s ease-in-out infinite 1.2s}
+.hs-f5-outer{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:2rem 1.5rem;box-sizing:border-box}
+.hs-f5-head{text-align:center}
+.hs-f5-title{font-size:clamp(1.2rem,2.2vw,2.1rem);font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#fff;margin-bottom:.3rem}
+.hs-f5-sub{font-size:clamp(.8rem,1.2vw,1rem);color:rgba(255,255,255,.88);font-weight:500}
+.hs-f5-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(.8rem,2.5vw,2.5rem);align-items:center;width:100%;max-width:1200px}
+.hs-f5-left{display:flex;flex-direction:column;gap:clamp(.7rem,1.5vw,1.3rem);align-items:flex-end;text-align:right}
+.hs-f5-right{display:flex;flex-direction:column;gap:clamp(.7rem,1.5vw,1.3rem);align-items:flex-start;text-align:left}
+.hs-f5-feat{display:flex;align-items:center;gap:clamp(.5rem,.9vw,.8rem)}
+.hs-f5-left .hs-f5-feat{flex-direction:row-reverse}
+.hs-f5-icon{width:clamp(28px,4vw,40px);height:clamp(28px,4vw,40px);flex-shrink:0;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:clamp(.8rem,1.3vw,1.1rem);font-weight:800;color:#fff}
+.hs-f5-txt{font-size:clamp(.72rem,1.15vw,.97rem);font-weight:700;color:#fff;line-height:1.3;max-width:clamp(100px,18vw,220px)}
+.hs-f5-mid{display:flex;justify-content:center;align-items:center}
+.hs-f5-prod{position:relative;animation:hsProdFloat 6s ease-in-out infinite}
+.hs-f5-prod img{width:clamp(110px,16vw,280px);filter:drop-shadow(0 18px 44px rgba(0,0,0,.4));position:relative;z-index:2;display:block;margin:0 auto}
+.hs-f5-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(200px,28vw,360px);height:clamp(200px,28vw,360px);background:radial-gradient(circle,rgba(255,255,255,.3) 0%,rgba(0,203,172,.2) 42%,transparent 70%);filter:blur(36px);animation:hsPulse 4s ease-in-out infinite;z-index:1}
+.hs-f5-mobile-wrap{display:none}
+.hs-f5-cta{text-align:center}
+.hs-btn-f5{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#006fff;padding:clamp(.75rem,1.3vw,1rem) clamp(1.8rem,3vw,3rem);border-radius:50px;border:2px solid #fff;font-size:clamp(.85rem,1.1vw,1rem);font-weight:700;text-decoration:none;box-shadow:0 6px 22px rgba(0,0,0,.2);transition:transform .3s,box-shadow .3s}
+.hs-btn-f5:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.28);color:#006fff}
+
+/* Animaciones hero */
+@keyframes hsProdFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes hsPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
+@keyframes hsFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hsFadeR{from{opacity:0;transform:translateX(42px)}to{opacity:1;transform:translateX(0)}}
+@keyframes hsCircleFloat1{0%{transform:translate(0,0) scale(1)}25%{transform:translate(18px,-22px) scale(1.05)}50%{transform:translate(8px,-40px) scale(1)}75%{transform:translate(-14px,-18px) scale(.97)}100%{transform:translate(0,0) scale(1)}}
+@keyframes hsCircleFloat2{0%{transform:translate(0,0) scale(1)}30%{transform:translate(-20px,15px) scale(1.06)}60%{transform:translate(-10px,32px) scale(.96)}80%{transform:translate(12px,10px) scale(1.02)}100%{transform:translate(0,0) scale(1)}}
+@keyframes hsCircleFloat3{0%{transform:translate(0,0) scale(1)}20%{transform:translate(22px,12px) scale(.95)}50%{transform:translate(14px,-20px) scale(1.07)}70%{transform:translate(-8px,-10px) scale(1.02)}100%{transform:translate(0,0) scale(1)}}
+@keyframes hsAnivNum{from{opacity:0;transform:scale(.65) translateY(28px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes hsCountPulse{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1);opacity:1}}
+
+.hero-slide.active .hs-tag{animation:hsFadeUp .7s ease .1s both}
+.hero-slide.active .hs-h1,.hero-slide.active .hs-h2{animation:hsFadeUp .8s ease .2s both}
+.hero-slide.active .hs-p{animation:hsFadeUp .8s ease .38s both}
+.hero-slide.active .hs-btns{animation:hsFadeUp .8s ease .55s both}
+.hero-slide.active .hs-s1-img,.hero-slide.active .hs-prod-wrap{animation:hsFadeR .9s ease .3s both}
+.hero-slide.active .hs-f5-outer{animation:hsFadeUp .8s ease .15s both}
+.hero-slide.active .hs-s6-caption{animation:hsFadeUp .8s ease .3s both}
+.hero-slide.active .hs-aniv-number{animation:hsAnivNum 1s cubic-bezier(.15,.85,.3,1.05) .05s both}
+.hero-slide.active .hs-aniv-anos{animation:hsFadeUp .75s ease .35s both}
+.hero-slide.active .hs-aniv-tagline{animation:hsFadeUp .7s ease .5s both}
+.hero-slide.active .hs-aniv-fecha{animation:hsFadeUp .65s ease .65s both}
+.hero-slide.active .hs-aniv-center{animation:hsFadeUp .9s ease .15s both}
+.hero-slide.active .hs-aniv-right{animation:hsFadeR .9s ease .3s both}
+.hero-slide.active .hs-aniv-stats{animation:hsFadeUp .7s ease .5s both}
+
+
+/* Aniversario: medidor desktop / foto móvil */
+.hs-aniv-meter-mob{ display:none; }
+.hs-aniv-meter-desk{ display:block; }
+.hs-aniv-polaroid-mob{ display:none; }
+.hm-benefits{
+  padding:clamp(3rem,5vw,5rem) 1.5rem;
+  text-align:center;
+  background:#fff;
   position:relative;
-  width:100%;
-  height:88vh; min-height:560px;
   overflow:hidden;
 }
-.hero-track {
-  display:flex;
-  height:100%;
-  width:100%;
-  transition:transform .8s cubic-bezier(.4,0,.2,1);
-  will-change:transform;
+.hm-benefits h2{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;color:#002B5C;margin-bottom:.8rem}
+.hm-benefits>p{color:#666;margin-bottom:2.5rem;font-size:clamp(.9rem,1.8vw,1.05rem)}
+.hm-benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  max-width:1100px;
+  margin:0 auto;
 }
-.hero-slide {
-  /* Cada slide ocupa EXACTAMENTE el ancho del slider, sin más */
-  min-width:100%;
-  max-width:100%;
-  width:100%;
-  height:100%;
-  flex-shrink:0;
-  position:relative;
-  overflow:hidden;
+.hm-benefit-card{
+  padding:2rem 1.5rem;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,.07);
+  border:1px solid rgba(0,111,255,.08);
+  transition:transform .3s,box-shadow .3s;
+}
+.hm-benefit-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,39,77,.12)}
+.hm-benefit-icon{
+  width:58px;height:58px;
+  background:linear-gradient(135deg,#006fff,#00cbac);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.2rem;
+  color:#fff;font-size:1.4rem;
+}
+.hm-benefit-card h3{color:#002B5C;margin-bottom:.8rem;font-size:1.1rem;font-weight:700}
+.hm-benefit-card p{color:#666;line-height:1.65;font-size:.93rem}
+
+
+/* ══ SOSTENIBLE MÓVIL ════════════════════════════════════════════ */
+@media(max-width:820px){
+  .hm-sos-wrap{ padding: 1rem 1rem 2rem !important; }
+  .hm-sos-bar{
+    margin-left: 0 !important;
+    border-radius: 20px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 0 0 1.8rem !important;
+    min-height: unset !important;
+  }
+  /* Imagen móvil dentro de la barra — mostrar */
+  .hm-sos-mob-img{ display: block !important; margin: 0 0 1.5rem !important; border-radius: 0 !important; }
+  .hm-sos-mob-img img:last-child{ border-radius: 20px 20px 0 0; }
+  /* Imagen desktop flotante — ocultar */
+  .hm-sos-img-wrap{ display: none !important; }
+  .hm-sos-text{ padding: 0 1.4rem !important; }
+}
+
+
+/* ══ QUÉ HACE EL MEDIDOR ═════════════════════════════════════════ */
+.hm-features-section{
+  padding: 0 1.5rem;
+  background:#fff;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.hm-features-wrap{
+  max-width:1200px;
+  margin:0 auto;
+  text-align:center;
+}
+.hm-features-wrap h2{
+  font-size:clamp(1.5rem,3vw,2.2rem);
+  font-weight:800;
+  color:#002B5C;
+  margin-bottom:clamp(2rem,4vw,3.5rem);
+}
+.hm-features-wrap h2 .hm-hl{color:#0066CC}
+
+.hm-feat-grid{
   display:flex;
-  align-items:center;
   justify-content:center;
-  box-sizing:border-box;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:0 clamp(1rem,3vw,3rem);
+  margin-bottom:clamp(2rem,5vw,4rem);
+}
+.hm-feat-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:clamp(110px,16vw,160px);
+  text-align:center;
+}
+.hm-feat-item:nth-child(1){margin-bottom:60px}
+.hm-feat-item:nth-child(2){margin-bottom:0px}
+.hm-feat-item:nth-child(3){margin-bottom:60px}
+.hm-feat-item:nth-child(4){margin-bottom:0px}
+.hm-feat-item:nth-child(5){margin-bottom:60px}
+
+.hm-feat-icon{
+  width:clamp(80px,10vw,110px);
+  height:clamp(80px,10vw,110px);
+  border-radius:50%;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+  box-shadow:0 6px 22px rgba(0,39,77,.12);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.hm-feat-item:hover .hm-feat-icon{transform:translateY(-10px) scale(1.06)}
+.hm-feat-icon img{
+  width:55%;height:55%;
+  object-fit:contain;
+  display:block;
+}
+.hm-feat-item h3{
+  font-size:clamp(.82rem,1.3vw,.97rem);
+  line-height:1.4;
+  color:#002B5C;
+  font-weight:600;
+  margin:0;
 }
 
-/* Círculos */
-.hs-circles { position:absolute; inset:0; pointer-events:none; z-index:0; }
-.hs-circles span { position:absolute; border-radius:50%; }
-.hs-circles .hc-a { width:460px; height:460px; top:-130px; right:-100px; }
-.hs-circles .hc-b { width:260px; height:260px; bottom:-70px; left:4%; }
-.hs-circles .hc-c { width:190px; height:190px; top:38%; right:22%; }
-.hs-circles .hc-d { width:110px; height:110px; top:12%; left:30%; }
-.hs-circles .hc-e { width:140px; height:140px; bottom:12%; right:38%; }
-
-/* Tipografía */
-.hs-inner { position:relative; z-index:2; width:100%; max-width:1400px; padding:0 3rem; }
-.hs-tag { display:inline-block; font-size:clamp(.68rem,.95vw,.82rem); font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.28rem .85rem; border-radius:20px; margin-bottom:1rem; background:rgba(255,255,255,.22); color:#fff; }
-.hs-h1 { font-size:clamp(1.7rem,3.4vw,3.3rem); font-weight:800; line-height:1.13; letter-spacing:-.02em; margin-bottom:1rem; color:#fff; }
-.hs-h2 { font-size:clamp(1.5rem,2.7vw,2.6rem); font-weight:800; line-height:1.17; letter-spacing:-.01em; margin-bottom:1rem; color:#fff; }
-.hs-p  { font-size:clamp(.9rem,1.35vw,1.1rem); line-height:1.75; margin-bottom:1.8rem; color:rgba(255,255,255,.92); }
-.hs-btns { display:flex; gap:.9rem; flex-wrap:wrap; align-items:center; }
-.hs-btn-wh { display:inline-flex; align-items:center; justify-content:center; background:#fff; color:#00274d; padding:clamp(.78rem,1.3vw,.95rem) clamp(1.5rem,2.5vw,2.5rem); border:2px solid #fff; border-radius:8px; font-size:clamp(.85rem,1.1vw,1rem); font-weight:700; text-decoration:none; white-space:nowrap; transition:transform .28s,box-shadow .28s; }
-.hs-btn-wh:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.2); color:#00274d; }
-.hs-btn-wo { display:inline-flex; align-items:center; justify-content:center; background:rgba(255,255,255,.15); color:#fff; padding:clamp(.78rem,1.3vw,.95rem) clamp(1.5rem,2.5vw,2.5rem); border:2px solid rgba(255,255,255,.7); border-radius:8px; font-size:clamp(.85rem,1.1vw,1rem); font-weight:700; text-decoration:none; white-space:nowrap; transition:transform .28s,background .28s; }
-.hs-btn-wo:hover { background:rgba(255,255,255,.25); border-color:#fff; transform:translateY(-3px); color:#fff; }
-
-/* Controles */
-.hs-controls { position:absolute; bottom:0; left:0; right:0; z-index:10; padding:1rem 2.5rem; display:flex; justify-content:space-between; align-items:center; }
-.hs-dots { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-.hs-dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,.4); border:none; padding:0; cursor:pointer; transition:all .4s cubic-bezier(.4,0,.2,1); }
-.hs-dot:hover  { background:rgba(255,255,255,.7); }
-.hs-dot.active { background:#fff; width:28px; border-radius:5px; }
-.hs-arrows { display:flex; gap:.7rem; }
-.hs-arrow { width:44px; height:44px; background:rgba(255,255,255,.2); backdrop-filter:blur(10px); border:1.5px solid rgba(255,255,255,.4); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; font-size:1.35rem; transition:all .3s; }
-.hs-arrow:hover { background:rgba(255,255,255,.32); transform:scale(1.07); }
-
-/* ══ SLIDE 0 — ANIVERSARIO ══ */
-.hs-aniv { flex-direction:column; justify-content:space-between; align-items:stretch; background:#071628; }
-.hs-aniv-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 45%; z-index:0; filter:blur(3px); transform:scale(1.05); }
-.hs-aniv-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(to bottom,rgba(0,8,25,.45) 0%,rgba(0,10,30,.50) 30%,rgba(0,12,35,.60) 60%,rgba(0,15,45,.78) 80%,rgba(0,18,50,.92) 100%); }
-.hs-aniv-inner { position:relative; z-index:2; flex:1; display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:clamp(1rem,2.5vw,2.5rem); align-items:center; width:100%; max-width:1440px; margin:0 auto; padding:clamp(1.2rem,2.5vw,2rem) clamp(1.5rem,4vw,4rem) 0; }
-.hs-aniv-left { display:flex; flex-direction:column; }
-.hs-aniv-top-row { display:flex; align-items:flex-end; gap:clamp(.5rem,1.5vw,1.2rem); line-height:1; }
-.hs-aniv-number { font-size:clamp(7rem,18vw,14rem); font-weight:900; line-height:.82; letter-spacing:-.04em; background:linear-gradient(160deg,#4db8ff 0%,#80d4ff 30%,#ffffff 65%,#e8f6ff 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; -webkit-text-stroke:1px rgba(100,180,255,.4); filter:drop-shadow(0 0 25px rgba(77,184,255,.7)) drop-shadow(0 0 50px rgba(0,120,255,.4)) drop-shadow(3px 5px 18px rgba(0,0,0,.7)); }
-.hs-aniv-mascot { width:clamp(70px,10vw,130px); mix-blend-mode:screen; align-self:flex-end; margin-bottom:.5rem; animation:hsProdFloat 5s ease-in-out infinite; }
-.hs-aniv-anos { font-size:clamp(2.4rem,6vw,5.8rem); font-weight:700; font-style:italic; color:#fff; line-height:1; margin-top:-.12em; margin-bottom:.7rem; text-shadow:0 2px 18px rgba(0,0,0,.5); }
-.hs-aniv-tagline { font-size:clamp(.82rem,1.25vw,1rem); color:rgba(255,255,255,.88); line-height:1.65; margin-bottom:.9rem; }
-.hs-aniv-highlight { display:inline; background:#006fff; color:#fff; padding:.06em .42em; border-radius:5px; font-weight:700; }
-.hs-aniv-fecha { display:flex; align-items:center; gap:.55rem; font-size:clamp(.7rem,.95vw,.86rem); font-weight:700; letter-spacing:.15em; color:rgba(255,255,255,.55); }
-.hs-aniv-dot { width:7px; height:7px; border-radius:50%; background:#00cbac; flex-shrink:0; display:inline-block; }
-.hs-aniv-center { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding-bottom:clamp(1rem,2.5vw,2rem); gap:.25rem; }
-.hs-aniv-meter { width:clamp(120px,19vw,240px); filter:drop-shadow(0 20px 45px rgba(0,111,255,.38)); animation:hsProdFloat 7s ease-in-out infinite .6s; }
-.hs-aniv-meter-label { font-size:clamp(.56rem,.82vw,.76rem); font-weight:700; letter-spacing:.2em; color:rgba(255,255,255,.42); text-transform:uppercase; margin-top:.2rem; }
-.hs-aniv-right { display:flex; flex-direction:column; align-items:flex-end; justify-content:center; gap:.9rem; }
-.hs-aniv-polaroid { background:#fff; padding:clamp(.4rem,.85vw,.8rem) clamp(.4rem,.85vw,.8rem) clamp(.65rem,1.3vw,1.2rem); border-radius:3px; box-shadow:0 14px 45px rgba(0,0,0,.5),0 3px 10px rgba(0,0,0,.3); transform:rotate(2.8deg); max-width:clamp(130px,20vw,265px); transition:transform .35s,box-shadow .35s; }
-.hs-aniv-polaroid:hover { transform:rotate(0deg) scale(1.04); }
-.hs-aniv-polaroid img { width:100%; display:block; border-radius:2px; aspect-ratio:4/3; object-fit:cover; }
-.hs-aniv-polaroid-caption { font-family:Georgia,serif; font-size:clamp(.58rem,.8vw,.76rem); color:#2a2a2a; text-align:center; margin-top:.5rem; line-height:1.35; font-style:italic; }
-.hs-aniv-domain { font-size:clamp(.56rem,.76vw,.7rem); font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.3); }
-.hs-aniv-stats { position:relative; z-index:2; width:100%; background:transparent; display:flex; align-items:center; justify-content:center; padding:.85rem 2rem calc(.85rem + 58px); overflow:hidden; }
-.hs-aniv-stats::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,50,120,.70) 0%,rgba(0,110,200,.65) 45%,rgba(0,180,155,.60) 75%,rgba(0,203,172,.55) 100%); backdrop-filter:blur(6px); pointer-events:none; }
-.hs-aniv-stat { display:flex; align-items:center; gap:.6rem; padding:0 clamp(.7rem,2.5vw,2.5rem); position:relative; z-index:1; }
-.hs-aniv-stat strong { font-size:clamp(.9rem,1.9vw,1.45rem); font-weight:800; color:#fff; display:inline-block; transition:transform .3s; }
-.hs-aniv-stat:hover strong { transform:scale(1.12); }
-.hs-aniv-stat span { font-size:clamp(.5rem,.72vw,.68rem); font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); }
-.hs-aniv-stat-sep { width:1px; height:26px; background:rgba(255,255,255,.25); flex-shrink:0; }
-@keyframes hsCountPulse { 0%{transform:scale(.5);opacity:0} 60%{transform:scale(1.15);opacity:1} 100%{transform:scale(1);opacity:1} }
-.hs-aniv-stat strong.hs-counting { animation:hsCountPulse .5s cubic-bezier(.2,.8,.3,1.1) both; }
-.hero-slide.active .hs-aniv-number  { animation:hsAnivNum  1s cubic-bezier(.15,.85,.3,1.05) .05s both; }
-.hero-slide.active .hs-aniv-anos    { animation:hsFadeUp .75s ease .35s both; }
-.hero-slide.active .hs-aniv-tagline { animation:hsFadeUp  .7s ease .5s  both; }
-.hero-slide.active .hs-aniv-fecha   { animation:hsFadeUp .65s ease .65s both; }
-.hero-slide.active .hs-aniv-center  { animation:hsFadeUp  .9s ease .15s both; }
-.hero-slide.active .hs-aniv-right   { animation:hsFadeR   .9s ease .3s  both; }
-.hero-slide.active .hs-aniv-stats   { animation:hsFadeUp  .7s ease .5s  both; }
-@keyframes hsAnivNum { from{opacity:0;transform:scale(.65) translateY(28px)} to{opacity:1;transform:scale(1) translateY(0)} }
-
-/* ══ SLIDE 1 — GESTIONA ══ */
-.hs-s1 { background:linear-gradient(135deg,#006fff 0%,#2a85ff 40%,#00cbac 100%); }
-.hs-s1 .hs-circles .hc-a { background:rgba(255,255,255,.18); animation:hsCircleFloat1 12s ease-in-out infinite; }
-.hs-s1 .hs-circles .hc-b { background:rgba(0,203,172,.3);    animation:hsCircleFloat2 9s  ease-in-out infinite; }
-.hs-s1 .hs-circles .hc-c { background:rgba(255,255,255,.13); animation:hsCircleFloat3 11s ease-in-out infinite; }
-.hs-s1 .hs-circles .hc-d { background:rgba(0,203,172,.22);   animation:hsCircleFloat1 8s  ease-in-out infinite .5s; }
-.hs-s1 .hs-circles .hc-e { background:rgba(255,255,255,.1);  animation:hsCircleFloat2 14s ease-in-out infinite 1s; }
-.hs-s1 .hs-inner { display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:center; }
-.hs-s1-img img { width:100%; max-width:280px; border-radius:18px; display:block; margin:0 auto; }
-
-/* ══ SLIDES 2-4 — IMAGEN COMPLETA ══ */
-.hs-s6 { position:relative; overflow:hidden; background:#000; }
-.hs-s6-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; display:block; z-index:1; }
-.hs-s6-caption { position:absolute; bottom:0; left:0; right:0; z-index:3; padding:clamp(2.5rem,6vw,5rem) clamp(1.5rem,5vw,4rem) clamp(4rem,7vw,6.5rem); background:linear-gradient(to top,rgba(0,18,50,.85) 0%,rgba(0,18,50,.55) 42%,rgba(0,18,50,.12) 72%,transparent 100%); display:flex; flex-direction:column; gap:.55rem; }
-.hs-s6-tag { display:inline-block; font-size:clamp(.63rem,.9vw,.78rem); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#00cbac; margin-bottom:.15rem; }
-.hs-s6-h2  { font-size:clamp(1.25rem,3vw,2.6rem); font-weight:800; line-height:1.15; color:#fff; margin:0; max-width:680px; text-shadow:0 2px 14px rgba(0,0,0,.45); }
-
-/* ══ SLIDE 5 — RESPALDO ══ */
-.hs-s4 { background:linear-gradient(135deg,#5ab0ff 0%,#006fff 40%,#0090d0 70%,#00cbac 100%); }
-.hs-s4 .hs-circles .hc-a { background:rgba(255,255,255,.18); top:-110px; left:-70px; right:auto; animation:hsCircleFloat1 13s ease-in-out infinite; }
-.hs-s4 .hs-circles .hc-b { background:rgba(0,203,172,.28);   bottom:-60px; right:4%;           animation:hsCircleFloat3 10s ease-in-out infinite; }
-.hs-s4 .hs-circles .hc-c { background:rgba(255,255,255,.13); top:50%; right:8%;                animation:hsCircleFloat2 8s  ease-in-out infinite 1s; }
-.hs-s4 .hs-circles .hc-d { background:rgba(0,203,172,.2);    top:6%; left:42%;                 animation:hsCircleFloat1 11s ease-in-out infinite .3s; }
-.hs-s4 .hs-circles .hc-e { background:rgba(255,255,255,.1);  bottom:15%; left:15%; right:auto; animation:hsCircleFloat3 9s  ease-in-out infinite .8s; }
-.hs-s4 .hs-inner { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
-.hs-prod-wrap  { display:flex; justify-content:center; align-items:center; }
-.hs-prod-frame { position:relative; animation:hsProdFloat 6s ease-in-out infinite; }
-.hs-prod-frame img { width:100%; max-width:400px; filter:drop-shadow(0 26px 54px rgba(0,0,0,.3)); position:relative; z-index:2; display:block; margin:0 auto; }
-.hs-prod-glow  { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:420px; height:420px; background:radial-gradient(circle,rgba(255,255,255,.3) 0%,rgba(0,203,172,.2) 42%,transparent 70%); filter:blur(40px); animation:hsPulse 4s ease-in-out infinite; z-index:1; }
-
-/* ══ SLIDE 6 — CARACTERÍSTICAS ══ */
-.hs-s5 { background:linear-gradient(135deg,#00cbac 0%,#00d4b8 25%,#00aaee 60%,#006fff 100%); overflow:hidden; }
-.hs-s5 .hs-circles .hc-a { background:rgba(255,255,255,.18); top:-110px; right:-80px;  animation:hsCircleFloat2 14s ease-in-out infinite; }
-.hs-s5 .hs-circles .hc-b { background:rgba(0,111,255,.22);   bottom:-60px; left:3%;   animation:hsCircleFloat1 10s ease-in-out infinite .4s; }
-.hs-s5 .hs-circles .hc-c { background:rgba(255,255,255,.13); top:40%; left:16%;        animation:hsCircleFloat3 12s ease-in-out infinite; }
-.hs-s5 .hs-circles .hc-d { background:rgba(255,255,255,.15); top:10%; right:28%;       animation:hsCircleFloat2 9s  ease-in-out infinite .7s; }
-.hs-s5 .hs-circles .hc-e { background:rgba(0,111,255,.22);   bottom:14%; right:10%;   animation:hsCircleFloat1 11s ease-in-out infinite 1.2s; }
-.hs-f5-outer { position:relative; z-index:2; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; padding:2rem 1.5rem; box-sizing:border-box; overflow:hidden; }
-.hs-f5-head  { text-align:center; }
-.hs-f5-title { font-size:clamp(1.2rem,2.2vw,2.1rem); font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:#fff; margin-bottom:.3rem; }
-.hs-f5-sub   { font-size:clamp(.8rem,1.2vw,1rem); color:rgba(255,255,255,.88); font-weight:500; }
-.hs-f5-grid  { display:grid; grid-template-columns:1fr auto 1fr; gap:clamp(.8rem,2.5vw,2.5rem); align-items:center; width:100%; max-width:1200px; }
-.hs-f5-left  { display:flex; flex-direction:column; gap:clamp(.7rem,1.5vw,1.3rem); align-items:flex-end;   text-align:right; }
-.hs-f5-right { display:flex; flex-direction:column; gap:clamp(.7rem,1.5vw,1.3rem); align-items:flex-start; text-align:left; }
-.hs-f5-feat  { display:flex; align-items:center; gap:clamp(.5rem,.9vw,.8rem); }
-.hs-f5-left .hs-f5-feat { flex-direction:row-reverse; }
-.hs-f5-icon  { width:clamp(28px,4vw,40px); height:clamp(28px,4vw,40px); flex-shrink:0; background:rgba(255,255,255,.25); border:2px solid rgba(255,255,255,.5); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:clamp(.8rem,1.3vw,1.1rem); font-weight:800; color:#fff; }
-.hs-f5-txt   { font-size:clamp(.72rem,1.15vw,.97rem); font-weight:700; color:#fff; line-height:1.3; max-width:clamp(100px,18vw,220px); }
-.hs-f5-mid   { display:flex; justify-content:center; align-items:center; }
-.hs-f5-prod  { position:relative; animation:hsProdFloat 6s ease-in-out infinite; }
-.hs-f5-prod img { width:clamp(110px,16vw,280px); filter:drop-shadow(0 18px 44px rgba(0,0,0,.4)); position:relative; z-index:2; display:block; margin:0 auto; }
-.hs-f5-glow  { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:clamp(200px,28vw,360px); height:clamp(200px,28vw,360px); background:radial-gradient(circle,rgba(255,255,255,.3) 0%,rgba(0,203,172,.2) 42%,transparent 70%); filter:blur(36px); animation:hsPulse 4s ease-in-out infinite; z-index:1; }
-.hs-f5-mobile-wrap { display:none; }
-.hs-f5-cta { text-align:center; }
-.hs-btn-f5 { display:inline-flex; align-items:center; justify-content:center; background:#fff; color:#006fff; padding:clamp(.75rem,1.3vw,1rem) clamp(1.8rem,3vw,3rem); border-radius:50px; border:2px solid #fff; font-size:clamp(.85rem,1.1vw,1rem); font-weight:700; text-decoration:none; box-shadow:0 6px 22px rgba(0,0,0,.2); transition:transform .3s,box-shadow .3s; }
-.hs-btn-f5:hover { transform:translateY(-3px); box-shadow:0 10px 32px rgba(0,0,0,.28); color:#006fff; }
-
-/* ══ ANIMACIONES ══ */
-@keyframes hsProdFloat    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
-@keyframes hsPulse        { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7} 50%{transform:translate(-50%,-50%) scale(1.12);opacity:1} }
-@keyframes hsFadeUp       { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-@keyframes hsFadeR        { from{opacity:0;transform:translateX(42px)}  to{opacity:1;transform:translateX(0)} }
-@keyframes hsCircleFloat1 { 0%{transform:translate(0,0) scale(1)} 25%{transform:translate(18px,-22px) scale(1.05)} 50%{transform:translate(8px,-40px) scale(1)} 75%{transform:translate(-14px,-18px) scale(.97)} 100%{transform:translate(0,0) scale(1)} }
-@keyframes hsCircleFloat2 { 0%{transform:translate(0,0) scale(1)} 30%{transform:translate(-20px,15px) scale(1.06)} 60%{transform:translate(-10px,32px) scale(.96)} 80%{transform:translate(12px,10px) scale(1.02)} 100%{transform:translate(0,0) scale(1)} }
-@keyframes hsCircleFloat3 { 0%{transform:translate(0,0) scale(1)} 20%{transform:translate(22px,12px) scale(.95)} 50%{transform:translate(14px,-20px) scale(1.07)} 70%{transform:translate(-8px,-10px) scale(1.02)} 100%{transform:translate(0,0) scale(1)} }
-
-.hero-slide.active .hs-tag        { animation:hsFadeUp .7s ease .1s  both; }
-.hero-slide.active .hs-h1,
-.hero-slide.active .hs-h2         { animation:hsFadeUp .8s ease .2s  both; }
-.hero-slide.active .hs-p          { animation:hsFadeUp .8s ease .38s both; }
-.hero-slide.active .hs-btns       { animation:hsFadeUp .8s ease .55s both; }
-.hero-slide.active .hs-s1-img,
-.hero-slide.active .hs-prod-wrap  { animation:hsFadeR  .9s ease .3s  both; }
-.hero-slide.active .hs-f5-outer   { animation:hsFadeUp .8s ease .15s both; }
-.hero-slide.active .hs-s6-caption { animation:hsFadeUp .8s ease .3s  both; }
-
-/* ══ RESPONSIVE TABLET ≤1100px ══ */
-@media (max-width:1100px) {
-  .hs-aniv-inner { grid-template-columns:1fr 1.1fr; }
-  .hs-aniv-right { display:none; }
-  .hs-s1 .hs-inner, .hs-s4 .hs-inner { grid-template-columns:1fr; text-align:center; }
-  .hs-s1-img { order:-1; } .hs-prod-wrap { order:-1; }
-  .hs-s1-img img, .hs-prod-frame img { max-width:300px; }
-  .hs-btns { justify-content:center; }
-  .hs-f5-grid { gap:1.2rem; } .hs-f5-txt { max-width:160px; }
+.hm-meter-wrap{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  width:100%;
+  padding:0;
+  margin:0;
+}
+.hm-meter-img{
+  display:block !important;
+  width:clamp(220px,32vw,420px) !important;
+  height:auto !important;
+  margin:0 auto !important;
+  position:static !important;
+  float:none !important;
 }
 
-/* ══ RESPONSIVE MÓVIL ≤820px ══ */
-@media (max-width:820px) {
 
-  /* Slider ocupa TODO el espacio disponible bajo el navbar */
-  .hero-slider {
-    height: calc(100svh - var(--navbar-h, 70px));
-    min-height: 0;
-    max-height: none;
-  }
-  .hero-track { height: 100%; }
+/* ══ TESTIMONIOS — slider original, fondo claro, sin descripciones ══ */
+.hm-test-section{
+  width: 100%;
+  background: linear-gradient(135deg, #001a4d 0%, #002a80 35%, #003399 60%, #004db3 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+.hm-test-container{
+  display: flex;
+  gap: 4rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.hm-test-text{ flex: 0 0 35%; }
+.hm-test-text h2{ font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.2; color: #e4e4e4; }
+.hm-test-text h2 span{ color: #00e5c4; }
+.hm-test-text p{ margin-bottom: 2rem; line-height: 1.6; color: #c0d4e8; }
+.hm-view-more{
+  color: #00e5c4; display: flex; align-items: center; gap: .5rem;
+  font-weight: 600; text-decoration: none;
+}
+.hm-view-more svg{ transition: transform .3s ease; }
+.hm-view-more:hover svg{ transform: translateX(5px); }
 
-  .hero-slide {
-    min-width: 100%;
-    max-width: 100%;
-    width: 100%;
-    height: 100%;
-    flex-shrink: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    box-sizing: border-box;
-    padding-bottom: 56px;
-  }
+.hm-test-slider{ flex: 1; position: relative; }
+.hm-slider-container{ overflow: hidden; position: relative; }
+.hm-slider-track{ display: flex; transition: transform .5s ease; }
+.hm-testimonial-card{ flex: 0 0 100%; padding: 1rem; }
+.hm-video-wrap{
+  position: relative; padding-top: 56.25%;
+  background: #000; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,.4);
+}
+.hm-video-wrap iframe{
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border: none;
+}
+.hm-slider-btn{
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.12); border: 1.5px solid rgba(0,229,196,.35);
+  width: 40px; height: 40px; border-radius: 50%;
+  color: #00e5c4; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  transition: background .3s, box-shadow .3s;
+}
+.hm-slider-btn:hover{ background: rgba(0,229,196,.2); box-shadow: 0 6px 18px rgba(0,229,196,.25); }
+.hm-slider-prev{ left: -20px; }
+.hm-slider-next{ right: -20px; }
+.hm-slider-dots{ display: flex; justify-content: center; gap: .5rem; margin-top: 1rem; }
+.hm-slider-dot{
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,.25); cursor: pointer;
+  transition: background .3s, transform .3s;
+}
+.hm-slider-dot.active{ background: #00e5c4; transform: scale(1.2); }
 
-  /* Controles pegados al fondo del slider */
-  .hs-controls {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    z-index: 20;
-    padding: .6rem .8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .65rem;
-    background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 100%);
-  }
-  .hs-dots { gap: 6px; flex-wrap: wrap; justify-content: center; }
-  .hs-dot  { width: 9px; height: 9px; }
-  .hs-dot.active { width: 24px; }
-  .hs-arrows { display: flex; gap: .5rem; }
-  .hs-arrow  { width: 40px; height: 40px; font-size: 1.25rem; }
 
-  /* Tipografía */
-  .hs-inner {
-    padding: 1.2rem 1.3rem;
-    max-width: 100%; width: 100%;
-    box-sizing: border-box;
-  }
-  .hs-h1  { font-size: clamp(1.5rem,5.5vw,2rem) !important; line-height:1.2; margin-bottom:.6rem; }
-  .hs-h2  { font-size: clamp(1.35rem,5vw,1.8rem) !important; line-height:1.2; margin-bottom:.6rem; }
-  .hs-p   { font-size: clamp(.9rem,3.5vw,1rem) !important; margin-bottom:.8rem; line-height:1.55; }
-  .hs-tag { font-size: clamp(.68rem,2.5vw,.8rem) !important; padding:.22rem .7rem; margin-bottom:.6rem; }
-  .hs-btns { flex-direction:column; align-items:center; gap:.55rem; }
-  .hs-btn-wh, .hs-btn-wo {
-    width:100%; max-width:280px; text-align:center;
-    justify-content:center; padding:.78rem 1.2rem; font-size:.92rem;
-  }
-  .hs-circles .hc-a{width:160px;height:160px} .hs-circles .hc-b{width:120px;height:120px}
-  .hs-circles .hc-c{width:80px;height:80px}   .hs-circles .hc-d{width:50px;height:50px}
+/* ══ COMUNIDADES ═════════════════════════════════════════════════ */
+.hm-comunidades{
+  background:linear-gradient(135deg,#001a4d 0%,#002a80 35%,#003399 60%,#004db3 100%);
+  padding:clamp(3rem,5vw,4.5rem) 1.5rem;
+  text-align:center;
+}
+.hm-com-inner{max-width:800px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+.hm-com-tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,203,172,.18);color:#00e5c4;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.3rem 1rem;border-radius:20px;border:1.5px solid rgba(0,203,172,.35)}
+.hm-comunidades h2{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin:0}
+.hm-comunidades h2 span{color:#00e5c4}
+.hm-com-btn{
+  display:inline-flex;align-items:center;gap:.65rem;
+  background:#fff;color:#002a80;
+  font-size:1rem;font-weight:800;
+  padding:.9rem 2.8rem;border-radius:50px;
+  text-decoration:none;
+  box-shadow:0 8px 28px rgba(0,0,0,.22);
+  transition:transform .26s,box-shadow .26s;
+}
+.hm-com-btn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 14px 40px rgba(0,0,0,.28);color:#001a4d}
+
+
+/* ══ VIDEO PRINCIPAL ═════════════════════════════════════════════ */
+.hm-video-sec{
+  background:linear-gradient(180deg,#f0f7ff 0%,#fff 100%);
+  padding:clamp(3.5rem,6vw,5.5rem) 1.5rem;
+  text-align:center;
+}
+.hm-video-inner{max-width:820px;margin:0 auto}
+.hm-vid-pill{display:inline-flex;align-items:center;gap:.38rem;background:rgba(0,111,255,.08);color:#0050cc;font-size:.73rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:.26rem .88rem;border-radius:20px;border:1.5px solid rgba(0,111,255,.18);margin-bottom:1.1rem}
+.hm-vid-dot{width:6px;height:6px;border-radius:50%;background:#006fff;animation:hm-pulse 2s ease-in-out infinite}
+@keyframes hm-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+.hm-video-sec h2{font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;color:#00274d;margin:0 0 .4rem;line-height:1.15}
+.hm-video-sec h2 em{font-style:normal;color:#006fff}
+.hm-video-sec h3{font-size:clamp(.9rem,1.5vw,1.2rem);font-weight:500;color:#3a6a9a;margin:0 0 2rem;line-height:1.4}
+.hm-vid-frame-wrap{position:relative;display:inline-block;width:100%;max-width:820px}
+.hm-vid-frame-wrap::before{content:'';position:absolute;inset:-6px;border-radius:26px;background:linear-gradient(135deg,#006fff,#00cbac);z-index:0;opacity:.4}
+.hm-vid-frame{position:relative;z-index:1;width:100%;aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 18px 55px rgba(0,39,77,.17)}
+.hm-vid-frame iframe{width:100%;height:100%;border:none;display:block}
+
+
+/* ══ FORMULARIO CONTACTO ═════════════════════════════════════════ */
+.hm-contacto{
+  background:linear-gradient(160deg,#f0f8ff 0%,#e8f4ff 50%,#e0f8f3 100%);
+  padding:clamp(3.5rem,6vw,5.5rem) 1.5rem;
+  position:relative;overflow:hidden;
+}
+.hm-contacto::before{content:'';position:absolute;width:500px;height:500px;top:-180px;right:-140px;border-radius:50%;background:radial-gradient(circle,rgba(0,111,255,.07),transparent 70%);pointer-events:none}
+.hm-contacto::after{content:'';position:absolute;width:300px;height:300px;bottom:-100px;left:-80px;border-radius:50%;background:radial-gradient(circle,rgba(0,203,172,.08),transparent 70%);pointer-events:none}
+.hm-cont-inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.hm-cont-header{text-align:center;margin-bottom:2.8rem}
+.hm-cont-pill{display:inline-flex;align-items:center;gap:.38rem;background:rgba(0,111,255,.1);color:#0050cc;font-size:.73rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.26rem .88rem;border-radius:20px;border:1.5px solid rgba(0,111,255,.18);margin-bottom:.9rem}
+.hm-cont-pill-dot{width:6px;height:6px;border-radius:50%;background:#006fff;animation:hm-pulse 2s ease-in-out infinite}
+.hm-cont-header h2{font-size:clamp(1.4rem,2.8vw,2.3rem);font-weight:800;color:#00274d;line-height:1.18;margin:0 0 .6rem}
+.hm-cont-header h2 span{color:#006fff}
+.hm-cont-header p{font-size:clamp(.88rem,1.3vw,1rem);color:#3a6a9a;line-height:1.65;margin:0}
+
+.hm-form-card{
+  background:#fff;border-radius:22px;
+  box-shadow:0 8px 48px rgba(0,39,77,.1);
+  border:1.5px solid rgba(42,133,255,.1);
+  display:grid;grid-template-columns:90px 1fr;
+  overflow:hidden;
+}
+.hm-form-accent{background:linear-gradient(160deg,#001d4a 0%,#003080 40%,#005599 70%,#006a7a 100%)}
+.hm-form-body{padding:2.5rem}
+
+.hm-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.hm-field{display:flex;flex-direction:column;gap:.38rem;margin-bottom:.9rem}
+.hm-field label{font-size:.82rem;font-weight:700;color:#00274d}
+.hm-req{color:#e03}
+.hm-field input,
+.hm-field textarea{
+  padding:.7rem .95rem;
+  border:1.5px solid rgba(42,133,255,.2);
+  border-radius:10px;font-size:.93rem;
+  color:#00274d;background:#fff;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  font-family:inherit;
+}
+.hm-field input:focus,
+.hm-field textarea:focus{border-color:#006fff;box-shadow:0 0 0 3px rgba(0,111,255,.09)}
+.hm-full{grid-column:1/-1}
+.hm-radios{display:flex;gap:1rem;flex-wrap:wrap;padding-top:.2rem}
+.hm-radio-lbl{display:flex;align-items:center;gap:.4rem;font-size:.87rem;color:#3a6a9a;cursor:pointer}
+.hm-field textarea{resize:vertical;min-height:95px}
+.hm-submit{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:linear-gradient(135deg,#006fff,#00cbac);
+  color:#fff;font-size:.97rem;font-weight:700;
+  padding:.88rem 2.5rem;border-radius:50px;border:none;
+  cursor:pointer;box-shadow:0 6px 22px rgba(0,111,255,.25);
+  transition:transform .26s,box-shadow .26s;
+  margin-top:.5rem;font-family:inherit;
+}
+.hm-submit:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,111,255,.32)}
+.hm-submit:disabled{opacity:.62;cursor:not-allowed}
+
+
+/* ══ RESPONSIVE TABLET ≤1100px ═══════════════════════════════════ */
+@media(max-width:1100px){
+  .hs-aniv-inner{grid-template-columns:1fr 1.1fr}
+  .hs-aniv-right{display:none}
+  .hs-s1 .hs-inner,.hs-s4 .hs-inner{grid-template-columns:1fr;text-align:center}
+  .hs-s1-img{order:-1}.hs-prod-wrap{order:-1}
+  .hs-s1-img img,.hs-prod-frame img{max-width:300px}
+  .hs-btns{justify-content:center}
+
+  .hm-benefits-grid{grid-template-columns:repeat(2,1fr)}
+  .hm-feat-grid{gap:0 clamp(.8rem,2vw,2rem)}
+  .hm-feat-item{width:clamp(100px,18vw,145px);margin-bottom:40px!important}
+  /* Testimonios tablet */
+  .hm-test-container{ flex-direction: column; gap: 2rem; }
+  .hm-test-text{ flex: none; text-align: center; max-width: 600px; margin: 0 auto; width: 100%; }
+  .hm-test-slider{ width: 100%; flex: none; }
+  .hm-view-more{ justify-content: center; }
+}
+
+/* ══ RESPONSIVE MÓVIL ≤820px ═════════════════════════════════════ */
+@media(max-width:820px){
+  /* Hero */
+  .hero-slider{height:calc(100svh - var(--navbar-h,70px));min-height:0}
+  .hero-slide{flex-direction:column;align-items:center;justify-content:center;padding-bottom:56px}
+  .hs-controls{padding:.6rem .8rem;justify-content:center;gap:.65rem;background:linear-gradient(to top,rgba(0,0,0,.5),transparent)}
+  .hs-dots{justify-content:center}
+  .hs-dot{width:9px;height:9px}
+  .hs-dot.active{width:24px}
+  .hs-arrow{width:40px;height:40px}
+  .hs-inner{padding:1.2rem 1.3rem}
+  .hs-h1{font-size:clamp(1.5rem,5.5vw,2rem)!important}
+  .hs-h2{font-size:clamp(1.35rem,5vw,1.8rem)!important}
+  .hs-p{font-size:clamp(.9rem,3.5vw,1rem)!important;margin-bottom:.8rem}
+  .hs-btns{flex-direction:column;align-items:center}
+  .hs-btn-wh,.hs-btn-wo{width:100%;max-width:280px;padding:.78rem 1.2rem;font-size:.92rem}
+  .hs-circles .hc-a{width:160px;height:160px}
+  .hs-circles .hc-b{width:120px;height:120px}
+  .hs-circles .hc-c{width:80px;height:80px}
+  .hs-circles .hc-d{width:50px;height:50px}
   .hs-circles .hc-e{width:60px;height:60px}
-
-  /* ── SLIDE 0: Aniversario ── */
-  .hs-aniv { flex-direction:column; justify-content:space-between; align-items:stretch; }
-  .hs-aniv-inner {
-    flex: 1;
+  /* Slide 0 */
+  .hs-aniv-inner{flex:1;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:.45rem;padding:1rem 1.2rem 0}
+  .hs-aniv-left{align-items:center;text-align:center;width:100%}
+  .hs-aniv-top-row{justify-content:center}
+  .hs-aniv-number{font-size:clamp(3.8rem,20vw,7rem)}
+  .hs-aniv-mascot{width:clamp(52px,15vw,80px)}
+  .hs-aniv-anos{font-size:clamp(1.7rem,9.5vw,3.2rem);text-align:center}
+  .hs-aniv-tagline{text-align:center}
+  .hs-aniv-fecha{justify-content:center}
+  .hs-aniv-right{display:none!important}
+  .hs-aniv-meter-desk{ display:none!important; }
+  .hs-aniv-polaroid-mob{ display:block!important; max-width:clamp(180px,65vw,260px); }
+  .hs-aniv-center{display:flex;flex-direction:column;align-items:center;width:100%}
+  .hs-aniv-meter{width:clamp(110px,30vw,170px)}
+  .hs-aniv-stats{display:grid!important;grid-template-columns:1fr 1fr;gap:.3rem;padding:.5rem .8rem 3.5rem}
+  .hs-aniv-stat-sep{display:none!important}
+  .hs-aniv-stat{flex-direction:column;align-items:center;text-align:center}
+  /* Slide 1 */
+  .hs-s1 .hs-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem}
+  .hs-s1-img img{max-width:160px}
+  /* Slides 2-4 */
+  .hs-s6-caption{
+    bottom: 0 !important;
+    padding: .8rem 1.2rem 80px !important;
+    gap: .25rem !important;
+    z-index: 15 !important;
+  }
+  .hs-s6-caption .hs-s6-tag{ font-size: .6rem !important; }
+  .hs-s6-caption .hs-s6-h2{ font-size: clamp(.95rem,4vw,1.3rem) !important; margin:0 !important; }
+  .hs-s6-caption .hs-btns{
     display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: .45rem;
-    padding: 1rem 1.2rem 0;
-    width:100%; max-width:100%; margin:0;
-    box-sizing:border-box;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    margin-top: .4rem;
+    position: relative;
+    z-index: 16 !important;
   }
-  .hs-aniv-left    { display:flex; flex-direction:column; align-items:center; text-align:center; width:100%; }
-  .hs-aniv-top-row { justify-content:center; gap:.5rem; }
-  .hs-aniv-number  { font-size: clamp(3.8rem,20vw,7rem); }
-  .hs-aniv-mascot  { width: clamp(52px,15vw,80px); }
-  .hs-aniv-anos    { font-size:clamp(1.7rem,9.5vw,3.2rem); text-align:center; margin-top:-.1em; margin-bottom:.3rem; }
-  .hs-aniv-tagline { font-size:clamp(.86rem,3.8vw,1rem); text-align:center; padding:0 .5rem; margin-bottom:.3rem; line-height:1.5; }
-  .hs-aniv-fecha   { justify-content:center; font-size:clamp(.65rem,2.8vw,.82rem); }
-  .hs-aniv-right   { display:none !important; }
-  .hs-aniv-center  { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; padding-bottom:.2rem; }
-  .hs-aniv-meter   { width:clamp(110px,30vw,170px); }
-  .hs-aniv-meter-label { font-size:.6rem; text-align:center; margin-top:.15rem; }
-  /* Stats 2×2 */
-  .hs-aniv-stats {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: .3rem;
-    padding: .5rem .8rem 3.5rem;
-    background: transparent;
-    flex-shrink:0; width:100%; box-sizing:border-box;
+  .hs-s6-caption .hs-btn-wh{
+    width: auto !important;
+    max-width: none !important;
+    font-size: .78rem !important;
+    padding: .45rem 1rem !important;
   }
-  .hs-aniv-stat-sep { display:none !important; }
-  .hs-aniv-stat { flex-direction:column; align-items:center; text-align:center; padding:.22rem .4rem; }
-  .hs-aniv-stat strong { font-size:clamp(.88rem,4vw,1.1rem); }
-  .hs-aniv-stat span   { font-size:clamp(.44rem,1.9vw,.58rem); letter-spacing:.06em; }
+  .hs-s6-btn-mob{ display: none !important; }
+  .hs-aniv-left .hs-btns{flex-direction:row;justify-content:center;margin-top:.8rem!important}
+  .hs-aniv-left .hs-btn-wh{width:auto;max-width:none;font-size:.82rem;padding:.6rem 1.4rem}
+  .hs-s6-h2{font-size:clamp(1.2rem,5.5vw,1.85rem);max-width:100%}
+  /* Slide 5 */
+  .hs-s4 .hs-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem}
+  .hs-prod-frame img{max-width:155px}
+  .hs-prod-glow{width:200px;height:200px}
+  /* Slide 6 */
+  .hs-f5-outer{padding:1rem 1rem 3.5rem;height:100%}
+  .hs-f5-grid{display:none!important}
+  .hs-f5-mobile-wrap{display:flex!important;flex-direction:column;align-items:center;gap:.6rem;width:100%}
+  .hs-f5-mid-mobile{display:flex!important;justify-content:center}
+  .hs-f5-mid-mobile .hs-f5-prod img{width:clamp(110px,30vw,170px)}
+  .hs-f5-mobile-list{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;width:100%;max-width:360px}
+  .hs-f5-mobile-item{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.25);border-radius:9px;padding:.5rem .6rem;font-size:clamp(.78rem,3vw,.92rem);font-weight:700;color:#fff;line-height:1.3}
+  .hs-f5-mobile-icon{flex-shrink:0;width:20px;height:20px;background:rgba(255,255,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;color:#fff}
 
-  /* ── SLIDE 1: Gestiona el agua ── */
-  .hs-s1 .hs-inner {
-    display:flex; flex-direction:column; align-items:center;
-    text-align:center; gap:.45rem;
-    justify-content:center; height:100%;
+  /* Features */
+  .hm-feat-grid{
+    display:grid !important;
+    grid-template-columns:1fr 1fr;
+    gap:1.5rem 1rem;
+    justify-items:center;
+    flex-wrap:unset;
+    align-items:unset;
   }
-  .hs-s1-img { order:-1; }
-  .hs-s1-img img { max-width:160px; margin-bottom:.3rem; }
-  .hs-btns { justify-content:center; }
+  .hm-feat-item{
+    width:100% !important;
+    margin-bottom:0 !important;
+  }
+  .hm-feat-item:last-child{
+    grid-column: 1 / -1;
+    max-width:160px;
+  }
+  .hm-feat-icon{width:76px;height:76px}
+  .hm-meter-img{width:clamp(200px,65vw,340px)!important}
 
-  /* ── SLIDES 2-4: Imagen completa ── */
-  .hs-s6 { display:flex; align-items:flex-end; }
-  .hs-s6-bg {
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit:cover; object-position:center;
-  }
-  .hs-s6-caption {
-    position:relative; z-index:3;
-    width:100%; padding:1.8rem 1.2rem 3.5rem;
-    background:linear-gradient(to top,rgba(0,15,45,.92) 0%,rgba(0,15,45,.55) 55%,transparent 100%);
-    gap:.35rem;
-  }
-  .hs-s6-tag { font-size:clamp(.68rem,2.8vw,.86rem); }
-  .hs-s6-h2  { font-size:clamp(1.2rem,5.5vw,1.85rem); max-width:100%; }
+  /* Beneficios */
+  .hm-benefits-grid{grid-template-columns:1fr}
 
-  /* ── SLIDE 5: Respaldo ── */
-  .hs-s4 .hs-inner {
-    display:flex; flex-direction:column; align-items:center;
-    text-align:center; gap:.45rem;
-    justify-content:center; height:100%;
-  }
-  .hs-prod-wrap { order:-1; }
-  .hs-prod-frame img { max-width:155px; }
-  .hs-prod-glow { width:200px; height:200px; }
+  /* Testimonios móvil */
+  .hm-test-section{ padding: 2rem 1rem; }
+  .hm-test-container{ padding: 1.5rem 1rem; gap: 1.5rem; }
+  .hm-test-text{ width: 100%; }
+  .hm-test-text h2{ font-size: 2rem; }
+  .hm-test-slider{ width: 100%; flex: none; }
+  .hm-slider-btn{ display: none; }
 
-  /* ── SLIDE 6: Características ── */
-  .hs-f5-outer {
-    padding:1rem 1rem 3.5rem; gap:.65rem;
-    align-items:center; justify-content:center;
-    height:100%; box-sizing:border-box;
-  }
-  .hs-f5-title { font-size:clamp(1.1rem,4.8vw,1.55rem); margin-bottom:.15rem; }
-  .hs-f5-sub   { font-size:clamp(.8rem,3vw,.95rem); }
-  .hs-f5-grid  { display:none !important; }
-  .hs-f5-mobile-wrap {
-    display:flex !important; flex-direction:column;
-    align-items:center; gap:.6rem; width:100%;
-  }
-  .hs-f5-mid-mobile  { display:flex !important; justify-content:center; }
-  .hs-f5-mid-mobile .hs-f5-prod img { width:clamp(110px,30vw,170px); }
-  .hs-f5-mid-mobile .hs-f5-glow { width:160px; height:160px; }
-  .hs-f5-mobile-list {
-    display:grid; grid-template-columns:1fr 1fr;
-    gap:.4rem; width:100%; max-width:360px;
-  }
-  .hs-f5-mobile-item {
-    display:flex; align-items:center; gap:.4rem;
-    background:rgba(255,255,255,.15); border:1.5px solid rgba(255,255,255,.25);
-    border-radius:9px; padding:.5rem .6rem;
-    font-size:clamp(.78rem,3vw,.92rem); font-weight:700;
-    color:#fff; line-height:1.3;
-  }
-  .hs-f5-mobile-icon {
-    flex-shrink:0; width:20px; height:20px;
-    background:rgba(255,255,255,.3); border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-size:.68rem; font-weight:900; color:#fff;
-  }
-  .hs-btn-f5 { padding:.72rem 2.2rem; font-size:.9rem; margin-top:.2rem; }
+  /* Contacto */
+  .hm-form-card{grid-template-columns:1fr}
+  .hm-form-accent{min-height:48px}
+  .hm-form-body{padding:1.8rem 1.4rem}
+  .hm-row{grid-template-columns:1fr}
+  .hm-submit{width:100%;justify-content:center}
+
+  /* Video */
+  .hm-video-sec{padding:3rem .9rem}
+  .hm-vid-frame{border-radius:14px}
 }
 
-/* ══ RESPONSIVE MÓVIL PEQUEÑO ≤520px ══ */
-@media (max-width:520px) {
-  .hs-aniv-number { font-size:clamp(3.5rem,19vw,6.5rem); }
-  .hs-aniv-mascot { width:clamp(48px,13vw,72px); }
-  .hs-aniv-anos   { font-size:clamp(1.55rem,9vw,3rem); }
-  .hs-aniv-meter  { width:clamp(100px,28vw,155px); }
-  .hs-s6-h2       { font-size:clamp(1.1rem,5.5vw,1.65rem); }
-  .hs-f5-grid     { display:none !important; }
-  .hs-f5-mobile-wrap { display:flex !important; }
-  .hs-circles .hc-c, .hs-circles .hc-e { display:none; }
-  .hs-h1 { font-size:clamp(1.35rem,5.5vw,1.8rem) !important; }
-  .hs-h2 { font-size:clamp(1.2rem,5vw,1.6rem) !important; }
+/* ══ RESPONSIVE MÓVIL PEQUEÑO ≤520px ════════════════════════════ */
+@media(max-width:520px){
+  .hs-aniv-number{font-size:clamp(3.5rem,19vw,6.5rem)}
+  .hs-aniv-meter{width:clamp(100px,28vw,155px)}
+  .hs-circles .hc-c,.hs-circles .hc-e{display:none}
+  .hs-f5-grid{display:none!important}
+  .hs-f5-mobile-wrap{display:flex!important}
+
+  .hm-feat-item{width:100%;margin-bottom:20px!important}
+  .hm-meter-img{width:clamp(180px,80vw,300px)!important}
+  .hm-video-sec h2{font-size:clamp(1.4rem,4.5vw,1.9rem)}
+  .hm-cont-header h2{font-size:clamp(1.3rem,5.5vw,1.9rem)}
 }
 </style>
 
 
+<!-- ═══════════════════════════════════════
+     HERO SLIDER
+═══════════════════════════════════════ -->
 <section class="hero-slider" id="inicio">
   <div class="hero-track" id="heroTrack">
 
+    <!-- SLIDE 1 · GESTIONA -->
+    <div class="hero-slide hs-s1">
+      <div class="hs-circles" aria-hidden="true"><span class="hc-a"></span><span class="hc-b"></span><span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span></div>
+      <div class="hs-inner">
+        <div>
+          <span class="hs-tag">La tecnología más avanzada de Chile</span>
+          <h1 class="hs-h1">Gestiona de manera eficiente el agua para tu comunidad</h1>
+          <p class="hs-p">Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
+          <div class="hs-btns">
+            <a href="{% url 'contacto' %}" class="hs-btn-wh">Solicitar asesoría</a>
+          </div>
+        </div>
+        <div class="hs-s1-img"><img src="{% static 'app/img/medidor3dh.png' %}" alt="Medidor Inteligente"></div>
+      </div>
+    </div>
+
     <!-- SLIDE 0 · ANIVERSARIO -->
     <div class="hero-slide hs-aniv active">
-      <img src="{% static 'app/img/webnosotros.png' %}" alt="" class="hs-aniv-bg">
+      <img src="{% static 'app/img/web10.png' %}" alt="" class="hs-aniv-bg">
       <div class="hs-aniv-overlay"></div>
       <div class="hs-aniv-inner">
         <div class="hs-aniv-left">
@@ -406,14 +663,22 @@
           <div class="hs-aniv-anos">años</div>
           <p class="hs-aniv-tagline">Transformando la <span class="hs-aniv-highlight">gestión del agua</span><br>con tecnología inteligente</p>
           <div class="hs-aniv-fecha"><span class="hs-aniv-dot"></span>2016 — 2026</div>
+          <div class="hs-btns" style="margin-top:1.2rem;">
+            <a href="{% url 'nosotros' %}" class="hs-btn-wh">Conoce nuestra historia</a>
+          </div>
+          <!-- Polaroid solo móvil -->
+          <div class="hs-aniv-polaroid hs-aniv-polaroid-mob" style="margin-top:1.2rem;">
+            <img src="{% static 'app/img/web10.png' %}" alt="El primer medidor instalado" style="width:100%;display:block;border-radius:2px;aspect-ratio:4/3;object-fit:cover;">
+            <p class="hs-aniv-polaroid-caption">El primer medidor inteligente instalado</p>
+          </div>
         </div>
         <div class="hs-aniv-center">
-          <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente" class="hs-aniv-meter">
-          <p class="hs-aniv-meter-label">MEDIDOR INTELIGENTE</p>
+          <img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente" class="hs-aniv-meter hs-aniv-meter-desk">
+          <p class="hs-aniv-meter-label hs-aniv-meter-desk">MEDIDOR INTELIGENTE</p>
         </div>
         <div class="hs-aniv-right">
           <div class="hs-aniv-polaroid">
-            <img src="{% static 'app/img/webnosotros.png' %}" alt="El primer medidor instalado">
+            <img src="{% static 'app/img/web10.png' %}" alt="El primer medidor instalado">
             <p class="hs-aniv-polaroid-caption">El primer medidor inteligente instalado</p>
           </div>
           <p class="hs-aniv-domain">medidorinteligente.cl</p>
@@ -427,67 +692,6 @@
         <div class="hs-aniv-stat"><strong data-count="0" data-text="Chile">Chile</strong><span>COBERTURA NACIONAL</span></div>
         <div class="hs-aniv-stat-sep"></div>
         <div class="hs-aniv-stat"><strong data-count="0" data-text="24/7">24/7</strong><span>MONITOREO CONTINUO</span></div>
-      </div>
-    </div>
-
-    <!-- SLIDE 1 · GESTIONA EL AGUA -->
-    <div class="hero-slide hs-s1">
-      <div class="hs-circles" aria-hidden="true"><span class="hc-a"></span><span class="hc-b"></span><span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span></div>
-      <div class="hs-inner">
-        <div>
-          <span class="hs-tag">La tecnología más avanzada de Chile</span>
-          <h1 class="hs-h1">Gestiona de manera eficiente el agua para tu comunidad</h1>
-          <p class="hs-p">Descubre cómo optimizar la distribución y reducir pérdidas con nuestro medidor inteligente</p>
-          <div class="hs-btns">
-            <a href="{% url 'contacto' %}" class="hs-btn-wh">Solicita una cotización</a>
-            <a href="{% url 'soluciones' %}" class="hs-btn-wo">Conocer más</a>
-          </div>
-        </div>
-        <div class="hs-s1-img"><img src="{% static 'app/img/medidor3d.png' %}" alt="Medidor Inteligente"></div>
-      </div>
-    </div>
-
-    <!-- SLIDE 2 · APR LOS MAQUIS -->
-    <div class="hero-slide hs-s6">
-      <img src="{% static 'app/img/maquis.png' %}" alt="APR Los Maquis" class="hs-s6-bg">
-      <div class="hs-s6-caption">
-        <span class="hs-s6-tag">APR Los Maquis</span>
-        <h2 class="hs-s6-h2">Hoy cumplimos 10 años del primer Medidor Inteligente instalado</h2>
-      </div>
-    </div>
-
-    <!-- SLIDE 3 · ENTREGA CLIENTE 2 -->
-    <div class="hero-slide hs-s6">
-      <img src="{% static 'app/img/webcliente2.jpeg' %}" alt="Entrega de Medidores" class="hs-s6-bg">
-      <div class="hs-s6-caption">
-        <span class="hs-s6-tag">Comunidades APR</span>
-        <h2 class="hs-s6-h2">Entrega de Medidores Inteligentes</h2>
-      </div>
-    </div>
-
-    <!-- SLIDE 4 · ENTREGA CLIENTE 3 -->
-    <div class="hero-slide hs-s6">
-      <img src="{% static 'app/img/webcliente3.jpeg' %}" alt="Trabajo en terreno" class="hs-s6-bg">
-      <div class="hs-s6-caption">
-        <span class="hs-s6-tag">Trabajo en Terreno</span>
-        <h2 class="hs-s6-h2">Instalación y soporte técnico en cada comunidad</h2>
-      </div>
-    </div>
-
-    <!-- SLIDE 5 · MEDIDOR CON RESPALDO -->
-    <div class="hero-slide hs-s4">
-      <div class="hs-circles" aria-hidden="true"><span class="hc-a"></span><span class="hc-b"></span><span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span></div>
-      <div class="hs-inner">
-        <div>
-          <span class="hs-tag">Respaldo y Garantía</span>
-          <h2 class="hs-h2">Medidor Inteligente con Respaldo Real</h2>
-          <p class="hs-p">✔ 1 año de garantía en el medidor<br>✔ Capturador de datos con garantía indefinida<br>✔ Batería con duración de hasta 30 años</p>
-          <div class="hs-btns">
-            <a href="{% url 'contacto' %}" class="hs-btn-wh">Solicita información</a>
-            <a href="{% url 'soluciones' %}" class="hs-btn-wo">Explorar tecnología</a>
-          </div>
-        </div>
-        <div class="hs-prod-wrap"><div class="hs-prod-frame"><div class="hs-prod-glow"></div><img src="{% static 'app/img/medidor3dh.png' %}" alt="Medidor Inteligente"></div></div>
       </div>
     </div>
 
@@ -527,6 +731,58 @@
       </div>
     </div>
 
+    <!-- SLIDE 2 -->
+    <!-- <div class="hero-slide hs-s6">
+      <img src="{% static 'app/img/maquis.png' %}" alt="APR Los Maquis" class="hs-s6-bg">
+      <div class="hs-s6-caption">
+        <span class="hs-s6-tag">APR Los Maquis</span>
+        <h2 class="hs-s6-h2">Hoy cumplimos 10 años del primer Medidor Inteligente instalado</h2>
+        <div class="hs-btns"><a href="{% url 'clientes' %}" class="hs-btn-wh">Ver comunidades</a></div>
+      </div>
+    </div> -->
+
+    <!-- SLIDE 3 -->
+    <div class="hero-slide hs-s6">
+      <img src="{% static 'app/img/webcliente1.jpg' %}" alt="Entrega de Medidores" class="hs-s6-bg">
+      <div class="hs-s6-caption">
+        <span class="hs-s6-tag">Comunidades APR</span>
+        <h2 class="hs-s6-h2">Entrega de Medidores Inteligentes</h2>
+        <div class="hs-btns"><a href="{% url 'clientes' %}" class="hs-btn-wh">Ver comunidades</a></div>
+      </div>
+      <div class="hs-s6-btn-mob" style="display:none;">
+        <a href="{% url 'clientes' %}">Ver comunidades</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="hero-slide hs-s6">
+      <img src="{% static 'app/img/webcliente2.jpg' %}" alt="Actualizaciones y novedades" class="hs-s6-bg">
+      <div class="hs-s6-caption">
+        <span class="hs-s6-tag">Actualizaciones y novedades</span>
+        <h2 class="hs-s6-h2">Información reciente sobre el Medidor Inteligente y APR</h2>
+        <div class="hs-btns"><a href="{% url 'testimonio' %}" class="hs-btn-wh">Últimas noticias</a></div>
+      </div>
+      <div class="hs-s6-btn-mob" style="display:none;">
+        <a href="{% url 'testimonio' %}">Últimas noticias</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 · RESPALDO -->
+    <!-- <div class="hero-slide hs-s4">
+      <div class="hs-circles" aria-hidden="true"><span class="hc-a"></span><span class="hc-b"></span><span class="hc-c"></span><span class="hc-d"></span><span class="hc-e"></span></div>
+      <div class="hs-inner">
+        <div>
+          <span class="hs-tag">Respaldo y Garantía</span>
+          <h2 class="hs-h2">Medidor Inteligente con Respaldo Real</h2>
+          <p class="hs-p">✔ 1 año de garantía en el medidor<br>✔ Capturador de datos con garantía indefinida<br>✔ Batería con duración de hasta 30 años</p>
+          <div class="hs-btns">
+            <a href="{% url 'soluciones' %}" class="hs-btn-wh">Ver nuestra solución</a>
+          </div>
+        </div>
+        <div class="hs-prod-wrap"><div class="hs-prod-frame"><div class="hs-prod-glow"></div><img src="{% static 'app/img/medidor3dh.png' %}" alt="Medidor Inteligente"></div></div>
+      </div>
+    </div> -->
+
   </div><!-- /hero-track -->
 
   <div class="hs-controls">
@@ -536,8 +792,6 @@
       <button class="hs-dot"        onclick="sliderGoTo(2)" aria-label="Slide 3"></button>
       <button class="hs-dot"        onclick="sliderGoTo(3)" aria-label="Slide 4"></button>
       <button class="hs-dot"        onclick="sliderGoTo(4)" aria-label="Slide 5"></button>
-      <button class="hs-dot"        onclick="sliderGoTo(5)" aria-label="Slide 6"></button>
-      <button class="hs-dot"        onclick="sliderGoTo(6)" aria-label="Slide 7"></button>
     </div>
     <div class="hs-arrows">
       <button class="hs-arrow" onclick="sliderPrev()" aria-label="Anterior">&#8249;</button>
@@ -547,521 +801,488 @@
 </section>
 
 <script>
-/* Medir navbar real y aplicar como variable CSS */
 (function(){
-  function setNavbarHeight() {
-    var nav = document.querySelector('nav, .nav, .navbar, header, .header');
-    var h = nav ? nav.offsetHeight : 70;
-    document.querySelector('.hero-slider') && 
-      document.querySelector('.hero-slider').style.setProperty('--navbar-h', h + 'px');
-  }
-  setNavbarHeight();
-  window.addEventListener('resize', setNavbarHeight);
+  function setH(){var nav=document.querySelector('nav,.nav,.navbar,header,.header');var h=nav?nav.offsetHeight:70;var s=document.querySelector('.hero-slider');if(s)s.style.setProperty('--navbar-h',h+'px');}
+  setH();window.addEventListener('resize',setH);
 })();
-
 (function(){
-  var track = document.getElementById('heroTrack');
-  var slider = track ? track.closest('.hero-slider') : null;
-  if (!track || !slider) return;
-  var slides = track.querySelectorAll('.hero-slide');
-  var dots   = slider.querySelectorAll('.hs-dot');
-  var total  = slides.length;
-  var cur    = 0;
-  var timer  = null;
-
-  function goTo(n) {
-    slides[cur].classList.remove('active');
-    if (dots[cur]) dots[cur].classList.remove('active');
-    cur = (n % total + total) % total;
-    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
-    slides[cur].classList.add('active');
-    if (dots[cur]) dots[cur].classList.add('active');
-  }
-
-  window.sliderGoTo = function(n){ goTo(n); reset(); };
-  window.sliderNext = function(){ goTo(cur+1); reset(); };
-  window.sliderPrev = function(){ goTo(cur-1); reset(); };
-
-  function start(){ timer = setInterval(function(){ goTo(cur+1); }, 7000); }
-  function stop() { clearInterval(timer); }
-  function reset(){ stop(); start(); }
-
-  slider.addEventListener('mouseenter', stop);
-  slider.addEventListener('mouseleave', start);
-
-  var tx = 0;
-  slider.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; stop(); }, {passive:true});
-  slider.addEventListener('touchend', function(e){
-    var dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 45){ dx < 0 ? goTo(cur+1) : goTo(cur-1); }
-    reset();
-  }, {passive:true});
-
-  window.addEventListener('resize', function(){
-    track.style.transition = 'none';
-    track.style.transform  = 'translateX(-' + (cur * 100) + '%)';
-    setTimeout(function(){ track.style.transition = ''; }, 50);
-  });
-
-  goTo(0); start();
+  var track=document.getElementById('heroTrack');
+  var slider=track?track.closest('.hero-slider'):null;
+  if(!track||!slider)return;
+  var slides=track.querySelectorAll('.hero-slide');
+  var dots=slider.querySelectorAll('.hs-dot');
+  var total=slides.length,cur=0,timer=null;
+  function goTo(n){slides[cur].classList.remove('active');if(dots[cur])dots[cur].classList.remove('active');cur=(n%total+total)%total;track.style.transform='translateX(-'+(cur*100)+'%)';slides[cur].classList.add('active');if(dots[cur])dots[cur].classList.add('active');}
+  window.sliderGoTo=function(n){goTo(n);reset();};
+  window.sliderNext=function(){goTo(cur+1);reset();};
+  window.sliderPrev=function(){goTo(cur-1);reset();};
+  function start(){timer=setInterval(function(){goTo(cur+1);},7000);}
+  function stop(){clearInterval(timer);}
+  function reset(){stop();start();}
+  slider.addEventListener('mouseenter',stop);slider.addEventListener('mouseleave',start);
+  var tx=0;
+  slider.addEventListener('touchstart',function(e){tx=e.changedTouches[0].clientX;stop();},{passive:true});
+  slider.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>45){dx<0?goTo(cur+1):goTo(cur-1);}reset();},{passive:true});
+  window.addEventListener('resize',function(){track.style.transition='none';track.style.transform='translateX(-'+(cur*100)+'%)';setTimeout(function(){track.style.transition='';},50);});
+  goTo(0);start();
 })();
-
 (function(){
-  function run(){
-    document.querySelectorAll('.hs-aniv-stats strong[data-count]').forEach(function(el,i){
-      var target = parseInt(el.getAttribute('data-count'),10);
-      var suffix = el.getAttribute('data-suffix')||'';
-      var text   = el.getAttribute('data-text')||'';
-      if(text && !target){ el.textContent=text; setTimeout(function(){ el.classList.remove('hs-counting'); void el.offsetWidth; el.classList.add('hs-counting'); },i*180); return; }
-      var dur=1400,s=null;
-      setTimeout(function(){
-        el.classList.remove('hs-counting'); void el.offsetWidth; el.classList.add('hs-counting');
-        (function step(ts){ if(!s)s=ts; var p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3); el.textContent=Math.floor(e*target)+suffix; p<1?requestAnimationFrame(step):el.textContent=target+suffix; })(performance.now());
-      },i*180);
-    });
-  }
-  var aniv = document.querySelector('.hero-slide.hs-aniv');
-  if(!aniv) return;
-  new MutationObserver(function(ms){ ms.forEach(function(m){ if(m.attributeName==='class'&&aniv.classList.contains('active')) setTimeout(run,600); }); }).observe(aniv,{attributes:true});
-  if(aniv.classList.contains('active')) setTimeout(run,900);
+  function run(){document.querySelectorAll('.hs-aniv-stats strong[data-count]').forEach(function(el,i){var target=parseInt(el.getAttribute('data-count'),10);var suffix=el.getAttribute('data-suffix')||'';var text=el.getAttribute('data-text')||'';if(text&&!target){el.textContent=text;setTimeout(function(){el.classList.remove('hs-counting');void el.offsetWidth;el.classList.add('hs-counting');},i*180);return;}var dur=1400,s=null;setTimeout(function(){el.classList.remove('hs-counting');void el.offsetWidth;el.classList.add('hs-counting');(function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*target)+suffix;p<1?requestAnimationFrame(step):el.textContent=target+suffix;})(performance.now());},i*180);});}
+  var aniv=document.querySelector('.hero-slide.hs-aniv');
+  if(!aniv)return;
+  new MutationObserver(function(ms){ms.forEach(function(m){if(m.attributeName==='class'&&aniv.classList.contains('active'))setTimeout(run,600);});}).observe(aniv,{attributes:true});
+  if(aniv.classList.contains('active'))setTimeout(run,900);
 })();
 </script>
+
 
 <!-- ═══════════════════════════════════════
      BENEFICIOS
 ═══════════════════════════════════════ -->
-<section class="benefits">
-    <span class="ben-circle c1"></span><span class="ben-circle c2"></span>
-    <span class="ben-circle c3"></span><span class="ben-circle c4"></span>
-    <span class="ben-circle c5"></span><span class="ben-circle c6"></span>
-    <span class="ben-circle c7"></span><span class="ben-circle c8"></span>
-
-    <h2>BENEFICIOS</h2>
-    <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
-    <div class="benefits-grid">
-        <div class="benefit-card">
-            <div class="benefit-icon">✓</div>
-            <h3>Fácil de implementar</h3>
-            <p>Diseñado para simplificar el proceso de instalación, nuestro medidor se adapta a las necesidades de cualquier comunidad, reduciendo tiempos y costos operativos.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">💧</div>
-            <h3>Reducción de pérdidas</h3>
-            <p>Con tecnología avanzada de monitoreo, nuestro medidor identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">$</div>
-            <h3>Costo accesible</h3>
-            <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p>
-        </div>
+<section class="hm-benefits">
+  <h2>BENEFICIOS</h2>
+  <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
+  <div class="hm-benefits-grid">
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon">✓</div>
+      <h3>Fácil de implementar</h3>
+      <p>Diseñado para simplificar el proceso de instalación, nuestro medidor se adapta a las necesidades de cualquier comunidad, reduciendo tiempos y costos operativos.</p>
     </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon">💧</div>
+      <h3>Reducción de pérdidas</h3>
+      <p>Con tecnología avanzada de monitoreo, nuestro medidor identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon">$</div>
+      <h3>Costo accesible</h3>
+      <p>Te ofrecemos un medidor inteligente y económico, diseñado para ofrecer tecnología de calidad al alcance de cualquier comunidad.</p>
+    </div>
+  </div>
 </section>
 
 
 <!-- ═══════════════════════════════════════
      SOSTENIBLE
 ═══════════════════════════════════════ -->
-<div class="imagun">
-    <div class="imagon">
-        <div class="imagan">
-            <img src="{% static 'app/img/beneficios.png' %}"
-                 alt="Medidor inteligente sostenible" class="imm-img">
-        </div>
-        <div class="imm-info">
-            <h2>Diseñado para <span class="highlight">durar y ser sostenible</span> a largo plazo</h2><br>
-            <p>Nuestro medidor está construido con materiales duraderos y de tecnología responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.</p>
-        </div>
-        <div class="ima">
-            <img class="arri" src="{% static 'app/img/logotransparente.png' %}" alt="medidorinteligente">
-        </div>
+<div class="hm-sos-wrap" style="padding: 2.5rem 0; position: relative;">
+  <div style="position: relative;">
+
+    <!-- BARRA AZUL -->
+    <div class="hm-sos-bar" style="
+      background: linear-gradient(135deg, #679bf1 0%, #004aad 55%, #002961 100%);
+      margin-left: clamp(220px, 28vw, 400px);
+      margin-right: 0;
+      border-radius: 20px 0 0 20px;
+      color: #fff;
+      padding: clamp(2rem,3.5vw,3rem) clamp(3rem,6vw,6rem) clamp(2rem,3.5vw,3rem) clamp(3rem,5vw,4.5rem);
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,.2);
+      min-height: clamp(200px,22vw,280px);
+      display: flex;
+      align-items: center;
+    ">
+      <!-- LOGO WATERMARK desktop -->
+      <img src="{% static 'app/img/logotransparente.png' %}" alt=""
+           style="position:absolute;right:50px;top:50%;transform:translateY(-50%);width:160px;opacity:0.11;pointer-events:none;">
+
+      <!-- IMAGEN MÓVIL — oculta en desktop, visible en móvil dentro de la barra -->
+      <div class="hm-sos-mob-img" style="display:none; width:100%; position:relative; margin:-2rem -1.4rem 1.5rem; overflow:hidden; border-radius:12px 12px 0 0;">
+        <img src="{% static 'app/img/logotransparente.png' %}" alt=""
+             style="position:absolute;right:12px;top:10px;width:80px;opacity:0.2;pointer-events:none;z-index:2;">
+        <img src="{% static 'app/img/beneficios.png' %}" alt="Medidor"
+             style="width:100%;display:block;">
+      </div>
+
+      <!-- TEXTO -->
+      <div class="hm-sos-text" style="flex:1;">
+        <h2 style="font-size:clamp(1.2rem,2vw,1.8rem);font-weight:700;line-height:1.3;margin:0 0 1rem;color:#fff;">
+          Diseñado para <strong style="font-weight:800; color:#7ed957;">durar y ser sostenible a largo plazo</strong>
+        </h2>
+        <p style="font-size:clamp(.92rem,1.15vw,1.05rem);line-height:1.8;color:rgba(255,255,255,.92);margin:0;">
+          Nuestro medidor está construido con los mejores materiales duraderos y de tecnología
+          responsable, pensado para garantizar eficiencia a largo plazo y un cuidado del medio ambiente que perdure en los años.
+        </p>
+      </div>
     </div>
+
+    <!-- IMAGEN DESKTOP — flota encima, oculta en móvil -->
+    <div class="hm-sos-img-wrap" style="
+      position: absolute;
+      left: clamp(20px, 3vw, 40px);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,.32);
+      width: clamp(220px, 28vw, 400px);
+    ">
+      <img src="{% static 'app/img/beneficios.png' %}"
+           alt="Medidor inteligente sostenible"
+           style="width:100%; display:block;">
+    </div>
+
+  </div>
 </div>
 
 
 <!-- ═══════════════════════════════════════
-     ¿QUÉ HACE NUESTRO MEDIDOR?
+     ¿QUÉ HACE EL MEDIDOR?
 ═══════════════════════════════════════ -->
-<section class="featurehome">
-    <br><br><br><br><br>
-    <div class="featurehome-container">
-        <h2>¿Qué hace <span class="highlight">nuestro medidor?</span></h2>
+<section class="hm-features-section">
+  <div class="hm-features-wrap">
+    <h2>¿Qué hace <span class="hm-hl">nuestro medidor?</span></h2>
 
-        <div class="featurehome-grid">
-
-            <!-- 1. Toma lecturas — señal WiFi con ondas + display digital -->
-            <div class="featurehome-item">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- display digital -->
-                        <rect x="8" y="24" width="32" height="16" rx="3" fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
-                        <text x="24" y="36" text-anchor="middle" font-family="monospace" font-size="9" fill="#004aad" font-weight="bold">00042</text>
-                        <!-- ondas wifi arriba -->
-                        <path d="M24 20 C20 20 17 17 17 14" stroke="#004aad" stroke-width="2" stroke-linecap="round" fill="none" opacity=".4"/>
-                        <path d="M24 20 C28 20 31 17 31 14" stroke="#004aad" stroke-width="2" stroke-linecap="round" fill="none" opacity=".4"/>
-                        <path d="M24 16 C21 16 19 13.5 19 11" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round" fill="none" opacity=".7"/>
-                        <path d="M24 16 C27 16 29 13.5 29 11" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round" fill="none" opacity=".7"/>
-                        <path d="M24 12 C22 12 21 10.5 21 9" stroke="#004aad" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <path d="M24 12 C26 12 27 10.5 27 9" stroke="#004aad" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <circle cx="24" cy="22" r="2" fill="#004aad"/>
-                        <!-- flechas laterales: datos viajando -->
-                        <path d="M4 32 L9 32 M6 29 L9 32 L6 35" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M44 32 L39 32 M42 29 L39 32 L42 35" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <h3>Toma lecturas a<br>distancia</h3>
-            </div>
-
-            <!-- 2. Detecta fugas — gota con alerta triangular -->
-            <div class="featurehome-item">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- gota de agua -->
-                        <path d="M24 8 C24 8 13 22 13 30 C13 36.6 18 42 24 42 C30 42 35 36.6 35 30 C35 22 24 8 24 8Z"
-                              fill="#dbeeff" stroke="#004aad" stroke-width="2"/>
-                        <!-- brillo interior gota -->
-                        <path d="M19 28 C19 24 21 21 23 19" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
-                        <!-- triángulo alerta -->
-                        <path d="M32 10 L40 24 L24 24 Z" fill="#ff4444" opacity=".9"/>
-                        <line x1="32" y1="14" x2="32" y2="20" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="32" cy="22.5" r="1.2" fill="#fff"/>
-                    </svg>
-                </div>
-                <h3>Detecta fugas,<br>robos o pérdidas</h3>
-            </div>
-
-            <!-- 3. Cierra paso de agua — válvula con candado -->
-            <div class="featurehome-item">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- tubo horizontal -->
-                        <rect x="4" y="22" width="15" height="6" rx="2" fill="#004aad"/>
-                        <rect x="29" y="22" width="15" height="6" rx="2" fill="#004aad"/>
-                        <!-- válvula circular -->
-                        <circle cx="24" cy="25" r="9" fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
-                        <path d="M24 16 L24 34 M15 25 L33 25" stroke="#004aad" stroke-width="2" stroke-linecap="round" opacity=".4"/>
-                        <!-- candado encima -->
-                        <rect x="19" y="26" width="10" height="8" rx="2" fill="#004aad"/>
-                        <path d="M21 26 V23 C21 20.8 27 20.8 27 23 V26" stroke="#004aad" stroke-width="2" stroke-linecap="round" fill="none"/>
-                        <circle cx="24" cy="30" r="1.5" fill="#fff"/>
-                        <!-- señal remota -->
-                        <path d="M36 12 C38.5 14.5 38.5 19 36 21" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-                        <path d="M39 9 C43 13 43 21 39 25" stroke="#3a8ef6" stroke-width="1.8" stroke-linecap="round" fill="none" opacity=".5"/>
-                    </svg>
-                </div>
-                <h3>Cierra el paso de<br>agua a distancia</h3>
-            </div>
-
-            <!-- 4. Traspasa datos — nube con flechas de subida -->
-            <div class="featurehome-item">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- nube -->
-                        <path d="M34 28 C38 28 41 25 41 21 C41 17 38 14 34 14 C33 10 29.5 7 25 7 C20 7 16 11 16 16 C13 16 10 18.7 10 22 C10 25.3 13 28 16 28 Z"
-                              fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
-                        <!-- flecha subiendo izq -->
-                        <line x1="20" y1="42" x2="20" y2="28" stroke="#004aad" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M16 32 L20 28 L24 32" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <!-- flecha subiendo der -->
-                        <line x1="28" y1="42" x2="28" y2="28" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M24 32 L28 28 L32 32" stroke="#3a8ef6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <!-- punto de clic -->
-                        <circle cx="37" cy="38" r="4" fill="#004aad" opacity=".15"/>
-                        <circle cx="37" cy="38" r="2" fill="#004aad"/>
-                    </svg>
-                </div>
-                <h3>Traspasa datos con<br>un par de clicks</h3>
-            </div>
-
-            <!-- 5. Ahorra tiempo, dinero y esfuerzo — reloj + moneda + rayo -->
-            <div class="featurehome-item">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- reloj -->
-                        <circle cx="16" cy="28" r="10" fill="#e8f1ff" stroke="#004aad" stroke-width="2"/>
-                        <line x1="16" y1="28" x2="16" y2="22" stroke="#004aad" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="16" y1="28" x2="20" y2="28" stroke="#004aad" stroke-width="2" stroke-linecap="round"/>
-                        <!-- moneda -->
-                        <circle cx="34" cy="30" r="8" fill="#ffd84d" stroke="#e6a800" stroke-width="1.5"/>
-                        <text x="34" y="34" text-anchor="middle" font-family="Arial" font-size="9" fill="#b37700" font-weight="bold">$</text>
-                        <!-- rayo: esfuerzo/energía -->
-                        <path d="M28 8 L22 20 L27 20 L21 36 L35 18 L29 18 Z"
-                              fill="#004aad" opacity=".85"/>
-                    </svg>
-                </div>
-                <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
-            </div>
-
-        </div>
-
-        <div class="coso">
-            <img class="arri" src="{% static 'app/img/medidor3dh.png' %}" alt="medidorinteligente">
-        </div>
+    <div class="hm-feat-grid">
+      <div class="hm-feat-item">
+        <div class="hm-feat-icon"><img src="{% static 'app/img/Icono1.png' %}" alt="Toma lecturas a distancia"></div>
+        <h3>Toma lecturas a<br>distancia</h3>
+      </div>
+      <div class="hm-feat-item">
+        <div class="hm-feat-icon"><img src="{% static 'app/img/icono2.png' %}" alt="Detecta fugas"></div>
+        <h3>Detecta fugas,<br>robos o pérdidas</h3>
+      </div>
+      <div class="hm-feat-item">
+        <div class="hm-feat-icon"><img src="{% static 'app/img/icono3.png' %}" alt="Cierra paso de agua"></div>
+        <h3>Cierra el paso de<br>agua a distancia</h3>
+      </div>
+      <div class="hm-feat-item">
+        <div class="hm-feat-icon"><img src="{% static 'app/img/icono4.png' %}" alt="Traspasa datos"></div>
+        <h3>Traspasa datos con<br>un par de clicks</h3>
+      </div>
+      <div class="hm-feat-item">
+        <div class="hm-feat-icon"><img src="{% static 'app/img/icono5.png' %}" alt="Ahorra tiempo"></div>
+        <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
+      </div>
     </div>
+
+    <div class="hm-meter-wrap">
+      <img class="hm-meter-img"
+           src="{% static 'app/img/medidor1.png' %}"
+           alt="Medidor inteligente">
+    </div>
+
+  </div>
 </section>
+
+
+<!-- ═══════════════════════════════════════
+     TESTIMONIOS — slider original, fondo claro, sin descripciones
+═══════════════════════════════════════ -->
+<section class="hm-test-section">
+  <div class="hm-test-container">
+
+    <div class="hm-test-text">
+      <h2>Que dicen <span>nuestros clientes</span></h2>
+      <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
+      <a href="https://www.youtube.com/watch?v=iSDKmmRJ7MU" class="hm-view-more" target="_blank" rel="noopener noreferrer">
+        Ver más testimonios
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+    </div>
+
+    <div class="hm-test-slider">
+      <button class="hm-slider-btn hm-slider-prev" id="hmPrevBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <div class="hm-slider-container" id="hmSliderContainer">
+        <div class="hm-slider-track" id="hmSliderTrack">
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/UvPPK3VluzM" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/RjTlcUPfCVA" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/TCAa7qUEVYs" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/A_rxG90YzS8" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/1_bwMkz3pqM" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/ZKso4E9MkfY" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/5rehLhCMSG8" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/crhAwARwYKw" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/ZsXCr20WgWY" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/X_d1ceK9G-I" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/MwuYC75PbNs" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/lQpcUDDLqRA" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="hm-testimonial-card">
+            <div class="hm-video-wrap">
+              <iframe src="https://www.youtube.com/embed/vpby-GBccvs" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="hm-slider-btn hm-slider-next" id="hmNextBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="hm-slider-dots">
+        <span class="hm-slider-dot active"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+        <span class="hm-slider-dot"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     COMUNIDADES
+═══════════════════════════════════════ -->
+<section class="hm-comunidades">
+  <div class="hm-com-inner">
+    <div class="hm-com-tag">📍 Presencia nacional</div>
+    <h2>Conoce a todas las comunidades alrededor de Chile que <span>confían en nosotros</span></h2>
+    <a href="{% url 'clientes' %}" class="hm-com-btn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 8l4 4-4 4M3 12h18"/></svg>
+      Ver todas las comunidades
+    </a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     VIDEO
+═══════════════════════════════════════ -->
+<section class="hm-video-sec">
+  <div class="hm-video-inner">
+    <div class="hm-vid-pill"><span class="hm-vid-dot"></span>En acción</div>
+    <h2>Así transformamos la <em>gestión del agua</em></h2>
+    <h3>con nuestro medidor inteligente</h3>
+    <div class="hm-vid-frame-wrap">
+      <div class="hm-vid-frame">
+        <iframe src="https://www.youtube.com/embed/mSEJlKinapg?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONTACTO
+═══════════════════════════════════════ -->
+<section class="hm-contacto">
+  <div class="hm-cont-inner">
+    <div class="hm-cont-header">
+      <div class="hm-cont-pill"><span class="hm-cont-pill-dot"></span>Contáctanos</div>
+      <h2>Únete a las más de <span>150 comunidades</span> que ya dieron el paso</h2>
+      <p>Cuéntanos sobre tu comunidad y te contactaremos a la brevedad con una propuesta personalizada.</p>
+    </div>
+    <div class="hm-form-card">
+      <div class="hm-form-accent"></div>
+      <div class="hm-form-body">
+        <form method="POST" action="" id="hmEmailForm">
+          {% csrf_token %}
+          <div class="hm-row">
+            <div class="hm-field">
+              <label>Nombre completo <span class="hm-req">*</span></label>
+              <input type="text" name="name" placeholder="Escribe aquí" required>
+            </div>
+            <div class="hm-field">
+              <label for="hmEmail1">Correo electrónico <span class="hm-req">*</span></label>
+              <input type="email" name="correo" id="hmEmail1" placeholder="Escribe aquí" required>
+            </div>
+            <div class="hm-field">
+              <label for="hmEmail2">Confirmar correo <span class="hm-req">*</span></label>
+              <input type="email" name="correo2" id="hmEmail2" placeholder="Escribe aquí" required>
+            </div>
+            <div class="hm-field">
+              <label>Teléfono <span class="hm-req">*</span></label>
+              <input type="tel" name="phone" placeholder="Escribe aquí" required>
+            </div>
+            <div class="hm-field">
+              <label>Nombre del APR / SSR <span class="hm-req">*</span></label>
+              <input type="text" name="ssr_apr" placeholder="Escribe aquí" required>
+            </div>
+            <div class="hm-field">
+              <label>Cargo o Puesto en el APR <span class="hm-req">*</span></label>
+              <input type="text" name="cargo_apr" placeholder="Escribe aquí" required>
+            </div>
+            <div class="hm-field">
+              <label>Comuna <span class="hm-req">*</span></label>
+              <input type="text" name="comuna" placeholder="Escribe aquí" required>
+            </div>
+            <div class="hm-field">
+              <label>Cantidad de Arranques</label>
+              <input type="text" name="cantidad" id="hmCantidad" placeholder="Escribe aquí">
+            </div>
+            <div class="hm-field hm-full">
+              <label>Tipo de financiamiento <span class="hm-req">*</span></label>
+              <div class="hm-radios">
+                <label class="hm-radio-lbl"><input type="radio" name="financiamiento" value="Fondo propio" required checked><span>Propio</span></label>
+                <label class="hm-radio-lbl"><input type="radio" name="financiamiento" value="Fondo externo (Gobierno, otras entidades)" required><span>Fondo externo (Gobierno, otras entidades)</span></label>
+              </div>
+            </div>
+            <div class="hm-field hm-full">
+              <label>Mensaje</label>
+              <textarea name="message" placeholder="Escribe aquí" rows="4"></textarea>
+            </div>
+          </div>
+          <button type="submit" id="hmSendBtn" class="hm-submit">
+            <span id="hmSendTxt">Enviar mensaje</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <script>
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+document.addEventListener('DOMContentLoaded',function(){
+
+  /* Solo números en arranques */
+  var cant=document.getElementById('hmCantidad');
+  if(cant) cant.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'');});
+
+  /* ── Slider testimonios ── */
+  var track   = document.getElementById('hmSliderTrack');
+  var nextBtn = document.getElementById('hmNextBtn');
+  var prevBtn = document.getElementById('hmPrevBtn');
+  var dots    = document.querySelectorAll('.hm-slider-dots .hm-slider-dot');
+  if(track){
+    var slides = track.children, idx = 0, auto2 = null, videoPaused = false;
+
+    function getW(){ return slides[0] ? slides[0].getBoundingClientRect().width : 0; }
+
+    function go(n){
+      if(n >= slides.length) n = 0;
+      if(n < 0) n = slides.length - 1;
+      track.style.transform = 'translateX(-' + (getW() * n) + 'px)';
+      idx = n;
+      dots.forEach(function(d,i){ d.classList.toggle('active', i===n); });
+    }
+
+    function startAuto(){
+      if(auto2) clearInterval(auto2);
+      auto2 = setInterval(function(){
+        if(!videoPaused) go(idx >= slides.length-1 ? 0 : idx+1);
+      }, 9000);
+    }
+    function stopAuto(){ clearInterval(auto2); auto2 = null; }
+
+    /* Detectar si algún iframe de YouTube está reproduciéndose */
+    window.addEventListener('message', function(e){
+      try {
+        var data = JSON.parse(e.data);
+        /* YouTube manda playerState: 1=playing, 2=paused, 0=ended */
+        if(data.event === 'onStateChange'){
+          if(data.info === 1){
+            videoPaused = true;   /* reproduciendo → congelar slider */
+            stopAuto();
+          } else if(data.info === 2 || data.info === 0){
+            videoPaused = false;  /* pausado/terminado → reanudar */
+            startAuto();
+          }
+        }
+      } catch(err){}
     });
-}, { threshold: 0.1 });
-document.querySelectorAll('.imagun, .featurehome-item').forEach(el => obs.observe(el));
-</script>
-<!-- ═══════════════════════════════════════════════════════
-     TESTIMONIOS (slider propio, JS abajo)
-═══════════════════════════════════════════════════════ -->
-<section class="testimonials-section home">
-    <div class="testimonials-container">
 
-        <div class="testimonials-text">
-            <h2>Que dicen <span class="highlight">nuestros clientes</span></h2>
-            <p>Cada vez son más las comunidades satisfechas con nuestro medidor, permitiéndoles gestionar mejor sus recursos potables.</p>
-            <a href="https://www.youtube.com/watch?v=iSDKmmRJ7MU" class="view-more" target="_blank" rel="noopener noreferrer">
-                Ver más testimonios
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
-            </a>
-        </div>
-
-        <div class="testimonials-slider">
-            <button class="slider-btn prev" id="prevBtn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-
-            <div class="slider-container" id="sliderContainer">
-                <div class="slider-track" id="sliderTrack">
-                    <div class="testimonial-card">
-                        <div class="video-containerhome">
-                            <iframe src="https://www.youtube.com/embed/RjTlcUPfCVA" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="card-info">
-                            <h3>Testimonio: Paulino González, Operador Comité APR "Monte Las Mercedes"</h3>
-                            <p class="region">Isla de Maipo</p>
-                            <p class="person">Paulino González — Operador</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="video-containerhome">
-                            <iframe src="https://www.youtube.com/embed/TCAa7qUEVYs" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="card-info">
-                            <h3>Experiencia con Medidor Inteligente: Gerente Cooperativa APR "Tinguiririca"</h3>
-                            <p class="region">Tinguiririca</p>
-                            <p class="person">Nury Orellana — Gerente</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="video-containerhome">
-                            <iframe src="https://www.youtube.com/embed/A_rxG90YzS8" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="card-info">
-                            <h3>Testimonio: José Flores, Operador Comité APR "San Antonio de Naltagua"</h3>
-                            <p class="region">Isla de Maipo</p>
-                            <p class="person">José Flores — Operador</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="slider-btn next" id="nextBtn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-
-            <div class="slider-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════════
-     MAPA COMUNIDADES
-═══════════════════════════════════════════════════════ -->
-<section class="sustainability">
-    <div class="sustainability" style="background-image: url('{% static 'app/img/Vector1.png' %}');">
-        <div class="cta-content">
-            <h2>Conoce a todas las comunidades alrededor de Chile que <span>confían en nosotros</span></h2>
-            <a href="{% url 'clientes' %}" class="card-button">Ver más</a>
-        </div>
-    </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════════
-     VIDEO PRINCIPAL
-═══════════════════════════════════════════════════════ -->
-<section class="headerr">
-    <h1 class="poi">Así transformamos la gestión del agua</h1>
-    <h2 class="poi">con nuestro medidor inteligente</h2><br>
-    <div class="video-24">
-        <iframe src="https://www.youtube.com/embed/mSEJlKinapg" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
-    </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════════
-     FORMULARIO DE CONTACTO
-═══════════════════════════════════════════════════════ -->
-<section class="banner-img">
-    <div class="container rea">
-        <h1 class="ras">Únete a las más de 150 comunidades que ya dieron el paso hacia la innovación</h1>
-        <br>
-        <div class="contact-form col-12">
-            <section class="container ream">
-                <div class="contact-form ñam">
-                    <div class="contact-form col-12">
-                        <h2>¿Más dudas? Escríbenos</h2>
-                        <form class="col-md-8" method="POST" action="" id="emailForm">
-                            {% csrf_token %}
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Nombre completo <span class="required">*</span></label>
-                                    <input type="text" name="name" placeholder="Escribe aquí" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="emai">Correo electrónico <span class="required">*</span></label>
-                                    <input type="email" name="correo" id="emai" placeholder="Escribe aquí" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Confirmar correo <span class="required">*</span></label>
-                                    <input type="email" name="correo2" id="email" placeholder="Escribe aquí" required>
-                                </div>
-                            </div>
-                            <div class="form-group full-width">
-                                <label>Teléfono <span class="required">*</span></label>
-                                <input type="tel" name="phone" placeholder="Escribe aquí" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Nombre del APR / SSR <span class="required">*</span></label>
-                                    <input type="text" name="ssr_apr" placeholder="Escribe aquí" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Cargo o Puesto en el APR <span class="required">*</span></label>
-                                    <input type="text" name="cargo_apr" placeholder="Escribe aquí" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Comuna <span class="required">*</span></label>
-                                    <input type="text" name="comuna" placeholder="Escribe aquí" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Cantidad de Arranques</label>
-                                    <input type="text" name="cantidad" placeholder="Escribe aquí" id="cantidad">
-                                </div>
-                            </div>
-                            <div class="form-group full-width">
-                                <label>Tipo de financiamiento <span class="required">*</span></label>
-                                <div class="radio-options">
-                                    <label class="radio-label">
-                                        <input type="radio" name="financiamiento" value="Fondo propio" required checked>
-                                        <span>Propio</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="financiamiento" value="Fondo externo (Gobierno, otras entidades)" required>
-                                        <span>Fondo externo (Gobierno, otras entidades)</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group full-width">
-                                <label>Mensaje</label>
-                                <textarea name="message" placeholder="Escribe aquí" rows="6"></textarea>
-                            </div>
-                            <button type="submit" id="sendBtn">Enviar</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</section>
-
-{% endblock contenido %}
-
-
-{# ─── Scripts específicos de home.html ─────────────────────────────────────
-   slider.js ya se cargó desde base.html (o puedes añadirlo aquí si prefieres).
-   Aquí van SOLO los scripts propios de esta página.
-────────────────────────────────────────────────────────────────────────── #}
-{% block scripts %}{% endblock %}
-
-<script>
-/* ── Validar solo números en cantidad de arranques ── */
-document.addEventListener('DOMContentLoaded', function () {
-
-  /* Arranques: solo números */
-  var inputCantidad = document.getElementById('cantidad');
-  if (inputCantidad) {
-    inputCantidad.addEventListener('input', function () {
-      this.value = this.value.replace(/\D/g, '');
+    /* Activar la API de YouTube en cada iframe para recibir eventos */
+    Array.prototype.forEach.call(track.querySelectorAll('iframe'), function(iframe){
+      var src = iframe.src;
+      if(src.indexOf('enablejsapi') === -1){
+        iframe.src = src + (src.indexOf('?') === -1 ? '?' : '&') + 'enablejsapi=1';
+      }
     });
+
+    if(nextBtn) nextBtn.addEventListener('click', function(){ if(!videoPaused){ go(idx+1); } });
+    if(prevBtn) prevBtn.addEventListener('click', function(){ if(!videoPaused){ go(idx-1); } });
+    dots.forEach(function(d,i){ d.addEventListener('click', function(){ if(!videoPaused){ go(i); } }); });
+
+    window.addEventListener('resize', function(){ go(idx); });
+
+    var tx2=0;
+    track.addEventListener('touchstart',function(e){ tx2=e.touches[0].clientX; });
+    track.addEventListener('touchend',  function(e){
+      if(videoPaused) return;
+      var dx=tx2-e.changedTouches[0].clientX;
+      if(Math.abs(dx)>50) go(dx>0?idx+1:idx-1);
+    });
+
+    startAuto();
   }
-
-  /* ── Testimonios slider ── */
-  var track   = document.getElementById('sliderTrack');
-  var nextBtn = document.getElementById('nextBtn');
-  var prevBtn = document.getElementById('prevBtn');
-  var dots    = document.querySelectorAll('.dot');
-  if (!track) return;
-
-  var slides = track.children;
-  var idx    = 0;
-  var slideW = slides[0].getBoundingClientRect().width;
-
-  window.addEventListener('resize', function () {
-    slideW = slides[0].getBoundingClientRect().width;
-    go(idx);
-  });
-
-  function go(n) {
-    track.style.transform = 'translateX(-' + (slideW * n) + 'px)';
-    idx = n;
-    dots.forEach(function (d, i) { d.classList.toggle('active', i === n); });
-  }
-
-  if (nextBtn) nextBtn.addEventListener('click', function () { go(idx >= slides.length - 1 ? 0 : idx + 1); });
-  if (prevBtn) prevBtn.addEventListener('click', function () { go(idx <= 0 ? slides.length - 1 : idx - 1); });
-  dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); }); });
-
-  var tx = 0;
-  track.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
-  track.addEventListener('touchend',   function (e) {
-    var dx = tx - e.changedTouches[0].clientX;
-    if (Math.abs(dx) > 50) go(dx > 0 ? (idx < slides.length-1 ? idx+1 : 0) : (idx > 0 ? idx-1 : slides.length-1));
-  });
-
-  var auto = setInterval(function () { go(idx >= slides.length-1 ? 0 : idx+1); }, 9000);
-  track.addEventListener('mouseenter', function () { clearInterval(auto); });
-  track.addEventListener('mouseleave', function () { auto = setInterval(function () { go(idx >= slides.length-1 ? 0 : idx+1); }, 9000); });
-
-  /* ── Validación formulario de contacto ── */
-  var emailForm = document.getElementById('emailForm');
-  if (emailForm) {
-    emailForm.addEventListener('submit', function (e) {
-      var c1 = document.getElementById('emai').value.trim();
-      var c2 = document.getElementById('email').value.trim();
-      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!c1 || !c2) {
-        e.preventDefault();
-        Swal.fire({ title: 'Error', text: 'Ambos campos de correo deben estar completos', icon: 'error', showConfirmButton: false, timer: 2500, timerProgressBar: true });
-        return;
-      }
-      if (!re.test(c1) || !re.test(c2)) {
-        e.preventDefault();
-        Swal.fire({ title: 'Error', text: 'Formato de correo inválido', icon: 'error', showConfirmButton: false, timer: 2500, timerProgressBar: true });
-        return;
-      }
-      if (c1 !== c2) {
-        e.preventDefault();
-        Swal.fire({ title: 'Error', text: 'Los correos no coinciden', icon: 'error', showConfirmButton: false, timer: 2500, timerProgressBar: true });
-        return;
-      }
-      Swal.fire({ title: '¡Éxito!', text: 'Enviado correctamente.', icon: 'success', showConfirmButton: false, timer: 2500, timerProgressBar: true });
+  var form=document.getElementById('hmEmailForm');
+  if(form){
+    var sending=false;
+    form.addEventListener('submit',function(e){
+      var c1=document.getElementById('hmEmail1').value.trim();
+      var c2=document.getElementById('hmEmail2').value.trim();
+      var re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!c1||!c2){e.preventDefault();Swal.fire({title:'Error',text:'Ambos campos de correo deben estar completos',icon:'error',showConfirmButton:false,timer:2500,timerProgressBar:true});return;}
+      if(!re.test(c1)||!re.test(c2)){e.preventDefault();Swal.fire({title:'Error',text:'Formato de correo inválido',icon:'error',showConfirmButton:false,timer:2500,timerProgressBar:true});return;}
+      if(c1!==c2){e.preventDefault();Swal.fire({title:'Error',text:'Los correos no coinciden',icon:'error',showConfirmButton:false,timer:2500,timerProgressBar:true});return;}
+      if(sending){e.preventDefault();return;}
+      sending=true;
+      var btn=document.getElementById('hmSendBtn');
+      var txt=document.getElementById('hmSendTxt');
+      if(btn)btn.disabled=true;
+      if(txt)txt.textContent='Enviando…';
+      Swal.fire({title:'¡Éxito!',text:'Enviado correctamente.',icon:'success',showConfirmButton:false,timer:2500,timerProgressBar:true});
     });
   }
 
 });
 </script>
+
+{% endblock contenido %}
+{% block scripts %}{% endblock %}
