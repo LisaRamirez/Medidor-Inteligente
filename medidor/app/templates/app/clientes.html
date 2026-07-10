@@ -34,7 +34,7 @@
     left: 0;
     right: 0;
     height: 20px;
-    background: linear-gradient(to bottom, transparent, rgba(3, 59, 112, 0.95));
+    background: linear-gradient(to bottom, transparent, rgba(3, 112, 103, 0.95));
     pointer-events: none;
 }
 
@@ -76,6 +76,8 @@
 
     <nav class="rg-hero__nav" aria-label="Filtro por región">
         <button class="rg-filter rg-filter--on" data-region="all">Todas</button>
+        <button class="rg-filter" data-region="Atacama">Arica y Parinacota</button>
+        <button class="rg-filter" data-region="Atacama">Atacama</button>
         <button class="rg-filter" data-region="Coquimbo">Coquimbo</button>
         <button class="rg-filter" data-region="Valparaíso">Valparaíso</button>
         <button class="rg-filter" data-region="Metropolitana">Metropolitana</button>
@@ -149,26 +151,30 @@
 
 /* ── HERO ─────────────────────────────────────────────────── */
 .rg-hero {
-    background: #002366;
+    background: linear-gradient(
+        160deg,
+        #1e40af 0%,
+        #0683c2 20%,
+        #05c585ea 42%,
+        #05a1e4 68%,
+        #0c7cb4 88%,
+        #0733c5 100%
+    );
     padding: 70px 24px 60px;
     text-align: center;
     position: relative;
     overflow: hidden;
 }
+
 .rg-hero::before {
     content: '';
-    position: absolute; inset: 0;
-    background:
-        radial-gradient(ellipse 55% 70% at 15% 50%, rgba(0,111,255,.35) 0%, transparent 65%),
-        radial-gradient(ellipse 45% 55% at 85% 55%, rgba(0,203,172,.28) 0%, transparent 65%);
-    pointer-events: none;
-}
-.rg-hero::after {
-    content: '';
     position: absolute;
-    bottom: 0; left: -100%; width: 300%; height: 2px;
-    background: linear-gradient(90deg, transparent, #006fff, #00cbac, transparent);
-    animation: rgShimmer 4s linear infinite;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(10, 123, 228, 0.35), transparent 65%),
+        radial-gradient(ellipse 50% 60% at 85% 75%, rgba(14,165,233,.35), transparent 65%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,255,255,.12), transparent 70%);
+    pointer-events: none;
 }
 @keyframes rgShimmer {
     from { transform: translateX(0); }
@@ -178,9 +184,9 @@
 
 .rg-hero__pill {
     display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(0,203,172,.12);
-    border: 1px solid rgba(0,203,172,.35);
-    color: #00cbac;
+    background: rgba(0, 105, 203, 0.12);
+    border: 1px solid rgba(8, 44, 202, 0.35);
+    color: #f1f8ff;
     font-size: 10.5px; font-weight: 600; letter-spacing: .16em;
     text-transform: uppercase;
     padding: 6px 16px; border-radius: 99px; margin-bottom: 20px;
@@ -190,7 +196,7 @@
 .rg-hero__pill::before {
     content: '';
     width: 7px; height: 7px; border-radius: 50%;
-    background: #00cbac; flex-shrink: 0;
+    background: #0026ff; flex-shrink: 0;
     animation: rgBlink 2s ease-in-out infinite;
 }
 @keyframes rgBlink {
@@ -217,14 +223,14 @@
 }
 .rg-hero__title em {
     font-style: normal;
-    background: linear-gradient(90deg, #2a85ff 0%, #00cbac 100%);
+    background: linear-gradient(90deg, #1172f1 0%, #0040cb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .rg-hero__sub {
-    color: rgba(255,255,255,0.55);
+    color: rgba(2, 45, 109, 0.55);
     font-size: 1.05rem; margin-bottom: 2.2rem;
 }
 
@@ -254,8 +260,8 @@
 
 .rg-filter {
     background: rgba(255,255,255,0.07);
-    border: 1.5px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(255, 255, 255, 0.575);
+    color: rgb(255, 255, 255);
     padding: 0.62rem 1.5rem;
     border-radius: 2rem; cursor: pointer;
     font-size: 0.97rem; font-weight: 600;
@@ -265,10 +271,10 @@
 }
 .rg-filter:hover {
     background: rgba(255,255,255,0.15);
-    color: #fff; border-color: rgba(255,255,255,0.45);
+    color: #fff; border-color: rgba(255, 255, 255, 0.897);
 }
 .rg-filter--on {
-    background: linear-gradient(135deg, #006fff, #2a85ff 60%, #00cbac);
+    background: linear-gradient(135deg, #0635cf, #1572ec 60%, #029fe7);
     color: #fff !important; border-color: transparent;
     box-shadow: 0 4px 18px rgba(0,111,255,0.45);
     font-size: 1rem;
@@ -356,7 +362,7 @@
 .rg-card__foot {
     display: flex; align-items: center; justify-content: space-between;
     padding: 0.68rem 0.85rem;
-    background: linear-gradient(135deg, #006fff 0%, #2a85ff 50%, #00cbac 100%);
+    background: linear-gradient(135deg, #05bdad 0%, #2a85ff 50%, #022f72 100%);
 }
 
 .rg-card__loc {

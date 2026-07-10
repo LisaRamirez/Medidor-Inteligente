@@ -30,18 +30,22 @@ class Contacto(models.Model):
 
 
 opciones_consultas = [
-    
-    ["Coquimbo","Coquimbo"],
-    ["Valparaíso","Valparaíso"],
-    ["Metropolitana","Metropolitana"],
-    ["O'higgins","O'higgins"],
-    ["Maule","Maule"],
-    ["Biobio","Biobio"],
-    ["Araucania","Araucania"],
-    ["Los Rios","Los Rios"],
-    ["Los Lagos","Los Lagos"],
-    ["Aysen","Aysen"],
-    
+    ["Arica y Parinacota", "Arica y Parinacota"],
+    ["Tarapacá", "Tarapacá"],
+    ["Antofagasta", "Antofagasta"],
+    ["Atacama", "Atacama"],
+    ["Coquimbo", "Coquimbo"],
+    ["Valparaíso", "Valparaíso"],
+    ["Metropolitana de Santiago", "Metropolitana de Santiago"],
+    ["O'Higgins", "O'Higgins"],
+    ["Maule", "Maule"],
+    ["Ñuble", "Ñuble"],
+    ["Biobío", "Biobío"],
+    ["La Araucanía", "La Araucanía"],
+    ["Los Ríos", "Los Ríos"],
+    ["Los Lagos", "Los Lagos"],
+    ["Aysén", "Aysén"],
+    ["Magallanes", "Magallanes"],
 ]
 
 class Apr(models.Model):

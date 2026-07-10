@@ -4,6 +4,7 @@
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
   /* HERO */
   .nosotros-hero {
@@ -76,7 +77,7 @@
   .nosotros-hero-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: #00d4b8;
+    background: #00d451;
     animation: nosotrosPulse 2s ease-in-out infinite;
   }
 
@@ -95,7 +96,14 @@
     animation: nosotrosFadeUp 0.9s ease 0.25s both;
   }
 
-  .nosotros-hero-content h1 span { color: #00d4b8; }
+  .nosotros-hero-content h1 span {  background: linear-gradient(
+        90deg,
+        #06e69b 0%,
+        #38bdf8 55%,
+        #06dd83 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }
 
   .nosotros-hero-line {
     width: 48px; height: 3px;
@@ -281,16 +289,16 @@
   .nosotros-quienes-text h3 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.7rem, 3vw, 2.4rem);
-    color: #0d1f5c;
+    color: #0d2f5c;
     margin-bottom: 0.5rem;
     line-height: 1.2;
   }
 
-  .nosotros-quienes-text h3 span { color: #1a7fd4; }
+  .nosotros-quienes-text h3 span { color: #01df8a; }
 
   .nosotros-qs-linea {
     width: 48px; height: 3px;
-    background: linear-gradient(90deg, #0d1f5c, #00b4a0);
+    background: linear-gradient(90deg, #0d5c58, #00b4a0);
     border-radius: 2px;
     margin-bottom: 1.4rem;
   }
@@ -309,12 +317,21 @@
   }
 
     /* STATS */
-  .nosotros-stats {
+.nosotros-stats {
     position: relative;
     padding: 4rem 2rem 6rem;
     overflow: hidden;
-    background: #071a4a;
-  }
+    background:
+        radial-gradient(circle at 50% 50%, #087fce 0%, #0d53a3 25%, transparent 55%),
+        linear-gradient(
+            135deg,
+            #00ff88 0%,
+            #087cc4 25%,
+            #002fff 50%,
+            #0b90e2 75%,
+            #08dfbb 100%
+        );
+}
 
   /* Brillo azul izquierda */
   .nosotros-stats::before {
@@ -322,7 +339,7 @@
     position: absolute;
     top: -30%; left: -5%;
     width: 45%; height: 160%;
-    background: radial-gradient(ellipse, rgba(30,80,200,0.40) 0%, transparent 60%);
+    background: radial-gradient(ellipse, rgba(13, 240, 240, 0.4) 0%, transparent 60%);
     pointer-events: none;
   }
 
@@ -332,7 +349,7 @@
     position: absolute;
     top: -30%; right: -5%;
     width: 45%; height: 160%;
-    background: radial-gradient(ellipse, rgba(0,200,180,0.30) 0%, transparent 60%);
+    background: radial-gradient(ellipse, rgba(0, 170, 200, 0.568) 0%, transparent 60%);
     pointer-events: none;
   }
 
@@ -395,7 +412,7 @@
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.4rem, 4vw, 3.4rem);
     font-weight: 900;
-    background: linear-gradient(90deg, #4da6ff 0%, #00d4b8 100%);
+    background: linear-gradient(90deg, #043e86 0%, #070ab1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -407,8 +424,8 @@
   /* Labels: blanco suave */
   .nosotros-stat-label {
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.80);
+    font-size: 1.30rem;
+    color: rgb(225, 230, 253);
     font-weight: 400;
     letter-spacing: 0.04em;
   }
@@ -422,7 +439,7 @@
 
   /* VIDEOS */
   .nosotros-videos-section {
-    background: #ffffff;
+    background: #b1e8f180;
     padding: 4rem 0 5rem;
     overflow: hidden;
     position: relative;
@@ -475,7 +492,16 @@
     margin-bottom: 0.5rem;
   }
 
-  .nosotros-videos-header h2 span { color: #1a7fd4; }
+.nosotros-videos-header h2 span {
+    background: linear-gradient(
+        90deg,
+        #34d399 0%,
+        #22d3ee 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
   .nosotros-videos-header p {
     font-family: 'DM Sans', sans-serif;
@@ -874,6 +900,181 @@
     animation: nosotrosFloatA 10s ease-in-out infinite reverse;
   }
 
+  /* ═══════════════════════════════════════════
+     BLOQUE UNIFICADO DESDE ANIVERSARIO
+     (escapado en .aniv-merge para no afectar el resto de la página)
+  ════════════════════════════════════════════ */
+  html{scroll-behavior:smooth}
+  .aniv-merge,.aniv-merge *,.aniv-merge *::before,.aniv-merge *::after{box-sizing:border-box;margin:0;padding:0}
+  .aniv-merge{
+    --white:#ffffff;--off:#f4f9fc;--cloud:#e6f2fb;--sky:#c5dff5;
+    --celeste:#5aaee6;--blue:#1a73c8;--blue-d:#0d4d8c;
+    --teal:#0eb8a0;--teal-l:#6ddccc;--teal-p:#d4f5f1;
+    --ink:#0d1e30;--ink-m:#3a5068;--ink-l:#7a9ab5;
+    --border:rgba(26,115,200,.1);--r:16px;--gap:clamp(70px,9vw,120px);
+    --shadow-sm:0 2px 12px rgba(13,30,48,.08);
+    --shadow-md:0 6px 28px rgba(13,30,48,.12);
+    --shadow-lg:0 14px 48px rgba(13,30,48,.16);
+    --shadow-blue:0 8px 32px rgba(26,115,200,.2);
+    --shadow-teal:0 8px 32px rgba(14,184,160,.18);
+    font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);line-height:1.6;
+  }
+  .aniv-wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 5vw}
+  .aniv-kicker{display:inline-flex;align-items:center;gap:.55rem;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.9rem}
+  .aniv-kicker::before{content:'';width:22px;height:2px;background:linear-gradient(90deg,var(--teal),var(--celeste));border-radius:2px}
+  .aniv-kicker.light{color:var(--teal-l)}
+  .aniv-kicker.light::before{background:linear-gradient(90deg,var(--teal-l),rgba(255,255,255,.5))}
+  .aniv-h2{font-family:'Fraunces',serif;font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+  .aniv-h2.light{color:#fff}
+  .aniv-sub{font-size:1rem;color:var(--ink-m);font-weight:300;line-height:1.75;max-width:540px;margin-top:.8rem}
+  .aniv-sub.light{color:rgba(255,255,255,.75)}
+  .aniv-merge .rev{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+  .aniv-merge .rev.in{opacity:1;transform:translateY(0)}
+  .aniv-sep{width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--celeste),var(--teal),transparent);opacity:.35}
+
+  /* S2 · PROBLEMA → SOLUCIÓN */
+  .aniv-problema{padding:var(--gap) 5vw;background:linear-gradient(145deg,#f0fbf9 0%,#e4f6fd 35%,#eaf7ff 65%,#f5fffe 100%);position:relative;overflow:hidden}
+  .aniv-problema::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 8% 60%,rgba(14,184,160,.10) 0%,transparent 55%),radial-gradient(ellipse 45% 55% at 92% 25%,rgba(90,174,230,.12) 0%,transparent 50%),radial-gradient(ellipse 40% 50% at 50% 100%,rgba(14,184,160,.06) 0%,transparent 60%);pointer-events:none}
+  .aniv-problema::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(26,115,200,.06) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+  .prob-circles{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .prob-circle{position:absolute;border-radius:50%;background:transparent}
+  .prob-circle:nth-child(1){width:340px;height:340px;top:-80px;left:-60px;border:2px solid rgba(14,184,160,.18);animation:probCircleFloat1 9s ease-in-out infinite alternate}
+  .prob-circle:nth-child(2){width:220px;height:220px;top:30%;right:-50px;background:radial-gradient(circle,rgba(90,174,230,.10) 0%,transparent 70%);border:1.5px solid rgba(90,174,230,.15);animation:probCircleFloat2 7s ease-in-out infinite alternate}
+  .prob-circle:nth-child(3){width:140px;height:140px;bottom:10%;left:12%;background:radial-gradient(circle,rgba(14,184,160,.08) 0%,transparent 70%);border:1.5px solid rgba(14,184,160,.20);animation:probCircleFloat3 11s ease-in-out infinite alternate}
+  .prob-circle:nth-child(4){width:180px;height:180px;top:-20px;left:42%;border:1px solid rgba(26,115,200,.10);animation:probCircleFloat1 13s ease-in-out infinite alternate .5s}
+  .prob-circle:nth-child(5){width:90px;height:90px;bottom:8%;right:18%;background:radial-gradient(circle,rgba(90,174,230,.10) 0%,transparent 70%);border:1.5px solid rgba(90,174,230,.20);animation:probCircleFloat2 8s ease-in-out infinite alternate 1s}
+  @keyframes probCircleFloat1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-22px) scale(1.05)}100%{transform:translate(-10px,14px) scale(.97)}}
+  @keyframes probCircleFloat2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,16px) scale(1.07)}100%{transform:translate(12px,-18px) scale(.95)}}
+  @keyframes probCircleFloat3{0%{transform:translate(0,0) scale(1)}40%{transform:translate(22px,8px) scale(1.04)}100%{transform:translate(-8px,-20px) scale(.98)}}
+  .prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;position:relative;z-index:1}
+  .prob-block{background:#ffffff;border:1.5px solid rgba(26,115,200,.12);border-radius:var(--r);padding:2rem 2rem 2.2rem;box-shadow:0 4px 24px rgba(90,174,230,.12),0 1px 4px rgba(26,115,200,.06);transition:transform .3s,box-shadow .3s}
+  .prob-block:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(90,174,230,.18),0 2px 8px rgba(26,115,200,.08)}
+  .prob-block::before{content:'';display:block;height:3px;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:3px 3px 0 0;margin:-2rem -2rem 1.4rem}
+  .prob-block.sol::before{background:linear-gradient(90deg,var(--teal),var(--teal-l))}
+  .prob-block .aniv-kicker{color:#d97706}
+  .prob-block .aniv-kicker::before{background:#d97706}
+  .prob-block.sol .aniv-kicker{color:var(--teal)}
+  .prob-block.sol .aniv-kicker::before{background:var(--teal)}
+  .prob-h3{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;color:var(--ink);line-height:1.15;margin-bottom:1.1rem;letter-spacing:-.02em}
+  .prob-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+  .prob-list li{font-size:.93rem;color:var(--ink-m);font-weight:400;line-height:1.6;display:flex;align-items:flex-start;gap:.7rem;padding:.5rem .7rem;border-radius:8px;background:rgba(26,115,200,.03);border:1px solid rgba(26,115,200,.06);transition:background .2s,border-color .2s}
+  .prob-list li:hover{background:rgba(14,184,160,.06);border-color:rgba(14,184,160,.15)}
+  .prob-block.sol .prob-list li:hover{background:rgba(14,184,160,.07);border-color:rgba(14,184,160,.18)}
+  .prob-icon{font-size:1.05rem;flex-shrink:0;margin-top:.1em}
+
+  /* VIDEO CHILEVISIÓN */
+  .aniv-chv-wrap{padding:var(--gap) 5vw;background:var(--white);position:relative}
+  .aniv-chv-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--celeste) 30%,var(--teal) 70%,transparent)}
+  .vid-chv{background:var(--white);border-radius:var(--r);overflow:hidden;border:1.5px solid rgba(26,115,200,.15);box-shadow:var(--shadow-blue);margin-top:2rem}
+  .vid-chv-inner{display:grid;grid-template-columns:1.5fr 1fr;align-items:stretch}
+  .vid-chv-frame{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#0a1628}
+  .vid-chv-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
+  .vid-chv-meta{padding:2rem 1.8rem;display:flex;flex-direction:column;justify-content:center;gap:1rem;background:linear-gradient(135deg,var(--off),#eaf4fc)}
+  .vid-chv-badge{display:inline-flex;align-items:center;gap:.45rem;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;width:fit-content;box-shadow:0 3px 12px rgba(14,184,160,.3)}
+  .vid-chv-meta h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--ink);line-height:1.3}
+  .vid-chv-meta p{font-size:.87rem;color:var(--ink-m);font-weight:300;line-height:1.7}
+  .vid-chv-tag{font-size:.75rem;color:var(--ink-l);font-weight:500;display:flex;align-items:center;gap:.4rem}
+  .vid-chv-tag::before{content:'📺'}
+  .tv__pill{display:inline-flex;align-items:center;gap:7px;background:rgba(0,111,255,.07);border:1px solid rgba(0,111,255,.18);color:var(--blue);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:5px 15px;border-radius:99px;margin-bottom:.9rem}
+  .tv__pill i{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;animation:tvBlink 2s ease-in-out infinite}
+  @keyframes tvBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+
+  /* S3 · HISTORIA */
+  .aniv-historia{padding:var(--gap) 5vw;background:linear-gradient(160deg,#f0f8ff 0%,#e4f4fd 50%,#d8f0f8 100%);position:relative;overflow:hidden}
+  .aniv-historia::before{content:'';position:absolute;top:-30%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(14,184,160,.08) 0%,transparent 65%);pointer-events:none}
+  .hist-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+  .hist-chile-tag{display:inline-flex;align-items:center;gap:.45rem;background:rgba(14,184,160,.12);border:1px solid rgba(14,184,160,.25);color:var(--teal);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;margin-bottom:1rem}
+  .hist-pull{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-.01em;border-left:3px solid var(--teal);padding-left:1.3rem;margin-bottom:1.5rem}
+  .hist-pull em{font-style:italic;color:var(--blue)}
+  .hist-body{font-size:.96rem;color:var(--ink-m);font-weight:300;line-height:1.8}
+  .hist-body strong{color:var(--ink);font-weight:600}
+  .hist-nums{display:flex;justify-content:center;align-items:center;padding:1rem 0}
+
+  /* S4 · EVOLUCIÓN DEL MEDIDOR */
+  .aniv-evolucion{padding:var(--gap) 5vw;background:var(--white);position:relative;overflow:hidden}
+  .aniv-evolucion::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 95% 40%,rgba(14,184,160,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 5% 80%,rgba(26,115,200,.05) 0%,transparent 50%);pointer-events:none}
+  .evo-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.8rem;gap:2rem;flex-wrap:wrap}
+  .evo-track{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;position:relative;margin-bottom:2.5rem}
+  .evo-track::before{content:'';position:absolute;top:105px;left:calc(16.67% + 20px);right:calc(16.67% + 20px);height:2px;background:linear-gradient(90deg,var(--celeste),var(--teal));z-index:0}
+  .evo-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:relative;z-index:1;transition:transform .3s,box-shadow .3s;box-shadow:var(--shadow-sm)}
+  .evo-card:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(26,115,200,.16)}
+  .evo-top{position:relative;height:210px;overflow:hidden}
+  .evo-top-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+  .evo-card:hover .evo-top-photo{transform:scale(1.06)}
+  .evo-top-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,25,40,.05) 0%,rgba(10,25,40,.1) 45%,rgba(10,25,40,.75) 100%)}
+  .evo-n{position:absolute;top:.8rem;left:1rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:900;color:rgba(255,255,255,.92);text-shadow:0 2px 12px rgba(0,0,0,.45);line-height:1;z-index:2}
+  .evo-top-bottom{position:absolute;left:1.1rem;right:1.1rem;bottom:.9rem;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:.35rem}
+  .evo-tag{font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .72rem;border-radius:100px;background:var(--blue);color:#fff}
+  .evo-card:nth-child(3) .evo-tag{background:linear-gradient(135deg,var(--blue),var(--teal))}
+  .evo-period{font-size:.75rem;color:rgba(255,255,255,.85);font-weight:500;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+  .evo-body{padding:1.4rem 1.5rem 1.7rem}
+  .evo-body h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+  .evo-body p{font-size:.87rem;color:var(--ink-m);line-height:1.7;font-weight:300;margin-bottom:.9rem}
+  .evo-feats{list-style:none;display:flex;flex-direction:column;gap:.38rem}
+  .evo-feats li{font-size:.82rem;color:var(--ink-m);display:flex;align-items:flex-start;gap:.45rem}
+  .evo-feats li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+  .evo-card:nth-child(3) .evo-feats li::before{color:var(--blue)}
+  .press-note{background:linear-gradient(135deg,var(--off),#eaf4fc);border:1.5px solid rgba(26,115,200,.14);border-radius:var(--r);padding:2rem 2.2rem 2.2rem;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+  .press-badge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(26,115,200,.08);border:1px solid rgba(26,115,200,.2);color:var(--blue);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.32rem .85rem;border-radius:100px;margin-bottom:.9rem}
+  .press-note h3{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:700;color:var(--ink);line-height:1.4;max-width:760px;margin-bottom:1.4rem}
+  .press-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.4rem}
+  .press-fact{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1rem;text-align:center;transition:transform .25s,box-shadow .25s}
+  .press-fact:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+  .press-fact-num{display:block;font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:900;color:var(--blue);line-height:1;margin-bottom:.35rem}
+  .press-fact-lbl{font-size:.74rem;color:var(--ink-m);font-weight:500;line-height:1.35}
+  .press-quote{border-left:3px solid var(--teal);padding-left:1.1rem;font-size:.92rem;font-style:italic;color:var(--ink-m);line-height:1.7;margin-bottom:1.3rem}
+  .press-quote cite{display:block;margin-top:.5rem;font-style:normal;font-size:.76rem;font-weight:600;color:var(--ink-l);letter-spacing:.02em}
+  .press-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--blue);font-size:.86rem;font-weight:700;text-decoration:none;transition:gap .2s,color .2s}
+  .press-link:hover{gap:.75rem;color:var(--teal)}
+  /* Variante oscura — usada dentro de Impacto en Chile */
+  .press-note--dark{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);box-shadow:none}
+  .press-note--dark h3{color:#fff}
+  .press-badge--dark{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);color:#fff}
+  .press-fact--dark{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+  .press-fact--dark:hover{background:rgba(255,255,255,.16)}
+  .press-fact--dark .press-fact-num{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.25)}
+  .press-fact--dark .press-fact-lbl{color:rgba(255,255,255,.75)}
+  .press-quote--dark{border-left-color:var(--teal-l);color:rgba(255,255,255,.88)}
+  .press-quote--dark cite{color:rgba(255,255,255,.6)}
+  .press-link--dark{color:var(--teal-l)}
+  .press-link--dark:hover{color:#fff}
+  /* Variante con imagen — vista previa del medidor junto a la nota */
+  .press-note--media{display:grid;grid-template-columns:.85fr 1.3fr;padding:0;overflow:hidden}
+  .press-note-img{position:relative;min-height:280px}
+  .press-note-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .press-note-img::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(10,25,40,.25) 100%)}
+  .press-note-body{padding:2rem 2.2rem}
+  .press-note--media h3,
+  .press-note--media .press-facts,
+  .press-note--media .press-quote,
+  .press-note--media .press-badge{margin-bottom:1.1rem}
+
+  /* S5 · IMPACTO EN CHILE */
+  .aniv-chile{padding:var(--gap) 5vw;background:linear-gradient(150deg,var(--blue-d) 0%,var(--blue) 45%,#0a8a7a 80%,var(--teal) 100%);position:relative;overflow:hidden}
+  .aniv-chile::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+  .aniv-chile::after{content:'';position:absolute;bottom:-20%;right:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(14,184,160,.15) 0%,transparent 65%);pointer-events:none}
+  .hist-map-col{display:flex;align-items:center;justify-content:center;padding:.4rem}
+  .hist-map-svg{width:170px;filter:drop-shadow(0 4px 16px rgba(26,115,200,.2))}
+
+  @media(max-width:1100px){
+    .evo-track{grid-template-columns:1fr 1fr}
+    .evo-track::before{display:none}
+    .evo-card:nth-child(3){grid-column:span 2}
+    .vid-chv-inner{grid-template-columns:1fr}
+    .hist-grid{grid-template-columns:1fr;gap:2.5rem}
+    .prob-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:768px){
+    .aniv-merge{--gap:65px}
+    .evo-track{grid-template-columns:1fr}
+    .evo-card:nth-child(n){grid-column:span 1}
+    .press-facts{grid-template-columns:1fr}
+    .press-note{padding:1.6rem 1.4rem 1.8rem}
+    .press-note--media{grid-template-columns:1fr;padding:0}
+    .press-note-img{min-height:200px}
+    .press-note--media .press-note-body{padding:1.6rem 1.4rem 1.8rem}
+  }
+
 </style>
 
 <!-- =========================================
@@ -978,6 +1179,256 @@
   </div>
 
 </section>
+
+
+<!-- =========================================
+     BLOQUE UNIFICADO DESDE ANIVERSARIO
+     ========================================= -->
+<div class="aniv-merge">
+
+  <!-- S2 · PROBLEMA → SOLUCIÓN -->
+  <section class="aniv-problema" id="problema">
+    <div class="prob-circles" aria-hidden="true">
+      <div class="prob-circle"></div>
+      <div class="prob-circle"></div>
+      <div class="prob-circle"></div>
+      <div class="prob-circle"></div>
+      <div class="prob-circle"></div>
+    </div>
+    <div class="aniv-wrap">
+      <div class="prob-grid">
+
+        <div class="prob-block rev">
+          <p class="aniv-kicker">El desafío</p>
+          <h2 class="prob-h3">Problemas en<br>sistemas APR</h2>
+          <ul class="prob-list">
+            <li><span class="prob-icon">⚠️</span>Lectura manual de medidores casa por casa</li>
+            <li><span class="prob-icon">📋</span>Errores de digitación en los registros de consumo</li>
+            <li><span class="prob-icon">🚗</span>Desplazamientos costosos en terreno para cada lectura</li>
+            <li><span class="prob-icon">❌</span>Falta de control en tiempo real del suministro</li>
+            <li><span class="prob-icon">💦</span>Fugas no detectadas que generan pérdidas millonarias</li>
+            <li><span class="prob-icon">🚫</span>Pagos en oficinas y largas colas</li>
+          </ul>
+        </div>
+
+        <div class="prob-block sol rev" style="transition-delay:.15s">
+          <p class="aniv-kicker">La solución</p>
+          <h2 class="prob-h3">Automatización<br>inteligente</h2>
+          <ul class="prob-list">
+            <li><span class="prob-icon">📡</span>Lectura remota desde el Mando Manual</li>
+            <li><span class="prob-icon">✅</span>Datos precisos y confiables, sin errores humanos</li>
+            <li><span class="prob-icon">🔒</span>Corte y apertura del suministro desde Hand-Held</li>
+            <li><span class="prob-icon">🔔</span>Alertas en tiempo real ante fugas o anomalías</li>
+            <li><span class="prob-icon">⏱️</span>Ahorro real de tiempo, dinero y esfuerzo operativo</li>
+            <li><span class="prob-icon">🐕</span>Evita problemas con perros, muros y rejas</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="aniv-sep"></div>
+
+  <!-- VIDEO CHILEVISIÓN -->
+  <section class="aniv-chv-wrap" id="chilevision">
+    <div class="aniv-wrap">
+      <div class="rev">
+        <span class="tv__pill"><i></i>Primera aparición en medios nacionales</span>
+        <p class="aniv-kicker">Reconocimiento nacional</p>
+        <h2 class="aniv-h2">Así nos conoció Chile</h2>
+        <p class="aniv-sub">La primera vez que nuestro sistema llegó a las pantallas del país. Un hito que marcó el reconocimiento de la tecnología chilena aplicada al agua.</p>
+      </div>
+      <div class="vid-chv rev" style="transition-delay:.12s">
+        <div class="vid-chv-inner">
+          <div class="vid-chv-frame">
+            <iframe src="https://www.youtube.com/embed/mSEJlKinapg"
+              title="Medidor Inteligente en Chilevisión"
+              referrerpolicy="strict-origin" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="vid-chv-meta">
+            <div class="vid-chv-badge">★ Chilevisión · Primera aparición</div>
+            <h3>Medidor Inteligente en la televisión nacional</h3>
+            <p>Chilevisión cubrió el impacto de nuestra tecnología en las comunidades rurales, destacando cómo un desarrollo 100% chileno está transformando la gestión del agua potable en todo el país.</p>
+            <div class="vid-chv-tag">Cobertura en Chilevisión · Primer medio nacional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="aniv-sep"></div>
+
+  <!-- S3 · HISTORIA -->
+  <section class="aniv-historia" id="historia">
+    <div class="aniv-wrap">
+      <div class="hist-grid">
+        <div class="rev">
+          <div class="hist-chile-tag">🇨🇱 Desarrollado y fabricado en Chile</div>
+          <p class="aniv-kicker">Nuestra historia</p>
+          <blockquote class="hist-pull">
+            En 2015 instalamos el primer medidor en<br><em>APR Los Maquis</em>. Diez años después,<br>somos parte de 200 comunidades.
+          </blockquote>
+          <p class="hist-body">
+            Lo que empezó como un prototipo en una pequeña comunidad rural se convirtió en la tecnología de gestión de agua más adoptada por APR en Chile. <strong>Cada año mejoramos</strong>, escuchamos a los operadores y evolucionamos nuestro medidor sin perder lo esencial: que funcione de verdad, en terreno real.
+          </p>
+        </div>
+        <div class="rev" style="transition-delay:.12s">
+          <div class="hist-nums">
+            <div class="hist-map-col">
+              <svg class="hist-map-svg" viewBox="0 0 200 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M102 18 C118 22 132 32 135 50 C139 70 132 88 126 108 C120 128 118 148 116 168 C114 188 112 208 108 228 C104 248 98 265 96 285 C94 305 96 325 92 345 C88 365 80 382 76 402 C72 422 70 442 68 462 C66 482 62 500 58 518 L55 526 L50 524 C53 508 58 490 60 472 C62 454 64 436 66 418 C68 400 70 382 72 364 C74 346 72 328 74 310 C76 292 82 275 84 257 C86 239 86 221 88 203 C90 185 94 167 96 149 C98 131 98 113 96 95 C94 77 96 55 102 18Z" fill="url(#hcg)" stroke="rgba(26,115,200,.4)" stroke-width="1.5"/>
+                <defs><linearGradient id="hcg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(26,115,200,.16)"/><stop offset="100%" stop-color="rgba(14,184,160,.26)"/></linearGradient></defs>
+                <circle cx="118" cy="85" r="12" fill="rgba(14,184,160,.25)"><animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;0;.3" dur="3s" repeatCount="indefinite"/></circle>
+                <circle cx="118" cy="85" r="5" fill="var(--teal)" opacity=".95"/>
+                <circle cx="110" cy="148" r="4" fill="var(--blue)" opacity=".7"/>
+                <circle cx="106" cy="220" r="14" fill="rgba(14,184,160,.25)"><animate attributeName="r" values="10;20;10" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".25;0;.25" dur="2.8s" repeatCount="indefinite"/></circle>
+                <circle cx="106" cy="220" r="6" fill="var(--teal)" opacity=".95"/>
+                <circle cx="94" cy="290" r="5" fill="var(--blue)" opacity=".75"/>
+                <circle cx="80" cy="355" r="4" fill="var(--teal)" opacity=".7"/>
+                <circle cx="72" cy="420" r="4" fill="var(--blue)" opacity=".6"/>
+                <circle cx="62" cy="490" r="3.5" fill="var(--teal)" opacity=".5"/>
+                <text x="128" y="88" fill="var(--ink-l)" font-size="9" font-family="sans-serif" font-weight="600">Norte</text>
+                <text x="116" y="223" fill="var(--ink-l)" font-size="9" font-family="sans-serif" font-weight="600">Centro</text>
+                <text x="84" y="293" fill="var(--ink-l)" font-size="9" font-family="sans-serif" font-weight="600">Sur</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="aniv-sep"></div>
+
+  <!-- S4 · EVOLUCIÓN DEL MEDIDOR -->
+  <section class="aniv-evolucion" id="evolucion">
+    <div class="aniv-wrap">
+      <div class="evo-head rev">
+        <div>
+          <p class="aniv-kicker">La evolución del producto</p>
+          <h2 class="aniv-h2">Tres generaciones,<br>un mismo propósito</h2>
+        </div>
+        <p class="aniv-sub" style="margin-top:0">De la primera instalación en APR Los Maquis al medidor más avanzado del mercado. Una década de mejora continua.</p>
+      </div>
+
+      <div class="evo-track">
+        <div class="evo-card rev">
+          <div class="evo-top">
+            <img class="evo-top-photo" src="{% static 'app/img/1instalation.png' %}" alt="Instalación del primer medidor en APR Los Maquis">
+            <div class="evo-top-scrim"></div>
+            <span class="evo-n">1</span>
+            <div class="evo-top-bottom">
+              <span class="evo-tag">Modelo 1</span>
+              <span class="evo-period">2015 — 2018 · APR Los Maquis</span>
+            </div>
+          </div>
+          <div class="evo-body">
+            <h3>El primer paso</h3>
+            <p>Prototipo instalado en APR Los Maquis. Validamos el concepto y aprendimos directamente del terreno.</p>
+            
+          </div>
+        </div>
+        <div class="evo-card rev" style="transition-delay:.12s">
+          <div class="evo-top">
+            <img class="evo-top-photo" src="{% static 'app/img/2instalation.jpeg' %}" alt="Segunda generación del medidor inteligente instalada en terreno">
+            <div class="evo-top-scrim"></div>
+            <span class="evo-n">2</span>
+            <div class="evo-top-bottom">
+              <span class="evo-tag">Modelo 2</span>
+              <span class="evo-period">2018 — 2025 · Expansión</span>
+            </div>
+          </div>
+          <div class="evo-body">
+            <h3>Diseño mejorado</h3>
+            <p>Mayor precisión y robustez. Ampliamos la cobertura con mejor conectividad y diseño moderno.</p>
+           
+          </div>
+        </div>
+        <div class="evo-card rev" style="transition-delay:.24s">
+          <div class="evo-top">
+            <img class="evo-top-photo" src="{% static 'app/img/3instalation.jpeg' %}" alt="Medidor Inteligente actual instalado en terreno">
+            <div class="evo-top-scrim"></div>
+            <span class="evo-n">3</span>
+            <div class="evo-top-bottom">
+              <span class="evo-tag" style="background:linear-gradient(135deg,#1a73c8,#0eb8a0)">Modelo 3 · Actual</span>
+              <span class="evo-period">2025 — 2026 · Tecnología chilena</span>
+            </div>
+          </div>
+          <div class="evo-body">
+            <h3>La generación más avanzada</h3>
+            <ul class="evo-feats">
+              <li>Fácil de implementar</li>
+              <li>Reduce pérdidas de agua</li>
+              <li>Sostenible a largo plazo</li>
+              <li>Diseño totalmente moderno</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="aniv-sep"></div>
+
+  <!-- S5 · IMPACTO EN CHILE -->
+  <section class="aniv-chile" id="presencia">
+    <div class="aniv-wrap">
+
+      <div class="press-note press-note--dark press-note--media rev">
+        <div class="press-note-img">
+          <img src="{% static 'app/img/image1.png' %}" alt="Alejandro Espinoza, creador del Medidor Inteligente, en la línea de producción">
+        </div>
+        <div class="press-note-body">
+          <span class="press-badge press-badge--dark">📰 El Mostrador · 09 marzo 2021</span>
+          <h3>"Medidores Inteligentes para el agua, tecnología que revoluciona al mundo rural"</h3>
+          <div class="press-facts">
+            <div class="press-fact press-fact--dark">
+              <span class="press-fact-num">2.000+</span>
+              <span class="press-fact-lbl">Organizaciones de Agua Potable Rural (APR) en Chile</span>
+            </div>
+            <div class="press-fact press-fact--dark">
+              <span class="press-fact-num">1 millón</span>
+              <span class="press-fact-lbl">Usuarios directos atendidos por estas organizaciones</span>
+            </div>
+            <div class="press-fact press-fact--dark">
+              <span class="press-fact-num">+5 millones</span>
+              <span class="press-fact-lbl">Personas reciben agua potable a través de estos sistemas</span>
+            </div>
+          </div>
+          <blockquote class="press-quote press-quote--dark">
+            "Tuve que partir solo rumbo a China en su búsqueda."
+            <cite>— Alejandro Espinoza, tras 15 años de emprendimiento y un fondo CORFO de $25 millones que marcó el punto de inflexión para desarrollar el Medidor Inteligente</cite>
+          </blockquote>
+          <a href="https://www.elmostrador.cl/agenda-pais/2021/03/09/medidores-inteligentes-para-el-agua-tecnologia-que-revoluciona-al-mundo-rural/" target="_blank" rel="noopener" class="press-link press-link--dark">
+            Leer nota completa en El Mostrador
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}})},{threshold:.1});
+  document.querySelectorAll('.aniv-merge .rev').forEach(function(el){obs.observe(el)});
+
+  function animCount(el){
+    var t=parseInt(el.dataset.target),suf=el.dataset.suffix||'',dur=1800,s=null;
+    var fmt=function(n){return n>=1000?Math.round(n/1000)+'k':n};
+    (function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3),v=Math.round(e*t);
+    el.textContent=fmt(v)+suf;if(p<1)requestAnimationFrame(step)})(performance.now());
+  }
+  var cObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){animCount(x.target);cObs.unobserve(x.target)}})},{threshold:.4});
+  document.querySelectorAll('.aniv-merge [data-target]').forEach(function(el){cObs.observe(el)});
+})();
+</script>
 
 
 <!-- VIDEOS -->

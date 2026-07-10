@@ -1,14 +1,20 @@
 
 :root {
-    --primary-blue: #002B5C;
-    --accent-green: #ffffff;
+    /* Paleta oficial azul (protagonista) + verde (acento) */
+    --blue-900: #0A3159;
+    --blue-600: #0B63CE;
+    --blue-400: #4FA8E8;
+    --blue-100: #EAF3FC;
+    --green-600: #10B981;
+    --green-100: #D1FAE5;
+
+    --primary-blue: var(--blue-900);
+    --primary-blue-light: var(--blue-400);
+    --accent-green: var(--green-600);
     --text-white: #FFFFFF;
     --text-dark: #333333;
-    --primary-blue: #002B5C;
     --text-light: #ffffff;
-    --text-dark: #333333;
     --border-radius: 8px;
-   
 }
 * {
     margin: 0;

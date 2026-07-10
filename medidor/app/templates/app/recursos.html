@@ -69,9 +69,9 @@
 }
 .r-card {
     position: relative; border-radius: 16px; overflow: hidden;
-    height: 300px; background: #001540;
+    height: 300px; background: #00ec62;
     border: 1px solid rgba(0,194,255,0.10);
-    box-shadow: 0 4px 24px rgba(0,35,102,0.12);
+    box-shadow: 0 4px 24px rgba(21, 255, 0, 0.12);
     transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s, border-color 0.4s;
     animation: r-border-glow 4s ease-in-out infinite;
 }
@@ -103,7 +103,7 @@
     backdrop-filter: blur(8px); background: rgba(0,212,160,0.07);
 }
 .r-card-btn::after { content: '→'; transition: transform 0.25s ease; }
-.r-card-btn:hover { background: #00d4a0; border-color: #00d4a0; color: #001540; box-shadow: 0 6px 24px rgba(0,212,160,0.35); }
+.r-card-btn:hover { background: #5eebc7; border-color: #99f7df; color: #001540; box-shadow: 0 6px 24px rgba(170, 243, 225, 0.35); }
 .r-card-btn:hover::after { transform: translateX(3px); }
 @media (max-width: 767px) {
     .r-card { height: 250px; }
@@ -116,7 +116,7 @@
    ============================================================ */
 .r-handheld {
     width: 100%; min-height: 370px;
-    background: linear-gradient(120deg, #001540 0%, #002878 35%, #00557a 65%, #006b5e 85%, #007a54 100%);
+    background: linear-gradient(120deg, #0f5bf3 0%, #0641b8 35%, #0377a8 65%, #03b8a3 85%, #01ffaf 100%);
     position: relative; overflow: hidden;
 }
 .r-handheld .r-glow-left { position: absolute; top: -30%; left: -8%; width: 550px; height: 550px; background: radial-gradient(circle, rgba(0,80,200,0.30) 0%, transparent 65%); pointer-events: none; z-index: 0; }
@@ -139,9 +139,9 @@
 .r-img-circle { position: absolute; width: 310px; height: 310px; background: radial-gradient(circle, rgba(0,212,160,0.15) 0%, rgba(0,194,255,0.10) 50%, transparent 100%); border-radius: 50%; z-index: 0; animation: r-pulse-glow 4.5s ease-in-out infinite; }
 .r-device-img { position: relative; z-index: 5; height: 300px; object-fit: contain; animation: r-float 4s ease-in-out infinite; filter: drop-shadow(0 12px 28px rgba(0,212,160,0.30)) drop-shadow(0 4px 12px rgba(0,194,255,0.25)); }
 .r-right-content { flex: 1; display: flex; justify-content: flex-end; align-items: center; z-index: 5; }
-.r-btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.9rem; border: 1.5px solid rgba(0,212,160,0.45); border-radius: 50px; color: #00d4a0; text-decoration: none; font-size: 0.84rem; font-weight: 700; letter-spacing: 0.05em; transition: all 0.32s ease; backdrop-filter: blur(10px); background: rgba(0,212,160,0.07); }
+.r-btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.9rem; border: 1.5px solid rgba(151, 207, 193, 0.45); border-radius: 50px; color: #d9fcf3; text-decoration: none; font-size: 0.84rem; font-weight: 700; letter-spacing: 0.05em; transition: all 0.32s ease; backdrop-filter: blur(10px); background: rgba(0,212,160,0.07); }
 .r-btn-outline::after { content: '↗'; font-size: 0.88em; transition: transform 0.25s ease; }
-.r-btn-outline:hover { background: #00d4a0; border-color: #00d4a0; color: #001540; box-shadow: 0 8px 28px rgba(0,212,160,0.38); }
+.r-btn-outline:hover { background: #00d4a0; border-color: #00d4a0; color: #001540; box-shadow: 0 8px 28px rgba(180, 247, 230, 0.38); }
 .r-btn-outline:hover::after { transform: translate(2px,-2px); }
 
 /* ============================================================
