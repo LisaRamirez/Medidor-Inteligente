@@ -1,7 +1,6 @@
-
+<!DOCTYPE html>
 <html lang="es">
-<header class="header">
-    
+<head>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,16 +16,56 @@
     <!-- Robots (para que Google lo indexe) -->
     <meta name="robots" content="index, follow">
 
+    {% load static %}
+    <title>Medidor Inteligente</title>
 
+    <!-- Favicon / ícono de marca — se muestra junto a la URL en resultados de Google -->
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'app/img/medidorinteligente.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'app/img/medidorinteligente.png' %}">
+    <link rel="shortcut icon" href="{% static 'app/img/medidorinteligente.png' %}">
+
+    <!-- Open Graph / vista previa al compartir (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Medidor Inteligente">
+    <meta property="og:title" content="Medidor Inteligente — Gestión de agua potable rural">
+    <meta property="og:description" content="Monitorea el consumo de agua en tiempo real con Medidor Inteligente. Tecnología para APR y SSR.">
+    <meta property="og:image" content="https://www.medidorinteligente.cl{% static 'app/img/medidorinteligente.png' %}">
+    <meta property="og:url" content="https://www.medidorinteligente.cl{{ request.path }}">
+    <meta property="og:locale" content="es_CL">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Medidor Inteligente">
+    <meta name="twitter:description" content="Monitorea el consumo de agua en tiempo real con Medidor Inteligente.">
+    <meta name="twitter:image" content="https://www.medidorinteligente.cl{% static 'app/img/medidorinteligente.png' %}">
+
+    <!-- Datos estructurados (Organization) — ayuda a Google a asociar el logo a la marca -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Medidor Inteligente",
+      "url": "https://www.medidorinteligente.cl/",
+      "logo": "https://www.medidorinteligente.cl{% static 'app/img/medidorinteligente.png' %}",
+      "sameAs": [
+        "https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/",
+        "https://www.youtube.com/@MedidorInteligenteAPR"
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4T1RRKTD74"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4T1RRKTD74');
+    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <title>Medidor Inteligente</title>
-
-    {% load static %}
-    <link rel="shortcut icon" href="{% static 'app/img/logmedidor.ico' %}" type="image/x-icon"/>
-    <link rel="shortcut icon" href="{% static 'app/img/inicio.ico' %}" type="image/x-icon"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{% static 'app/css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
@@ -39,7 +78,7 @@
     <link rel="stylesheet" href="{% static 'app/css/chat.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/clientes.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/nosotros.css' %}">
-    
+
 
      <!-- script -->
     <link rel="stylesheet" href="{% static 'css/asistente.css' %}">
@@ -49,19 +88,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'app/js/asistente.js' %}"></script>
     <script src="{% static 'app/js/slider.js' %}"></script>
+</head>
 
 
-     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4T1RRKTD74"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-4T1RRKTD74');
-    </script>
-    
-  
-   
+<body>
+<header class="header">
+
     <nav class="nav">
         <a href="{% url 'home' %}">
             <img src="{% static 'app/img/logo.png' %}" alt="Medidor Inteligente" class="logo">
@@ -71,14 +103,14 @@
         </button>
         <div class="nav-links">
             <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Inicio</a>
-            <a href="{% url 'aniversario' %}" class="nav-link {% if 'aniversario' in request.path %}active{% endif %}">10años</a>
+           
             <a href="{% url 'soluciones' %}" class="nav-link {% if 'soluciones' in request.path %}active{% endif %}">Productos</a>
             <a href="{% url 'tutoriales' %}" class="nav-link {% if 'tutoriales' in request.path %}active{% endif %}">Tutoriales</a>
             <a href="{% url 'nosotros' %}" class="nav-link {% if 'nosotros' in request.path %}active{% endif %}">Nosotros</a>
             <a href="{% url 'clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>
-            <a href="{% url 'testimonio' %}" class="nav-link {% if 'testimonio' in request.path %}active{% endif %}">Noticias</a>
             
-            <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Informes</a>
+            
+            <a href="{% url 'recursos' %}" class="nav-link {% if 'recursos' in request.path %}active{% endif %}">Certificados Dictuc</a>
             <!--<a href="{% url 'asistente_virtual' %}" class="nav-link {% if 'asistente' in request.path %}active{% endif %}">Asistente</a>-->
             
             <a href="{% url 'contacto' %}" class="contact-btn {% if 'contacto' in request.path %}active{% endif %}">Contáctanos</a>
@@ -115,7 +147,7 @@
   display: flex;
   align-items: center;
   height: 52px;
-  background: linear-gradient(135deg, #0042b8 0%, #10a890 100%);
+  background: linear-gradient(135deg, #0042b8 0%, #1ea18e 100%);
   border-radius: 999px;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(0,66,184,.45);
@@ -228,94 +260,6 @@
 })();
 </script>
 
-<!-- ========== SECCIÓN BOTÓN 10 AÑOS - COPIA DESDE AQUÍ ========== -->
-
-<style>
-  .btn-celebracion-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-
-  .btn-celebracion-container.oculto {
-    opacity: 0;
-    transform: translateX(100px);
-    pointer-events: none;
-  }
-
-  .btn-celebracion {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(135deg, #0a2540 0%, #1a73e8 50%, #00c9a7 100%);
-    box-shadow: 0 4px 15px rgba(26, 115, 232, 0.4);
-    animation: pulso 2s infinite;
-  }
-
-  .btn-celebracion:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(26, 115, 232, 0.6);
-  }
-
-  .btn-celebracion .icono-medalla { font-size: 18px; }
-
-  .btn-celebracion .icono-ayuda {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    font-size: 12px;
-    margin-left: 4px;
-  }
-
-  @keyframes pulso {
-    0%, 100% { box-shadow: 0 4px 15px rgba(26, 115, 232, 0.4); }
-    50% { box-shadow: 0 4px 25px rgba(0, 201, 167, 0.6); }
-  }
-</style>
-
-<div class="btn-celebracion-container" id="btnCelebracion">
-  <button class="btn-celebracion">
-    <span class="icono-medalla">🏅</span>
-    <span>Celebrando 10 años</span>
-    <span class="icono-ayuda">?</span>
-  </button>
-</div>
-
-<script>
-  (function() {
-    const btn = document.getElementById('btnCelebracion');
-    const TIEMPO_VISIBLE = 8000;   // 8 segundos visible
-    const TIEMPO_OCULTO = 15000;   // 15 segundos oculto
-
-    function ocultarBoton() {
-      btn.classList.add('oculto');
-      setTimeout(mostrarBoton, TIEMPO_OCULTO);
-    }
-
-    function mostrarBoton() {
-      btn.classList.remove('oculto');
-      setTimeout(ocultarBoton, TIEMPO_VISIBLE);
-    }
-
-    setTimeout(ocultarBoton, TIEMPO_VISIBLE);
-  })();
-</script>
-
-<!-- ========== FIN SECCIÓN BOTÓN 10 AÑOS ========== -->
 <footer class="footer">
     <div class="footer-container">
         <!-- Company Info Section -->
@@ -392,5 +336,7 @@
                 </iframe>
             </div>
         </div>
-    </div>   
+    </div>
 </footer>
+</body>
+</html>

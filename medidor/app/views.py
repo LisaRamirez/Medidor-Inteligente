@@ -123,7 +123,11 @@ def clientes(request):
             return redirect('home')
 
         appr = Apr.objects.all().order_by('id')
-        data = {'apr': appr}
+        tes = (Testimonio.objects
+               .filter(activo=True)
+               .prefetch_related('imagenes')
+               .order_by('-fecha'))
+        data = {'apr': appr, 'testi': tes}
 
         return render(request, 'app/clientes.html', data)
 
@@ -357,8 +361,5 @@ def tutoriales(request):
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
 
 def aniversario(request):
-    try:
-        return render(request, 'app/aniversario.html')
-    except Exception as e:
-        logger.error(f"Error al renderizar la página: {e}", exc_info=True)
-        return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo nuevamente más tarde.")
+    # El contenido de aniversario se unificó dentro de "nosotros".
+    return HttpResponsePermanentRedirect('/nosotros/')
