@@ -4,11 +4,16 @@
 
 <style>
   /* ══ SLIDE STOCK ════════════════════════════════════════════════ */
-.hs-stock{background:linear-gradient(160deg,#0ef8f8 0%,#22e3a5 20%,#10b981 40%,#38bdf8 60%,#1170ec 80%,#0073ff 100%);background-size:300% 300%;animation:hsStockShift 8s ease-in-out infinite}
+.hs-stock{background:linear-gradient(160deg,#0b63ce 0%,#1170ec 25%,#38bdf8 55%,#7dd3fc 80%,#38bdf8 100%);background-size:220% 220%;animation:hsStockShift 10s ease-in-out infinite;position:relative}
+.hs-stock::after{content:'';position:absolute;inset:0;background:radial-gradient(circle 40% at 22% 75%,rgba(45,212,191,.5) 0%,transparent 70%),radial-gradient(circle 32% at 82% 20%,rgba(45,212,191,.35) 0%,transparent 70%);animation:hsGreenDrift 9s ease-in-out infinite;pointer-events:none;z-index:0}
 @keyframes hsStockShift{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
+}
+@keyframes hsGreenDrift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(6%,-5%) scale(1.15)}
 }
 
 .hs-stock-penta{position:absolute;inset:0;pointer-events:none;z-index:0}
@@ -18,10 +23,10 @@
   clip-path:polygon(50% 0%,100% 38%,82% 100%,18% 100%,0% 38%);
 }
 .hs-stock-penta .hp-a{width:380px;height:380px;top:-120px;right:-80px;background:rgba(255,255,255,.24);border:1.5px solid rgba(255,255,255,.35);animation:hsPentaFloat1 15s ease-in-out infinite}
-.hs-stock-penta .hp-b{width:200px;height:200px;bottom:-60px;left:-40px;background:rgba(16,185,129,.42);border:1.5px solid rgba(16,185,129,.55);animation:hsPentaFloat2 11s ease-in-out infinite .6s}
+.hs-stock-penta .hp-b{width:200px;height:200px;bottom:-60px;left:-40px;background:rgba(45,212,191,.42);border:1.5px solid rgba(45,212,191,.55);animation:hsPentaFloat2 11s ease-in-out infinite .6s}
 .hs-stock-penta .hp-c{width:130px;height:130px;top:55%;right:14%;background:rgba(255,255,255,.26);border:1.5px solid rgba(255,255,255,.4);animation:hsPentaFloat3 9s ease-in-out infinite .3s}
 .hs-stock-penta .hp-d{width:100px;height:100px;top:8%;left:38%;background:rgba(79,168,232,.5);border:1.5px solid rgba(255,255,255,.45);animation:hsPentaFloat1 10s ease-in-out infinite 1.1s}
-.hs-stock-penta .hp-e{width:160px;height:160px;bottom:10%;right:38%;background:rgba(16,185,129,.36);border:1.5px solid rgba(16,185,129,.5);animation:hsPentaFloat2 13s ease-in-out infinite .8s}
+.hs-stock-penta .hp-e{width:160px;height:160px;bottom:10%;right:38%;background:rgba(45,212,191,.36);border:1.5px solid rgba(45,212,191,.5);animation:hsPentaFloat2 13s ease-in-out infinite .8s}
 .hs-stock-penta .hp-f{width:70px;height:70px;top:30%;left:6%;background:rgba(255,255,255,.22);border:1.5px solid rgba(255,255,255,.38);animation:hsPentaFloat3 8s ease-in-out infinite .2s}
 
 .hs-stock-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
@@ -33,7 +38,7 @@
 .hs-stock-img-wrap{display:flex;justify-content:center;align-items:center}
 .hs-stock-img-frame{position:relative;animation:hsProdFloat 6s ease-in-out infinite}
 .hs-stock-img-frame img{width:100%;max-width:400px;filter:drop-shadow(0 26px 54px rgba(0,0,0,.3));position:relative;z-index:2;display:block;margin:0 auto}
-.hs-stock-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:420px;height:420px;background:radial-gradient(circle,rgba(16,185,129,.35) 0%,rgba(79,168,232,.2) 42%,transparent 70%);filter:blur(40px);animation:hsPulse 4s ease-in-out infinite;z-index:1}
+.hs-stock-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:420px;height:420px;background:radial-gradient(circle,rgba(45,212,191,.4) 0%,rgba(79,168,232,.25) 42%,transparent 70%);filter:blur(40px);animation:hsPulse 4s ease-in-out infinite;z-index:1}
 
 @keyframes hsPentaFloat1{
   0%,100%{transform:translate(0,0) rotate(0deg) scale(1)}
@@ -244,6 +249,7 @@
   margin:0 auto;
 }
 .hm-benefit-card{
+  position:relative;
   padding:2rem 1.5rem;
   background:#fff;
   border-radius:16px;
@@ -252,9 +258,19 @@
   transition:transform .3s,box-shadow .3s;
 }
 .hm-benefit-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(10,49,89,.12)}
+.hm-benefit-cert-badge{
+  position:absolute;
+  right:-24px;
+  bottom:-24px;
+  width:92px;
+  height:92px;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));
+  pointer-events:none;
+}
 .hm-benefit-icon{
   width:58px;height:58px;
-  background:linear-gradient(135deg,#0b63ce,#02f3cb);
+  background:linear-gradient(135deg,#9fd8fb,#e6f6ff);
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   margin:0 auto 1.2rem;
@@ -317,16 +333,22 @@
   display:flex;
   flex-direction:column;
   align-items:center;
-  width:clamp(110px,16vw,160px);
+  width:clamp(110px,15vw,165px);
   text-align:center;
+  cursor:pointer;
+  border-radius:16px;
 }
+.hm-feat-item:focus-visible{outline:3px solid #0b63ce;outline-offset:6px}
 .hm-feat-item:nth-child(1){margin-bottom:60px}
 .hm-feat-item:nth-child(2){margin-bottom:0px}
 .hm-feat-item:nth-child(3){margin-bottom:60px}
 .hm-feat-item:nth-child(4){margin-bottom:0px}
 .hm-feat-item:nth-child(5){margin-bottom:60px}
+.hm-feat-item:nth-child(6){margin-bottom:0px}
+.hm-feat-item:nth-child(7){margin-bottom:0px}
 
 .hm-feat-icon{
+  position:relative;
   width:clamp(80px,10vw,110px);
   height:clamp(80px,10vw,110px);
   border-radius:50%;
@@ -339,11 +361,31 @@
   box-shadow:0 6px 22px rgba(10,49,89,.12);
   transition:transform .35s cubic-bezier(.34,1.56,.64,1);
 }
-.hm-feat-item:hover .hm-feat-icon{transform:translateY(-10px) scale(1.06)}
+.hm-feat-item:hover .hm-feat-icon,.hm-feat-item:focus-visible .hm-feat-icon{transform:translateY(-10px) scale(1.06)}
+.hm-feat-icon::after{
+  content:'+';
+  position:absolute;
+  right:-2px;
+  bottom:-2px;
+  width:24px;height:24px;
+  border-radius:50%;
+  background:#0b63ce;
+  color:#fff;
+  font-size:1rem;
+  font-weight:700;
+  line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid #fff;
+  box-shadow:0 2px 8px rgba(10,49,89,.28);
+}
 .hm-feat-icon img{
   width:135%;height:135%;
   object-fit:contain;
   display:block;
+}
+.hm-feat-icon img[src*="puntoblue"]{
+  width:120%;height:120%;
+  transform:translateY(6%);
 }
 .hm-feat-item h3{
   font-size:clamp(.82rem,1.3vw,.97rem);
@@ -352,6 +394,93 @@
   font-weight:600;
   margin:0;
 }
+.hm-feat-icon-emoji{
+  font-size:clamp(2.1rem,4vw,2.7rem);
+}
+
+/* ── Modal de detalle "¿Qué hace nuestro medidor?" ── */
+.hm-feat-modal{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:1.5rem;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .25s ease,visibility .25s ease;
+}
+.hm-feat-modal.is-open{opacity:1;visibility:visible}
+.hm-feat-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(8,20,38,.7);
+  backdrop-filter:blur(2px);
+}
+.hm-feat-modal-box{
+  position:relative;
+  background:#fff;
+  border-radius:20px;
+  max-width:520px;
+  width:100%;
+  max-height:88vh;
+  overflow-y:auto;
+  padding:2.4rem 2rem 2rem;
+  text-align:center;
+  box-shadow:0 30px 70px rgba(0,0,0,.35);
+  transform:translateY(18px) scale(.96);
+  transition:transform .32s cubic-bezier(.34,1.56,.64,1);
+}
+.hm-feat-modal.is-open .hm-feat-modal-box{transform:translateY(0) scale(1)}
+.hm-feat-modal-close{
+  position:absolute;
+  top:14px;right:14px;
+  width:36px;height:36px;
+  border-radius:50%;
+  border:none;
+  background:#f1f5f9;
+  color:#0a3159;
+  font-size:1.5rem;
+  line-height:1;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.hm-feat-modal-close:hover{background:#e2e8f0}
+.hm-feat-modal-icon{
+  width:86px;height:86px;
+  border-radius:50%;
+  background:#fff;
+  border:3px solid #38bdf8;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.1rem;
+  box-shadow:0 6px 22px rgba(10,49,89,.15);
+  font-size:2.3rem;
+  overflow:hidden;
+}
+.hm-feat-modal-icon img{width:135%;height:135%;object-fit:contain;display:block}
+.hm-feat-modal-icon img[src*="puntoblue"]{width:120%;height:120%;transform:translateY(6%)}
+.hm-feat-modal-box h3{
+  font-size:clamp(1.15rem,2.2vw,1.4rem);
+  color:#0a3159;
+  font-weight:800;
+  margin:0 0 .8rem;
+}
+.hm-feat-modal-box p{
+  font-size:clamp(.92rem,1.3vw,1rem);
+  line-height:1.7;
+  color:#4b5b6d;
+  margin:0;
+}
+.hm-feat-modal-video{
+  margin-top:1.4rem;
+  border-radius:14px;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+.hm-feat-modal-video iframe{width:100%;height:100%;display:block;border:0}
 
 .hm-meter-wrap{
   display:flex !important;
@@ -687,6 +816,7 @@
     max-width:160px;
   }
   .hm-feat-icon{width:76px;height:76px}
+  .hm-feat-icon-emoji{font-size:2.1rem}
   .hm-meter-img{width:clamp(200px,65vw,340px)!important}
 
   /* Beneficios */
@@ -967,7 +1097,7 @@
      BENEFICIOS
 ═══════════════════════════════════════ -->
 <section class="hm-benefits">
-  <h2>BENEFICIOS</h2>
+  <h2>VENTAJAS</h2>
   <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
   <div class="hm-benefits-grid">
     <div class="hm-benefit-card">
@@ -977,8 +1107,8 @@
     </div>
     <div class="hm-benefit-card">
       <div class="hm-benefit-icon">💧</div>
-      <h3>Detecta fraudes, fugas y pérdidas</h3>
-      <p>Con tecnología anti-manipulación detecta flujo inverso e intervenciones de terceros. Con monitoreo avanzado identifica y previene fugas de agua, asegurando un uso eficiente del recurso y minimizando el desperdicio.</p>
+      <h3>Detecta fraudes y mide con precisión</h3>
+      <p>Con tecnología anti-manipulación detecta flujo inverso e intervenciones de terceros. Además, su alta sensibilidad registra hasta la gotera más mínima, dejando cualquier fuga reflejada en el consumo para un uso más eficiente del recurso.</p>
     </div>
     <div class="hm-benefit-card">
       <div class="hm-benefit-icon">📡</div>
@@ -1009,6 +1139,7 @@
       <div class="hm-benefit-icon">📜</div>
       <h3>Certificado y con soporte real</h3>
       <p>Certificado por Dictuc y validado para uso en sistemas APR, con capacitación para tu equipo y soporte técnico sin costo.</p>
+      <img class="hm-benefit-cert-badge" src="{% static 'app/img/certificado.png' %}" alt="Certificado Dictuc">
     </div>
     <div class="hm-benefit-card">
       <div class="hm-benefit-icon">🏆</div>
@@ -1093,30 +1224,67 @@
 ═══════════════════════════════════════ -->
 <section class="hm-features-section">
   <div class="hm-features-wrap">
-    <h2>¿Qué hace <span class="hm-hl">nuestro medidor?</span></h2>
+    <h2>¿Qué hace <span class="hm-hl">nuestro Medidor Inteligente?</span></h2>
     <br><br><br>
     <div class="hm-feat-grid">
-      <div class="hm-feat-item">
+      <div class="hm-feat-item" tabindex="0" role="button"
+           data-title="Toma lecturas a distancia"
+           data-desc="Nuestro medidor utiliza radiofrecuencia para transmitir las lecturas de consumo sin necesidad de que un lector ingrese a la propiedad. Mira cómo se capturan las lecturas con el Hand-Held en el siguiente video:"
+           data-video="https://www.youtube.com/embed/gKM3jvDH3lc">
         <div class="hm-feat-icon"><img src="{% static 'app/img/Icono1.png' %}" alt="Toma lecturas a distancia"></div>
         <h3>Toma lecturas a<br>distancia</h3>
       </div>
-      <div class="hm-feat-item">
-        <div class="hm-feat-icon"><img src="{% static 'app/img/icono2.png' %}" alt="Detecta fugas"></div>
-        <h3>Detecta fugas,<br>robos o pérdidas</h3>
+      <div class="hm-feat-item" tabindex="0" role="button"
+           data-title="Medición precisa"
+           data-desc="Su alta sensibilidad registra hasta la gotera más mínima como consumo real, sin perder ni el flujo más pequeño. Así, una fuga queda reflejada directamente en la lectura de consumo, permitiendo identificarla al revisar el registro.">
+        <div class="hm-feat-icon"><img src="{% static 'app/img/icono2.png' %}" alt="Medición precisa"></div>
+        <h3>Medición<br>precisa</h3>
       </div>
-      <div class="hm-feat-item">
+      <div class="hm-feat-item" tabindex="0" role="button"
+           data-title="Previene robos o pérdidas"
+           data-desc="Con tecnología anti-manipulación, el medidor detecta flujo inverso e intentos de intervención de terceros, como conexiones clandestinas o manipulación física del equipo. Esto protege el recurso hídrico de fraudes y asegura una facturación justa para toda la comunidad.">
+        <div class="hm-feat-icon hm-feat-icon-emoji" title="Ícono definitivo pendiente">🔒</div>
+        <h3>Previene robos<br>o pérdidas</h3>
+      </div>
+      <div class="hm-feat-item" tabindex="0" role="button"
+           data-title="Cierra el paso de agua a distancia"
+           data-desc="Corta y repone el suministro de agua de forma remota, sin necesidad de entrar a las propiedades. Mira cómo abrir y cerrar la válvula del medidor inteligente en el siguiente video:"
+           data-video="https://www.youtube.com/embed/RbW0Gr0tEcI">
         <div class="hm-feat-icon"><img src="{% static 'app/img/icono3.png' %}" alt="Cierra paso de agua"></div>
         <h3>Cierra el paso de<br>agua a distancia</h3>
       </div>
-      <div class="hm-feat-item">
+      <div class="hm-feat-item" tabindex="0" role="button"
+           data-title="Traspasa datos con un par de clicks"
+           data-desc="Las lecturas capturadas se sincronizan directamente con tu sistema de facturación mediante el Hand-Held, eliminando la transcripción manual de datos y reduciendo errores humanos en el proceso de cobro. Exporta la información a Excel y es compatible con cualquier plataforma de gestión de datos que utilice tu comunidad.">
         <div class="hm-feat-icon"><img src="{% static 'app/img/icono4.png' %}" alt="Traspasa datos"></div>
         <h3>Traspasa datos con<br>un par de clicks</h3>
       </div>
-      <div class="hm-feat-item">
+      <div class="hm-feat-item" tabindex="0" role="button"
+           data-title="Paga en Punto Blue"
+           data-desc="Suma una alternativa más de recaudación para tu comunidad: los usuarios pueden pagar su cuenta de agua de forma rápida y segura desde su celular.">
+        <div class="hm-feat-icon"><img src="{% static 'app/img/puntoblue.png' %}" alt="Paga en Punto Blue"></div>
+        <h3>Paga en<br>Punto Blue</h3>
+      </div>
+      <div class="hm-feat-item" tabindex="0" role="button"
+           data-title="Ahorra tiempo, dinero y esfuerzo"
+           data-desc="Al automatizar la toma de lecturas, el registro preciso del consumo y el corte remoto del suministro, tu comunidad reduce significativamente los costos operativos, el tiempo de gestión y el esfuerzo humano necesario para administrar el servicio de agua.">
         <div class="hm-feat-icon"><img src="{% static 'app/img/icono5.png' %}" alt="Ahorra tiempo"></div>
         <h3>Ahorra tiempo,<br>dinero y esfuerzo</h3>
       </div>
     </div><br>
+
+    <div class="hm-feat-modal" id="hmFeatModal" aria-hidden="true">
+      <div class="hm-feat-modal-backdrop" id="hmFeatModalBackdrop"></div>
+      <div class="hm-feat-modal-box" role="dialog" aria-modal="true" aria-labelledby="hmFeatModalTitle">
+        <button type="button" class="hm-feat-modal-close" id="hmFeatModalClose" aria-label="Cerrar">&times;</button>
+        <div class="hm-feat-modal-icon" id="hmFeatModalIcon"></div>
+        <h3 id="hmFeatModalTitle"></h3>
+        <p id="hmFeatModalDesc"></p>
+        <div class="hm-feat-modal-video" id="hmFeatModalVideo" hidden>
+          <iframe id="hmFeatModalIframe" src="" title="Video tutorial" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
 
     <div class="hm-meter-wrap">
       <img class="hm-meter-img"
@@ -1126,6 +1294,59 @@
 
   </div>
 </section>
+
+<script>
+(function(){
+  var modal    = document.getElementById('hmFeatModal');
+  var backdrop = document.getElementById('hmFeatModalBackdrop');
+  var closeBtn = document.getElementById('hmFeatModalClose');
+  var iconEl   = document.getElementById('hmFeatModalIcon');
+  var titleEl  = document.getElementById('hmFeatModalTitle');
+  var descEl   = document.getElementById('hmFeatModalDesc');
+  var videoBox = document.getElementById('hmFeatModalVideo');
+  var iframe   = document.getElementById('hmFeatModalIframe');
+  var items    = document.querySelectorAll('.hm-feat-item');
+  if(!modal || !items.length) return;
+
+  function openModal(item){
+    iconEl.innerHTML = item.querySelector('.hm-feat-icon').innerHTML;
+    titleEl.textContent = item.getAttribute('data-title') || '';
+    descEl.textContent  = item.getAttribute('data-desc') || '';
+    var video = item.getAttribute('data-video');
+    if(video){
+      iframe.src = video;
+      videoBox.hidden = false;
+    } else {
+      iframe.src = '';
+      videoBox.hidden = true;
+    }
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  items.forEach(function(item){
+    item.addEventListener('click', function(){ openModal(item); });
+    item.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openModal(item);
+      }
+    });
+  });
+  backdrop.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+})();
+</script>
 
 
 <!-- ═══════════════════════════════════════
@@ -1352,6 +1573,28 @@ document.addEventListener('DOMContentLoaded',function(){
   /* Solo números en arranques */
   var cant=document.getElementById('hmCantidad');
   if(cant) cant.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'');});
+
+  /* ── Testimonios: elige 3 videos al azar entre los 13 disponibles en cada visita ── */
+  (function(){
+    var testimonialIds = ['UvPPK3VluzM','RjTlcUPfCVA','TCAa7qUEVYs','A_rxG90YzS8','1_bwMkz3pqM','ZKso4E9MkfY','5rehLhCMSG8','crhAwARwYKw','ZsXCr20WgWY','X_d1ceK9G-I','MwuYC75PbNs','lQpcUDDLqRA','vpby-GBccvs'];
+    var testTrack    = document.getElementById('hmSliderTrack');
+    var testDotsWrap = document.querySelector('.hm-slider-dots');
+    if(!testTrack || !testDotsWrap) return;
+    var shuffled = testimonialIds.slice();
+    for(var i = shuffled.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+    }
+    var chosen = shuffled.slice(0, 3);
+    testTrack.innerHTML = chosen.map(function(id){
+      return '<div class="hm-testimonial-card"><div class="hm-video-wrap">'
+        + '<iframe src="https://www.youtube.com/embed/' + id + '" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        + '</div></div>';
+    }).join('');
+    testDotsWrap.innerHTML = chosen.map(function(_, idx){
+      return '<span class="hm-slider-dot' + (idx === 0 ? ' active' : '') + '"></span>';
+    }).join('');
+  })();
 
   /* ── Slider testimonios ── */
   var track   = document.getElementById('hmSliderTrack');

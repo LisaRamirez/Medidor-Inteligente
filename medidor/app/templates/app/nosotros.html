@@ -932,10 +932,6 @@
   .aniv-merge .rev.in{opacity:1;transform:translateY(0)}
   .aniv-sep{width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--celeste),var(--teal),transparent);opacity:.35}
 
-  /* S2 · PROBLEMA → SOLUCIÓN */
-  .aniv-problema{padding:var(--gap) 5vw;background:linear-gradient(145deg,#f0fbf9 0%,#e4f6fd 35%,#eaf7ff 65%,#f5fffe 100%);position:relative;overflow:hidden}
-  .aniv-problema::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 8% 60%,rgba(14,184,160,.10) 0%,transparent 55%),radial-gradient(ellipse 45% 55% at 92% 25%,rgba(90,174,230,.12) 0%,transparent 50%),radial-gradient(ellipse 40% 50% at 50% 100%,rgba(14,184,160,.06) 0%,transparent 60%);pointer-events:none}
-  .aniv-problema::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(26,115,200,.06) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
   .prob-circles{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .prob-circle{position:absolute;border-radius:50%;background:transparent}
   .prob-circle:nth-child(1){width:340px;height:340px;top:-80px;left:-60px;border:2px solid rgba(14,184,160,.18);animation:probCircleFloat1 9s ease-in-out infinite alternate}
@@ -946,25 +942,11 @@
   @keyframes probCircleFloat1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-22px) scale(1.05)}100%{transform:translate(-10px,14px) scale(.97)}}
   @keyframes probCircleFloat2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,16px) scale(1.07)}100%{transform:translate(12px,-18px) scale(.95)}}
   @keyframes probCircleFloat3{0%{transform:translate(0,0) scale(1)}40%{transform:translate(22px,8px) scale(1.04)}100%{transform:translate(-8px,-20px) scale(.98)}}
-  .prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;position:relative;z-index:1}
-  .prob-block{background:#ffffff;border:1.5px solid rgba(26,115,200,.12);border-radius:var(--r);padding:2rem 2rem 2.2rem;box-shadow:0 4px 24px rgba(90,174,230,.12),0 1px 4px rgba(26,115,200,.06);transition:transform .3s,box-shadow .3s}
-  .prob-block:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(90,174,230,.18),0 2px 8px rgba(26,115,200,.08)}
-  .prob-block::before{content:'';display:block;height:3px;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:3px 3px 0 0;margin:-2rem -2rem 1.4rem}
-  .prob-block.sol::before{background:linear-gradient(90deg,var(--teal),var(--teal-l))}
-  .prob-block .aniv-kicker{color:#d97706}
-  .prob-block .aniv-kicker::before{background:#d97706}
-  .prob-block.sol .aniv-kicker{color:var(--teal)}
-  .prob-block.sol .aniv-kicker::before{background:var(--teal)}
-  .prob-h3{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;color:var(--ink);line-height:1.15;margin-bottom:1.1rem;letter-spacing:-.02em}
-  .prob-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
-  .prob-list li{font-size:.93rem;color:var(--ink-m);font-weight:400;line-height:1.6;display:flex;align-items:flex-start;gap:.7rem;padding:.5rem .7rem;border-radius:8px;background:rgba(26,115,200,.03);border:1px solid rgba(26,115,200,.06);transition:background .2s,border-color .2s}
-  .prob-list li:hover{background:rgba(14,184,160,.06);border-color:rgba(14,184,160,.15)}
-  .prob-block.sol .prob-list li:hover{background:rgba(14,184,160,.07);border-color:rgba(14,184,160,.18)}
-  .prob-icon{font-size:1.05rem;flex-shrink:0;margin-top:.1em}
-
   /* VIDEO CHILEVISIÓN */
-  .aniv-chv-wrap{padding:var(--gap) 5vw;background:var(--white);position:relative}
-  .aniv-chv-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--celeste) 30%,var(--teal) 70%,transparent)}
+  .aniv-chv-wrap{padding:var(--gap) 5vw;background:linear-gradient(145deg,#f0fbf9 0%,#e4f6fd 35%,#eaf7ff 65%,#f5fffe 100%);position:relative;overflow:hidden}
+  .aniv-chv-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--celeste) 30%,var(--teal) 70%,transparent);z-index:1}
+  .aniv-chv-wrap::after{content:'';position:absolute;inset:0;background-image:radial-gradient(ellipse 55% 70% at 8% 60%,rgba(14,184,160,.10) 0%,transparent 55%),radial-gradient(ellipse 45% 55% at 92% 25%,rgba(90,174,230,.12) 0%,transparent 50%),radial-gradient(ellipse 40% 50% at 50% 100%,rgba(14,184,160,.06) 0%,transparent 60%),radial-gradient(circle,rgba(26,115,200,.06) 1px,transparent 1px);background-size:auto,auto,auto,30px 30px;pointer-events:none}
+  .aniv-chv-wrap .aniv-wrap{position:relative;z-index:1}
   .vid-chv{background:var(--white);border-radius:var(--r);overflow:hidden;border:1.5px solid rgba(26,115,200,.15);box-shadow:var(--shadow-blue);margin-top:2rem}
   .vid-chv-inner{display:grid;grid-template-columns:1.5fr 1fr;align-items:stretch}
   .vid-chv-frame{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#0a1628}
@@ -1062,7 +1044,6 @@
     .evo-card:nth-child(3){grid-column:span 2}
     .vid-chv-inner{grid-template-columns:1fr}
     .hist-grid{grid-template-columns:1fr;gap:2.5rem}
-    .prob-grid{grid-template-columns:1fr}
   }
   @media(max-width:768px){
     .aniv-merge{--gap:65px}
@@ -1186,8 +1167,8 @@
      ========================================= -->
 <div class="aniv-merge">
 
-  <!-- S2 · PROBLEMA → SOLUCIÓN -->
-  <section class="aniv-problema" id="problema">
+  <!-- VIDEO CHILEVISIÓN -->
+  <section class="aniv-chv-wrap" id="chilevision">
     <div class="prob-circles" aria-hidden="true">
       <div class="prob-circle"></div>
       <div class="prob-circle"></div>
@@ -1195,44 +1176,6 @@
       <div class="prob-circle"></div>
       <div class="prob-circle"></div>
     </div>
-    <div class="aniv-wrap">
-      <div class="prob-grid">
-
-        <div class="prob-block rev">
-          <p class="aniv-kicker">El desafío</p>
-          <h2 class="prob-h3">Problemas en<br>sistemas APR</h2>
-          <ul class="prob-list">
-            <li><span class="prob-icon">⚠️</span>Lectura manual de medidores casa por casa</li>
-            <li><span class="prob-icon">📋</span>Errores de digitación en los registros de consumo</li>
-            <li><span class="prob-icon">🚗</span>Desplazamientos costosos en terreno para cada lectura</li>
-            <li><span class="prob-icon">❌</span>Falta de control en tiempo real del suministro</li>
-            <li><span class="prob-icon">💦</span>Fugas no detectadas que generan pérdidas millonarias</li>
-            <li><span class="prob-icon">🚫</span>Pagos en oficinas y largas colas</li>
-          </ul>
-        </div>
-
-        <div class="prob-block sol rev" style="transition-delay:.15s">
-          <p class="aniv-kicker">La solución</p>
-          <h2 class="prob-h3">Automatización<br>inteligente</h2>
-          <ul class="prob-list">
-            <li><span class="prob-icon">📡</span>Lecturas eficientes y transmisión estable a distancia</li>
-            <li><span class="prob-icon">✅</span>Datos precisos y confiables, sin errores humanos</li>
-            <li><span class="prob-icon">🔒</span>Corte y apertura del suministro desde Hand-Held</li>
-            <li><span class="prob-icon">🔔</span>Detecta pérdidas desde pequeñas fugas hasta altos flujos</li>
-            <li><span class="prob-icon">⏱️</span>Ahorro real de tiempo, dinero y esfuerzo operativo</li>
-            <li><span class="prob-icon">🐕</span>Evita problemas con perros, muros y rejas</li>
-            <li><span class="prob-icon">💳</span>Compatible con pago en línea Punto Blue</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="aniv-sep"></div>
-
-  <!-- VIDEO CHILEVISIÓN -->
-  <section class="aniv-chv-wrap" id="chilevision">
     <div class="aniv-wrap">
       <div class="rev">
         <span class="tv__pill"><i></i>Primera aparición en medios nacionales</span>
@@ -1459,105 +1402,157 @@
     <div class="nosotros-carousel-track" id="nosotros-tv">
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/gzA8ojJgk4w?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/UvPPK3VluzM?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-blue">MI</div>
+              <div class="nosotros-vcard-avatar av-green">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/MW74-sBSkiQ?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/RjTlcUPfCVA?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-teal">AP</div>
+              <div class="nosotros-vcard-avatar av-blue">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/Htj-PIXVRrA?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/TCAa7qUEVYs?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-green">TV</div>
+              <div class="nosotros-vcard-avatar av-teal">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/MKcPRVp4I7k?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/A_rxG90YzS8?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-blue">CH</div>
+              <div class="nosotros-vcard-avatar av-green">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/k_AjSOfj2Hk?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/ZKso4E9MkfY?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-teal">CO</div>
+              <div class="nosotros-vcard-avatar av-blue">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/Ett9Fh4SVUQ?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/5rehLhCMSG8?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-green">EN</div>
+              <div class="nosotros-vcard-avatar av-teal">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/LvshQZRZOcw?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/crhAwARwYKw?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-blue">RE</div>
+              <div class="nosotros-vcard-avatar av-green">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
           <div class="nosotros-vcard">
             <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/M5Cug9siA6Q?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/ZsXCr20WgWY?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-teal">ME</div>
+              <div class="nosotros-vcard-avatar av-blue">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/X_d1ceK9G-I?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">CL</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/MwuYC75PbNs?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-green">CL</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/lQpcUDDLqRA?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-blue">CL</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-vcard">
+            <div class="nosotros-vcard-video">
+              <iframe src="https://www.youtube.com/embed/vpby-GBccvs?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="nosotros-vcard-accent"></div>
+            <div class="nosotros-vcard-footer">
+              <div class="nosotros-vcard-avatar av-teal">CL</div>
+              <div class="nosotros-vcard-info">
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
@@ -1567,36 +1562,10 @@
             </div>
             <div class="nosotros-vcard-accent"></div>
             <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-green">AG</div>
+              <div class="nosotros-vcard-avatar av-green">CL</div>
               <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
-              </div>
-            </div>
-          </div>
-          <div class="nosotros-vcard">
-            <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/1u9x0isMnjg?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="nosotros-vcard-accent"></div>
-            <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-blue">VI</div>
-              <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
-              </div>
-            </div>
-          </div>
-          <div class="nosotros-vcard">
-            <div class="nosotros-vcard-video">
-              <iframe src="https://www.youtube.com/embed/I7BJNUEhu98?enablejsapi=1" referrerpolicy="strict-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="nosotros-vcard-accent"></div>
-            <div class="nosotros-vcard-footer">
-              <div class="nosotros-vcard-avatar av-teal">PR</div>
-              <div class="nosotros-vcard-info">
-                <div class="nosotros-vcard-name">Medidor Inteligente</div>
-                <div class="nosotros-vcard-role">Entrevista en Television</div>
+                <div class="nosotros-vcard-name">Comunidad APR</div>
+                <div class="nosotros-vcard-role">Testimonio de cliente</div>
               </div>
             </div>
           </div>
