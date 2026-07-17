@@ -412,61 +412,6 @@
     .sw-reveal-delay-3 { transition-delay: 0.34s; }
 
     /* ============================================
-       CÓMO FUNCIONA
-    ============================================= */
-    .sw-how-it-works {
-        background-color: #F3F4F6;
-        padding: 80px 0;
-    }
-    .sw-section-header {
-        text-align: center;
-        margin-bottom: 60px;
-    }
-    .sw-section-header h2 { font-size: 32px; color: #1F2937; }
-    .sw-section-header p  { color: #6B7280; margin-top: 10px; }
-    .sw-steps {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-    .sw-step {
-        text-align: center;
-        position: relative;
-        transition: transform 0.3s ease;
-    }
-    .sw-step:hover { transform: translateY(-5px); }
-    .sw-step-number {
-        font-size: 100px;
-        font-weight: bold;
-        color: #a5b5d4;
-        position: absolute;
-        top: -40px;
-        left: 30%;
-        transform: translateX(-50%);
-        z-index: 1;
-    }
-    .sw-step-content { position: relative; z-index: 2; }
-    .sw-step p { color: #4B5563; font-size: 14px; }
-    .sw-highlight { font-weight: bold; color: #1F2937; margin-top: 8px; }
-    .sw-steps-connector {
-        display: none;
-        justify-content: center;
-        color: #10b981;
-        opacity: 0.6;
-    }
-    .sw-steps-connector svg { animation: swBounceDown 1.4s ease-in-out infinite; }
-    @keyframes swBounceDown {
-        0%, 100% { transform: translateY(0);   }
-        50%       { transform: translateY(5px); }
-    }
-    @media (max-width: 480px) {
-        .sw-steps-connector { display: flex; }
-        .sw-steps { grid-template-columns: 1fr; gap: 60px; }
-    }
-
-    /* ============================================
        SERVICIOS
     ============================================= */
     .sw-services-section {
@@ -715,66 +660,6 @@
         </div>
     </div>
 </div>
-
-
-<!-- Cómo Funciona -->
-<section class="sw-how-it-works">
-    <div class="container">
-        <div class="sw-section-header sw-reveal">
-            <h2>¿CÓMO FUNCIONA?</h2>
-            <p>En 3 sencillos pasos</p>
-        </div>
-
-        <div class="sw-steps">
-
-            <div class="sw-step sw-reveal sw-reveal-delay-1">
-                <div class="sw-step-number">1</div>
-                <div class="sw-step-content">
-                    <div class="gotas">
-                        <img src="{% static 'app/img/icono6.png'%}" alt="Medidor">
-                    </div>
-                    <p>Toma los datos y envía al receptor manual</p>
-                    <p class="sw-highlight">A 100 (+) METROS</p>
-                </div>
-            </div>
-
-            <div class="sw-steps-connector">
-                <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
-                    <path d="M12 0 L12 24 M4 16 L12 24 L20 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-
-            <div class="sw-step sw-reveal sw-reveal-delay-2">
-                <div class="sw-step-number">2</div>
-                <div class="sw-step-content">
-                    <div class="gotas">
-                        <img src="{% static 'app/img/icono7.png'%}" alt="Receptor">
-                    </div>
-                    <p>Recepciona los datos</p>
-                    <p class="sw-highlight">PERMITE CORTAR EL SERVICIO A DISTANCIA</p>
-                </div>
-            </div>
-
-            <div class="sw-steps-connector">
-                <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
-                    <path d="M12 0 L12 24 M4 16 L12 24 L20 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-
-            <div class="sw-step sw-reveal sw-reveal-delay-3">
-                <div class="sw-step-number">3</div>
-                <div class="sw-step-content">
-                    <div class="gotas">
-                        <img src="{% static 'app/img/icono8.png'%}" alt="Software">
-                    </div>
-                    <p>Pasa en directo los datos al software o plantilla excel</p>
-                    <p class="sw-highlight">PERMITE EMITIR BOLETAS</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 
 <!-- Servicios -->
