@@ -415,18 +415,28 @@
        SERVICIOS
     ============================================= */
     .sw-services-section {
-       background: linear-gradient(
-      135deg,
-      #061a4f 0%,
-      #1170ec 35%,
-      #38bdf8 60%,
-      #22e3a5 85%,
-      #00d97e 100%
-    );
+        background: linear-gradient(180deg, #eaf3fc 0%, #ffffff 100%);
         min-height: 60vh;
         padding: 80px 0;
         display: flex;
         align-items: center;
+        position: relative;
+    }
+    .sw-services-section::before,
+    .sw-services-section::after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #1e52d4 20%, #2dd4bf 50%, #1e52d4 80%, transparent);
+        background-size: 200% auto;
+        animation: swShimmer 8s linear infinite;
+    }
+    .sw-services-section::before { top: 0; }
+    .sw-services-section::after  { bottom: 0; }
+    @keyframes swShimmer {
+        0%   { background-position: -300% center; }
+        100% { background-position:  300% center; }
     }
     .sw-services-container {
         max-width: 1400px;
@@ -436,7 +446,7 @@
         box-sizing: border-box;
     }
     .sw-services-title {
-        color: white;
+        color: #0a3159;
         font-size: 2.5rem;
         font-weight: 300;
         text-align: center;
