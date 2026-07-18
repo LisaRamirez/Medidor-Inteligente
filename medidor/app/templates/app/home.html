@@ -4,16 +4,11 @@
 
 <style>
   /* ══ SLIDE STOCK ════════════════════════════════════════════════ */
-.hs-stock{background:linear-gradient(160deg,#0b63ce 0%,#1170ec 25%,#38bdf8 55%,#7dd3fc 80%,#38bdf8 100%);background-size:220% 220%;animation:hsStockShift 10s ease-in-out infinite;position:relative}
-.hs-stock::after{content:'';position:absolute;inset:0;background:radial-gradient(circle 40% at 22% 75%,rgba(45,212,191,.5) 0%,transparent 70%),radial-gradient(circle 32% at 82% 20%,rgba(45,212,191,.35) 0%,transparent 70%);animation:hsGreenDrift 9s ease-in-out infinite;pointer-events:none;z-index:0}
+.hs-stock{background:linear-gradient(135deg,#0a58c2 0%,#0b63ce 22%,#0d7fc7 38%,#10a5a8 58%,#22d9a8 80%,#3eeab5 100%);background-size:220% 220%;animation:hsStockShift 10s ease-in-out infinite;position:relative}
 @keyframes hsStockShift{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
-}
-@keyframes hsGreenDrift{
-  0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(6%,-5%) scale(1.15)}
 }
 
 .hs-stock-penta{position:absolute;inset:0;pointer-events:none;z-index:0}
@@ -999,7 +994,7 @@
 
     <!-- SLIDE 3 -->
     <div class="hero-slide hs-s6">
-      <img src="{% static 'app/img/webcliente1.jpg' %}" alt="Entrega de Medidores" class="hs-s6-bg">
+      <img src="{% static 'app/img/webcliente1.png' %}" alt="Entrega de Medidores" class="hs-s6-bg">
       <div class="hs-s6-caption">
         <span class="hs-s6-tag">Comunidades APR</span>
         <h2 class="hs-s6-h2">Entrega de Medidores Inteligentes</h2>
@@ -1012,7 +1007,7 @@
 
     <!-- SLIDE 4 -->
     <div class="hero-slide hs-s6">
-      <img src="{% static 'app/img/webcliente2.jpg' %}" alt="Actualizaciones y novedades" class="hs-s6-bg">
+      <img src="{% static 'app/img/webcliente2.png' %}" alt="Actualizaciones y novedades" class="hs-s6-bg">
       <div class="hs-s6-caption">
         <span class="hs-s6-tag">Actualizaciones y novedades</span>
         <h2 class="hs-s6-h2">Información reciente sobre el Medidor Inteligente y APR</h2>
