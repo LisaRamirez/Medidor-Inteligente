@@ -1,0 +1,694 @@
+- generic [active] [ref=f60e1]:
+  - banner [ref=f60e2]:
+    - navigation [ref=f60e3]:
+      - link [ref=f60e4] [cursor=pointer]:
+        - /url: /
+        - img "Medidor Inteligente" [ref=f60e5]
+      - generic [ref=f60e6]:
+        - link "Inicio" [ref=f60e7] [cursor=pointer]:
+          - /url: /
+        - link "Productos" [ref=f60e8] [cursor=pointer]:
+          - /url: /soluciones/
+        - link "Tutoriales" [ref=f60e9] [cursor=pointer]:
+          - /url: /tutoriales/
+        - link "Nosotros" [ref=f60e10] [cursor=pointer]:
+          - /url: /nosotros/
+        - link "Clientes" [ref=f60e11] [cursor=pointer]:
+          - /url: /clientes/
+        - link "Certificados Dictuc" [ref=f60e12] [cursor=pointer]:
+          - /url: /recursos/
+        - link "Contáctanos" [ref=f60e13] [cursor=pointer]:
+          - /url: /contacto/
+  - img "Cliente" [ref=f60e15]
+  - generic [ref=f60e16]:
+    - generic [ref=f60e17]: Cobertura Nacional
+    - heading [level=2] [ref=f60e18]:
+      - text: Nuestras
+      - emphasis [ref=f60e19]: Regiones
+    - paragraph [ref=f60e20]: Impacto que se transmite alrededor de todo Chile
+    - navigation "Filtro por región" [ref=f60e21]:
+      - button "Todas" [ref=f60e22] [cursor=pointer]
+      - button "Arica y Parinacota" [ref=f60e23] [cursor=pointer]
+      - button "Atacama" [ref=f60e24] [cursor=pointer]
+      - button "Coquimbo" [ref=f60e25] [cursor=pointer]
+      - button "Valparaíso" [ref=f60e26] [cursor=pointer]
+      - button "Metropolitana" [ref=f60e27] [cursor=pointer]
+      - button "O'Higgins" [ref=f60e28] [cursor=pointer]
+      - button "Maule" [ref=f60e29] [cursor=pointer]
+      - button "BioBío" [ref=f60e30] [cursor=pointer]
+      - button "Araucanía" [ref=f60e31] [cursor=pointer]
+      - button "Los Ríos" [ref=f60e32] [cursor=pointer]
+      - button "Los Lagos" [ref=f60e33] [cursor=pointer]
+      - button "Aysén" [ref=f60e34] [cursor=pointer]
+  - generic [ref=f60e35]:
+    - generic [ref=f60e36]: Mostrando 1–12 de 159 comunidades
+    - generic [ref=f60e37]:
+      - article [ref=f60e38]:
+        - generic [ref=f60e39]:
+          - 'img "Cooperativa APR ``El Asiento`` - San Felipe" [ref=f60e40]'
+          - 'heading "Cooperativa APR ``El Asiento`` - San Felipe" [level=3] [ref=f60e42]'
+          - generic [ref=f60e43]: Valparaíso
+        - generic [ref=f60e44]:
+          - generic [ref=f60e45]: San Felipe
+          - link "Ver más →" [ref=f60e50] [cursor=pointer]:
+            - /url: /apr/1/
+      - article [ref=f60e51]:
+        - generic [ref=f60e52]:
+          - 'img "Comité APR ``El Esfuerzo`` - Pichidangui - Los Vilos" [ref=f60e53]'
+          - 'heading "Comité APR ``El Esfuerzo`` - Pichidangui - Los Vilos" [level=3] [ref=f60e55]'
+          - generic [ref=f60e56]: Coquimbo
+        - generic [ref=f60e57]:
+          - generic [ref=f60e58]: Los Vilos
+          - link "Ver más →" [ref=f60e63] [cursor=pointer]:
+            - /url: /apr/2/
+      - article [ref=f60e64]:
+        - generic [ref=f60e65]:
+          - 'img "Comité APR ``Batuco - Santa Sara``" [ref=f60e66]'
+          - 'heading "Comité APR ``Batuco - Santa Sara``" [level=3] [ref=f60e68]'
+          - generic [ref=f60e69]: Metropolitana
+        - generic [ref=f60e70]:
+          - generic [ref=f60e71]: Lampa
+          - link "Ver más →" [ref=f60e76] [cursor=pointer]:
+            - /url: /apr/3/
+      - article [ref=f60e77]:
+        - generic [ref=f60e78]:
+          - 'img "Comité APR ``Chovellén``" [ref=f60e79]'
+          - 'heading "Comité APR ``Chovellén``" [level=3] [ref=f60e81]'
+          - generic [ref=f60e82]: Maule
+        - generic [ref=f60e83]:
+          - generic [ref=f60e84]: Pelluhue
+          - link "Ver más →" [ref=f60e89] [cursor=pointer]:
+            - /url: /apr/5/
+      - article [ref=f60e90]:
+        - generic [ref=f60e91]:
+          - 'img "Comité APR ``Violeta Parra``" [ref=f60e92]'
+          - 'heading "Comité APR ``Violeta Parra``" [level=3] [ref=f60e94]'
+          - generic [ref=f60e95]: Biobio
+        - generic [ref=f60e96]:
+          - generic [ref=f60e97]: Laja
+          - link "Ver más →" [ref=f60e102] [cursor=pointer]:
+            - /url: /apr/6/
+      - article [ref=f60e103]:
+        - generic [ref=f60e104]:
+          - 'img "Comité SSR ``Metrenco``" [ref=f60e105]'
+          - 'heading "Comité SSR ``Metrenco``" [level=3] [ref=f60e107]'
+          - generic [ref=f60e108]: Araucania
+        - generic [ref=f60e109]:
+          - generic [ref=f60e110]: Metrenco
+          - link "Ver más →" [ref=f60e115] [cursor=pointer]:
+            - /url: /apr/7/
+      - article [ref=f60e116]:
+        - generic [ref=f60e117]:
+          - 'img "Comité APR ``Coñaripe``" [ref=f60e118]'
+          - 'heading "Comité APR ``Coñaripe``" [level=3] [ref=f60e120]'
+          - generic [ref=f60e121]: Los Rios
+        - generic [ref=f60e122]:
+          - generic [ref=f60e123]: Panguipulli
+          - link "Ver más →" [ref=f60e128] [cursor=pointer]:
+            - /url: /apr/8/
+      - article [ref=f60e129]:
+        - generic [ref=f60e130]:
+          - 'img "SSR ``Valle Simpson``" [ref=f60e131]'
+          - 'heading "SSR ``Valle Simpson``" [level=3] [ref=f60e133]'
+          - generic [ref=f60e134]: Aysen
+        - generic [ref=f60e135]:
+          - generic [ref=f60e136]: Coyhaique
+          - link "Ver más →" [ref=f60e141] [cursor=pointer]:
+            - /url: /apr/9/
+      - article [ref=f60e142]:
+        - generic [ref=f60e143]:
+          - img "Comité APR Villa La Ensenada" [ref=f60e144]
+          - heading "Comité APR Villa La Ensenada" [level=3] [ref=f60e146]
+          - generic [ref=f60e147]: Los Lagos
+        - generic [ref=f60e148]:
+          - generic [ref=f60e149]: La Ensenada
+          - link "Ver más →" [ref=f60e154] [cursor=pointer]:
+            - /url: /apr/10/
+      - article [ref=f60e155]:
+        - generic [ref=f60e156]:
+          - img "APR \"La Paloma\"" [ref=f60e157]
+          - heading "APR \"La Paloma\"" [level=3] [ref=f60e159]
+          - generic [ref=f60e160]: O'higgins
+        - generic [ref=f60e161]:
+          - generic [ref=f60e162]: San Fernando
+          - link "Ver más →" [ref=f60e167] [cursor=pointer]:
+            - /url: /apr/11/
+      - article [ref=f60e168]:
+        - generic [ref=f60e169]:
+          - img "APR \"Quebrada de Talca\"" [ref=f60e170]
+          - heading "APR \"Quebrada de Talca\"" [level=3] [ref=f60e172]
+          - generic [ref=f60e173]: Coquimbo
+        - generic [ref=f60e174]:
+          - generic [ref=f60e175]: La Serena
+          - link "Ver más →" [ref=f60e180] [cursor=pointer]:
+            - /url: /apr/12/
+      - article [ref=f60e181]:
+        - generic [ref=f60e182]:
+          - img "APR \"La Linea\"" [ref=f60e183]
+          - heading "APR \"La Linea\"" [level=3] [ref=f60e185]
+          - generic [ref=f60e186]: Metropolitana
+        - generic [ref=f60e187]:
+          - generic [ref=f60e188]: Alhué
+          - link "Ver más →" [ref=f60e193] [cursor=pointer]:
+            - /url: /apr/13/
+    - generic [ref=f60e194]:
+      - button "‹"
+      - button "1" [ref=f60e195] [cursor=pointer]
+      - button "2" [ref=f60e196] [cursor=pointer]
+      - generic [ref=f60e197]: …
+      - button "14" [ref=f60e198] [cursor=pointer]
+      - button "›" [ref=f60e199] [cursor=pointer]
+  - generic [ref=f60e200]:
+    - generic [ref=f60e201]:
+      - generic [ref=f60e202]: Comunidades que nos respaldan
+      - heading [level=2] [ref=f60e204]:
+        - text: Experiencias
+        - emphasis [ref=f60e205]: reales
+      - paragraph [ref=f60e206]: Descubre lo que dicen quienes ya confían en Medidor Inteligente
+    - generic [ref=f60e207]:
+      - generic [ref=f60e208]:
+        - iframe [ref=f60e210]:
+          - generic [ref=f61e1]:
+            - generic "Reproductor de video de YouTube" [ref=f61e3]
+            - generic [ref=f61e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f61e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f61e12] [cursor=pointer]
+                  - generic [ref=f61e14]:
+                    - generic [ref=f61e19]:
+                      - generic [ref=f61e20]:
+                        - link "Testimonio sobre Medidores Inteligentes, de APR \"La Puntilla de Lonquén\" - Isla de Maipo" [ref=f61e21] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=1_bwMkz3pqM
+                        - link "Medidor Inteligente de Agua Potable" [ref=f61e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f61e24]:
+                        - button [ref=f61e25] [cursor=pointer]
+                        - generic [ref=f61e27]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f61e28]:
+                      - button "Compartir" [ref=f61e31] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f61e42] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=1_bwMkz3pqM
+                        - generic [ref=f61e43]: Mirar en
+        - generic [ref=f60e211]:
+          - generic [ref=f60e212]: MG
+          - generic [ref=f60e213]:
+            - generic [ref=f60e214]: Miriam Galvez
+            - generic [ref=f60e215]: APR "La Puntilla de Lonquén" · Isla de Maipo
+      - generic [ref=f60e216]:
+        - iframe [ref=f60e218]:
+          - generic [ref=f62e1]:
+            - generic "Reproductor de video de YouTube" [ref=f62e3]
+            - generic [ref=f62e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f62e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f62e12] [cursor=pointer]
+                  - generic [ref=f62e14]:
+                    - generic [ref=f62e19]:
+                      - generic [ref=f62e20]:
+                        - link "Experiencia con el medidor inteligente de don Manuel Mundaca Presidente APR Sonora Los Acacios." [ref=f62e21] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=ZKso4E9MkfY
+                        - link "Medidor Inteligente de Agua Potable" [ref=f62e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f62e24]:
+                        - button [ref=f62e25] [cursor=pointer]
+                        - generic [ref=f62e27]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f62e28]:
+                      - button "Compartir" [ref=f62e31] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f62e42] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=ZKso4E9MkfY
+                        - generic [ref=f62e43]: Mirar en
+        - generic [ref=f60e219]:
+          - generic [ref=f60e220]: MM
+          - generic [ref=f60e221]:
+            - generic [ref=f60e222]: Manuel Mundaca
+            - generic [ref=f60e223]: Presidente APR Sonora Los Acacios
+      - generic [ref=f60e224]:
+        - iframe [ref=f60e226]:
+          - generic [ref=f63e1]:
+            - generic "Reproductor de video de YouTube" [ref=f63e3]
+            - generic [ref=f63e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f63e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f63e14] [cursor=pointer]
+                  - generic [ref=f63e16]:
+                    - generic [ref=f63e21]:
+                      - generic [ref=f63e22]:
+                        - link "Testimonio Administrativa, Comité APR \"San Antonio de Naltagua\" - Isla de Maipo" [ref=f63e23] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=5rehLhCMSG8
+                        - link "Medidor Inteligente de Agua Potable" [ref=f63e24] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f63e26]:
+                        - button [ref=f63e27] [cursor=pointer]
+                        - generic [ref=f63e29]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f63e30]:
+                      - button "Compartir" [ref=f63e33] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f63e44] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=5rehLhCMSG8
+                        - generic [ref=f63e45]: Mirar en
+        - generic [ref=f60e227]:
+          - generic [ref=f60e228]: CA
+          - generic [ref=f60e229]:
+            - generic [ref=f60e230]: Administrativa
+            - generic [ref=f60e231]: Comité APR "San Antonio de Naltagua" · Isla de Maipo
+      - generic [ref=f60e232]:
+        - iframe [ref=f60e234]:
+          - generic [ref=f64e1]:
+            - generic "Reproductor de video de YouTube" [ref=f64e3]
+            - generic [ref=f64e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f64e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f64e12] [cursor=pointer]
+                  - generic [ref=f64e14]:
+                    - generic [ref=f64e19]:
+                      - generic [ref=f64e20]:
+                        - 'link "Experiencia con Medidor Inteligente: Roberto - Operador de Asociación de Vecinos La Parva" [ref=f64e21] [cursor=pointer]':
+                          - /url: https://www.youtube.com/watch?v=crhAwARwYKw
+                        - link "Medidor Inteligente de Agua Potable" [ref=f64e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f64e24]:
+                        - button [ref=f64e25] [cursor=pointer]
+                        - generic [ref=f64e27]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f64e28]:
+                      - button "Compartir" [ref=f64e31] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f64e42] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=crhAwARwYKw
+                        - generic [ref=f64e43]: Mirar en
+        - generic [ref=f60e235]:
+          - generic [ref=f60e236]: RO
+          - generic [ref=f60e237]:
+            - generic [ref=f60e238]: Roberto
+            - generic [ref=f60e239]: Operador · Asociación de Vecinos La Parva
+      - generic [ref=f60e240]:
+        - iframe [ref=f60e242]:
+          - generic [ref=f65e1]:
+            - generic "Reproductor de video de YouTube" [ref=f65e3]
+            - generic [ref=f65e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f65e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f65e12] [cursor=pointer]
+                  - generic [ref=f65e14]:
+                    - generic [ref=f65e19]:
+                      - generic [ref=f65e20]:
+                        - 'link "Experiencia con Medidor Inteligente: Guillermo - Gerente Operaciones - Asociación Vecinos La Parva" [ref=f65e21] [cursor=pointer]':
+                          - /url: https://www.youtube.com/watch?v=ZsXCr20WgWY
+                        - link "Medidor Inteligente de Agua Potable" [ref=f65e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f65e24]:
+                        - button [ref=f65e25] [cursor=pointer]
+                        - generic [ref=f65e27]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f65e28]:
+                      - button "Compartir" [ref=f65e31] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f65e42] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=ZsXCr20WgWY
+                        - generic [ref=f65e43]: Mirar en
+        - generic [ref=f60e243]:
+          - generic [ref=f60e244]: GU
+          - generic [ref=f60e245]:
+            - generic [ref=f60e246]: Guillermo
+            - generic [ref=f60e247]: Gerente Operaciones · Asociación Vecinos La Parva
+      - generic [ref=f60e248]:
+        - iframe [ref=f60e250]:
+          - generic [ref=f66e1]:
+            - generic "Reproductor de video de YouTube" [ref=f66e3]
+            - generic [ref=f66e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f66e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f66e14] [cursor=pointer]
+                  - generic [ref=f66e16]:
+                    - generic [ref=f66e21]:
+                      - generic [ref=f66e22]:
+                        - link "Experiencia Punto de Pago APR con \"Punto Blue\" - Loreto Orellana - Supermercado \"Cajuva\" - Peñuelas" [ref=f66e23] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=X_d1ceK9G-I
+                        - link "Medidor Inteligente de Agua Potable" [ref=f66e24] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f66e26]:
+                        - button [ref=f66e27] [cursor=pointer]
+                        - generic [ref=f66e29]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f66e30]:
+                      - button "Compartir" [ref=f66e33] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f66e44] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=X_d1ceK9G-I
+                        - generic [ref=f66e45]: Mirar en
+        - generic [ref=f60e251]:
+          - generic [ref=f60e252]: LO
+          - generic [ref=f60e253]:
+            - generic [ref=f60e254]: Loreto Orellana
+            - generic [ref=f60e255]: Supermercado "Cajuva" · Peñuelas
+      - generic [ref=f60e256]:
+        - iframe [ref=f60e258]:
+          - generic [ref=f67e1]:
+            - generic "Reproductor de video de YouTube" [ref=f67e3]
+            - generic [ref=f67e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f67e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f67e12] [cursor=pointer]
+                  - generic [ref=f67e14]:
+                    - generic [ref=f67e19]:
+                      - generic [ref=f67e20]:
+                        - 'link "Testimonio Medidor Inteligente: Luis Parada - Presidente APR «Batuco – Santa Sara», Lampa R. M." [ref=f67e21] [cursor=pointer]':
+                          - /url: https://www.youtube.com/watch?v=MwuYC75PbNs
+                        - link "Medidor Inteligente de Agua Potable" [ref=f67e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f67e24]:
+                        - button [ref=f67e25] [cursor=pointer]
+                        - generic [ref=f67e27]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f67e28]:
+                      - button "Compartir" [ref=f67e31] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f67e42] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=MwuYC75PbNs
+                        - generic [ref=f67e43]: Mirar en
+        - generic [ref=f60e259]:
+          - generic [ref=f60e260]: LP
+          - generic [ref=f60e261]:
+            - generic [ref=f60e262]: Luis Parada
+            - generic [ref=f60e263]: Presidente APR "Batuco – Santa Sara" · Lampa
+      - generic [ref=f60e264]:
+        - iframe [ref=f60e266]:
+          - generic [ref=f68e1]:
+            - generic "Reproductor de video de YouTube" [ref=f68e3]
+            - generic [ref=f68e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f68e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f68e12] [cursor=pointer]
+                  - generic [ref=f68e14]:
+                    - generic [ref=f68e19]:
+                      - generic [ref=f68e20]:
+                        - 'link "Experiencia con Medidor Inteligente: Rodrigo Torres - Subgerente Relaciones con Comunidad, Agrosuper" [ref=f68e21] [cursor=pointer]':
+                          - /url: https://www.youtube.com/watch?v=lQpcUDDLqRA
+                        - link "Medidor Inteligente de Agua Potable" [ref=f68e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f68e24]:
+                        - button [ref=f68e25] [cursor=pointer]
+                        - generic [ref=f68e27]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f68e28]:
+                      - button "Compartir" [ref=f68e31] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f68e42] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=lQpcUDDLqRA
+                        - generic [ref=f68e43]: Mirar en
+        - generic [ref=f60e267]:
+          - generic [ref=f60e268]: RT
+          - generic [ref=f60e269]:
+            - generic [ref=f60e270]: Rodrigo Torres
+            - generic [ref=f60e271]: Subgerente Relaciones con Comunidad · Agrosuper
+      - generic [ref=f60e272]:
+        - iframe [ref=f60e274]:
+          - generic [ref=f69e1]:
+            - generic "Reproductor de video de YouTube" [ref=f69e3]
+            - generic [ref=f69e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f69e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f69e12] [cursor=pointer]
+                  - generic [ref=f69e14]:
+                    - generic [ref=f69e19]:
+                      - generic [ref=f69e20]:
+                        - link "Experiencia con Medidor Inteligente - Joaquín Vicuña - Presidente APR \"El Romeral\" - Codegua" [ref=f69e21] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=vpby-GBccvs
+                        - link "Medidor Inteligente de Agua Potable" [ref=f69e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f69e24]:
+                        - button [ref=f69e25] [cursor=pointer]
+                        - generic [ref=f69e27]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f69e28]:
+                      - button "Compartir" [ref=f69e31] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f69e42] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=vpby-GBccvs
+                        - generic [ref=f69e43]: Mirar en
+        - generic [ref=f60e275]:
+          - generic [ref=f60e276]: JV
+          - generic [ref=f60e277]:
+            - generic [ref=f60e278]: Joaquín Vicuña
+            - generic [ref=f60e279]: Presidente APR "El Romeral" · Codegua
+    - link "Conoce nuestro canal de YouTube" [ref=f60e281] [cursor=pointer]:
+      - /url: https://www.youtube.com/@MedidorInteligenteAPR
+  - generic [ref=f60e286]:
+    - generic [ref=f60e287]:
+      - generic [ref=f60e289]: En vivo desde la comunidad
+      - heading [level=1] [ref=f60e291]:
+        - text: Noticias de
+        - emphasis [ref=f60e292]: Nuestra Comunidad
+      - paragraph [ref=f60e293]: Historias, testimonios y novedades que nos unen
+    - generic [ref=f60e294]:
+      - generic [ref=f60e295]: Publicaciones recientes
+      - generic [ref=f60e298]:
+        - article [ref=f60e299]:
+          - generic [ref=f60e300]:
+            - generic [ref=f60e301]:
+              - generic [ref=f60e302]:
+                - generic "Ver imagen ampliada" [ref=f60e303]
+                - generic "Ver imagen ampliada" [ref=f60e304]
+                - generic "Ver imagen ampliada" [ref=f60e305]
+              - button "‹" [ref=f60e306] [cursor=pointer]
+              - button "›" [ref=f60e307] [cursor=pointer]
+              - generic [ref=f60e308]:
+                - button [ref=f60e309] [cursor=pointer]
+                - button [ref=f60e310] [cursor=pointer]
+                - button [ref=f60e311] [cursor=pointer]
+            - button "⛶" [ref=f60e312] [cursor=pointer]
+          - generic [ref=f60e313]:
+            - generic [ref=f60e314]:
+              - generic [ref=f60e315]: 08 Jun 2026
+              - generic [ref=f60e318]: Medidor Inteligente
+            - heading "APR Piedra Colgada" [level=3] [ref=f60e319]
+            - paragraph [ref=f60e320]: Entrega Medidores Inteligentes
+            - paragraph [ref=f60e321]: 📍 El APR Piedra Colgada, Región de Atacama, nos compartió el registro de recepción de sus nuevos medidores. Muchas gracias por su confianza. Felicitamos a los APR de la región que están siendo beneficiados con el aporte del Gobierno Regional de Atacama. 💧👏
+            - generic [ref=f60e322]:
+              - generic [ref=f60e323]: 📰
+              - generic [ref=f60e324]:
+                - generic [ref=f60e325]: Noticia
+                - text: ENTREGA DE MEDIDORES INTELIGENTES
+            - generic: "\""
+        - article [ref=f60e326]:
+          - generic [ref=f60e327]:
+            - generic [ref=f60e328]:
+              - generic [ref=f60e329]:
+                - generic "Ver imagen ampliada" [ref=f60e330]
+                - generic "Ver imagen ampliada" [ref=f60e331]
+                - generic "Ver imagen ampliada" [ref=f60e332]
+              - button "‹" [ref=f60e333] [cursor=pointer]
+              - button "›" [ref=f60e334] [cursor=pointer]
+              - generic [ref=f60e335]:
+                - button [ref=f60e336] [cursor=pointer]
+                - button [ref=f60e337] [cursor=pointer]
+                - button [ref=f60e338] [cursor=pointer]
+            - button "⛶" [ref=f60e339] [cursor=pointer]
+          - generic [ref=f60e340]:
+            - generic [ref=f60e341]:
+              - generic [ref=f60e342]: 04 Jun 2026
+              - generic [ref=f60e345]: Medidor Inteligente
+            - heading "APR de Putre" [level=3] [ref=f60e346]
+            - paragraph [ref=f60e347]: Entrega Medidores Inteligentes
+            - paragraph [ref=f60e348]: 💧 Nos sentimos muy orgullosos de apoyar al APR de Putre, uno de los APR más extremos de Chile, en la Región de Arica y Parinacota. Gracias por su confianza. Seguimos trabajando para llegar a cada rincón del país.
+            - generic [ref=f60e349]:
+              - generic [ref=f60e350]: 📰
+              - generic [ref=f60e351]:
+                - generic [ref=f60e352]: Noticia
+                - text: ENTREGA DE MEDIDORES INTELIGENTES
+            - generic: "\""
+        - article [ref=f60e353]:
+          - generic [ref=f60e354]:
+            - generic [ref=f60e355]:
+              - generic [ref=f60e356]:
+                - generic "Ver imagen ampliada" [ref=f60e357]
+                - generic "Ver imagen ampliada" [ref=f60e358]
+              - button "‹" [ref=f60e359] [cursor=pointer]
+              - button "›" [ref=f60e360] [cursor=pointer]
+              - generic [ref=f60e361]:
+                - button [ref=f60e362] [cursor=pointer]
+                - button [ref=f60e363] [cursor=pointer]
+            - button "⛶" [ref=f60e364] [cursor=pointer]
+          - generic [ref=f60e365]:
+            - generic [ref=f60e366]:
+              - generic [ref=f60e367]: 11 May 2026
+              - generic [ref=f60e370]: Medidor Inteligente
+            - heading "APR de Quinahue" [level=3] [ref=f60e371]
+            - paragraph [ref=f60e372]: Entrega Medidores Inteligentes
+            - paragraph [ref=f60e373]: 🚰 Entrega de medidores en la Cooperativa APR de Quinahue 💧 Seguimos avanzando junto a los APR de Chile 🙌
+            - generic [ref=f60e374]:
+              - generic [ref=f60e375]: 📰
+              - generic [ref=f60e376]:
+                - generic [ref=f60e377]: Noticia
+                - text: ENTREGA DE MEDIDORES INTELIGENTES
+            - generic: "\""
+        - article [ref=f60e378]:
+          - generic [ref=f60e379]:
+            - generic [ref=f60e380]:
+              - generic [ref=f60e381]:
+                - generic "Ver imagen ampliada" [ref=f60e382]
+                - generic "Ver imagen ampliada" [ref=f60e383]
+                - generic "Ver imagen ampliada" [ref=f60e384]
+              - button "‹" [ref=f60e385] [cursor=pointer]
+              - button "›" [ref=f60e386] [cursor=pointer]
+              - generic [ref=f60e387]:
+                - button [ref=f60e388] [cursor=pointer]
+                - button [ref=f60e389] [cursor=pointer]
+                - button [ref=f60e390] [cursor=pointer]
+            - button "⛶" [ref=f60e391] [cursor=pointer]
+          - generic [ref=f60e392]:
+            - generic [ref=f60e393]:
+              - generic [ref=f60e394]: 04 May 2026
+              - generic [ref=f60e397]: Medidor Inteligente
+            - heading "APR Los Pinos" [level=3] [ref=f60e398]
+            - paragraph [ref=f60e399]: Entrega Medidores Inteligentes
+            - paragraph [ref=f60e400]: 💧 Desde APR Los Pinos, Región de Atacama, nos comparten la recepción de sus medidores inteligentes. ¡Gracias por la confianza!
+            - generic [ref=f60e401]:
+              - generic [ref=f60e402]: 📰
+              - generic [ref=f60e403]:
+                - generic [ref=f60e404]: Noticia
+                - text: ENTREGA DE MEDIDORES INTELIGENTES
+            - generic: "\""
+        - article [ref=f60e405]:
+          - generic [ref=f60e406]:
+            - generic [ref=f60e407]:
+              - generic [ref=f60e408]:
+                - generic "Ver imagen ampliada" [ref=f60e409]
+                - generic "Ver imagen ampliada" [ref=f60e410]
+                - generic "Ver imagen ampliada" [ref=f60e411]
+              - button "‹" [ref=f60e412] [cursor=pointer]
+              - button "›" [ref=f60e413] [cursor=pointer]
+              - generic [ref=f60e414]:
+                - button [ref=f60e415] [cursor=pointer]
+                - button [ref=f60e416] [cursor=pointer]
+                - button [ref=f60e417] [cursor=pointer]
+            - button "⛶" [ref=f60e418] [cursor=pointer]
+          - generic [ref=f60e419]:
+            - generic [ref=f60e420]:
+              - generic [ref=f60e421]: 30 Abr 2026
+              - generic [ref=f60e424]: Medidor Inteligente
+            - heading "APR Chinigue de El Monte" [level=3] [ref=f60e425]
+            - paragraph [ref=f60e426]: Entrega Medidores Inteligentes
+            - paragraph [ref=f60e427]: 💧Entregamos 100 medidores en APR Chinigue de El Monte, a punto de lograr el 100% de medidores inteligentes. Muchas gracias 🚀
+            - generic [ref=f60e428]:
+              - generic [ref=f60e429]: 📰
+              - generic [ref=f60e430]:
+                - generic [ref=f60e431]: Noticia
+                - text: ENTREGA DE MEDIDORES INTELIGENTES
+            - generic: "\""
+        - article [ref=f60e432]:
+          - generic [ref=f60e433]:
+            - generic [ref=f60e434]:
+              - generic [ref=f60e435]:
+                - generic "Ver imagen ampliada" [ref=f60e436]
+                - generic "Ver imagen ampliada" [ref=f60e437]
+                - generic "Ver imagen ampliada" [ref=f60e438]
+              - button "‹" [ref=f60e439] [cursor=pointer]
+              - button "›" [ref=f60e440] [cursor=pointer]
+              - generic [ref=f60e441]:
+                - button [ref=f60e442] [cursor=pointer]
+                - button [ref=f60e443] [cursor=pointer]
+                - button [ref=f60e444] [cursor=pointer]
+            - button "⛶" [ref=f60e445] [cursor=pointer]
+          - generic [ref=f60e446]:
+            - generic [ref=f60e447]:
+              - generic [ref=f60e448]: 24 Abr 2026
+              - generic [ref=f60e451]: Medidor Inteligente
+            - heading "APR Callejones - La Gloria de Nancagua" [level=3] [ref=f60e452]
+            - paragraph [ref=f60e453]: Entrega Medidores Inteligentes
+            - paragraph [ref=f60e454]: 💧 Entrega de medidores en APR Callejones - La Gloria de Nancagua, avanzando junto a la comunidad
+            - generic [ref=f60e455]:
+              - generic [ref=f60e456]: 📰
+              - generic [ref=f60e457]:
+                - generic [ref=f60e458]: Noticia
+                - text: ENTREGA DE MEDIDORES INTELIGENTES
+            - generic: "\""
+      - generic [ref=f60e459]:
+        - button "‹"
+        - button "1" [ref=f60e460] [cursor=pointer]
+        - button "2" [ref=f60e461] [cursor=pointer]
+        - generic [ref=f60e462]: …
+        - button "8" [ref=f60e463] [cursor=pointer]
+        - button "›" [ref=f60e464] [cursor=pointer]
+  - generic:
+    - button "✕"
+    - button "‹"
+    - button "›"
+    - generic: 1 / 1
+  - link [ref=f60e465] [cursor=pointer]:
+    - /url: /preguntas/
+  - contentinfo [ref=f60e471]:
+    - generic [ref=f60e472]:
+      - generic [ref=f60e473]:
+        - heading "Medidor Inteligente" [level=3] [ref=f60e474]
+        - generic [ref=f60e475]:
+          - img "Medidor Inteligente Logo" [ref=f60e476]
+          - img "software Apr" [ref=f60e477]
+          - img "Punto Blue" [ref=f60e478]
+        - paragraph [ref=f60e479]: Ingeniería Integral y Corretaje Ltda.
+        - paragraph [ref=f60e480]: "Email: contacto@medidorinteligente.cl"
+        - paragraph [ref=f60e481]: Soluciones Tecnológicas para APR/SSR
+      - generic [ref=f60e482]:
+        - heading "Secciones destacadas" [level=3] [ref=f60e483]
+        - list [ref=f60e484]:
+          - listitem [ref=f60e485]:
+            - link "Inicio" [ref=f60e486] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f60e487]:
+            - link "Nuestras soluciones" [ref=f60e488] [cursor=pointer]:
+              - /url: /soluciones/
+          - listitem [ref=f60e489]:
+            - link "Quienes somos" [ref=f60e490] [cursor=pointer]:
+              - /url: /nosotros/
+          - listitem [ref=f60e491]:
+            - link "Clientes" [ref=f60e492] [cursor=pointer]:
+              - /url: /clientes/
+          - listitem [ref=f60e493]:
+            - link "Testimonio" [ref=f60e494] [cursor=pointer]:
+              - /url: /testimonio/
+          - listitem [ref=f60e495]:
+            - link "Recursos" [ref=f60e496] [cursor=pointer]:
+              - /url: /recursos/
+          - listitem [ref=f60e497]:
+            - link "Contáctanos" [ref=f60e498] [cursor=pointer]:
+              - /url: /contacto/
+          - listitem [ref=f60e499]:
+            - link "Asistencia" [ref=f60e500] [cursor=pointer]:
+              - /url: /asistente/
+      - generic [ref=f60e501]:
+        - heading "Contáctanos" [level=3] [ref=f60e502]
+        - generic [ref=f60e503]:
+          - paragraph [ref=f60e504]:
+            - generic [ref=f60e505]: 
+            - text: Alejandro Espinoza Verdugo
+          - paragraph [ref=f60e506]:
+            - generic [ref=f60e507]: 
+            - link "Luis Cruz Martinez 991, Nancagua, Chile." [ref=f60e508] [cursor=pointer]:
+              - /url: https://www.google.com/maps?ll=-34.650649,-71.1957&z=15&t=m&hl=es-419&gl=CL&mapclient=embed&q=Luis+Cruz+Mart%C3%ADnez+991+3110000+Nancagua+O%27Higgins
+          - paragraph [ref=f60e509]:
+            - generic [ref=f60e510]: 
+            - link "contacto@medidorinteligente.cl" [ref=f60e511] [cursor=pointer]:
+              - /url: https://mail.google.com/mail/?view=cm&fs=1&to=contacto@medidorinteligente.cl&su=Consulta&body=
+        - heading "Síguenos en redes" [level=3] [ref=f60e512]
+        - generic [ref=f60e513]:
+          - link "Medidor Inteligente de Agua Potable" [ref=f60e514] [cursor=pointer]:
+            - /url: https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/
+          - link "@MedidorInteligenteAPR" [ref=f60e517] [cursor=pointer]:
+            - /url: https://www.youtube.com/@MedidorInteligenteAPR
+      - generic [ref=f60e520]:
+        - heading "Ubicación" [level=3] [ref=f60e521]
+        - iframe [ref=f60e523]

@@ -1,0 +1,14 @@
+[     151ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/css/asistente.css:0
+[     151ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/css/chat.css:0
+[     159ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/js/scrpt.js:0
+[     177ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/img/2instalation.jpeg:0
+[     178ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/img/1instalation.png:0
+[     178ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at http://127.0.0.1:8000/static/app/js/menu.js:3:9
+[     189ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/img/3instalation.jpeg:0
+[     354ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at HTMLDocument.<anonymous> (http://127.0.0.1:8000/static/app/js/asistente.js:40:15)
+[    5378ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[    5393ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[    5436ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[    5474ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
