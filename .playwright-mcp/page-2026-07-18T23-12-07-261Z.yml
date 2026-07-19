@@ -1,0 +1,413 @@
+- generic [active] [ref=f99e1]:
+  - banner [ref=f99e2]:
+    - navigation [ref=f99e3]:
+      - link [ref=f99e4] [cursor=pointer]:
+        - /url: /
+        - img "Medidor Inteligente" [ref=f99e5]
+      - generic [ref=f99e6]:
+        - link "Inicio" [ref=f99e7] [cursor=pointer]:
+          - /url: /
+        - link "Productos" [ref=f99e8] [cursor=pointer]:
+          - /url: /soluciones/
+        - link "Tutoriales" [ref=f99e9] [cursor=pointer]:
+          - /url: /tutoriales/
+        - link "Nosotros" [ref=f99e10] [cursor=pointer]:
+          - /url: /nosotros/
+        - link "Clientes" [ref=f99e11] [cursor=pointer]:
+          - /url: /clientes/
+        - link "Certificados Dictuc" [ref=f99e12] [cursor=pointer]:
+          - /url: /recursos/
+        - link "Contáctanos" [ref=f99e13] [cursor=pointer]:
+          - /url: /contacto/
+  - generic [ref=f99e14]:
+    - generic [ref=f99e15]:
+      - generic [ref=f99e16]: Medidor Inteligente
+      - heading "Preguntas Frecuentes" [level=1] [ref=f99e17]
+      - paragraph [ref=f99e18]: Encuentra respuestas sobre nuestro producto, soporte y funcionamiento
+    - generic [ref=f99e19]: Información General
+    - generic [ref=f99e21]:
+      - generic [ref=f99e22]:
+        - generic [ref=f99e23]:
+          - generic [ref=f99e24]: "1"
+          - paragraph [ref=f99e25]: ¿Qué es el Medidor Inteligente?
+        - generic [ref=f99e26]:
+          - generic [ref=f99e27]: Respuesta
+          - paragraph [ref=f99e29]: Es un invento desarrollado por nuestra empresa, orientado al cuidado del agua y a la gestión eficiente del recurso hídrico.
+      - generic [ref=f99e30]:
+        - generic [ref=f99e31]:
+          - generic [ref=f99e32]: "2"
+          - paragraph [ref=f99e33]: ¿Está certificado?
+        - generic [ref=f99e34]:
+          - generic [ref=f99e35]: Respuesta
+          - generic [ref=f99e37]:
+            - strong [ref=f99e38]: Certificación oficial
+            - text: Sí, cuenta con certificación oficial del
+            - strong [ref=f99e39]: DICTUC de la Pontificia Universidad Católica de Chile
+            - text: . Se adjunta certificado.
+      - generic [ref=f99e40]:
+        - generic [ref=f99e41]:
+          - generic [ref=f99e42]: "3"
+          - paragraph [ref=f99e43]: ¿A quién está dirigido?
+        - generic [ref=f99e44]:
+          - generic [ref=f99e45]: Respuesta
+          - paragraph [ref=f99e47]:
+            - text: Está especialmente dirigido a
+            - strong [ref=f99e48]: Servicios de Agua Potable Rural (APR / SSR)
+            - text: .
+      - generic [ref=f99e49]:
+        - generic [ref=f99e50]:
+          - generic [ref=f99e51]: "4"
+          - paragraph [ref=f99e52]: ¿Cuántos servicios lo utilizan actualmente?
+        - generic [ref=f99e53]:
+          - generic [ref=f99e54]: Respuesta
+          - generic [ref=f99e56]:
+            - strong [ref=f99e57]: Alcance actual
+            - text: Más de
+            - strong [ref=f99e58]: 200 Servicios de Agua Potable Rural
+            - text: ", con más de"
+            - strong [ref=f99e59]: 50.000 medidores entregados
+            - text: .
+      - generic [ref=f99e60]:
+        - generic [ref=f99e61]:
+          - generic [ref=f99e62]: "5"
+          - paragraph [ref=f99e63]: ¿Qué funciones tiene el capturador?
+        - generic [ref=f99e64]:
+          - generic [ref=f99e65]: Respuesta
+          - generic [ref=f99e66]:
+            - paragraph [ref=f99e67]:
+              - text: Toma lecturas y puede
+              - strong [ref=f99e68]: cortar el suministro a distancia
+              - text: ":"
+            - list [ref=f99e69]:
+              - listitem [ref=f99e70]: › 100+ metros en zonas con obstáculos.
+              - listitem [ref=f99e71]: › Hasta 1 km en zonas abiertas.
+      - generic [ref=f99e72]:
+        - generic [ref=f99e73]:
+          - generic [ref=f99e74]: "6"
+          - paragraph [ref=f99e75]: ¿Qué hace único a este medidor?
+        - generic [ref=f99e76]:
+          - generic [ref=f99e77]: Respuesta
+          - list [ref=f99e79]:
+            - listitem [ref=f99e80]:
+              - text: › Tecnología real de
+              - strong [ref=f99e81]: radiofrecuencia
+              - text: que transmite sin necesidad de Internet.
+            - listitem [ref=f99e82]:
+              - text: ›
+              - strong [ref=f99e83]: No inventa consumo
+              - text: ; lo mide con precisión superior al medidor tradicional.
+            - listitem [ref=f99e84]:
+              - text: › Lecturas
+              - strong [ref=f99e85]: precisas, inalterables e instantáneas
+              - text: .
+      - generic [ref=f99e86]:
+        - generic [ref=f99e87]:
+          - generic [ref=f99e88]: "7"
+          - paragraph [ref=f99e89]: ¿Qué ventajas tiene frente a problemas externos?
+        - generic [ref=f99e90]:
+          - generic [ref=f99e91]: Respuesta
+          - generic [ref=f99e92]:
+            - paragraph [ref=f99e93]: "Evita contratiempos causados por:"
+            - list [ref=f99e94]:
+              - listitem [ref=f99e95]: › Perros bravos o acceso bloqueado al medidor.
+              - listitem [ref=f99e96]: › Muros, rejas o condiciones climáticas adversas.
+      - generic [ref=f99e97]:
+        - generic [ref=f99e98]:
+          - generic [ref=f99e99]: "8"
+          - paragraph [ref=f99e100]: ¿Puede detectar fugas de agua?
+        - generic [ref=f99e101]:
+          - generic [ref=f99e102]: Respuesta
+          - paragraph [ref=f99e104]:
+            - text: Sí, puede
+            - strong [ref=f99e105]: detectar y medir desde una gota
+            - text: hasta flujos altos de agua.
+      - generic [ref=f99e106]:
+        - generic [ref=f99e107]:
+          - generic [ref=f99e108]: "9"
+          - paragraph [ref=f99e109]: ¿Funciona si se instala invertido?
+        - generic [ref=f99e110]:
+          - generic [ref=f99e111]: Respuesta
+          - paragraph [ref=f99e113]:
+            - text: Sí,
+            - strong [ref=f99e114]: sigue midiendo correctamente
+            - text: el consumo aunque se haya instalado en posición invertida.
+      - generic [ref=f99e115]:
+        - generic [ref=f99e116]:
+          - generic [ref=f99e117]: "10"
+          - paragraph [ref=f99e118]: ¿Qué ahorros ofrece?
+        - generic [ref=f99e119]:
+          - generic [ref=f99e120]: Respuesta
+          - paragraph [ref=f99e122]: Ahorra tiempo y reduce gastos operacionales en la gestión del servicio.
+      - generic [ref=f99e123]:
+        - generic [ref=f99e124]:
+          - generic [ref=f99e125]: "11"
+          - paragraph [ref=f99e126]: ¿Se puede integrar con la facturación?
+        - generic [ref=f99e127]:
+          - generic [ref=f99e128]: Respuesta
+          - generic [ref=f99e129]:
+            - paragraph [ref=f99e130]: "Sí, puede vincularse para:"
+            - list [ref=f99e131]:
+              - listitem [ref=f99e132]:
+                - text: › Emitir directamente
+                - strong [ref=f99e133]: boletas de consumo y pagos en línea
+                - text: .
+              - listitem [ref=f99e134]:
+                - text: › Generar
+                - strong [ref=f99e135]: planillas Excel
+                - text: para su digitación.
+      - generic [ref=f99e136]:
+        - generic [ref=f99e137]:
+          - generic [ref=f99e138]: "12"
+          - paragraph [ref=f99e139]: ¿Cómo es la instalación?
+        - generic [ref=f99e140]:
+          - generic [ref=f99e141]: Respuesta
+          - paragraph [ref=f99e143]:
+            - text: La instalación es similar a un medidor convencional. Es apto para
+            - strong [ref=f99e144]: cañerías de 1/2"
+            - text: y adaptable a
+            - strong [ref=f99e145]: 3/4"
+            - text: .
+      - generic [ref=f99e146]:
+        - generic [ref=f99e147]:
+          - generic [ref=f99e148]: "13"
+          - paragraph [ref=f99e149]: ¿El medidor puede informar si fue intervenido?
+        - generic [ref=f99e150]:
+          - generic [ref=f99e151]: Respuesta
+          - generic [ref=f99e153]:
+            - strong [ref=f99e154]: Seguridad
+            - text: Sí, informa mediante
+            - strong [ref=f99e155]: códigos de alerta
+            - text: que se registran en la ficha técnica del equipo.
+      - generic [ref=f99e156]:
+        - generic [ref=f99e157]:
+          - generic [ref=f99e158]: "14"
+          - paragraph [ref=f99e159]: ¿Puede cerrar la válvula a distancia?
+        - generic [ref=f99e160]:
+          - generic [ref=f99e161]: Respuesta
+          - paragraph [ref=f99e163]:
+            - text: Sí, el medidor puede
+            - strong [ref=f99e164]: cerrar la válvula de paso remotamente
+            - text: mediante el capturador.
+      - generic [ref=f99e165]:
+        - generic [ref=f99e166]:
+          - generic [ref=f99e167]: "15"
+          - paragraph [ref=f99e168]: ¿Cuál es la garantía del equipo?
+        - generic [ref=f99e169]:
+          - generic [ref=f99e170]: Respuesta
+          - list [ref=f99e172]:
+            - listitem [ref=f99e173]:
+              - text: ›
+              - strong [ref=f99e174]: "Medidor:"
+              - text: garantía de 1 año, excepto por desperfectos causados por eventos climáticos extremos.
+            - listitem [ref=f99e175]:
+              - text: ›
+              - strong [ref=f99e176]: "Capturador:"
+              - text: garantía indefinida, salvo daños irreparables.
+      - generic [ref=f99e177]:
+        - generic [ref=f99e178]:
+          - generic [ref=f99e179]: "16"
+          - paragraph [ref=f99e180]: ¿Ofrecen soporte técnico?
+        - generic [ref=f99e181]:
+          - generic [ref=f99e182]: Respuesta
+          - generic [ref=f99e184]:
+            - strong [ref=f99e185]: Soporte sin costo
+            - text: Sí, ofrecemos capacitación, soporte y apoyo técnico de forma indefinida y sin costo.
+      - generic [ref=f99e186]:
+        - generic [ref=f99e187]:
+          - generic [ref=f99e188]: "17"
+          - paragraph [ref=f99e189]: ¿Cuánto dura la batería del medidor?
+        - generic [ref=f99e190]:
+          - generic [ref=f99e191]: Respuesta
+          - generic [ref=f99e193]:
+            - strong [ref=f99e194]: Vida útil de batería
+            - text: La batería puede durar
+            - strong [ref=f99e195]: 30 años o más
+            - text: .
+    - separator [ref=f99e196]
+    - generic [ref=f99e197]: Soporte Técnico
+    - generic [ref=f99e199]:
+      - generic [ref=f99e200]:
+        - generic [ref=f99e201]:
+          - generic [ref=f99e202]: "1"
+          - paragraph [ref=f99e203]: ¿Por qué las lecturas digital y análoga no coinciden?
+        - generic [ref=f99e204]:
+          - generic [ref=f99e205]: Respuesta
+          - generic [ref=f99e206]:
+            - paragraph [ref=f99e207]: El medidor fue instalado de forma invertida. Se debe revisar y corregir su posición.
+            - generic [ref=f99e208]:
+              - strong [ref=f99e209]: Facturación
+              - text: Cuando la lectura digital es menor que la análoga, para efectos de facturación prevalece la lectura del medidor análogo.
+      - generic [ref=f99e210]:
+        - generic [ref=f99e211]:
+          - generic [ref=f99e212]: "2"
+          - paragraph [ref=f99e213]: ¿Si los medidores estuvieron guardados 2 años, pueden presentar fallas?
+        - generic [ref=f99e214]:
+          - generic [ref=f99e215]: Respuesta
+          - generic [ref=f99e216]:
+            - paragraph [ref=f99e217]: En general, no deberían presentar fallas. El único componente afectado podría ser el reloj digital por el estado de la batería.
+            - generic [ref=f99e218]:
+              - strong [ref=f99e219]: Solución
+              - text: Retire la batería y vuelva a instalarla. Si el problema persiste, reemplácela.
+      - generic [ref=f99e220]:
+        - generic [ref=f99e221]:
+          - generic [ref=f99e222]: "3"
+          - paragraph [ref=f99e223]: ¿Qué se puede hacer con los medidores que se dan de baja?
+        - generic [ref=f99e224]:
+          - generic [ref=f99e225]: Respuesta
+          - generic [ref=f99e226]:
+            - paragraph [ref=f99e227]: "Primero evalúe la razón de la baja:"
+            - list [ref=f99e228]:
+              - listitem [ref=f99e229]: › Si es solo la batería, puede reemplazarse y reutilizarse.
+              - listitem [ref=f99e230]: › Si hay daño irreversible, retírelo definitivamente.
+            - generic [ref=f99e231]:
+              - strong [ref=f99e232]: Soporte técnico
+              - text: Contacte al soporte para orientación personalizada.
+      - generic [ref=f99e233]:
+        - generic [ref=f99e234]:
+          - generic [ref=f99e235]: "4"
+          - paragraph [ref=f99e236]: ¿El medidor se cerró y muestra E-8 en pantalla, cómo lo soluciono?
+        - generic [ref=f99e237]:
+          - generic [ref=f99e238]: Respuesta
+          - generic [ref=f99e240]:
+            - strong [ref=f99e241]: Procedimiento
+            - text: Abra y cierre nuevamente la válvula del medidor para restablecer su funcionamiento normal.
+      - generic [ref=f99e242]:
+        - generic [ref=f99e243]:
+          - generic [ref=f99e244]: "5"
+          - paragraph [ref=f99e245]: ¿El medidor se cierra solo, qué debo hacer?
+        - generic [ref=f99e246]:
+          - generic [ref=f99e247]: Respuesta
+          - generic [ref=f99e249]:
+            - strong [ref=f99e250]: Recomendación
+            - text: Traslade el medidor a otra ubicación. Un factor externo podría estar provocando el cierre automático.
+      - generic [ref=f99e251]:
+        - generic [ref=f99e252]:
+          - generic [ref=f99e253]: "6"
+          - paragraph [ref=f99e254]: ¿El medidor muestra E-6 en pantalla digital, qué significa?
+        - generic [ref=f99e255]:
+          - generic [ref=f99e256]: Respuesta
+          - generic [ref=f99e257]:
+            - paragraph [ref=f99e258]: El código E-6 indica que el medidor fue intervenido con un imán.
+            - generic [ref=f99e259]:
+              - strong [ref=f99e260]: Advertencia
+              - text: Según la potencia del imán, puede haber daño mayor al sistema. El costo de reparación lo asume el cliente.
+      - generic [ref=f99e261]:
+        - generic [ref=f99e262]:
+          - generic [ref=f99e263]: "7"
+          - paragraph [ref=f99e264]: ¿Cómo borro el código E-6 de la pantalla digital?
+        - generic [ref=f99e265]:
+          - generic [ref=f99e266]: Respuesta
+          - generic [ref=f99e268]:
+            - strong [ref=f99e269]: Procedimiento
+            - text: Reinicie el medidor desconectando y volviendo a conectar la batería. Si el daño fue mayor, puede requerirse reemplazo, cuyo costo asume el cliente.
+      - generic [ref=f99e270]:
+        - generic [ref=f99e271]:
+          - generic [ref=f99e272]: "8"
+          - paragraph [ref=f99e273]: Instalé un medidor nuevo y el display digital no avanza, ¿qué hago?
+        - generic [ref=f99e274]:
+          - generic [ref=f99e275]: Respuesta
+          - generic [ref=f99e277]:
+            - strong [ref=f99e278]: Solución
+            - text: Reinicie el equipo desconectando y volviendo a conectar la batería.
+      - generic [ref=f99e279]:
+        - generic [ref=f99e280]:
+          - generic [ref=f99e281]: "9"
+          - paragraph [ref=f99e282]: Instalé un medidor nuevo y el consumo del cliente subió, ¿a qué se debe?
+        - generic [ref=f99e283]:
+          - generic [ref=f99e284]: Respuesta
+          - paragraph [ref=f99e286]: Esto se debe a la mayor precisión del medidor inteligente, que captura consumos que antes no se registraban correctamente.
+      - generic [ref=f99e287]:
+        - generic [ref=f99e288]:
+          - generic [ref=f99e289]: "10"
+          - paragraph [ref=f99e290]: Se rompió la antena del hand-held, ¿qué debo hacer?
+        - generic [ref=f99e291]:
+          - generic [ref=f99e292]: Respuesta
+          - generic [ref=f99e294]:
+            - strong [ref=f99e295]: Soporte
+            - text: Contacte al soporte técnico. El equipo cuenta con garantía ilimitada.
+      - generic [ref=f99e296]:
+        - generic [ref=f99e297]:
+          - generic [ref=f99e298]: "11"
+          - paragraph [ref=f99e299]: El hand-held tiene poca recepción de señal, ¿qué hago?
+        - generic [ref=f99e300]:
+          - generic [ref=f99e301]: Respuesta
+          - generic [ref=f99e303]:
+            - strong [ref=f99e304]: Soporte
+            - text: Contacte al soporte técnico para evaluar y solucionar el problema de señal.
+      - generic [ref=f99e305]:
+        - generic [ref=f99e306]:
+          - generic [ref=f99e307]: "12"
+          - paragraph [ref=f99e308]: ¿Tengo un medidor con manchas en la esfera, a qué se debe y debo retirarlo?
+        - generic [ref=f99e309]:
+          - generic [ref=f99e310]: Respuesta
+          - generic [ref=f99e311]:
+            - paragraph [ref=f99e312]: "Las manchas se producen por:"
+            - list [ref=f99e313]:
+              - listitem [ref=f99e314]: › Minerales presentes en el agua.
+              - listitem [ref=f99e315]: › Paso de agua sucia por el sistema.
+            - generic [ref=f99e316]:
+              - strong [ref=f99e317]: Sin preocupaciones
+              - text: No afectan el funcionamiento, por lo que no es necesario retirar el medidor.
+  - link [ref=f99e318] [cursor=pointer]:
+    - /url: /preguntas/
+  - contentinfo [ref=f99e324]:
+    - generic [ref=f99e325]:
+      - generic [ref=f99e326]:
+        - heading "Medidor Inteligente" [level=3] [ref=f99e327]
+        - generic [ref=f99e328]:
+          - img "Medidor Inteligente Logo" [ref=f99e329]
+          - img "software Apr" [ref=f99e330]
+          - img "Punto Blue" [ref=f99e331]
+        - paragraph [ref=f99e332]: Ingeniería Integral y Corretaje Ltda.
+        - paragraph [ref=f99e333]: "Email: contacto@medidorinteligente.cl"
+        - paragraph [ref=f99e334]: Soluciones Tecnológicas para APR/SSR
+      - generic [ref=f99e335]:
+        - heading "Secciones destacadas" [level=3] [ref=f99e336]
+        - list [ref=f99e337]:
+          - listitem [ref=f99e338]:
+            - link "Inicio" [ref=f99e339] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f99e340]:
+            - link "Nuestras soluciones" [ref=f99e341] [cursor=pointer]:
+              - /url: /soluciones/
+          - listitem [ref=f99e342]:
+            - link "Quienes somos" [ref=f99e343] [cursor=pointer]:
+              - /url: /nosotros/
+          - listitem [ref=f99e344]:
+            - link "Clientes" [ref=f99e345] [cursor=pointer]:
+              - /url: /clientes/
+          - listitem [ref=f99e346]:
+            - link "Testimonio" [ref=f99e347] [cursor=pointer]:
+              - /url: /testimonio/
+          - listitem [ref=f99e348]:
+            - link "Recursos" [ref=f99e349] [cursor=pointer]:
+              - /url: /recursos/
+          - listitem [ref=f99e350]:
+            - link "Contáctanos" [ref=f99e351] [cursor=pointer]:
+              - /url: /contacto/
+          - listitem [ref=f99e352]:
+            - link "Asistencia" [ref=f99e353] [cursor=pointer]:
+              - /url: /asistente/
+      - generic [ref=f99e354]:
+        - heading "Contáctanos" [level=3] [ref=f99e355]
+        - generic [ref=f99e356]:
+          - paragraph [ref=f99e357]:
+            - generic [ref=f99e358]: 
+            - text: Alejandro Espinoza Verdugo
+          - paragraph [ref=f99e359]:
+            - generic [ref=f99e360]: 
+            - link "Luis Cruz Martinez 991, Nancagua, Chile." [ref=f99e361] [cursor=pointer]:
+              - /url: https://www.google.com/maps?ll=-34.650649,-71.1957&z=15&t=m&hl=es-419&gl=CL&mapclient=embed&q=Luis+Cruz+Mart%C3%ADnez+991+3110000+Nancagua+O%27Higgins
+          - paragraph [ref=f99e362]:
+            - generic [ref=f99e363]: 
+            - link "contacto@medidorinteligente.cl" [ref=f99e364] [cursor=pointer]:
+              - /url: https://mail.google.com/mail/?view=cm&fs=1&to=contacto@medidorinteligente.cl&su=Consulta&body=
+        - heading "Síguenos en redes" [level=3] [ref=f99e365]
+        - generic [ref=f99e366]:
+          - link "Medidor Inteligente de Agua Potable" [ref=f99e367] [cursor=pointer]:
+            - /url: https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/
+          - link "@MedidorInteligenteAPR" [ref=f99e370] [cursor=pointer]:
+            - /url: https://www.youtube.com/@MedidorInteligenteAPR
+      - generic [ref=f99e373]:
+        - heading "Ubicación" [level=3] [ref=f99e374]
+        - iframe [ref=f99e376]

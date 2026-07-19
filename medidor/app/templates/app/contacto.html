@@ -2,9 +2,245 @@
 {%block contenido%}
 {% load static %}
 
+<style>
+/* ══════════════════════════════════════════════════════════
+   CSS de /contacto — vive íntegramente en este template
+   (nada de esto depende de static/css/style.css)
+   ══════════════════════════════════════════════════════════ */
 
+/* ── Layout general de la página ── */
+.cont{ width:80%; margin:auto; }
+.rea{
+  display:grid;
+  width:90%;
+  margin:auto;
+  padding-top:2.5rem;
+  padding-bottom:.5rem;
+  color:#1a169d;
+}
+.lleno{
+  width:100%;
+  height:auto;
+  padding-top:0;
+  padding-bottom:2rem;
+}
 
-    
+/* ── Encabezado ── */
+.headercontacto{
+  background:linear-gradient(120deg,#0b63ce 0%,#0ea5e9 55%,#10b981 100%);
+  color:#fff;
+  text-align:center;
+  padding:3rem 1.5rem;
+}
+.headercontacto h1{
+  color:#fff;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  font-weight:800;
+  letter-spacing:-.01em;
+  margin:0 0 .5rem;
+}
+.headercontacto p{
+  color:rgba(255,255,255,.92);
+  font-size:clamp(.95rem,1.3vw,1.1rem);
+  margin:0;
+}
+
+/* ── Columnas de información ── */
+.info-columns{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem;
+  margin:auto;
+}
+.asa{ margin-right:4rem; }
+.ase{ margin-left:4rem; }
+
+.contact-info h2,
+.social-info h2{
+  color:#0a3159;
+  font-weight:800;
+  font-size:1.1rem;
+  margin-bottom:1rem;
+}
+.contact-info ul,
+.social-info ul{ list-style:none; }
+.contact-info li,
+.social-info li{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin-bottom:.7rem;
+}
+
+.blu{
+  color:#0b63ce;
+  font-weight:600;
+  transition:color .2s;
+}
+.blu:hover{ color:#0a3159; text-decoration:underline; }
+
+/* ── Íconos de contacto/redes ── */
+.contact-info li svg,
+.social-info li svg{
+  width:34px;
+  height:34px;
+  padding:8px;
+  box-sizing:border-box;
+  border-radius:50%;
+  background:rgba(11,99,206,.1);
+  color:#0b63ce;
+  flex-shrink:0;
+}
+.social-info li svg.bi-facebook{
+  background:rgba(24,119,242,.12);
+  color:#1877F2;
+}
+.social-info li svg.bi-youtube{
+  background:rgba(255,0,0,.12);
+  color:#FF0000;
+}
+
+/* ── Tarjeta del formulario — compacta ── */
+.reamm{
+  position:relative;
+  max-width:1100px;
+  width:92%;
+  margin:0 auto;
+  padding:2.5rem 3rem;
+  background-color:#fff;
+  border-radius:20px;
+  box-shadow:0 8px 48px rgba(10,49,89,.1);
+  border:1.5px solid rgba(79,168,232,.12);
+  overflow:hidden;
+}
+.reamm::before{
+  content:'';
+  display:block;
+  position:absolute;
+  top:0; left:0; right:0;
+  height:6px;
+  background:#7dd3fc;
+}
+.reammm{ width:100%; }
+.contact-form h2{
+  color:#0a3159;
+  font-weight:800;
+  font-size:1.15rem;
+  margin-bottom:1.2rem;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:.9rem;
+  margin-bottom:.2rem;
+}
+.form-group{ margin-bottom:1rem; }
+.form-group.full-width{ grid-column:1/-1; }
+label{
+  display:block;
+  color:#0a3159;
+  font-weight:700;
+  font-size:1.1rem;
+  margin-bottom:.35rem;
+}
+.required{ color:#e03; }
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea{
+  width:100%;
+  border:1.5px solid rgba(79,168,232,.25);
+  border-radius:10px;
+  color:#0a3159;
+  background:#fff;
+  outline:none;
+  padding:.7rem .95rem;
+  font-size:1.12rem;
+  font-family:inherit;
+  box-sizing:border-box;
+  transition:border-color .2s, box-shadow .2s;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus{
+  border-color:#0b63ce;
+  box-shadow:0 0 0 3px rgba(11,99,206,.09);
+}
+input::placeholder,
+textarea::placeholder{ color:#9fb3c8; }
+textarea{ min-height:75px; resize:vertical; }
+
+.radio-options{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  gap:.6rem 1.2rem;
+}
+.radio-label{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  cursor:pointer;
+  color:#3a6a9a;
+  font-size:1.1rem;
+}
+input[type="radio"]{
+  margin:0;
+  width:1rem;
+  height:1rem;
+  accent-color:#0b63ce;
+}
+
+button[type="submit"]{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  margin:.6rem auto 0;
+  min-width:150px;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(135deg,#0b63ce,#38bdf8);
+  border-radius:50px;
+  font-weight:700;
+  padding:.7rem 2.1rem;
+  font-size:1.06rem;
+  font-family:inherit;
+  box-shadow:0 6px 22px rgba(11,99,206,.25);
+  transition:transform .26s, box-shadow .26s;
+}
+button[type="submit"]:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 32px rgba(11,99,206,.32);
+}
+button[type="submit"]:disabled{
+  opacity:.62;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.confirmation-message{
+  background-color:#4CAF50;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  border-radius:4px;
+  margin-top:20px;
+}
+
+/* ── Responsive ── */
+@media (max-width:768px){
+  .info-columns{ grid-template-columns:1fr; }
+  .asa{ margin-right:0; }
+  .ase{ margin-left:0; }
+  .form-row{ grid-template-columns:1fr; }
+}
+</style>
+
 <div class="headercontacto">
     <h1>CONTÁCTANOS</h1>
     <p>Comunicate con nosotros y empieza a cambiar el futuro</p>
@@ -72,14 +308,20 @@
                         <input type="email" name="correo1" id="emai" placeholder="Escribe aquí" required>
                     </div>
                     <div class="form-group">
-                            <label for="email">Correo electrónico <span class="required">*</span></label>
+                            <label for="email">Confirmar correo <span class="required">*</span></label>
                             <input type="email" name="correo2" id="email" placeholder="Escribe aquí" required>
                     </div>
-                    
+
                 </div>
-                <div class="form-group full-width">
-                    <label>Teléfono <span class="required">*</span></label>
-                    <input type="tel" name="phone" placeholder="Escribe aquí" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone1">Teléfono <span class="required">*</span></label>
+                        <input type="tel" name="phone" id="phone1" placeholder="Escribe aquí" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone2">Confirmar teléfono <span class="required">*</span></label>
+                        <input type="tel" name="phone2" id="phone2" placeholder="Escribe aquí" required>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -125,9 +367,13 @@
                     <label>Mensaje</label>
                     <textarea name="message" placeholder="Escribe aquí" rows="6"></textarea>
                 </div>
-                <button type="submit" id="sendBtn">Enviar</button>
+                <button type="submit" id="sendBtn">
+                    <span id="sendBtnTxt">Enviar mensaje</span>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
 
                <script>
+                    var contactoSending = false;
                     document.getElementById("emailForm").addEventListener("submit", function (e) {
                         const correo1 = document.getElementById("emai").value.trim();
                         const correo2 = document.getElementById("email").value.trim();
@@ -175,8 +421,50 @@
                             return;
                         }
 
+                        const phone1 = document.getElementById("phone1").value.trim();
+                        const phone2 = document.getElementById("phone2").value.trim();
+
+                        if (phone1 === "" || phone2 === "") {
+                            e.preventDefault();
+                            Swal.fire({
+                                title: "Error",
+                                text: "Ambos campos de teléfono deben estar completos",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 2500,
+                                timerProgressBar: true
+                            });
+                            return;
+                        }
+
+                        if (phone1 !== phone2) {
+                            e.preventDefault();
+                            Swal.fire({
+                                title: "Error",
+                                text: "Los teléfonos no coinciden",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 2500,
+                                timerProgressBar: true
+                            });
+                            return;
+                        }
+
+                        // Evitar envíos duplicados (doble clic, internet lento, etc.)
+                        if (contactoSending) {
+                            e.preventDefault();
+                            return;
+                        }
+                        contactoSending = true;
+                        var sendBtn = document.getElementById("sendBtn");
+                        var sendBtnTxt = document.getElementById("sendBtnTxt");
+                        if (sendBtn) {
+                            sendBtn.disabled = true;
+                            if (sendBtnTxt) sendBtnTxt.textContent = "Enviando…";
+                        }
+
                         // Si todo está bien, mostrar éxito
-                        
+
                         Swal.fire({
                             title: "¡Éxito!",
                             text: "Enviado correctamente.",

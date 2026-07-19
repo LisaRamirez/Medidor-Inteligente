@@ -1,0 +1,28 @@
+[      80ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/css/chat.css:0
+[      80ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/css/asistente.css:0
+[      91ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/js/scrpt.js:0
+[      99ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at http://127.0.0.1:8000/static/app/js/menu.js:3:9
+[     250ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at HTMLDocument.<anonymous> (http://127.0.0.1:8000/static/app/js/asistente.js:40:15)
+[   40963ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/css/asistente.css:0
+[   40964ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/css/chat.css:0
+[   40965ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/js/scrpt.js:0
+[   40981ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at http://127.0.0.1:8000/static/app/js/menu.js:3:9
+[   41045ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at HTMLDocument.<anonymous> (http://127.0.0.1:8000/static/app/js/asistente.js:40:15)
+[   66066ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/css/chat.css:0
+[   66075ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/css/asistente.css:0
+[   66076ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/js/scrpt.js:0
+[   66095ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at http://127.0.0.1:8000/static/app/js/menu.js:3:9
+[   66136ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at HTMLDocument.<anonymous> (http://127.0.0.1:8000/static/app/js/asistente.js:40:15)
+[  103765ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/css/chat.css:0
+[  103765ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/css/asistente.css:0
+[  103775ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/js/scrpt.js:0
+[  103784ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at http://127.0.0.1:8000/static/app/js/menu.js:3:9
+[  103837ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at HTMLDocument.<anonymous> (http://127.0.0.1:8000/static/app/js/asistente.js:40:15)

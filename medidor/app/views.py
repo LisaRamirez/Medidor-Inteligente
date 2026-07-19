@@ -213,7 +213,7 @@ def home(request):
 
             subject = 'Medidor Inteligente APR/SSR Contacto'
             email = "lisaisabelc19@gmail.com"
-            cc_emails = [correo]
+            cc_emails = []
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
             return redirect('home')  # Redirige a la vista principal después de enviar
 
@@ -269,7 +269,7 @@ def contacto(request):
 
             subject = 'Medidor Inteligente APR/SSR Contacto'
             email = "lisaisabelc19@gmail.com"
-            cc_emails = [correo]
+            cc_emails = []
             send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
 
             

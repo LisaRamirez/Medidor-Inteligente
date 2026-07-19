@@ -1,0 +1,328 @@
+- generic [active] [ref=f83e1]:
+  - banner [ref=f83e2]:
+    - navigation [ref=f83e3]:
+      - link [ref=f83e4] [cursor=pointer]:
+        - /url: /
+        - img "Medidor Inteligente" [ref=f83e5]
+      - generic [ref=f83e6]:
+        - link "Inicio" [ref=f83e7] [cursor=pointer]:
+          - /url: /
+        - link "Productos" [ref=f83e8] [cursor=pointer]:
+          - /url: /soluciones/
+        - link "Tutoriales" [ref=f83e9] [cursor=pointer]:
+          - /url: /tutoriales/
+        - link "Nosotros" [ref=f83e10] [cursor=pointer]:
+          - /url: /nosotros/
+        - link "Clientes" [ref=f83e11] [cursor=pointer]:
+          - /url: /clientes/
+        - link "Certificados Dictuc" [ref=f83e12] [cursor=pointer]:
+          - /url: /recursos/
+        - link "Contáctanos" [ref=f83e13] [cursor=pointer]:
+          - /url: /contacto/
+  - generic [ref=f83e14]:
+    - generic [ref=f83e15]: Medidor Inteligente
+    - heading [level=1] [ref=f83e17]:
+      - text: Tutoriales del
+      - generic [ref=f83e18]: Software delMedidor Inteligente
+    - paragraph [ref=f83e19]: Crea sectores, toma lecturas con el Hand-Held y gestiona válvulas paso a paso.
+  - generic [ref=f83e20]:
+    - heading "Uso del Software" [level=3] [ref=f83e21]
+    - generic [ref=f83e22]:
+      - generic [ref=f83e23]:
+        - iframe [ref=f83e25]:
+          - generic [ref=f84e1]:
+            - generic "Reproductor de video de YouTube" [ref=f84e3]
+            - generic [ref=f84e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f84e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f84e12] [cursor=pointer]
+                  - generic [ref=f84e14]:
+                    - generic [ref=f84e19]:
+                      - generic [ref=f84e20]:
+                        - link "Tutorial Operación Software Medidor Inteligente Digital - '01 Primer Paso'" [ref=f84e21] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=vlFjJpvJs0s
+                        - link "Medidor Inteligente de Agua Potable" [ref=f84e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f84e24]:
+                        - button [ref=f84e25] [cursor=pointer]:
+                          - img "thumbnail-image" [ref=f84e26]
+                        - generic [ref=f84e28]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f84e29]:
+                      - button "Compartir" [ref=f84e32] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f84e43] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=vlFjJpvJs0s
+                        - generic [ref=f84e44]: Mirar en
+        - generic [ref=f83e26]:
+          - generic [ref=f83e27]: "1"
+          - generic [ref=f83e28]:
+            - generic [ref=f83e29]: Primer paso
+            - paragraph [ref=f83e30]: Crear Archivos de Sectores
+            - paragraph [ref=f83e31]: Enviar sectores configurados al Hand-Held o Mando Manual
+      - generic [ref=f83e32]:
+        - iframe [ref=f83e34]:
+          - generic [ref=f85e1]:
+            - generic "Reproductor de video de YouTube" [ref=f85e3]
+            - generic [ref=f85e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f85e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f85e14] [cursor=pointer]
+                  - generic [ref=f85e16]:
+                    - generic [ref=f85e21]:
+                      - generic [ref=f85e22]:
+                        - link "Tutorial Operación Software Medidor Inteligente Digital - 02 Segundo Paso" [ref=f85e23] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=gKM3jvDH3lc
+                        - link "Medidor Inteligente de Agua Potable" [ref=f85e24] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f85e26]:
+                        - button [ref=f85e27] [cursor=pointer]:
+                          - img "thumbnail-image" [ref=f85e28]
+                        - generic [ref=f85e30]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f85e31]:
+                      - button "Compartir" [ref=f85e34] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f85e45] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=gKM3jvDH3lc
+                        - generic [ref=f85e46]: Mirar en
+        - generic [ref=f83e35]:
+          - generic [ref=f83e36]: "2"
+          - generic [ref=f83e37]:
+            - generic [ref=f83e38]: Segundo paso
+            - paragraph [ref=f83e39]: Toma de Lecturas con Hand-Held
+            - paragraph [ref=f83e40]: Captura lecturas de medidores inteligentes en terreno
+      - generic [ref=f83e41]:
+        - iframe [ref=f83e43]:
+          - generic [ref=f86e1]:
+            - generic "Reproductor de video de YouTube" [ref=f86e3]
+            - generic [ref=f86e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f86e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f86e12] [cursor=pointer]
+                  - generic [ref=f86e14]:
+                    - generic [ref=f86e19]:
+                      - generic [ref=f86e20]:
+                        - link "Tutorial Operación Software Medidor Inteligente Digital - '03 Tercer Paso'" [ref=f86e21] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=6HOs6geiCyg
+                        - link "Medidor Inteligente de Agua Potable" [ref=f86e22] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f86e24]:
+                        - button [ref=f86e25] [cursor=pointer]:
+                          - img "thumbnail-image" [ref=f86e26]
+                        - generic [ref=f86e28]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f86e29]:
+                      - button "Compartir" [ref=f86e32] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f86e43] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=6HOs6geiCyg
+                        - generic [ref=f86e44]: Mirar en
+        - generic [ref=f83e44]:
+          - generic [ref=f83e45]: "3"
+          - generic [ref=f83e46]:
+            - generic [ref=f83e47]: Tercer paso
+            - paragraph [ref=f83e48]: Enviar Lecturas al Computador
+            - paragraph [ref=f83e49]: Importa los archivos con lecturas tomadas de vuelta al software
+    - heading "Modos de Uso" [level=3] [ref=f83e51]
+    - generic [ref=f83e52]:
+      - generic [ref=f83e53]:
+        - iframe [ref=f83e55]:
+          - generic [ref=f87e1]:
+            - generic "Reproductor de video de YouTube" [ref=f87e3]
+            - generic [ref=f87e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f87e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f87e14] [cursor=pointer]
+                  - generic [ref=f87e16]:
+                    - generic [ref=f87e21]:
+                      - generic [ref=f87e22]:
+                        - link "Tutorial Operación Medidor Inteligente de Agua Potable - Hacer Coincidir Lecturas Digital y Análoga" [ref=f87e23] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=Wc9_LH2DaSc
+                        - link "Medidor Inteligente de Agua Potable" [ref=f87e24] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f87e26]:
+                        - button [ref=f87e27] [cursor=pointer]
+                        - generic [ref=f87e29]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f87e30]:
+                      - button "Compartir" [ref=f87e33] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f87e44] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=Wc9_LH2DaSc
+                        - generic [ref=f87e45]: Mirar en
+        - generic [ref=f83e56]:
+          - generic [ref=f83e57]: "1"
+          - generic [ref=f83e58]:
+            - generic [ref=f83e59]: Primer modo
+            - paragraph [ref=f83e60]: Restablecer Lecturas Análoga y Digital
+            - paragraph [ref=f83e61]: Sincroniza la coincidencia entre ambas lecturas del medidor
+      - generic [ref=f83e62]:
+        - iframe [ref=f83e64]:
+          - generic [ref=f88e1]:
+            - generic "Reproductor de video de YouTube" [ref=f88e3]
+            - generic [ref=f88e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f88e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f88e14] [cursor=pointer]
+                  - generic [ref=f88e16]:
+                    - generic [ref=f88e21]:
+                      - generic [ref=f88e22]:
+                        - link "Tutorial Operación Medidor Inteligente de Agua Potable - Toma de Lectura Individual con Hand-Held" [ref=f88e23] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=bYpqIhpIfBo
+                        - link "Medidor Inteligente de Agua Potable" [ref=f88e24] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f88e26]:
+                        - button [ref=f88e27] [cursor=pointer]
+                        - generic [ref=f88e29]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f88e30]:
+                      - button "Compartir" [ref=f88e33] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f88e44] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=bYpqIhpIfBo
+                        - generic [ref=f88e45]: Mirar en
+        - generic [ref=f83e65]:
+          - generic [ref=f83e66]: "2"
+          - generic [ref=f83e67]:
+            - generic [ref=f83e68]: Segundo modo
+            - paragraph [ref=f83e69]: Lectura Individual y Manual
+            - paragraph [ref=f83e70]: Toma lecturas de un medidor específico de forma directa
+      - generic [ref=f83e71]:
+        - iframe [ref=f83e73]:
+          - generic [ref=f89e1]:
+            - generic "Reproductor de video de YouTube" [ref=f89e3]
+            - generic [ref=f89e5]:
+              - generic:
+                - generic:
+                  - button "Reproducir video" [ref=f89e10] [cursor=pointer]
+                  - button "Ocultar controles del reproductor" [ref=f89e14] [cursor=pointer]
+                  - generic [ref=f89e16]:
+                    - generic [ref=f89e21]:
+                      - generic [ref=f89e22]:
+                        - link "Tutorial Operación Medidor Inteligente de Agua Potable - Abrir y Cerrar Válvula" [ref=f89e23] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=RbW0Gr0tEcI
+                        - link "Medidor Inteligente de Agua Potable" [ref=f89e24] [cursor=pointer]:
+                          - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                      - generic [ref=f89e26]:
+                        - button [ref=f89e27] [cursor=pointer]
+                        - generic [ref=f89e29]:
+                          - generic: Medidor Inteligente de Agua Potable
+                          - generic: 182 suscriptores
+                    - generic [ref=f89e30]:
+                      - button "Compartir" [ref=f89e33] [cursor=pointer]
+                      - link "Mirar en YouTube" [ref=f89e44] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=RbW0Gr0tEcI
+                        - generic [ref=f89e45]: Mirar en
+        - generic [ref=f83e74]:
+          - generic [ref=f83e75]: "3"
+          - generic [ref=f83e76]:
+            - generic [ref=f83e77]: Tercer modo
+            - paragraph [ref=f83e78]: Abrir y Cerrar Válvula
+            - paragraph [ref=f83e79]: Controla remotamente la válvula de corte del medidor inteligente
+  - generic [ref=f83e80]:
+    - generic [ref=f83e81]:
+      - heading [level=2] [ref=f83e82]:
+        - text: Manuales del
+        - emphasis [ref=f83e83]: Medidor Inteligente
+      - paragraph [ref=f83e84]: Descarga y descubre el funcionamiento adecuado del medidor
+      - generic [ref=f83e85]: Uso del Medidor Inteligente
+    - generic [ref=f83e86]:
+      - generic [ref=f83e87]:
+        - img "Medidor 1" [ref=f83e92]
+        - generic [ref=f83e93]:
+          - generic [ref=f83e94]: "1"
+          - generic [ref=f83e95]: Primer paso
+          - paragraph [ref=f83e96]: Crear Archivos de Sectores
+          - paragraph [ref=f83e98]: Enviar sectores configurados al Hand-Held o Mando Manual
+          - link "Descargar manual ↓" [ref=f83e99] [cursor=pointer]:
+            - /url: /media/Manual-de-Uso-Software-HandHeld-Parte-1.pdf
+      - generic [ref=f83e100]:
+        - img "Medidor 2" [ref=f83e105]
+        - generic [ref=f83e106]:
+          - generic [ref=f83e107]: "2"
+          - generic [ref=f83e108]: Segundo paso
+          - paragraph [ref=f83e109]: Toma de Lecturas con Hand-Held
+          - paragraph [ref=f83e111]: Captura lecturas de medidores inteligentes en terreno
+          - link "Descargar manual ↓" [ref=f83e112] [cursor=pointer]:
+            - /url: /media/Manual-de-Uso-Software-HandHeld-Parte-2.pdf
+      - generic [ref=f83e113]:
+        - img "Medidor 3" [ref=f83e118]
+        - generic [ref=f83e119]:
+          - generic [ref=f83e120]: "3"
+          - generic [ref=f83e121]: Tercer paso
+          - paragraph [ref=f83e122]: Enviar Lecturas al Computador
+          - paragraph [ref=f83e124]: Importa los archivos con lecturas tomadas de vuelta al software
+          - link "Descargar manual ↓" [ref=f83e125] [cursor=pointer]:
+            - /url: /media/Manual-de-Uso-Software-HandHeld-Parte-3.pdf
+  - link [ref=f83e126] [cursor=pointer]:
+    - /url: /preguntas/
+  - contentinfo [ref=f83e132]:
+    - generic [ref=f83e133]:
+      - generic [ref=f83e134]:
+        - heading "Medidor Inteligente" [level=3] [ref=f83e135]
+        - generic [ref=f83e136]:
+          - img "Medidor Inteligente Logo" [ref=f83e137]
+          - img "software Apr" [ref=f83e138]
+          - img "Punto Blue" [ref=f83e139]
+        - paragraph [ref=f83e140]: Ingeniería Integral y Corretaje Ltda.
+        - paragraph [ref=f83e141]: "Email: contacto@medidorinteligente.cl"
+        - paragraph [ref=f83e142]: Soluciones Tecnológicas para APR/SSR
+      - generic [ref=f83e143]:
+        - heading "Secciones destacadas" [level=3] [ref=f83e144]
+        - list [ref=f83e145]:
+          - listitem [ref=f83e146]:
+            - link "Inicio" [ref=f83e147] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f83e148]:
+            - link "Nuestras soluciones" [ref=f83e149] [cursor=pointer]:
+              - /url: /soluciones/
+          - listitem [ref=f83e150]:
+            - link "Quienes somos" [ref=f83e151] [cursor=pointer]:
+              - /url: /nosotros/
+          - listitem [ref=f83e152]:
+            - link "Clientes" [ref=f83e153] [cursor=pointer]:
+              - /url: /clientes/
+          - listitem [ref=f83e154]:
+            - link "Testimonio" [ref=f83e155] [cursor=pointer]:
+              - /url: /testimonio/
+          - listitem [ref=f83e156]:
+            - link "Recursos" [ref=f83e157] [cursor=pointer]:
+              - /url: /recursos/
+          - listitem [ref=f83e158]:
+            - link "Contáctanos" [ref=f83e159] [cursor=pointer]:
+              - /url: /contacto/
+          - listitem [ref=f83e160]:
+            - link "Asistencia" [ref=f83e161] [cursor=pointer]:
+              - /url: /asistente/
+      - generic [ref=f83e162]:
+        - heading "Contáctanos" [level=3] [ref=f83e163]
+        - generic [ref=f83e164]:
+          - paragraph [ref=f83e165]:
+            - generic [ref=f83e166]: 
+            - text: Alejandro Espinoza Verdugo
+          - paragraph [ref=f83e167]:
+            - generic [ref=f83e168]: 
+            - link "Luis Cruz Martinez 991, Nancagua, Chile." [ref=f83e169] [cursor=pointer]:
+              - /url: https://www.google.com/maps?ll=-34.650649,-71.1957&z=15&t=m&hl=es-419&gl=CL&mapclient=embed&q=Luis+Cruz+Mart%C3%ADnez+991+3110000+Nancagua+O%27Higgins
+          - paragraph [ref=f83e170]:
+            - generic [ref=f83e171]: 
+            - link "contacto@medidorinteligente.cl" [ref=f83e172] [cursor=pointer]:
+              - /url: https://mail.google.com/mail/?view=cm&fs=1&to=contacto@medidorinteligente.cl&su=Consulta&body=
+        - heading "Síguenos en redes" [level=3] [ref=f83e173]
+        - generic [ref=f83e174]:
+          - link "Medidor Inteligente de Agua Potable" [ref=f83e175] [cursor=pointer]:
+            - /url: https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/
+          - link "@MedidorInteligenteAPR" [ref=f83e178] [cursor=pointer]:
+            - /url: https://www.youtube.com/@MedidorInteligenteAPR
+      - generic [ref=f83e181]:
+        - heading "Ubicación" [level=3] [ref=f83e182]
+        - iframe [ref=f83e184]:
+          - link "Maps (se abre en una nueva pestaña)" [ref=f90e4] [cursor=pointer]:
+            - /url: about:invalid#zClosurez
+            - text: Maps

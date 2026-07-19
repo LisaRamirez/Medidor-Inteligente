@@ -1527,71 +1527,6 @@ transform: none !important;
     
 
 }
-.ñam input{
-    opacity: 50%;
-}
-.ream{
-    width:90%;
-    margin: auto auto;
-    margin: border 1px solid rgb(255, 255, 255);
-    background-color: #f7f8fa;
-    border-radius: 20px;
-}
-.reamm{
-    width:80%;
-    margin: auto auto;
-    margin: border 1px solid rgb(255, 255, 255);
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding-bottom: 3rem;
-    padding-top: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-}
-.reammm{
-    width:80%;
-    margin: auto auto;
-    margin: border 1px solid rgb(255, 255, 255);
-    
-
-}
-
-
-.lleno{
-    
-    width:100%;
-    height: auto;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-.rea{
-    display: grid;
-    width: 90%;
-    margin: auto auto;
-    padding-bottom: 5rem;
-    padding-top: 5rem;
-    color: #1a169d;
-}
-.ras{
-    width: auto;
-    height: auto;
-    text-align: center;
-    color: #fff;
-    font-size: 1.5rem;
-}   
-.ra{
-    width: auto;
-    height: auto;
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-}   
-.poi{
-    width: auto;
-    height: auto;
-    text-align: center;
-    color: #09498d;
-}
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -1609,70 +1544,7 @@ transform: none !important;
     padding: 0.5rem 1rem;
     border-radius: 4px;
 }
-@media (min-width: 1200px) and (max-width: 1920px) {
-    .rea {
-        width: 95%;
-        margin: auto;
-        padding-bottom: 5rem;
-        padding-top: 5rem;
-        color:  #2e3192;
-    }
 
-    .ream {
-        width: 95%;
-        margin: auto;
-        border: 1px solid rgb(255, 255, 255); /* Corrección */
-        background-color: #ffffff;
-        border-radius: 20px;
-    }
-
-    .reamm {
-        width: 80%;
-        margin: auto;
-        border: 1px solid rgb(255, 255, 255); /* Corrección */
-        background-color: #ffffff;
-        border-radius: 20px;
-        padding: 3rem; /* Se simplificó el padding */
-    }
-}
-
-
-
-@media (min-width: 200px) and (max-width: 1199px) {
-    .rea {
-        width: 100%;
-        margin: auto;
-        padding-bottom: 5rem;
-        padding-top: 5rem;
-        color: #1a169d;
-    }
-
-    .ream {
-        width: 100%;
-        margin: auto;
-        border: 1px solid rgb(255, 255, 255); /* Corrección */
-        background-color: #f7f8fa;
-        border-radius: 20px;
-    }
-
-    .reamm {
-        width: 90%;
-        margin: auto;
-        border: 1px solid rgb(255, 255, 255); /* Corrección */
-        background-color: #ffffff;
-        border-radius: 20px;
-    }
-    .reammm{
-        width:90%;
-        margin: auto auto;
-        margin: border 1px solid rgb(255, 255, 255);
-        
-    
-    }
-}
-
-
-        
     /* Hero Section */
 .hero {
     background-image: linear-gradient(rgba(0,43,92,0.7), rgba(0,43,92,0.7)), url('path-to-water-image.jpg');
@@ -2211,125 +2083,8 @@ transition: none;
 }
 
 
-/* aoluciones */
-/* nosotros */
-
-
-    /* ... (estilos existentes) ... */
-
-    .confirmation-message {
-        background-color: #4CAF50;
-        color: white;
-        text-align: center;
-        padding: 20px;
-        border-radius: 4px;
-        margin-top: 20px;
-    }
-    
-    /* ... (resto de los estilos) ... */
-        /* Estilos generales */
-  
-    /* Header */
-    .cont{
-        width: 80%; 
-        margin: auto auto;
-    }
-    .fom{
-        width: 100%;
-        height: 100%;
-        padding: 20px;
-    }
-
-    .esg{
-        border: 0.5px solid #002B5C;
-    }
-    
-    .headercontacto {
-         background: linear-gradient(135deg, #00ffd8 0%, #0335c0 100%);
-                
-        color: white;
-        text-align: center;
-        padding: 2rem 1rem;
-    }
-    
-    .header h1 {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .header p {
-        font-size: 1rem;
-        opacity: 0.9;
-    }
-    
-  
-    
-    /* Columnas de información */
-    .info-columns {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        margin-bottom: 3rem;
-        margin: auto auto;
-    }
-   .asa{
-    margin-right: 4rem;
-   }
-   .ase{
-    margin-left: 4rem;
-   }
-    .contact-info h2,
-    .social-info h2 {
-        color: #002B5C;
-        font-size: 1.25rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .contact-info ul,
-    .social-info ul {
-        list-style: none;
-    }
-    
-    .contact-info li,
-    .social-info li {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-    }
-    
-    /* Formulario */
-    .contact-form h2 {
-        color: #002B5C;
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-    }
-    
-    .form-row {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-    
-    .form-group.full-width {
-        grid-column: 1 / -1;
-    }
-    
-    label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #333;
-    }
-    
-    .required {
-        color: #dc3545;
-    }
-    
+/* Estilos genéricos de formulario compartidos (fallback para páginas
+   sin su propio CSS de inputs, p.ej. asistente.html) */
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -2345,75 +2100,20 @@ transition: none;
     textarea::placeholder {
         color: #999;
     }
-    
-    /* Radio buttons */
-    .radio-options {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .radio-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        cursor: pointer;
-    }
-    
+
     input[type="radio"] {
         margin: 0;
         width: 1rem;
         height: 1rem;
     }
-    
-    /* Botón de envío */
-    button[type="submit"] {
-        background: linear-gradient(135deg, #081f5f 0%, #3b82f6 100%);
-        color: white;
-        padding: 0.75rem 2rem;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
-        display: block;
-        margin: 2rem auto 0;
-        min-width: 150px;
-    }
-    
-    button[type="submit"]:hover {
-        background-color: #050c37;
-    }
-    
-    /* Responsive */
+
     @media (max-width: 768px) {
-        .info-columns {
-            grid-template-columns: 1fr;
-        }
-        .asa{
-            margin-right: 0rem;
-           }
-           .ase{
-            margin-left: 0rem;
-           }
-    
-        .form-row {
-            grid-template-columns: 1fr;
-        }
-    
         .container {
             padding: 1rem;
         }
     }
-    
+
     @media (max-width: 480px) {
-        .header h1 {
-            font-size: 1.5rem;
-        }
-    
-        .header p {
-            font-size: 0.9rem;
-        }
-    
         input[type="text"],
         input[type="email"],
         input[type="tel"],
@@ -3824,118 +3524,12 @@ h1 {
             font-size: 0.8rem;
         }
     }
-/* FOOTER */
-footer {
-    background: linear-gradient(180deg, #0f1115, #141414);
-    color: #e6e6e6;
-    padding: 70px 20px;
-    border-top: 1px solid #242424;
-}
-
-footer a {
-    color: #9ca3af;
-    transition: all 0.3s ease;
-}
-
-footer a:hover {
-    color: #ffffff;
-}
-
-
-
-.footer-text {
-    color: white;
-}
-
-.footer-text a {
-    color: white;
-    text-decoration: none;
-    
-}
-
-.footer-text a:hover {
-    color: #ccc; /* Opcional: color más claro al pasar el mouse */
-}
-.footer-container {
-    max-width: 1800px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-}
-
-.footer-section h3 {
-    color: white;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-.logo-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.logo-container img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-}
-
+/* NOTA: el CSS exclusivo del footer (.footer, .footer-text, .footer-container,
+   .footer-section h3, .logo-container, .social-links, .map-container) vive
+   ahora en base.html. Lo que queda aquí (.contact-info, ul, a) es compartido
+   con otras páginas que todavía no migran su propio CSS. */
 .contact-info {
-    
     margin-bottom: 2rem;
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-    
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.social-links img {
-    width: 24px;
-    height: 24px;
-}
-.map-container {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%; /* Relación 16:9 (puedes ajustarlo si prefieres otro ratio) */
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.map-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.map-container {
-    width: 100%;
-    height: 180px;
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.map-container iframe {
-    max-width: 100%;
-    min-width: 100px;;
-    max-height: 100%;
-    min-height:100px;
-    border: none;
 }
 
 ul {
@@ -3956,32 +3550,6 @@ a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 1000px) {
-    .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-}
-
-@media (max-width: 650px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
-}
-@media (max-width: 768px) {
-    .map-container {
-        margin-top: 20px; /* Ajusta el valor para moverlo más hacia abajo */
-    }
-}
-.blu{
-    color: #191f94;
-}
-
-@media (max-width: 480px) {
-    .map-container {
-        margin-top: 40px; /* Ajusta aún más si es necesario */
-    }
-}
 /* RECURSO */
 
 .recurso {

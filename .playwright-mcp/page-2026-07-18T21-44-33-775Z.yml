@@ -1,0 +1,161 @@
+- generic [ref=f326e1]:
+  - banner [ref=f326e2]:
+    - navigation [ref=f326e3]:
+      - link [ref=f326e4] [cursor=pointer]:
+        - /url: /
+        - img "Medidor Inteligente" [ref=f326e5]
+      - generic [ref=f326e6]:
+        - link "Inicio" [ref=f326e7] [cursor=pointer]:
+          - /url: /
+        - link "Productos" [ref=f326e8] [cursor=pointer]:
+          - /url: /soluciones/
+        - link "Tutoriales" [ref=f326e9] [cursor=pointer]:
+          - /url: /tutoriales/
+        - link "Nosotros" [ref=f326e10] [cursor=pointer]:
+          - /url: /nosotros/
+        - link "Clientes" [ref=f326e11] [cursor=pointer]:
+          - /url: /clientes/
+        - link "Certificados Dictuc" [ref=f326e12] [cursor=pointer]:
+          - /url: /recursos/
+        - link "Contáctanos" [ref=f326e13] [cursor=pointer]:
+          - /url: /contacto/
+  - generic [ref=f326e14]:
+    - heading "CONTÁCTANOS" [level=1] [ref=f326e15]
+    - paragraph [ref=f326e16]: Comunicate con nosotros y empieza a cambiar el futuro
+  - generic [ref=f326e18]:
+    - generic [ref=f326e19]:
+      - heading "Información de Contacto" [level=2] [ref=f326e20]
+      - list [ref=f326e21]:
+        - listitem [ref=f326e22]:
+          - heading "Alejandro Espinoza Verdugo" [level=3] [ref=f326e25]
+        - listitem [ref=f326e26]:
+          - link "Luis Cruz Martinez 991 Nancagua Chile." [ref=f326e30] [cursor=pointer]:
+            - /url: https://www.google.com/maps?ll=-34.650649,-71.1957&z=15&t=m&hl=es-419&gl=CL&mapclient=embed&q=Luis+Cruz+Mart%C3%ADnez+991+3110000+Nancagua+O%27Higgins
+        - listitem [ref=f326e31]:
+          - link "contacto@medidorinteligente.cl" [ref=f326e34] [cursor=pointer]:
+            - /url: https://mail.google.com/mail/?view=cm&fs=1&to=contacto@medidorinteligente.cl&su=Consulta&body=.
+    - generic [ref=f326e35]:
+      - heading "Síguenos en redes" [level=2] [ref=f326e36]
+      - list [ref=f326e37]:
+        - listitem [ref=f326e38]:
+          - link "Medidor Inteligente de Agua Potable" [ref=f326e41] [cursor=pointer]:
+            - /url: https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/
+        - listitem [ref=f326e42]:
+          - link "@MedidorInteligenteAPR" [ref=f326e45] [cursor=pointer]:
+            - /url: https://www.youtube.com/@MedidorInteligenteAPR
+  - generic [ref=f326e48]:
+    - heading "¿Más dudas? Escríbenos" [level=2] [ref=f326e49]
+    - generic [ref=f326e50]:
+      - generic [ref=f326e51]:
+        - generic [ref=f326e52]:
+          - generic [ref=f326e53]: Nombre completo *
+          - textbox "Escribe aquí" [ref=f326e54]
+        - generic [ref=f326e55]:
+          - generic [ref=f326e56]: Correo electrónico *
+          - textbox "Escribe aquí" [ref=f326e57]
+        - generic [ref=f326e58]:
+          - generic [ref=f326e59]: Confirmar correo *
+          - textbox "Correo electrónico * Confirmar correo *" [ref=f326e60]:
+            - /placeholder: Escribe aquí
+      - generic [ref=f326e61]:
+        - generic [ref=f326e62]:
+          - generic [ref=f326e63]: Teléfono *
+          - textbox "Teléfono *" [ref=f326e64]:
+            - /placeholder: Escribe aquí
+        - generic [ref=f326e65]:
+          - generic [ref=f326e66]: Confirmar teléfono *
+          - textbox "Confirmar teléfono *" [ref=f326e67]:
+            - /placeholder: Escribe aquí
+      - generic [ref=f326e68]:
+        - generic [ref=f326e69]:
+          - generic [ref=f326e70]: Nombre del APR / SSR *
+          - textbox "Escribe aquí" [ref=f326e71]
+        - generic [ref=f326e72]:
+          - generic [ref=f326e73]: Cargo o Puesto en el APR *
+          - textbox "Escribe aquí" [ref=f326e74]
+      - generic [ref=f326e75]:
+        - generic [ref=f326e76]:
+          - generic [ref=f326e77]: Comuna *
+          - textbox "Escribe aquí" [ref=f326e78]
+        - generic [ref=f326e79]:
+          - generic [ref=f326e80]: Cantidad de Arranques
+          - textbox "Escribe aquí" [ref=f326e81]
+      - generic [ref=f326e82]:
+        - generic [ref=f326e83]: Tipo de financiamiento *
+        - generic [ref=f326e84]:
+          - generic [ref=f326e85] [cursor=pointer]:
+            - radio "Propio" [checked] [ref=f326e86]
+            - generic [ref=f326e87]: Propio
+          - generic [ref=f326e88] [cursor=pointer]:
+            - radio "Fondo externo (Gobierno, otras entidades)" [ref=f326e89]
+            - generic [ref=f326e90]: Fondo externo (Gobierno, otras entidades)
+      - generic [ref=f326e91]:
+        - generic [ref=f326e92]: Mensaje
+        - textbox "Escribe aquí" [ref=f326e93]
+      - button "Enviar mensaje" [ref=f326e94] [cursor=pointer]
+  - link [ref=f326e98] [cursor=pointer]:
+    - /url: /preguntas/
+  - contentinfo [ref=f326e104]:
+    - generic [ref=f326e105]:
+      - generic [ref=f326e106]:
+        - heading "Medidor Inteligente" [level=3] [ref=f326e107]
+        - generic [ref=f326e108]:
+          - img "Medidor Inteligente Logo" [ref=f326e109]
+          - img "software Apr" [ref=f326e110]
+          - img "Punto Blue" [ref=f326e111]
+        - paragraph [ref=f326e112]: Ingeniería Integral y Corretaje Ltda.
+        - paragraph [ref=f326e113]: "Email: contacto@medidorinteligente.cl"
+        - paragraph [ref=f326e114]: Soluciones Tecnológicas para APR/SSR
+      - generic [ref=f326e115]:
+        - heading "Secciones destacadas" [level=3] [ref=f326e116]
+        - list [ref=f326e117]:
+          - listitem [ref=f326e118]:
+            - link "Inicio" [ref=f326e119] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f326e120]:
+            - link "Nuestras soluciones" [ref=f326e121] [cursor=pointer]:
+              - /url: /soluciones/
+          - listitem [ref=f326e122]:
+            - link "Quienes somos" [ref=f326e123] [cursor=pointer]:
+              - /url: /nosotros/
+          - listitem [ref=f326e124]:
+            - link "Clientes" [ref=f326e125] [cursor=pointer]:
+              - /url: /clientes/
+          - listitem [ref=f326e126]:
+            - link "Testimonio" [ref=f326e127] [cursor=pointer]:
+              - /url: /testimonio/
+          - listitem [ref=f326e128]:
+            - link "Recursos" [ref=f326e129] [cursor=pointer]:
+              - /url: /recursos/
+          - listitem [ref=f326e130]:
+            - link "Contáctanos" [ref=f326e131] [cursor=pointer]:
+              - /url: /contacto/
+          - listitem [ref=f326e132]:
+            - link "Asistencia" [ref=f326e133] [cursor=pointer]:
+              - /url: /asistente/
+      - generic [ref=f326e134]:
+        - heading "Contáctanos" [level=3] [ref=f326e135]
+        - generic [ref=f326e136]:
+          - paragraph [ref=f326e137]:
+            - generic [ref=f326e138]: 
+            - text: Alejandro Espinoza Verdugo
+          - paragraph [ref=f326e139]:
+            - generic [ref=f326e140]: 
+            - link "Luis Cruz Martinez 991, Nancagua, Chile." [ref=f326e141] [cursor=pointer]:
+              - /url: https://www.google.com/maps?ll=-34.650649,-71.1957&z=15&t=m&hl=es-419&gl=CL&mapclient=embed&q=Luis+Cruz+Mart%C3%ADnez+991+3110000+Nancagua+O%27Higgins
+          - paragraph [ref=f326e142]:
+            - generic [ref=f326e143]: 
+            - link "contacto@medidorinteligente.cl" [ref=f326e144] [cursor=pointer]:
+              - /url: https://mail.google.com/mail/?view=cm&fs=1&to=contacto@medidorinteligente.cl&su=Consulta&body=
+        - heading "Síguenos en redes" [level=3] [ref=f326e145]
+        - generic [ref=f326e146]:
+          - link "Medidor Inteligente de Agua Potable" [ref=f326e147] [cursor=pointer]:
+            - /url: https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/
+          - link "@MedidorInteligenteAPR" [ref=f326e150] [cursor=pointer]:
+            - /url: https://www.youtube.com/@MedidorInteligenteAPR
+      - generic [ref=f326e153]:
+        - heading "Ubicación" [level=3] [ref=f326e154]
+        - iframe [ref=f326e156]:
+          - link "Maps (se abre en una nueva pestaña)" [ref=f327e4] [cursor=pointer]:
+            - /url: about:invalid#zClosurez
+            - text: Maps

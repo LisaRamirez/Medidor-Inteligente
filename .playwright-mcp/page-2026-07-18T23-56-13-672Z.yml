@@ -1,0 +1,326 @@
+- generic [active] [ref=f148e1]:
+  - banner [ref=f148e2]:
+    - navigation [ref=f148e3]:
+      - link [ref=f148e4] [cursor=pointer]:
+        - /url: /
+        - img "Medidor Inteligente" [ref=f148e5]
+      - generic [ref=f148e6]:
+        - link "Inicio" [ref=f148e7] [cursor=pointer]:
+          - /url: /
+        - link "Productos" [ref=f148e8] [cursor=pointer]:
+          - /url: /soluciones/
+        - link "Tutoriales" [ref=f148e9] [cursor=pointer]:
+          - /url: /tutoriales/
+        - link "Nosotros" [ref=f148e10] [cursor=pointer]:
+          - /url: /nosotros/
+        - link "Clientes" [ref=f148e11] [cursor=pointer]:
+          - /url: /clientes/
+        - link "Certificados Dictuc" [ref=f148e12] [cursor=pointer]:
+          - /url: /recursos/
+        - link "Contáctanos" [ref=f148e13] [cursor=pointer]:
+          - /url: /contacto/
+  - generic [ref=f148e14]:
+    - generic [ref=f148e15]:
+      - generic [ref=f148e17]:
+        - img "Medidor Inteligente" [ref=f148e21]
+        - generic [ref=f148e22]:
+          - generic [ref=f148e23]: Disponibilidad de stock
+          - heading "Tendremos stock nuevamente en septiembre de 2026" [level=2] [ref=f148e24]
+          - paragraph [ref=f148e25]: Recomendamos reservar con anticipación para asegurar tu pedido y no quedarte sin unidades.
+          - link "Reservar ahora" [ref=f148e27] [cursor=pointer]:
+            - /url: /contacto/
+      - generic [ref=f148e29]:
+        - generic [ref=f148e30]:
+          - generic [ref=f148e31]: Alianza Punto Blue
+          - heading "Paga tu recibo de agua potable rural con \"Punto Blue\"" [level=1] [ref=f148e32]
+          - paragraph [ref=f148e33]: Encuentra los puntos de pago más cercanos y paga tu cuenta en línea de forma rápida y segura.
+          - link "Pagar con Punto Blue" [ref=f148e35] [cursor=pointer]:
+            - /url: https://www.puntoblue.cl
+        - img "Punto Blue" [ref=f148e37]
+      - generic [ref=f148e38]:
+        - generic [ref=f148e40]:
+          - generic [ref=f148e41]:
+            - generic [ref=f148e42]:
+              - generic [ref=f148e43]: "10"
+              - img "Mascota" [ref=f148e44]
+            - generic [ref=f148e45]: años
+            - paragraph [ref=f148e46]: Transformando la gestión del aguacon tecnología inteligente
+            - generic [ref=f148e47]: 2016 — 2026
+            - link "Conoce nuestra historia" [ref=f148e50] [cursor=pointer]:
+              - /url: /nosotros/
+          - generic [ref=f148e51]:
+            - img "Medidor Inteligente" [ref=f148e52]
+            - paragraph [ref=f148e53]: MEDIDOR INTELIGENTE
+          - generic [ref=f148e54]:
+            - generic [ref=f148e55]:
+              - img "El primer medidor instalado" [ref=f148e56]
+              - paragraph [ref=f148e57]: El primer medidor inteligente instalado
+            - paragraph [ref=f148e58]: medidorinteligente.cl
+        - generic [ref=f148e59]:
+          - generic [ref=f148e60]:
+            - strong [ref=f148e61]: 0+
+            - generic [ref=f148e62]: COMUNIDADES APR
+          - generic [ref=f148e64]:
+            - strong [ref=f148e65]: "0"
+            - generic [ref=f148e66]: AÑOS DE INNOVACIÓN
+          - generic [ref=f148e68]:
+            - strong [ref=f148e69]: Chile
+            - generic [ref=f148e70]: COBERTURA NACIONAL
+          - generic [ref=f148e72]:
+            - strong [ref=f148e73]: 24/7
+            - generic [ref=f148e74]: MONITOREO CONTINUO
+      - generic [ref=f148e76]:
+        - generic [ref=f148e77]:
+          - paragraph [ref=f148e78]: MEDIDOR INTELIGENTE
+          - paragraph [ref=f148e79]: Medidor inteligente sostenible
+        - generic [ref=f148e80]:
+          - generic [ref=f148e81]:
+            - generic [ref=f148e82]:
+              - generic [ref=f148e83]: ✓
+              - paragraph [ref=f148e84]: Batería 3 veces más potente
+            - generic [ref=f148e85]:
+              - generic [ref=f148e86]: ✓
+              - paragraph [ref=f148e87]: Monitoreo en tiempo real
+            - generic [ref=f148e88]:
+              - generic [ref=f148e89]: ✓
+              - paragraph [ref=f148e90]: Fácil de implementar
+          - img "Medidor Inteligente" [ref=f148e94]
+          - generic [ref=f148e95]:
+            - generic [ref=f148e96]:
+              - generic [ref=f148e97]: ✓
+              - paragraph [ref=f148e98]: Reduce tus pérdidas de agua
+            - generic [ref=f148e99]:
+              - generic [ref=f148e100]: ✓
+              - paragraph [ref=f148e101]: Sostenible a largo plazo
+            - generic [ref=f148e102]:
+              - generic [ref=f148e103]: ✓
+              - paragraph [ref=f148e104]: Diseño totalmente moderno
+        - link "Conoce más" [ref=f148e106] [cursor=pointer]:
+          - /url: /soluciones/
+      - generic [ref=f148e107]:
+        - img "Entrega de Medidores" [ref=f148e108]
+        - generic [ref=f148e109]:
+          - generic [ref=f148e110]: Comunidades APR
+          - heading "Entrega de Medidores Inteligentes" [level=2] [ref=f148e111]
+          - link "Ver comunidades" [ref=f148e113] [cursor=pointer]:
+            - /url: /clientes/
+      - generic [ref=f148e114]:
+        - img "Actualizaciones y novedades" [ref=f148e115]
+        - generic [ref=f148e116]:
+          - generic [ref=f148e117]: Actualizaciones y novedades
+          - heading "Información reciente sobre el Medidor Inteligente y APR" [level=2] [ref=f148e118]
+          - link "Últimas noticias" [ref=f148e120] [cursor=pointer]:
+            - /url: /testimonio/
+    - generic [ref=f148e121]:
+      - generic [ref=f148e122]:
+        - button "Slide 1" [ref=f148e123] [cursor=pointer]
+        - button "Slide 2" [ref=f148e124] [cursor=pointer]
+        - button "Slide 3" [ref=f148e125] [cursor=pointer]
+        - button "Slide 4" [ref=f148e126] [cursor=pointer]
+        - button "Slide 5" [ref=f148e127] [cursor=pointer]
+        - button "Slide 5" [ref=f148e128] [cursor=pointer]
+      - generic [ref=f148e129]:
+        - button "Anterior" [ref=f148e130] [cursor=pointer]: ‹
+        - button "Siguiente" [ref=f148e131] [cursor=pointer]: ›
+  - generic [ref=f148e132]:
+    - heading "VENTAJAS" [level=2] [ref=f148e133]
+    - paragraph [ref=f148e134]: Conoce cómo transformamos el futuro de la gestión del agua
+    - generic [ref=f148e135]:
+      - heading "Medición análoga y digital" [level=3] [ref=f148e138]
+      - heading "Registro continuo del consumo" [level=3] [ref=f148e141]
+      - heading "Medición de alta precisión" [level=3] [ref=f148e144]
+      - heading "Detecta manipulación" [level=3] [ref=f148e147]
+      - heading "Detecta flujo inverso" [level=3] [ref=f148e150]
+      - heading "Funciona sin Internet" [level=3] [ref=f148e153]
+      - heading "Comunicación por radiofrecuencia" [level=3] [ref=f148e156]
+      - heading "Lectura remota" [level=3] [ref=f148e159]
+      - heading "Alcance de hasta 1 km" [level=3] [ref=f148e162]
+      - heading "Ahorra tiempo" [level=3] [ref=f148e165]
+      - heading "Reduce costos operacionales" [level=3] [ref=f148e168]
+      - heading "Reduce el esfuerzo operativo" [level=3] [ref=f148e171]
+      - heading "Facturación más precisa" [level=3] [ref=f148e174]
+      - heading "Corte remoto del suministro" [level=3] [ref=f148e177]
+      - heading "Instalación sencilla" [level=3] [ref=f148e180]
+      - heading "Compatible con cañerías de 1/2\" y 3/4\"" [level=3] [ref=f148e183]
+      - heading "Batería de más de 30 años" [level=3] [ref=f148e186]
+      - heading "Garantía de 1 año" [level=3] [ref=f148e189]
+      - heading "Garantía indefinida del capturador" [level=3] [ref=f148e192]
+      - heading "Certificado por DICTUC" [level=3] [ref=f148e195]
+      - heading "Tecnología desarrollada en Chile" [level=3] [ref=f148e198]
+      - heading "Tecnología para APR" [level=3] [ref=f148e201]
+      - heading "Soporte técnico sin costo" [level=3] [ref=f148e204]
+      - heading "Más de 50.000 medidores instalados" [level=3] [ref=f148e207]
+      - heading "Más de 200 APR utilizan nuestra tecnología" [level=3] [ref=f148e210]
+      - heading "Exportación de datos a Excel" [level=3] [ref=f148e213]
+      - heading "Compatible con otras plataformas" [level=3] [ref=f148e216]
+      - heading "Presencia en todo Chile" [level=3] [ref=f148e219]
+      - heading "Equipo robusto y resistente" [level=3] [ref=f148e222]
+      - heading "Mayor seguridad para el personal" [level=3] [ref=f148e225]
+  - generic [ref=f148e228]:
+    - generic [ref=f148e229]:
+      - heading "¿CÓMO FUNCIONA?" [level=2] [ref=f148e230]
+      - paragraph [ref=f148e231]: En 3 sencillos pasos
+    - generic [ref=f148e232]:
+      - generic [ref=f148e233]:
+        - generic [ref=f148e234]: "1"
+        - generic [ref=f148e235]:
+          - img "Medidor" [ref=f148e237]
+          - paragraph [ref=f148e238]: Toma los datos y envía al receptor manual
+          - paragraph [ref=f148e239]: A 100 (+) metros
+      - generic [ref=f148e240]:
+        - generic [ref=f148e241]: "2"
+        - generic [ref=f148e242]:
+          - img "Receptor" [ref=f148e244]
+          - paragraph [ref=f148e245]: Recepciona los datos
+          - paragraph [ref=f148e246]: Permite cortar el servicio a distancia
+      - generic [ref=f148e247]:
+        - generic [ref=f148e248]: "3"
+        - generic [ref=f148e249]:
+          - img "Software" [ref=f148e251]
+          - paragraph [ref=f148e252]: Pasa en directo los datos al software o plantilla excel
+          - paragraph [ref=f148e253]: Permite emitir boletas
+  - generic [ref=f148e256]:
+    - generic [ref=f148e257]: En acción
+    - heading [level=2] [ref=f148e259]:
+      - text: Así transformamos la
+      - emphasis [ref=f148e260]: gestión del agua
+    - heading "con nuestro medidor inteligente" [level=3] [ref=f148e261]
+    - iframe [ref=f148e264]:
+      - generic [ref=f149e1]:
+        - generic "Reproductor de video de YouTube" [ref=f149e3]
+        - generic [ref=f149e5]:
+          - generic:
+            - generic:
+              - button "Reproducir video" [ref=f149e10] [cursor=pointer]
+              - button "Ocultar controles del reproductor" [ref=f149e14] [cursor=pointer]
+              - generic [ref=f149e16]:
+                - generic [ref=f149e21]:
+                  - generic [ref=f149e22]:
+                    - link "Medidor Inteligente de Agua Potable - Chilevisión" [ref=f149e23] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=mSEJlKinapg
+                    - link "Medidor Inteligente de Agua Potable" [ref=f149e24] [cursor=pointer]:
+                      - /url: /channel/UCFR26EUzDw6OWvwZAAn7BQg
+                  - generic [ref=f149e26]:
+                    - button [ref=f149e27] [cursor=pointer]
+                    - generic [ref=f149e29]:
+                      - generic: Medidor Inteligente de Agua Potable
+                      - generic: 182 suscriptores
+                - generic [ref=f149e30]:
+                  - button "Compartir" [ref=f149e33] [cursor=pointer]
+                  - link "Mirar en YouTube" [ref=f149e44] [cursor=pointer]:
+                    - /url: https://www.youtube.com/watch?v=mSEJlKinapg
+                    - generic [ref=f149e45]: Mirar en
+  - generic [ref=f148e266]:
+    - generic [ref=f148e267]:
+      - generic [ref=f148e268]: Contáctanos
+      - heading "Únete a las más de 200 comunidades que ya dieron el paso" [level=2] [ref=f148e270]
+      - paragraph [ref=f148e271]: Cuéntanos sobre tu comunidad y te contactaremos a la brevedad con una propuesta personalizada.
+    - generic [ref=f148e275]:
+      - generic [ref=f148e276]:
+        - generic [ref=f148e277]:
+          - generic [ref=f148e278]: Nombre completo *
+          - textbox "Escribe aquí" [ref=f148e279]
+        - generic [ref=f148e280]:
+          - generic [ref=f148e281]: Correo electrónico *
+          - textbox "Correo electrónico *" [ref=f148e282]:
+            - /placeholder: Escribe aquí
+        - generic [ref=f148e283]:
+          - generic [ref=f148e284]: Confirmar correo *
+          - textbox "Confirmar correo *" [ref=f148e285]:
+            - /placeholder: Escribe aquí
+        - generic [ref=f148e286]:
+          - generic [ref=f148e287]: Teléfono *
+          - textbox "Teléfono *" [ref=f148e288]:
+            - /placeholder: Escribe aquí
+        - generic [ref=f148e289]:
+          - generic [ref=f148e290]: Confirmar teléfono *
+          - textbox "Confirmar teléfono *" [ref=f148e291]:
+            - /placeholder: Escribe aquí
+        - generic [ref=f148e292]:
+          - generic [ref=f148e293]: Nombre del APR / SSR *
+          - textbox "Escribe aquí" [ref=f148e294]
+        - generic [ref=f148e295]:
+          - generic [ref=f148e296]: Cargo o Puesto en el APR *
+          - textbox "Escribe aquí" [ref=f148e297]
+        - generic [ref=f148e298]:
+          - generic [ref=f148e299]: Comuna *
+          - textbox "Escribe aquí" [ref=f148e300]
+        - generic [ref=f148e301]:
+          - generic [ref=f148e302]: Cantidad de Arranques
+          - textbox "Escribe aquí" [ref=f148e303]
+        - generic [ref=f148e304]:
+          - generic [ref=f148e305]: Tipo de financiamiento *
+          - generic [ref=f148e306]:
+            - generic [ref=f148e307] [cursor=pointer]:
+              - radio "Propio" [checked] [ref=f148e308]
+              - generic [ref=f148e309]: Propio
+            - generic [ref=f148e310] [cursor=pointer]:
+              - radio "Fondo externo (Gobierno, otras entidades)" [ref=f148e311]
+              - generic [ref=f148e312]: Fondo externo (Gobierno, otras entidades)
+        - generic [ref=f148e313]:
+          - generic [ref=f148e314]: Mensaje
+          - textbox "Escribe aquí" [ref=f148e315]
+      - button "Enviar mensaje" [ref=f148e316] [cursor=pointer]
+  - link [ref=f148e320] [cursor=pointer]:
+    - /url: /preguntas/
+  - contentinfo [ref=f148e326]:
+    - generic [ref=f148e327]:
+      - generic [ref=f148e328]:
+        - heading "Medidor Inteligente" [level=3] [ref=f148e329]
+        - generic [ref=f148e330]:
+          - img "Medidor Inteligente Logo" [ref=f148e331]
+          - img "software Apr" [ref=f148e332]
+          - img "Punto Blue" [ref=f148e333]
+        - paragraph [ref=f148e334]: Ingeniería Integral y Corretaje Ltda.
+        - paragraph [ref=f148e335]: "Email: contacto@medidorinteligente.cl"
+        - paragraph [ref=f148e336]: Soluciones Tecnológicas para APR/SSR
+      - generic [ref=f148e337]:
+        - heading "Secciones destacadas" [level=3] [ref=f148e338]
+        - list [ref=f148e339]:
+          - listitem [ref=f148e340]:
+            - link "Inicio" [ref=f148e341] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f148e342]:
+            - link "Nuestras soluciones" [ref=f148e343] [cursor=pointer]:
+              - /url: /soluciones/
+          - listitem [ref=f148e344]:
+            - link "Quienes somos" [ref=f148e345] [cursor=pointer]:
+              - /url: /nosotros/
+          - listitem [ref=f148e346]:
+            - link "Clientes" [ref=f148e347] [cursor=pointer]:
+              - /url: /clientes/
+          - listitem [ref=f148e348]:
+            - link "Testimonio" [ref=f148e349] [cursor=pointer]:
+              - /url: /testimonio/
+          - listitem [ref=f148e350]:
+            - link "Recursos" [ref=f148e351] [cursor=pointer]:
+              - /url: /recursos/
+          - listitem [ref=f148e352]:
+            - link "Contáctanos" [ref=f148e353] [cursor=pointer]:
+              - /url: /contacto/
+          - listitem [ref=f148e354]:
+            - link "Asistencia" [ref=f148e355] [cursor=pointer]:
+              - /url: /asistente/
+      - generic [ref=f148e356]:
+        - heading "Contáctanos" [level=3] [ref=f148e357]
+        - generic [ref=f148e358]:
+          - paragraph [ref=f148e359]:
+            - generic [ref=f148e360]: 
+            - text: Alejandro Espinoza Verdugo
+          - paragraph [ref=f148e361]:
+            - generic [ref=f148e362]: 
+            - link "Luis Cruz Martinez 991, Nancagua, Chile." [ref=f148e363] [cursor=pointer]:
+              - /url: https://www.google.com/maps?ll=-34.650649,-71.1957&z=15&t=m&hl=es-419&gl=CL&mapclient=embed&q=Luis+Cruz+Mart%C3%ADnez+991+3110000+Nancagua+O%27Higgins
+          - paragraph [ref=f148e364]:
+            - generic [ref=f148e365]: 
+            - link "contacto@medidorinteligente.cl" [ref=f148e366] [cursor=pointer]:
+              - /url: https://mail.google.com/mail/?view=cm&fs=1&to=contacto@medidorinteligente.cl&su=Consulta&body=
+        - heading "Síguenos en redes" [level=3] [ref=f148e367]
+        - generic [ref=f148e368]:
+          - link "Medidor Inteligente de Agua Potable" [ref=f148e369] [cursor=pointer]:
+            - /url: https://www.facebook.com/Medidores.Inteligentes.De.Agua.Potable/
+          - link "@MedidorInteligenteAPR" [ref=f148e372] [cursor=pointer]:
+            - /url: https://www.youtube.com/@MedidorInteligenteAPR
+      - generic [ref=f148e375]:
+        - heading "Ubicación" [level=3] [ref=f148e376]
+        - iframe [ref=f148e378]

@@ -1,0 +1,106 @@
+[     157ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/css/chat.css:0
+[     166ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/css/asistente.css:0
+[     168ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/js/scrpt.js:0
+[     169ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at http://127.0.0.1:8000/static/app/js/menu.js:3:9
+[     182ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/img/3instalation.jpeg:0
+[     182ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/img/2instalation.jpeg:0
+[     194ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:8000/static/app/img/1instalation.png:0
+[     301ms] TypeError: Cannot read properties of null (reading 'addEventListener')
+    at HTMLDocument.<anonymous> (http://127.0.0.1:8000/static/app/js/asistente.js:40:15)
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[     673ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[     686ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     687ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     688ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     688ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     689ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     689ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     689ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     689ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     689ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[     689ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[     691ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://127.0.0.1:8000'). @ https://www.youtube.com/s/player/882a803a/www-widgetapi.vflset/www-widgetapi.js:162
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216985ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216921ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216872ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[ -216840ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[    4627ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[    4653ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[    4680ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
+[    4724ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ :0
