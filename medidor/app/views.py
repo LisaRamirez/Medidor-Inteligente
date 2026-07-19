@@ -38,13 +38,6 @@ def asistente_virtual(request):
     return render(request, "app/asistente.html")
 
 
-def home(request):
-    return render(request, 'app/base.html')
-
-# Otras vistas que tengas...
-def home(request):
-    return render(request, 'app/base.html')
-
 def otra_vista(request):
     return render(request, 'app/otra_template.html')
 

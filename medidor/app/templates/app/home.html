@@ -1739,7 +1739,7 @@
         <form method="POST" action="" id="hmEmailForm">
           {% csrf_token %}
           <div class="hm-row">
-            <div class="hm-field">
+            <div class="hm-field hm-full">
               <label>Nombre completo <span class="hm-req">*</span></label>
               <input type="text" name="name" placeholder="Escribe aquí" required>
             </div>
@@ -1836,6 +1836,12 @@ document.addEventListener('DOMContentLoaded',function(){
   /* Solo números en arranques */
   var cant=document.getElementById('hmCantidad');
   if(cant) cant.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'');});
+
+  /* Solo números en teléfono */
+  ['hmPhone1','hmPhone2'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'');});
+  });
 
   /* ── Testimonios: elige 3 videos al azar entre los 13 disponibles en cada visita ── */
   (function(){
