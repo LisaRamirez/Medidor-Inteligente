@@ -26,7 +26,8 @@ from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import render
 from django.http import JsonResponse
 from .services import obtener_respuesta
-
+from email.utils import formataddr
+from email.header import Header
 
 def asistente_virtual(request):
     if request.method == "POST":
@@ -158,6 +159,7 @@ def apr(request, apr_id):
         print(f"Unexpected error: {e}")
         messages.error(request, 'Hubo un problema al cargar la información.')
         return redirect('home')  # ✅
+
 def home(request):
     if request.method == 'POST':
         try:
@@ -171,17 +173,14 @@ def home(request):
             radio = request.POST.get('financiamiento', '')
             message = request.POST.get('message', '')
             fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            
 
-            # Guardar en la base de datos
             contacto = Contacto(
-                name=name, correo=correo, phone=phone, ssr_apr=ssr_apr, 
-                cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, 
+                name=name, correo=correo, phone=phone, ssr_apr=ssr_apr,
+                cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad,
                 fecha=fecha, radio=radio, message=message
             )
             contacto.save()
 
-            # Enviar correo
             sender_email = settings.EMAIL_HOST_USER
             password = settings.EMAIL_HOST_PASSWORD
             smtp_server = settings.EMAIL_HOST
@@ -197,23 +196,24 @@ def home(request):
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
                     f"• Cargo APR: {cargo_apr}\n"
-                    f"• Cantidad Arranques: {cantidad}\n"                   
+                    f"• Cantidad Arranques: {cantidad}\n"
                     f"• Financiamiento: {radio}\n\n"
                     f"Mensaje: {message}\n\n"
-                    
-                    
+
                     f"Página web Medidor Inteligente.")
 
             subject = 'Medidor Inteligente APR/SSR Contacto'
             email = "lisaisabelc19@gmail.com"
             cc_emails = []
-            send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
-            return redirect('home')  # Redirige a la vista principal después de enviar
+            send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port,
+                       reply_to=correo, from_name=name)
+            return redirect('home')
 
         except Exception as e:
-            return render(request, 'app/e404.html', {'error': str(e)})  # Cambiar por una vista de error apropiad
+            return render(request, 'app/e404.html', {'error': str(e)})
 
     return render(request, 'app/home.html')
+
 
 def contacto(request):
     if request.method == 'POST':
@@ -229,51 +229,48 @@ def contacto(request):
             message = request.POST.get('message', '')
             fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-            # Guardar en la base de datos
             contacto = Contacto(
-                name=name, correo=correo, phone=phone, ssr_apr=ssr_apr, 
-                cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad, 
+                name=name, correo=correo, phone=phone, ssr_apr=ssr_apr,
+                cargo_apr=cargo_apr, comuna=comuna, cantidad=cantidad,
                 fecha=fecha, radio=radio, message=message
             )
             contacto.save()
 
-            # Enviar correo
             sender_email = settings.EMAIL_HOST_USER
             password = settings.EMAIL_HOST_PASSWORD
             smtp_server = settings.EMAIL_HOST
             smtp_port = settings.EMAIL_PORT
 
             info = (
-                    
                     f"Datos Personales:\n"
                     f"• Nombre: {name}\n"
                     f"• Teléfono: {phone}\n"
                     f"• Comuna: {comuna}\n"
                     f"• Correo: {correo}\n\n"
-                   
+
                     f"Detalles de SSR Y APR:\n"
                     f"• SSR/APR: {ssr_apr}\n"
                     f"• Cargo APR: {cargo_apr}\n"
                     f"• Cantidad Arranques: {cantidad}\n"
                     f"• Financiamiento: {radio}\n\n"
                     f"Mensaje: {message}\n\n"
-                   
+
                     f"Página web Medidor Inteligente.")
 
             subject = 'Medidor Inteligente APR/SSR Contacto'
             email = "lisaisabelc19@gmail.com"
             cc_emails = []
-            send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port)
+            send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port,
+                       reply_to=correo, from_name=name)
 
-            
-            return redirect('contacto')  # Redirigir a la página de contacto o donde corresponda
+            return redirect('contacto')
 
         except Exception as e:
-            return render(request, 'app/e404.html', {'error': str(e)})  # Cambiar por una vista de error apropiad
+            return render(request, 'app/e404.html', {'error': str(e)})
 
     return render(request, 'app/contacto.html')
- 
-def send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port):
+
+def send_email(subject, info, sender_email, password, email, cc_emails, smtp_server, smtp_port, reply_to=None, from_name=None):
     server = None
     try:
         server = smtplib.SMTP(smtp_server, smtp_port)
@@ -282,10 +279,19 @@ def send_email(subject, info, sender_email, password, email, cc_emails, smtp_ser
         server.login(sender_email, password)
 
         msg = MIMEText(info, _charset='utf-8')
-        msg['Subject'] = subject
-        msg['From'] = sender_email
+        msg['Subject'] = Header(subject, 'utf-8')
+
+        if from_name:
+            msg['From'] = formataddr((str(Header(from_name, 'utf-8')), sender_email))
+        else:
+            msg['From'] = sender_email
+
         msg['To'] = email
-        msg['Cc'] = ', '.join(cc_emails)
+        if cc_emails:
+            msg['Cc'] = ', '.join(cc_emails)
+
+        if reply_to:
+            msg['Reply-To'] = reply_to
 
         all_recipients = [email] + cc_emails
         server.sendmail(sender_email, all_recipients, msg.as_string())
@@ -293,11 +299,12 @@ def send_email(subject, info, sender_email, password, email, cc_emails, smtp_ser
 
     except smtplib.SMTPException as e:
         print(f"Error: Email could not be sent. {e}")
-        
+
     finally:
         if server:
             server.quit()
 
+            
 def nosotros(request):
     try:
         return render(request, 'app/nosotros.html')
