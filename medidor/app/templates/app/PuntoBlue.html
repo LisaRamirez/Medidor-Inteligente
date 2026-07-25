@@ -1,0 +1,185 @@
+{%extends 'app/base.html'%}
+{%block contenido%}
+{% load static %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;1,400&display=swap');
+
+/* ══ HERO PUNTO BLUE (estilo banner "Ficha técnica" de recursos) ══ */
+@keyframes pb-pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.08); }
+}
+.pb-hero{
+  padding:clamp(4rem,8vw,6rem) 1.5rem clamp(3rem,6vw,4.5rem);
+  text-align:center;
+  background: linear-gradient(120deg, #0f5bf3 0%, #0641b8 35%, #0377a8 65%, #03b8a3 85%, #01ffaf98 100%);
+  position:relative;
+  overflow:hidden;
+}
+.pb-hero__glow-left{ position:absolute; top:-30%; left:-8%; width:550px; height:550px; background:radial-gradient(circle, rgba(0,80,200,0.30) 0%, transparent 65%); pointer-events:none; z-index:0; }
+.pb-hero__glow-right{ position:absolute; top:-20%; right:-6%; width:480px; height:480px; background:radial-gradient(circle, rgba(0,212,160,0.20) 0%, transparent 65%); pointer-events:none; z-index:0; animation:pb-pulse-glow 5s ease-in-out infinite; }
+.pb-hero__dots{ position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; }
+.pb-hero__badge{
+  position:relative; z-index:1;
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(0,212,160,.5);
+  color:#fff;font-size:13.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:20px;
+}
+.pb-hero__badge i{
+  width:7px;height:7px;border-radius:50%;background:#00d4a0;display:inline-block;
+  box-shadow:0 0 6px rgba(0,212,160,.8);
+  animation:hmBadgeBlink 2s ease-in-out infinite;
+}
+.pb-hero__title{
+  position:relative; z-index:1;
+  font-family:'Lora',serif;font-weight:600;color:#fff;
+  font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.02em;
+  margin:0 0 14px;
+}
+.pb-hero__title em{
+  font-style:normal;color:#7fffd4;
+}
+.pb-hero__sub{
+  position:relative; z-index:1;
+  color:#e2f6ff;max-width:640px;margin:0 auto;
+  font-size:clamp(.95rem,1.9vw,1.1rem);line-height:1.6;
+}
+
+/* ══ VENTAJAS (trasladado desde home) ═══════════════════════════ */
+@keyframes tu-shimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position:  300% center; }
+}
+.sw-section-divider {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1e52d4 20%, #2dd4bf 50%, #1e52d4 80%, transparent);
+    background-size: 200% auto;
+    animation: tu-shimmer 8s linear infinite;
+}
+.sw-section-divider-top { bottom: auto; top: 0; }
+
+.hm-benefits{
+  padding:clamp(3rem,5vw,5rem) 1.5rem;
+  text-align:center;
+  background:linear-gradient(180deg,#e6f6fc 0%,#f2fbfd 100%);
+  position:relative;
+  overflow:hidden;
+}
+.hm-benefit-category{margin-top:0;padding-top:0;border-top:none}
+.hm-benefit-category-title{font-size:clamp(1.15rem,2.2vw,1.5rem);font-weight:800;color:#0b63ce;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.03em}
+.hm-benefit-category-desc{color:#666;margin-bottom:2rem;font-size:clamp(.85rem,1.6vw,.98rem)}
+@keyframes hmBadgeBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+.hm-benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+  max-width:1000px;
+  margin:0 auto;
+}
+.hm-benefit-card{
+  position:relative;
+  height:220px;
+  padding:1.2rem 1rem;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+}
+.hm-benefit-icon{
+  width:clamp(82px,10.5vw,112px);height:clamp(82px,10.5vw,112px);
+  flex:none;
+  border-radius:50%;
+  background:#fff;
+  border:2px solid #38bdf8;
+  box-shadow:0 4px 14px rgba(56,189,248,.28);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .7rem;
+  position:relative;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.hm-benefit-card:hover .hm-benefit-icon,.hm-benefit-card:focus-visible .hm-benefit-icon{transform:translateY(-10px) scale(1.06)}
+.hm-benefit-icon img{width:68%;height:68%;object-fit:contain}
+.hm-benefit-card h3{color:#0a3159;margin-bottom:0;font-size:1.42rem;font-weight:700;line-height:1.35}
+.hm-benefit-card p{color:#666;line-height:1.5;font-size:.82rem;margin-top:.4rem}
+
+@media (max-width:900px){
+  .hm-benefits-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:520px){
+  .hm-benefits-grid{grid-template-columns:1fr}
+}
+</style>
+
+<!-- ═══════════════════════════════════════
+     HERO PUNTO BLUE
+═══════════════════════════════════════ -->
+<section class="pb-hero">
+  <div class="pb-hero__glow-left"></div>
+  <div class="pb-hero__glow-right"></div>
+  <div class="pb-hero__dots"></div>
+  <div class="sw-section-divider sw-section-divider-top"></div>
+  <div class="pb-hero__badge"><i></i> Pago online y presencial</div>
+  <h1 class="pb-hero__title">Ventajas de <em>Punto Blue</em></h1>
+  <p class="pb-hero__sub">
+    La plataforma de pago online y presencial que facilita la recaudación de tu APR.
+  </p>
+  <div class="sw-section-divider"></div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     VENTAJAS DE PUNTO BLUE (trasladado desde home)
+═══════════════════════════════════════ -->
+<section class="hm-benefits">
+  <div class="hm-benefit-category">
+    <div class="hm-benefits-grid">
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/mas-70-usuarios-pago-online.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Más del 70% de los usuarios paga online</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/pago-online-24-7.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Pago Online 24/7</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/registro-automatico-pagos.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Registro Automático de Pagos</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/integracion-transbank.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Integración con Transbank</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/pago-presencial-caja-vecina.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Pago Presencial con Caja Vecina</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/sin-envio-comprobantes.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Sin Envío de Comprobantes</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/compatible-otros-sistemas.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Compatible con Otros Sistemas</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/plataforma-segura.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Plataforma Segura</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/implementacion-sencilla.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Implementación Sencilla</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas-puntoblue/facilita-recaudacion.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Facilita la Recaudación</h3>
+    </div>
+    </div>
+  </div><!-- /hm-benefit-category -->
+  <div class="sw-section-divider"></div>
+</section>
+
+{% endblock contenido %}

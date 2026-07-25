@@ -3,6 +3,7 @@
 {% load static %}
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;1,400&display=swap');
 /* ════════════════════════════════════════════════════════════
    HERO SLIDER — base (migrado desde static/app/css/home.css)
 ════════════════════════════════════════════════════════════ */
@@ -527,6 +528,8 @@
 .hs-s1 .hs-circles .hc-d{background:rgba(56,189,248,.24);animation:hsCircleFloat1 8s ease-in-out infinite .5s}
 .hs-s1 .hs-circles .hc-e{background:rgba(255,255,255,.1);animation:hsCircleFloat2 14s ease-in-out infinite 1s}
 .hs-s1 .hs-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.hs-s1-highlight{color:#4ade80;font-weight:900;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.hs-s1-highlight-text{color:#4ade80;font-weight:800;text-shadow:0 1px 8px rgba(0,0,0,.2)}
 .hs-s1-img img{width:100%;max-width:380px;border-radius:18px;display:block;margin:0 auto}
 .hs-s1-img .hs-float-img{animation:hsProdFloat 5s ease-in-out infinite;max-width:460px;border-radius:0;filter:drop-shadow(0 18px 40px rgba(0,0,0,.28))}
 
@@ -611,12 +614,36 @@
 .hm-benefits{
   padding:clamp(3rem,5vw,5rem) 1.5rem;
   text-align:center;
-  background:#fff;
+  background:linear-gradient(180deg,#e6f6fc 0%,#f2fbfd 100%);
   position:relative;
   overflow:hidden;
 }
-.hm-benefits h2{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;color:#0a3159;margin-bottom:.8rem}
-.hm-benefits>p{color:#666;margin-bottom:2.5rem;font-size:clamp(.9rem,1.8vw,1.05rem)}
+.hm-benefits-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#fff;border:1px solid rgba(0,203,172,.35);
+  color:#049a80;font-size:13.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:20px;
+}
+.hm-benefits-badge i{
+  width:7px;height:7px;border-radius:50%;background:#00cbac;display:inline-block;
+  animation:hmBadgeBlink 2s ease-in-out infinite;
+}
+@keyframes hmBadgeBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+.hm-benefits-title{
+  font-family:'Lora',serif;font-weight:600;
+  font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;letter-spacing:-.02em;
+  color:#0a3159;margin:0 0 12px;
+}
+.hm-benefits-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#006fff 0%,#093675 40%,#0a3e81 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hm-benefits-sub{color:#5b7ab0;margin-bottom:2.5rem;font-size:clamp(.9rem,1.8vw,1.05rem);font-weight:400}
+.hm-benefit-category{margin-top:3.5rem;padding-top:3.5rem;border-top:1px solid #e8edf3}
+.hm-benefit-category:first-of-type{margin-top:0;padding-top:0;border-top:none}
+.hm-benefit-category-title{font-size:clamp(1.15rem,2.2vw,1.5rem);font-weight:800;color:#0b63ce;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.03em}
+.hm-benefit-category-desc{color:#666;margin-bottom:2rem;font-size:clamp(.85rem,1.6vw,.98rem)}
 .hm-benefits-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -653,10 +680,62 @@
   box-shadow:0 4px 14px rgba(56,189,248,.28);
   display:flex;align-items:center;justify-content:center;
   margin:0 auto .7rem;
+  position:relative;
   transition:transform .35s cubic-bezier(.34,1.56,.64,1);
 }
 .hm-benefit-card:hover .hm-benefit-icon,.hm-benefit-card:focus-visible .hm-benefit-icon{transform:translateY(-10px) scale(1.06)}
 .hm-benefit-icon img{width:68%;height:68%;object-fit:contain}
+
+.hm-benefit-icon[data-tip]{cursor:help}
+.hm-benefit-icon[data-tip]::after{
+  content:attr(data-tip);
+  position:absolute;
+  top:calc(100% + 14px);
+  left:50%;
+  transform:translateX(-50%) translateY(6px);
+  width:230px;
+  background:#0a3159;
+  color:#fff;
+  font-size:.78rem;
+  font-weight:400;
+  line-height:1.5;
+  text-align:left;
+  padding:.75rem .9rem;
+  border-radius:10px;
+  box-shadow:0 12px 30px rgba(0,0,0,.3);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease;
+  z-index:60;
+}
+.hm-benefit-icon[data-tip]::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(2px);
+  border:7px solid transparent;
+  border-bottom-color:#0a3159;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .22s ease;
+  z-index:60;
+}
+.hm-benefit-icon[data-tip]:hover::after,.hm-benefit-icon[data-tip]:hover::before{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n+1) .hm-benefit-icon[data-tip]::after{left:0;transform:translateX(0) translateY(6px)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n+1) .hm-benefit-icon[data-tip]:hover::after{transform:translateX(0) translateY(0)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n+1) .hm-benefit-icon[data-tip]::before{left:38px}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n) .hm-benefit-icon[data-tip]::after{left:auto;right:0;transform:translateX(0) translateY(6px)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n) .hm-benefit-icon[data-tip]:hover::after{transform:translateX(0) translateY(0)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n) .hm-benefit-icon[data-tip]::before{left:auto;right:38px}
+@media (max-width:640px){
+  .hm-benefit-icon[data-tip]::after{width:180px;font-size:.74rem;padding:.6rem .75rem}
+}
 .hm-benefit-card h3{color:#0a3159;margin-bottom:0;font-size:1.42rem;font-weight:700;line-height:1.35}
 .hm-benefit-card p{color:#666;line-height:1.5;font-size:.82rem;margin-top:.4rem}
 
@@ -1314,8 +1393,8 @@
       <div class="hs-inner">
         <div>
           <span class="hs-tag">Alianza Punto Blue</span>
-          <h1 class="hs-h1">Paga tu recibo de agua potable rural con "Punto Blue"</h1>
-          <p class="hs-p">Encuentra los puntos de pago más cercanos y paga tu cuenta en línea de forma rápida y segura.</p>
+          <h1 class="hs-h1">Paga tu recibo de agua potable rural con <span class="hs-s1-highlight">Punto Blue</span></h1>
+          <p class="hs-p">Encuentra los puntos de pago más cercanos y paga tu cuenta en línea de forma rápida y segura. <strong class="hs-s1-highlight-text">Más del 70% de los usuarios del APR paga online.</strong></p>
           <div class="hs-btns">
             <a href="https://www.puntoblue.cl" class="hs-btn-wh">Pagar con Punto Blue</a>
           </div>
@@ -1515,9 +1594,13 @@
      BENEFICIOS
 ═══════════════════════════════════════ -->
 <section class="hm-benefits">
-  <h2>VENTAJAS</h2>
-  <p>Conoce cómo transformamos el futuro de la gestión del agua</p>
-  <div class="hm-benefits-grid">
+  <div class="sw-section-divider sw-section-divider-top"></div>
+  <div class="hm-benefits-badge"><i></i> Lo que nos hace diferentes</div>
+  <h2 class="hm-benefits-title">Ventajas del <em>Medidor Inteligente</em></h2>
+  <p class="hm-benefits-sub">Todo lo que nuestro medidor aporta a la gestión del agua potable rural</p>
+
+  <div class="hm-benefit-category">
+    <div class="hm-benefits-grid">
     <div class="hm-benefit-card">
       <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas/medicion-analoga-digital.png' %}" alt=""></div>
       <h3>Medición análoga y digital</h3>
@@ -1638,7 +1721,9 @@
       <div class="hm-benefit-icon"><img src="{% static 'app/img/ventajas/seguridad-personal.png' %}" alt=""></div>
       <h3>Mayor seguridad para el personal</h3>
     </div>
-  </div>
+    </div>
+  </div><!-- /hm-benefit-category -->
+  <div class="sw-section-divider"></div>
 </section>
 
 

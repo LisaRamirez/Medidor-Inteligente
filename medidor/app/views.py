@@ -326,6 +326,20 @@ def recursos(request):
         logger.error(f"Error al renderizar la página: {e}", exc_info=True)
         return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo más tarde.")
 
+def SoftwareApr(request):
+    try:
+        return render(request, 'app/SoftwareApr.html')
+    except Exception as e:
+        logger.error(f"Error al renderizar la página: {e}", exc_info=True)
+        return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo más tarde.")
+
+def PuntoBlue(request):
+    try:
+        return render(request, 'app/PuntoBlue.html')
+    except Exception as e:
+        logger.error(f"Error al renderizar la página: {e}", exc_info=True)
+        return HttpResponseServerError("Hubo un error al cargar la página. Inténtalo más tarde.")
+
 def error_404(request, exception):
     try:
         return render(request, 'app/e404.html', status=404)

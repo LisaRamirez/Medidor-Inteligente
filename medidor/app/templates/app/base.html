@@ -74,10 +74,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 1rem 1.5rem;
       background: white;
       position: relative;
       z-index: 1000;
+      max-width: 1500px;
+      gap: 1.5rem;
     }
 
     .nav.scrolled {
@@ -86,6 +88,7 @@
 
     .logo {
       height: 40px;
+      flex-shrink: 0;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -153,11 +156,13 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.6rem;
       align-items: center;
+      flex-wrap: nowrap;
     }
 
     .nav-links a {
+      white-space: nowrap;
       text-decoration: none;
       color: #333;
       font-size: 1.1rem;
@@ -236,7 +241,7 @@
       display: none;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1300px) {
       .menu-toggle {
         display: block;
       }
@@ -360,7 +365,11 @@
         <div class="nav-links">
             <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Inicio</a>
            
-            <a href="{% url 'soluciones' %}" class="nav-link {% if 'soluciones' in request.path %}active{% endif %}">Productos</a>
+            
+           
+            <a href="{% url 'SoftwareApr' %}" class="nav-link {% if 'SoftwareApr' in request.path %}active{% endif %}">Software Apr</a>
+            <a href="{% url 'PuntoBlue' %}" class="nav-link {% if 'PuntoBlue' in request.path %}active{% endif %}">Punto Blue</a>
+
             <a href="{% url 'tutoriales' %}" class="nav-link {% if 'tutoriales' in request.path %}active{% endif %}">Tutoriales</a>
             <a href="{% url 'nosotros' %}" class="nav-link {% if 'nosotros' in request.path %}active{% endif %}">Nosotros</a>
             <a href="{% url 'clientes' %}" class="nav-link {% if 'clientes' in request.path %}active{% endif %}">Clientes</a>

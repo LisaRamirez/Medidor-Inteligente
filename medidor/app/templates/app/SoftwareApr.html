@@ -1,0 +1,338 @@
+{%extends 'app/base.html'%}
+{%block contenido%}
+{% load static %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;1,400&display=swap');
+
+/* ══ HERO SOFTWARE APR (estilo banner "Ficha técnica" de recursos) ══ */
+@keyframes sa-pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.08); }
+}
+.sa-hero{
+  padding:clamp(4rem,8vw,6rem) 1.5rem clamp(3rem,6vw,4.5rem);
+  text-align:center;
+  background: linear-gradient(120deg, #0f5bf3 0%, #0641b8 35%, #0377a8 65%, #03b8a3 85%, #01ffaf98 100%);
+  position:relative;
+  overflow:hidden;
+}
+.sa-hero__glow-left{ position:absolute; top:-30%; left:-8%; width:550px; height:550px; background:radial-gradient(circle, rgba(0,80,200,0.30) 0%, transparent 65%); pointer-events:none; z-index:0; }
+.sa-hero__glow-right{ position:absolute; top:-20%; right:-6%; width:480px; height:480px; background:radial-gradient(circle, rgba(0,212,160,0.20) 0%, transparent 65%); pointer-events:none; z-index:0; animation:sa-pulse-glow 5s ease-in-out infinite; }
+.sa-hero__dots{ position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; }
+.sa-hero__badge{
+  position:relative; z-index:1;
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(0,212,160,.5);
+  color:#fff;font-size:13.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:20px;
+}
+.sa-hero__badge i{
+  width:7px;height:7px;border-radius:50%;background:#00d4a0;display:inline-block;
+  box-shadow:0 0 6px rgba(0,212,160,.8);
+  animation:hmBadgeBlink 2s ease-in-out infinite;
+}
+.sa-hero__title{
+  position:relative; z-index:1;
+  font-family:'Lora',serif;font-weight:600;color:#fff;
+  font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.02em;
+  margin:0 0 14px;
+}
+.sa-hero__title em{
+  font-style:normal;color:#7fffd4;
+}
+.sa-hero__sub{
+  position:relative; z-index:1;
+  color:#e2f6ff;max-width:640px;margin:0 auto;
+  font-size:clamp(.95rem,1.9vw,1.1rem);line-height:1.6;
+}
+.sa-hero__price{
+  position:relative; z-index:1;
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;color:#0a3159;
+  font-size:.95rem;font-weight:600;
+  padding:.6rem 1.4rem;border-radius:99px;
+  margin-top:22px;
+  box-shadow:0 8px 22px rgba(0,0,0,.18);
+}
+.sa-hero__price-value{
+  font-size:1.1rem;font-weight:800;
+}
+
+/* ══ VENTAJAS (trasladado desde home) ═══════════════════════════ */
+@keyframes tu-shimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position:  300% center; }
+}
+.sw-section-divider {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1e52d4 20%, #2dd4bf 50%, #1e52d4 80%, transparent);
+    background-size: 200% auto;
+    animation: tu-shimmer 8s linear infinite;
+}
+.sw-section-divider-top { bottom: auto; top: 0; }
+
+.hm-benefits{
+  padding:clamp(3rem,5vw,5rem) 1.5rem;
+  text-align:center;
+  background:linear-gradient(180deg,#e6f6fc 0%,#f2fbfd 100%);
+  position:relative;
+  overflow:hidden;
+}
+.hm-benefits-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#fff;border:1px solid rgba(0,203,172,.35);
+  color:#049a80;font-size:13.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:20px;
+}
+.hm-benefits-badge i{
+  width:7px;height:7px;border-radius:50%;background:#00cbac;display:inline-block;
+  animation:hmBadgeBlink 2s ease-in-out infinite;
+}
+@keyframes hmBadgeBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+.hm-benefits-title{
+  font-family:'Lora',serif;font-weight:600;
+  font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;letter-spacing:-.02em;
+  color:#0a3159;margin:0 0 12px;
+}
+.hm-benefits-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#006fff 0%,#093675 40%,#0a3e81 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hm-benefits-sub{color:#5b7ab0;margin-bottom:2.5rem;font-size:clamp(.9rem,1.8vw,1.05rem);font-weight:400}
+.hm-benefit-category{margin-top:3.5rem;padding-top:3.5rem;border-top:1px solid #e8edf3}
+.hm-benefit-category:first-of-type{margin-top:0;padding-top:0;border-top:none}
+.hm-benefit-category-title{font-size:clamp(1.15rem,2.2vw,1.5rem);font-weight:800;color:#0b63ce;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.03em}
+.hm-benefit-category-desc{color:#666;margin-bottom:2rem;font-size:clamp(.85rem,1.6vw,.98rem)}
+.hm-benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+  max-width:1000px;
+  margin:0 auto;
+}
+.hm-benefit-card{
+  position:relative;
+  height:220px;
+  padding:1.2rem 1rem;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+}
+.hm-benefit-cert-badge{
+  position:absolute;
+  right:-24px;
+  bottom:-24px;
+  width:92px;
+  height:92px;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));
+  pointer-events:none;
+}
+.hm-benefit-icon{
+  width:clamp(82px,10.5vw,112px);height:clamp(82px,10.5vw,112px);
+  flex:none;
+  border-radius:50%;
+  background:#fff;
+  border:2px solid #38bdf8;
+  box-shadow:0 4px 14px rgba(56,189,248,.28);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .7rem;
+  position:relative;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.hm-benefit-card:hover .hm-benefit-icon,.hm-benefit-card:focus-visible .hm-benefit-icon{transform:translateY(-10px) scale(1.06)}
+.hm-benefit-icon img{width:68%;height:68%;object-fit:contain}
+
+.hm-benefit-icon[data-tip]{cursor:help}
+.hm-benefit-icon[data-tip]::after{
+  content:attr(data-tip);
+  position:absolute;
+  top:calc(100% + 14px);
+  left:50%;
+  transform:translateX(-50%) translateY(6px);
+  width:230px;
+  background:#0a3159;
+  color:#fff;
+  font-size:.78rem;
+  font-weight:400;
+  line-height:1.5;
+  text-align:left;
+  padding:.75rem .9rem;
+  border-radius:10px;
+  box-shadow:0 12px 30px rgba(0,0,0,.3);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease;
+  z-index:60;
+}
+.hm-benefit-icon[data-tip]::before{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%) translateY(2px);
+  border:7px solid transparent;
+  border-bottom-color:#0a3159;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .22s ease;
+  z-index:60;
+}
+.hm-benefit-icon[data-tip]:hover::after,.hm-benefit-icon[data-tip]:hover::before{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n+1) .hm-benefit-icon[data-tip]::after{left:0;transform:translateX(0) translateY(6px)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n+1) .hm-benefit-icon[data-tip]:hover::after{transform:translateX(0) translateY(0)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n+1) .hm-benefit-icon[data-tip]::before{left:38px}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n) .hm-benefit-icon[data-tip]::after{left:auto;right:0;transform:translateX(0) translateY(6px)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n) .hm-benefit-icon[data-tip]:hover::after{transform:translateX(0) translateY(0)}
+.hm-benefits-grid .hm-benefit-card:nth-child(3n) .hm-benefit-icon[data-tip]::before{left:auto;right:38px}
+@media (max-width:640px){
+  .hm-benefit-icon[data-tip]::after{width:180px;font-size:.74rem;padding:.6rem .75rem}
+}
+.hm-benefit-card h3{color:#0a3159;margin-bottom:0;font-size:1.42rem;font-weight:700;line-height:1.35}
+.hm-benefit-card p{color:#666;line-height:1.5;font-size:.82rem;margin-top:.4rem}
+
+@media (max-width:900px){
+  .hm-benefits-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:520px){
+  .hm-benefits-grid{grid-template-columns:1fr}
+}
+</style>
+
+<!-- ═══════════════════════════════════════
+     HERO SOFTWARE APR
+═══════════════════════════════════════ -->
+<section class="sa-hero">
+  <div class="sa-hero__glow-left"></div>
+  <div class="sa-hero__glow-right"></div>
+  <div class="sa-hero__dots"></div>
+  <div class="sw-section-divider sw-section-divider-top"></div>
+  <div class="sa-hero__badge"><i></i> Gestión integral para APR y SSR</div>
+  <h1 class="sa-hero__title">Ventajas del <em>Software APR</em></h1>
+  <p class="sa-hero__sub">
+    La plataforma que digitaliza la administración de tu Comité o Cooperativa de Agua Potable Rural.
+  </p>
+  <div class="sa-hero__price">El uso de Software APR tiene un valor de <span class="sa-hero__price-value">1 UF</span></div>
+  <div class="sw-section-divider"></div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     VENTAJAS DE SOFTWARE APR (trasladado desde home)
+═══════════════════════════════════════ -->
+<section class="hm-benefits">
+  <div class="hm-benefit-category" style="margin-top:0;padding-top:0;border-top:none">
+    <h3 class="hm-benefit-category-title"></h3>
+    <div class="hm-benefits-grid">
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Administra clientes, consumos, subsidios, usuarios afectos a corte, pagos, formularios, certificados de dotación e informes financieros desde una sola plataforma."><img src="{% static 'app/img/ventajas-apr/gestion-completa-apr.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Gestión Completa del APR</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Acceda al sistema desde cualquier lugar con conexión a internet, sin necesidad de instalar programas."><img src="{% static 'app/img/ventajas-apr/100-online.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>100% Online</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Centraliza toda la información y los procesos administrativos del APR en un único sistema."><img src="{% static 'app/img/ventajas-apr/administracion-centralizada.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Administración Centralizada</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Automatiza tareas administrativas para agilizar la gestión y disminuir el trabajo manual."><img src="{% static 'app/img/ventajas-apr/automatizacion-procesos.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Automatización de Procesos</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Digitaliza la administración del APR, reemplazando registros en papel y planillas manuales."><img src="{% static 'app/img/ventajas-apr/elimina-registros-manuales.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Elimina Registros Manuales</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Administra libro de caja, ingresos, egresos, gastos, proveedores, sueldos, flujo de caja y control de deudas."><img src="{% static 'app/img/ventajas-apr/gestion-financiera.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Gestión Financiera</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Gestiona productos, materiales, insumos, stock y ubicación de los recursos del APR."><img src="{% static 'app/img/ventajas-apr/control-inventario.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Control de Inventario</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Permite controlar el agua producida, el agua facturada, los registros de desinfección y el seguimiento por sectores."><img src="{% static 'app/img/ventajas-apr/control-tratamiento-agua.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Control del Tratamiento del Agua</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Compara el agua producida con la facturada para detectar pérdidas por fugas o posibles consumos no registrados."><img src="{% static 'app/img/ventajas-apr/control-perdidas-agua.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Control de Pérdidas de Agua</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Emite boletas electrónicas o exentas y permite su envío automático por correo electrónico."><img src="{% static 'app/img/ventajas-apr/boleta-electronica.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Boleta Electrónica</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Genera facturas electrónicas, facturas exentas y notas de crédito directamente desde la plataforma."><img src="{% static 'app/img/ventajas-apr/facturacion-electronica.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Facturación Electrónica</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Integra el pago de cuentas de agua mediante Punto Blue, registrando automáticamente la información en el sistema."><img src="{% static 'app/img/ventajas-apr/pago-online-integrado.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Pago Online Integrado</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Envía automáticamente boletas, facturas y documentos tributarios electrónicos a los usuarios."><img src="{% static 'app/img/ventajas-apr/envio-automatico-documentos.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Envío Automático de Documentos</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Detecta consumos superiores a lo habitual para facilitar su análisis y seguimiento."><img src="{% static 'app/img/ventajas-apr/deteccion-sobreconsumo.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Detección de Sobreconsumo</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Genera balances, informes financieros, reportes históricos y otra información administrativa de forma automática."><img src="{% static 'app/img/ventajas-apr/informes-automaticos.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Informes Automáticos</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Genera reportes conforme a los requerimientos de la Superintendencia de Servicios Sanitarios."><img src="{% static 'app/img/ventajas-apr/reportes-siss.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Reportes para la SISS</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Mantiene el registro histórico de consumos, pagos y movimientos de cada socio."><img src="{% static 'app/img/ventajas-apr/historial-socio.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Historial por Socio</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Permite administrar convenios de pago y acuerdos con los usuarios."><img src="{% static 'app/img/ventajas-apr/gestion-convenios.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Gestión de Convenios</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Puede utilizarse desde computador, tablet o teléfono móvil con acceso a internet."><img src="{% static 'app/img/ventajas-apr/compatible-cualquier-dispositivo.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Compatible con Cualquier Dispositivo</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Ingreso protegido mediante usuario y contraseña asignados al APR."><img src="{% static 'app/img/ventajas-apr/acceso-seguro.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Acceso Seguro</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Incluye capacitación online, manuales en PDF y videos de apoyo para facilitar el uso del sistema."><img src="{% static 'app/img/ventajas-apr/capacitacion-incluida.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Capacitación Incluida</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Asistencia técnica permanente para resolver consultas o incidencias."><img src="{% static 'app/img/ventajas-apr/soporte-tecnico-24-7.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Soporte Técnico 24/7</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Permite que el propio APR administre y gestione la plataforma de forma independiente."><img src="{% static 'app/img/ventajas-apr/autoadministrable.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Autoadministrable</h3>
+    </div>
+    <div class="hm-benefit-card">
+      <div class="hm-benefit-icon" data-tip="Optimiza los recursos del APR mediante la automatización de procesos y la disminución de tareas administrativas."><img src="{% static 'app/img/ventajas-apr/reduce-costos-operacionales.png' %}" alt="" onerror="this.style.display='none'"></div>
+      <h3>Reduce Costos Operacionales</h3>
+    </div>
+    </div>
+  </div><!-- /hm-benefit-category -->
+  <div class="sw-section-divider"></div>
+</section>
+
+{% endblock contenido %}
